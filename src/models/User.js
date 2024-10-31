@@ -47,6 +47,9 @@ const userSchema = new Schema({
     otpCode: {
         type: String
     }
+},
+{
+    timestamps:true
 });
 userSchema.plugin(AutoIncrement, { inc_field: 'userId', start_seq: 1 });
 

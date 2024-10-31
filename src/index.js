@@ -10,12 +10,16 @@ dotenv.config();
 
 let app = express();
 
-// config app
+app.use(cors({
+    origin: "http://localhost:3000", // Frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+}));
 
 app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
 
 routers(app);
 

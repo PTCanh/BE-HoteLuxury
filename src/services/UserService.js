@@ -13,7 +13,7 @@ export const createUserService = (newUser) => {
                 email: email
             })
             if (checkUser !== null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The email is already exists!'
                 })
@@ -46,13 +46,13 @@ export const loginUserService = (userLogin) => {
                 email: email
             })
             if (checkUser === null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The email is not defined'
                 })
             } else {
                 if(!checkUser.isVerified){
-                    resolve({
+                    return resolve({
                         status: 'ERR2',
                         message: 'The email is not verified'
                     })
@@ -61,7 +61,7 @@ export const loginUserService = (userLogin) => {
             const comparePassword = bcrypt.compareSync(password, checkUser.password)
 
             if (!comparePassword) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The user or password is incorrect',
                 })
@@ -97,7 +97,7 @@ export const resetUserPasswordService = (email) => {
                 email: email
             })
             if (checkEmail === null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The email is not defined'
                 })
@@ -130,14 +130,16 @@ export const updateUserService = (id, data) => {
                 userId: id
             })
             if (checkUser === null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The user is not defined'
                 })
             }
-
+            if(data.password){
+                data.password = bcrypt.hashSync(data.password, 10)
+            }
             const updatedUser = await User.findOneAndUpdate(
-                { userId: 4 },  // Điều kiện tìm kiếm
+                { userId: id },  // Điều kiện tìm kiếm
                 data,  // Giá trị cần cập nhật
                 { new: true }
             )

@@ -22,7 +22,7 @@ const roomTypeSchema = new Schema({
         required: true
     },
     roomTypePrice: {
-        type: Number,
+        type: String,
         required: true
     },
     roomTypeImage: {

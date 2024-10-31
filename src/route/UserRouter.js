@@ -13,11 +13,13 @@ router.post('/sign-in',loginUserController)
 router.post('/logout', logoutUserController)
 router.post('/reset-password', resetUserPasswordController)
 router.get('/reset-password/:token', handleResetPasswordTokenController)
-router.post('/create-user',createUserController)
-router.put('/update-user/:id',updateUserController)
-router.delete('/delete-user/:id',authMiddleware ,deleteUserController)
-router.get('/get-all',authMiddleware, getAllUserController)
-router.get('/get-details/:id',authUserMiddleware , getDetailsUserController)
+//CRUD User
+router.post('/',createUserController)
+router.put('/:id',updateUserController)
+router.delete('/:id',authMiddleware ,deleteUserController)
+router.get('/',authMiddleware, getAllUserController)
+router.get('/:id',authUserMiddleware , getDetailsUserController)
+//authentication
 router.post('/refresh_token',refreshToken)
 
 export default router
