@@ -16,7 +16,7 @@ const createRoom = (room) => {
 
             // Get the IDs of all RoomTypes for the hotel
             const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId);
-            
+
             // Check if a room with the same roomNumber exists in any RoomType for this hotel
             const checkRoom = await Room.findOne({
                 roomNumber: room.roomNumber,
@@ -30,6 +30,19 @@ const createRoom = (room) => {
                 });
             }
             await Room.create(room)
+            // if (room.status === "empty") {
+            //     const roomEmptyQuantity = await Room.countDocuments({
+            //         roomTypeId: room.roomTypeId,
+            //         roomStatus: room.status
+            //     })
+            //     await RoomType.findOneAndUpdate({
+            //         roomTypeId: room.roomTypeId
+            //     }, {
+            //         roomEmptyQuantity
+            //     }, {
+            //         new: true
+            //     })
+            // }
             const roomTypeQuantity = await Room.countDocuments({ roomTypeId: room.roomTypeId })
             await RoomType.findOneAndUpdate({
                 roomTypeId: room.roomTypeId
@@ -65,6 +78,19 @@ const updateRoom = (room, id) => {
             await Room.findOneAndUpdate({ roomId: id },
                 room,
                 { new: true })
+            // if (room.status === "empty") {
+            //     const roomEmptyQuantity = await Room.countDocuments({
+            //         roomTypeId: room.roomTypeId,
+            //         roomStatus: room.status
+            //     })
+            //     await RoomType.findOneAndUpdate({
+            //         roomTypeId: room.roomTypeId
+            //     }, {
+            //         roomEmptyQuantity
+            //     }, {
+            //         new: true
+            //     })
+            // }
             resolve({
                 status: 'OK',
                 message: 'Update Room successfully',
@@ -91,7 +117,19 @@ const deleteRoom = (id) => {
 
             await Room.findOneAndDelete({ roomId: id },
                 { new: true })
-
+            // if (checkRoom.status === "empty") {
+            //     const roomEmptyQuantity = await Room.countDocuments({
+            //         roomTypeId: checkRoom.roomTypeId,
+            //         roomStatus: checkRoom.status
+            //     })
+            //     await RoomType.findOneAndUpdate({
+            //         roomTypeId: checkRoom.roomTypeId
+            //     }, {
+            //         roomEmptyQuantity
+            //     }, {
+            //         new: true
+            //     })
+            // }
             const roomTypeQuantity = await Room.countDocuments({ roomTypeId: checkRoom.roomTypeId })
             await RoomType.findOneAndUpdate({
                 roomTypeId: checkRoom.roomTypeId

@@ -13,7 +13,7 @@ const cartSchema = new Schema({
         type: Number,
         required: true
     },
-    roomId: {
+    roomTypeId: {
         type: Number,
         required: true
     }

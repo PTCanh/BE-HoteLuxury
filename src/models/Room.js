@@ -17,10 +17,10 @@ const roomSchema = new Schema({
         type: Number,
         required: true
     },
-    roomStatus: {
-        type: String,
-        required: true
-    }
+    // roomStatus: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 roomSchema.plugin(AutoIncrement, { inc_field: 'roomId', start_seq: 1 });

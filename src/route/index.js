@@ -5,6 +5,9 @@ import hotelRouter from "./HotelRouter.js"
 import roomTypeRouter from "./RoomTypeRouter.js"
 import roomRouter from "./RoomRouter.js"
 import locationRouter from "./LocationRouter.js"
+import bookingRouter from "./BookingRouter.js"
+import cartRouter from "./CartRouter.js"
+import scheduleRouter from "./ScheduleRouter.js"
 
 const routes = (app) => {
     app.use('/', homePageRouter)
@@ -14,6 +17,9 @@ const routes = (app) => {
     app.use('/room-type',roomTypeRouter)
     app.use('/room',roomRouter)
     app.use('/location',locationRouter)
+    app.use('/booking',bookingRouter)
+    app.use('/cart',cartRouter)
+    app.use('/schedule',scheduleRouter)
 }
 
 export default routes

@@ -17,10 +17,10 @@ const scheduleSchema = new Schema({
         type: Number,
         required: true
     },
-    roomStatus: {
-        type: String,
-        required: true
-    },
+    // roomStatus: {
+    //     type: String,
+    //     required: true
+    // },
     dayStart: {
         type: Date,
         required: true

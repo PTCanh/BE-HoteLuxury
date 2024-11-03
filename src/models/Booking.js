@@ -11,7 +11,7 @@ const bookingSchema = new Schema({
     },
     roomTypeId: {
         type: Number,
-        unique: true
+        required: true
     },
     userId: {
         type: Number,
@@ -26,7 +26,7 @@ const bookingSchema = new Schema({
         required: true
     },
     customerName: {
-        type: Number,
+        type: String,
         required: true
     },
     customerPhone: {
