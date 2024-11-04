@@ -35,7 +35,7 @@ const userSchema = new Schema({
         default: 'R3'
     },
     phoneNumber: {
-        type: Number
+        type: String
     },
     image: {
         type: String

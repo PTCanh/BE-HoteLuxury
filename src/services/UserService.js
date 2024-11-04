@@ -7,7 +7,7 @@ dotenv.config()
 
 export const createUserService = (newUser) => {
     return new Promise(async (resolve, reject) => {
-        const { fullname, email, password, roleId } = newUser
+        const { fullname, email, password, roleId, phoneNumber, birthDate } = newUser
         try {
             const checkUser = await User.findOne({
                 email: email
@@ -23,6 +23,8 @@ export const createUserService = (newUser) => {
                 fullname,
                 email,
                 password: hash,
+                phoneNumber,
+                birthDate,
                 roleId
             })
             if (createdUser) {
@@ -51,7 +53,7 @@ export const loginUserService = (userLogin) => {
                     message: 'The email is not defined'
                 })
             } else {
-                if(!checkUser.isVerified){
+                if (!checkUser.isVerified) {
                     return resolve({
                         status: 'ERR2',
                         message: 'The email is not verified'
@@ -66,7 +68,7 @@ export const loginUserService = (userLogin) => {
                     message: 'The user or password is incorrect',
                 })
             }
-            
+
             const access_token = await generalAccessToken({
                 userId: checkUser.userId,
                 roleId: checkUser.roleId
@@ -135,7 +137,7 @@ export const updateUserService = (id, data) => {
                     message: 'The user is not defined'
                 })
             }
-            if(data.password){
+            if (data.password) {
                 data.password = bcrypt.hashSync(data.password, 10)
             }
             const updatedUser = await User.findOneAndUpdate(
@@ -213,6 +215,70 @@ export const getDetailsUserService = (id) => {
                 status: 'OK',
                 message: 'Success',
                 data: user
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+export const filterUserService = (filter) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!filter) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'The filter is required'
+                })
+            }
+            const formatFilter = {}
+            if (filter.email) {
+                formatFilter.email = filter.email.replace(/\s+/g, ' ').trim()
+            }
+            if (filter.fullname) {
+                formatFilter.fullname = filter.fullname.replace(/\s+/g, ' ').trim()
+            }
+            if (filter.phoneNumber) {
+                formatFilter.phoneNumber = filter.phoneNumber.replace(/\s+/g, ' ').trim()
+            }
+            if (filter.roleId) {
+                formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
+            }
+            const checkUser = await User.find({
+                email: { $regex: new RegExp(formatFilter.email, 'i') }, // Không phân biệt hoa thường
+                fullname: { $regex: new RegExp(formatFilter.fullname, 'i') }, // Không phân biệt hoa thường
+                phoneNumber: { $regex: new RegExp(formatFilter.phoneNumber) },
+                roleId: { $regex: new RegExp(formatFilter.roleId, 'i') }
+            });
+            if (checkUser.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: `The User is not found`
+                })
+            }
+            if (!filter.birthDate) {
+                return resolve({
+                    status: 'OK',
+                    message: 'Filter User successfully',
+                    data: checkUser
+                })
+            }
+            const checkUserIds = checkUser.map(user => user.userId)
+            const finalCheckUser = await User.find({
+                birthDate: filter.birthDate,
+                userId: {$in: checkUserIds} 
+            })
+            if (finalCheckUser.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: `The User is not found`
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'Filter User successfully',
+                data: finalCheckUser
             })
 
         } catch (e) {

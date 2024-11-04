@@ -1,7 +1,7 @@
 import { handleResetPasswordTokenService, refreshTokenJwtService,createAndSendOTPService, generalOTPToken,
     verifyUserService} from '../services/JwtService.js'
 import {createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService, 
-    getDetailsUserService, resetUserPasswordService} from '../services/UserService.js'
+    getDetailsUserService, resetUserPasswordService, filterUserService} from '../services/UserService.js'
 
 export const createUserController = async (req,res) => {
     try {
@@ -229,6 +229,17 @@ export const refreshToken = async (req,res) => {
             })
         }
         const response = await refreshTokenJwtService(token)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+export const filterUserController = async (req,res) => {
+    try {
+        const response = await filterUserService(req.query)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

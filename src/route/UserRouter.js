@@ -2,7 +2,7 @@ import express from "express";
 import { createUserController,loginUserController,updateUserController, deleteUserController, getAllUserController, 
     getDetailsUserController, refreshToken, logoutUserController, resetUserPasswordController, 
     handleResetPasswordTokenController, verifyUserController,
-    createAndSendOTPController} from "../controllers/UserController.js";
+    createAndSendOTPController, filterUserController} from "../controllers/UserController.js";
 import { authMiddleware,authUserMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -14,10 +14,11 @@ router.post('/logout', logoutUserController)
 router.post('/reset-password', resetUserPasswordController)
 router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
+router.get('/filter', filterUserController)
 router.post('/',createUserController)
 router.put('/:id',updateUserController)
 router.delete('/:id',authMiddleware ,deleteUserController)
-router.get('/',authMiddleware, getAllUserController)
+router.get('/', getAllUserController)
 router.get('/:id',authUserMiddleware , getDetailsUserController)
 //authentication
 router.post('/refresh_token',refreshToken)

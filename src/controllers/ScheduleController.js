@@ -60,7 +60,7 @@ const getAllSchedule = async (req, res) => {
 
 const searchSchedule = async (req, res) => {
     try {
-        const response = await scheduleService.searchSchedule(req.body);
+        const response = await scheduleService.searchSchedule(req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
