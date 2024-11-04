@@ -7,7 +7,7 @@ dotenv.config()
 
 export const createUserService = (newUser) => {
     return new Promise(async (resolve, reject) => {
-        const { fullname, email, password, roleId, phoneNumber, birthDate } = newUser
+        const { fullname, email, password, roleId, phoneNumber, birthDate, gender, address, image } = newUser
         try {
             const checkUser = await User.findOne({
                 email: email
@@ -25,7 +25,11 @@ export const createUserService = (newUser) => {
                 password: hash,
                 phoneNumber,
                 birthDate,
-                roleId
+                roleId,
+                gender,
+                address,
+                image,
+                isVerified: true
             })
             if (createdUser) {
                 resolve({

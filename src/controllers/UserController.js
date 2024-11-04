@@ -5,6 +5,11 @@ import {createUserService, loginUserService, updateUserService, deleteUserServic
 
 export const createUserController = async (req,res) => {
     try {
+        const image = req.file ? `${req.file.filename}` : null;
+        const userData = {
+            ...req.body,
+            image
+        }
         const { fullname, email, password, confirmPassword, roleId } = req.body
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
@@ -24,7 +29,7 @@ export const createUserController = async (req,res) => {
                 message: 'The password is not equal confirmPassword'
             })
         }
-        const response = await createUserService(req.body)
+        const response = await createUserService(userData)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

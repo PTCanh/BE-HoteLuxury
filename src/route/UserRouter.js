@@ -4,6 +4,7 @@ import { createUserController,loginUserController,updateUserController, deleteUs
     handleResetPasswordTokenController, verifyUserController,
     createAndSendOTPController, filterUserController} from "../controllers/UserController.js";
 import { authMiddleware,authUserMiddleware } from "../middlewares/authMiddleware.js";
+import upload from "../utils/UploadFile.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.post('/reset-password', resetUserPasswordController)
 router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
 router.get('/filter', filterUserController)
-router.post('/',createUserController)
+router.post('/', upload.single("image"), createUserController)
 router.put('/:id',updateUserController)
 router.delete('/:id',authMiddleware ,deleteUserController)
 router.get('/', getAllUserController)
