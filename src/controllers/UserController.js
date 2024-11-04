@@ -10,23 +10,18 @@ export const createUserController = async (req,res) => {
             ...req.body,
             image
         }
-        const { fullname, email, password, confirmPassword, roleId } = req.body
+        const { fullname, email, password, roleId } = req.body
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
-        if(!email|| !password|| !confirmPassword){
-            return res.status(200).json({
-                status: 'ERR',
+        if(!email|| !password){
+            return res.status(404).json({
+                status: 'ERR1',
                 message: 'The input is required'
             })
         } else if(!isCheckEmail){
-            return res.status(200).json({
-                status: 'ERR',
+            return res.status(404).json({
+                status: 'ERR2',
                 message: 'The input is not email'
-            })
-        } else if(password !== confirmPassword){
-            return res.status(200).json({
-                status: 'ERR',
-                message: 'The password is not equal confirmPassword'
             })
         }
         const response = await createUserService(userData)

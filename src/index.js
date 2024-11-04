@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import routers from './route/index.js';
 import connectDB from './config/connectDB.js';
+import path from 'path';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 
 routers(app);
 

@@ -14,7 +14,7 @@ export const createUserService = (newUser) => {
             })
             if (checkUser !== null) {
                 return resolve({
-                    status: 'ERR',
+                    status: 'ERR3',
                     message: 'The email is already exists!'
                 })
             }
