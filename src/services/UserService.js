@@ -87,7 +87,8 @@ export const loginUserService = (userLogin) => {
                 status: 'OK',
                 message: 'SUCCESS',
                 access_token,
-                refresh_token
+                refresh_token,
+                roleId: checkUser.roleId
             })
 
         } catch (e) {
@@ -289,6 +290,24 @@ export const filterUserService = (filter) => {
                 status: 'OK',
                 message: 'Filter User successfully',
                 data: finalCheckUser
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+export const getAllHotelManagerService = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allUsers = await User.find({
+                roleId:"R2"
+            })
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: allUsers
             })
 
         } catch (e) {
