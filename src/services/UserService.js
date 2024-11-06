@@ -239,22 +239,28 @@ export const filterUserService = (filter) => {
             const formatFilter = {}
             if (filter.email) {
                 formatFilter.email = filter.email.replace(/\s+/g, ' ').trim()
+                formatFilter.email = { $regex: new RegExp(formatFilter.email, 'i') } // Không phân biệt hoa thường
             }
             if (filter.fullname) {
                 formatFilter.fullname = filter.fullname.replace(/\s+/g, ' ').trim()
+                formatFilter.fullname = { $regex: new RegExp(formatFilter.fullname, 'i') } // Không phân biệt hoa thường
             }
             if (filter.phoneNumber) {
                 formatFilter.phoneNumber = filter.phoneNumber.replace(/\s+/g, ' ').trim()
+                formatFilter.phoneNumber = { $regex: new RegExp(formatFilter.phoneNumber) }
             }
             if (filter.roleId) {
                 formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
+                formatFilter.roleId = { $regex: new RegExp(formatFilter.roleId, 'i') }
             }
-            const checkUser = await User.find({
-                email: { $regex: new RegExp(formatFilter.email, 'i') }, // Không phân biệt hoa thường
-                fullname: { $regex: new RegExp(formatFilter.fullname, 'i') }, // Không phân biệt hoa thường
-                phoneNumber: { $regex: new RegExp(formatFilter.phoneNumber) },
-                roleId: { $regex: new RegExp(formatFilter.roleId, 'i') }
-            });
+            const checkUser = await User.find(
+                //{     email: { $regex: new RegExp(formatFilter.email, 'i') }, // Không phân biệt hoa thường
+                // fullname: { $regex: new RegExp(formatFilter.fullname, 'i') }, // Không phân biệt hoa thường
+                // phoneNumber: { $regex: new RegExp(formatFilter.phoneNumber) },
+                // roleId: { $regex: new RegExp(formatFilter.roleId, 'i') }}
+                formatFilter
+            );
+            console.log(formatFilter)
             if (checkUser.length === 0) {
                 return resolve({
                     status: 'ERR',

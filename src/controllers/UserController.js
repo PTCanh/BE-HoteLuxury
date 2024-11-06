@@ -156,14 +156,18 @@ export const verifyUserController = async (req, res) => {
 export const updateUserController = async (req,res) => {
     try {
         const userId = req.params.id
-        const data = req.body
+        const image = req.file ? `${req.file.filename}` : null;
+        const userData = {
+            ...req.body,
+            image
+        }
         if(!userId){
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The user is required'
             })
         }
-        const response = await updateUserService(userId, data)
+        const response = await updateUserService(userId, userData)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

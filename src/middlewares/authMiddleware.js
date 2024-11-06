@@ -4,13 +4,13 @@ dotenv.config()
 
 
 export const authMiddleware = (req, res, next) => {
-    if(!req.headers.access_token){
+    if(!req.headers.authorization){
         return res.status(401).json({
             message: 'The token is empty',
             status: 'ERROR'
         })
     }
-    const token = req.headers.access_token.split(' ')[1]
+    const token = req.headers.authorization.split(' ')[1]
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({
@@ -30,13 +30,13 @@ export const authMiddleware = (req, res, next) => {
 }
 
 export const authUserMiddleware = (req, res, next) => {
-    if(!req.headers.access_token){
+    if(!req.headers.authorization){
         return res.status(401).json({
             message: 'The token is empty',
             status: 'ERROR'
         })
     }
-    const token = req.headers.access_token.split(' ')[1]
+    const token = req.headers.authorization.split(' ')[1]
     const userId = parseInt(req.params.id, 10)
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
@@ -56,13 +56,13 @@ export const authUserMiddleware = (req, res, next) => {
     })
 }
 export const verifyToken = (req, res, next) => {
-    if(!req.headers.access_token){
+    if(!req.headers.authorization){
         return res.status(401).json({
             message: 'The token is empty',
             status: 'ERROR'
         })
     }
-    const token = req.headers.access_token.split(' ')[1]
+    const token = req.headers.authorization.split(' ')[1]
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({

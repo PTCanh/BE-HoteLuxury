@@ -17,7 +17,7 @@ router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
 router.get('/filter', filterUserController)
 router.post('/', upload.single("image"), createUserController)
-router.put('/:id',updateUserController)
+router.put('/:id', upload.single("image"), updateUserController)
 router.delete('/:id',authMiddleware ,deleteUserController)
 router.get('/', getAllUserController)
 router.get('/:id',authUserMiddleware , getDetailsUserController)

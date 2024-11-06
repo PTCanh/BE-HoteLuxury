@@ -147,7 +147,6 @@ const adminAvatar = (headers) => {
     try {
       const token = headers.authorization.split(' ')[1]
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-      console.log(decoded)
       const checkUser = await User.findOne({
         userId: decoded.userId
       })
