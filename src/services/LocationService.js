@@ -133,19 +133,15 @@ const getAllLocation = () => {
     })
 }
 
-const searchLocation = (query) => {
+const filterLocation = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!query.locationName) {
-                return resolve({
-                    status: 'ERR',
-                    message: 'The location is required'
-                })
+            const formatFilter = {}
+            if (filter.locationName) {
+                formatFilter.locationName = filter.locationName.replace(/\s+/g, ' ').trim()
+                formatFilter.locationName = { $regex: new RegExp(formatFilter.locationName, 'i') }
             }
-            const locationName = query.locationName.replace(/\s+/g, ' ').trim()
-            const checkLocation = await Location.find({
-                locationName: { $regex: new RegExp(locationName, 'i') } // Không phân biệt hoa thường
-            });
+            const checkLocation = await Location.find(formatFilter);
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
@@ -171,5 +167,5 @@ export default {
     deleteLocation,
     getDetailLocation,
     getAllLocation,
-    searchLocation
+    filterLocation
 }

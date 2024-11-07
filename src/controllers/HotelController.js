@@ -69,11 +69,35 @@ const searchHotel = async (req, res) => {
     }
 };
 
+const filterHotel = async (req, res) => {
+    try {
+        const response = await hotelService.userFilterHotel(req.query);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
+const adminFilterHotel = async (req, res) => {
+    try {
+        const response = await hotelService.adminFilterHotel(req.query);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createHotel,
     updateHotel,
     deleteHotel,
     getDetailHotel,
     getAllHotel,
-    searchHotel
+    searchHotel,
+    filterHotel,
+    adminFilterHotel
 }

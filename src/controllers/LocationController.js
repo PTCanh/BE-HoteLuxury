@@ -58,9 +58,9 @@ const getAllLocation = async (req, res) => {
   }
 };
 
-const searchLocation = async (req, res) => {
+const filterLocation = async (req, res) => {
   try {
-    const response = await locationService.searchLocation(req.query);
+    const response = await locationService.filterLocation(req.query);
     return res.status(200).json(response);
   } catch (e) {
     return res.status(404).json({
@@ -75,5 +75,5 @@ export default {
   deleteLocation,
   getDetailLocation,
   getAllLocation,
-  searchLocation
+  filterLocation
 }

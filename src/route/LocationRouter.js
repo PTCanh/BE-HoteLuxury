@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get('/search', locationController.searchLocation)
+router.get('/filter', locationController.filterLocation)
 router.post('/', locationController.createLocation)
 router.put('/:id', locationController.updateLocation)
 router.delete('/:id', locationController.deleteLocation)

@@ -248,26 +248,11 @@ export const filterUserService = (filter) => {
                 formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
                 formatFilter.roleId = { $regex: new RegExp(formatFilter.roleId, 'i') }
             }
-            const checkUser = await User.find(formatFilter);
-            if (checkUser.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `The User is not found`
-                })
+            if (filter.birthDate) {
+                formatFilter.birthDate = filter.birthDate
             }
-            if (!filter.birthDate) {
-                return resolve({
-                    status: 'OK',
-                    message: 'Filter User successfully',
-                    data: checkUser
-                })
-            }
-            const checkUserIds = checkUser.map(user => user.userId)
-            const finalCheckUser = await User.find({
-                birthDate: filter.birthDate,
-                userId: {$in: checkUserIds} 
-            })
-            if (finalCheckUser.length === 0) {
+            const filterUser = await User.find(formatFilter);
+            if (filterUser.length === 0) {
                 return resolve({
                     status: 'ERR',
                     message: `The User is not found`
@@ -276,7 +261,7 @@ export const filterUserService = (filter) => {
             resolve({
                 status: 'OK',
                 message: 'Filter User successfully',
-                data: finalCheckUser
+                data: filterUser
             })
 
         } catch (e) {

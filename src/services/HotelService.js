@@ -194,7 +194,7 @@ const searchHotel = (filter) => {
             const availableRooms = await Room.find({
                 roomId: { $in: roomIds, $nin: bookedRoomIds }
             });
-            console.log('AvailableRoom: ', availableRooms)
+            //console.log('AvailableRoom: ', availableRooms)
             //Tìm id của roomType của các phòng trống
             const availableRoomTypeIds = availableRooms.map(room => room.roomTypeId)
             //console.log('availableRoomTypeIds: ', availableRoomTypeIds)
@@ -225,11 +225,113 @@ const searchHotel = (filter) => {
     })
 }
 
+const userFilterHotel = (filter) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const formatFilter = {}
+            if (filter.email) {
+                formatFilter.email = filter.email.replace(/\s+/g, ' ').trim()
+                formatFilter.email = { $regex: new RegExp(formatFilter.email, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.fullname) {
+                formatFilter.fullname = filter.fullname.replace(/\s+/g, ' ').trim()
+                formatFilter.fullname = { $regex: new RegExp(formatFilter.fullname, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.phoneNumber) {
+                formatFilter.phoneNumber = filter.phoneNumber.replace(/\s+/g, ' ').trim()
+                formatFilter.phoneNumber = { $regex: new RegExp(formatFilter.phoneNumber) }
+            }
+            if (filter.roleId) {
+                formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
+                formatFilter.roleId = { $regex: new RegExp(formatFilter.roleId, 'i') }
+            }
+            if(filter.locationId){
+
+            }
+            const checkUser = await User.find(formatFilter);
+            if (checkUser.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: `The User is not found`
+                })
+            }
+            if (!filter.birthDate) {
+                return resolve({
+                    status: 'OK',
+                    message: 'Filter User successfully',
+                    data: checkUser
+                })
+            }
+            const checkUserIds = checkUser.map(user => user.userId)
+            const finalCheckUser = await User.find({
+                birthDate: filter.birthDate,
+                userId: {$in: checkUserIds} 
+            })
+            if (finalCheckUser.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: `The User is not found`
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'Filter Hotel successfully',
+                data: finalCheckUser
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+const adminFilterHotel = (filter) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const formatFilter = {}
+            if (filter.hotelName) {
+                formatFilter.hotelName = filter.hotelName.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelName = { $regex: new RegExp(formatFilter.hotelName, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.hotelAddress) {
+                formatFilter.hotelAddress = filter.hotelAddress.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelAddress = { $regex: new RegExp(formatFilter.hotelAddress, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.hotelPhoneNumber) {
+                formatFilter.hotelPhoneNumber = filter.hotelPhoneNumber.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelPhoneNumber = { $regex: new RegExp(formatFilter.hotelPhoneNumber) }
+            }
+            if(filter.hotelStar){
+                formatFilter.hotelStar = filter.hotelStar
+            }
+            if(filter.locationId){
+                formatFilter.locationId = filter.locationId
+            }
+            const filterHotel = await Hotel.find(formatFilter);
+            if (filterHotel.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: `No hotel is found`
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'Filter Hotel successfully',
+                data: filterHotel
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createHotel,
     updateHotel,
     deleteHotel,
     getDetailHotel,
     getAllHotel,
-    searchHotel
+    searchHotel,
+    userFilterHotel,
+    adminFilterHotel
 }

@@ -34,7 +34,7 @@ const hotelSchema = new Schema({
         required: true
     },
     hotelPhoneNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     ratingAverage: {
