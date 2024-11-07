@@ -1,6 +1,8 @@
 import Hotel from '../models/Hotel.js'
 import RoomType from '../models/RoomType.js'
 import Room from '../models/Room.js'
+import Schedule from '../models/Schedule.js'
+import Location from '../models/NotableLocation.js'
 
 const createHotel = (hotel) => {
     return new Promise(async (resolve, reject) => {
@@ -131,30 +133,90 @@ const getAllHotel = () => {
     })
 }
 
-const searchHotel = (query) => {
+const searchHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!query.hotelName) {
+            if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel is required'
+                    message: `dayStart and dayEnd are required`
                 })
             }
-            const hotelName = query.hotelName.replace(/\s+/g, ' ').trim()
+            
+            const formatFilter = {}
+            if (filter.locationName) {
+                formatFilter.locationName = filter.locationName.replace(/\s+/g, ' ').trim()
+                formatFilter.locationName = { $regex: new RegExp(formatFilter.locationName, 'i') } // Không phân biệt hoa thường
+            }
+            //Tìm các địa điểm khớp dữ liệu nhập vào
+            const locations = await Location.find(formatFilter)
+            if(locations.length === 0){
+                return resolve({
+                    status: 'ERR',
+                    message: `Can not find the location`
+                })
+            }
+            //Chuyển sang id của các địa điểm đã tìm thấy
+            const locationIds = locations.map(location => location.notableLocationId)
+            //Tìm các hotel thuộc các địa điểm trên
             const checkHotel = await Hotel.find({
-                hotelName: { $regex: new RegExp(hotelName, 'i') } // Không phân biệt hoa thường
+                locationId: {$in: locationIds}
             });
             if (checkHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel is not exist'
+                    message: `Can not find any hotels`
                 })
             }
-
+            const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+            //Tìm tất cả roomType của khách sạn
+            const roomTypes = await RoomType.find({
+                hotelId: { $in: checkHotelIds }
+            })
+            //console.log('RoomType: ', roomTypes.length)
+            //Chuyển thành mảng roomTypeId
+            const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId)
+            // Find all Rooms associated with all the RoomType
+            const rooms = await Room.find({ roomTypeId: { $in: roomTypeIds } });
+            //console.log('Room: ', rooms.length)
+            //Chuyển thành mảng roomId
+            const roomIds = rooms.map(room => room.roomId)
+            //Tìm tất cả phòng đã được đặt
+            const bookedRoomIds = await Schedule.find({
+                roomId: { $in: roomIds },
+                $or: [
+                    { dayStart: { $gte: filter.dayStart, $lte: filter.dayEnd } },
+                    { dayEnd: { $gte: filter.dayStart, $lte: filter.dayEnd } }
+                ]
+            }).distinct("roomId");
+            //console.log('BookedRoom: ', bookedRoomIds.length)
+            //Tìm những phòng còn trống
+            const availableRooms = await Room.find({
+                roomId: { $in: roomIds, $nin: bookedRoomIds }
+            });
+            console.log('AvailableRoom: ', availableRooms)
+            //Tìm id của roomType của các phòng trống
+            const availableRoomTypeIds = availableRooms.map(room => room.roomTypeId)
+            //console.log('availableRoomTypeIds: ', availableRoomTypeIds)
+            //Tìm những roomType của các phòng trống
+            const availableRoomTypes = await RoomType.find({
+                roomTypeId: { $in: availableRoomTypeIds }
+            })
+            //console.log('availableRoomTypes: ', availableRoomTypes)
+            //Tìm id của hotel của các phòng trống
+            const availableHotelIds = availableRoomTypes.map(roomType => roomType.hotelId)
+            //console.log('availableHotelIds: ', availableHotelIds.length)
+            //console.log('availableHotelIds: ', availableHotelIds)
+            //Tìm những hotel còn trống
+            const availableHotels = await Hotel.find({
+                hotelId: { $in: availableHotelIds }
+            }) 
+            //console.log('availableHotels: ', availableHotels.length)
             resolve({
                 status: 'OK',
                 message: 'Search hotel successfully',
-                data: checkHotel
+                hotels: availableHotels,
+                //roomTypes: availableRoomTypes
             })
 
         } catch (e) {

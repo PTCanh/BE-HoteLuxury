@@ -231,12 +231,6 @@ export const getDetailsUserService = (id) => {
 export const filterUserService = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!filter) {
-                return resolve({
-                    status: 'ERR',
-                    message: 'The filter is required'
-                })
-            }
             const formatFilter = {}
             if (filter.email) {
                 formatFilter.email = filter.email.replace(/\s+/g, ' ').trim()
@@ -254,14 +248,7 @@ export const filterUserService = (filter) => {
                 formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
                 formatFilter.roleId = { $regex: new RegExp(formatFilter.roleId, 'i') }
             }
-            const checkUser = await User.find(
-                //{     email: { $regex: new RegExp(formatFilter.email, 'i') }, // Không phân biệt hoa thường
-                // fullname: { $regex: new RegExp(formatFilter.fullname, 'i') }, // Không phân biệt hoa thường
-                // phoneNumber: { $regex: new RegExp(formatFilter.phoneNumber) },
-                // roleId: { $regex: new RegExp(formatFilter.roleId, 'i') }}
-                formatFilter
-            );
-            console.log(formatFilter)
+            const checkUser = await User.find(formatFilter);
             if (checkUser.length === 0) {
                 return resolve({
                     status: 'ERR',

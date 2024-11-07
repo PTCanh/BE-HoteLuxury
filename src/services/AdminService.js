@@ -136,7 +136,6 @@ const adminHomePage = async () => {
         revenueEachMonth: revenueEachMonth,
       });
     } catch (e) {
-      //console.error(e);
       reject(e);
     }
   });
@@ -150,7 +149,6 @@ const adminAvatar = (headers) => {
       const checkUser = await User.findOne({
         userId: decoded.userId
       })
-      console.log(checkUser)
       if (checkUser === null) {
         return resolve({
           status: 'ERR',
