@@ -1,4 +1,4 @@
-import Location from '../models/NotableLocation.js'
+import Location from '../models/Location.js'
 
 
 const createLocation = (location) => {
@@ -33,7 +33,7 @@ const updateLocation = (location, id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkLocation = await Location.findOne({
-                notableLocationId: id
+                locationId: id
             })
             if (checkLocation === null) {
                 return resolve({
@@ -42,7 +42,7 @@ const updateLocation = (location, id) => {
                 })
             }
 
-            await Location.findOneAndUpdate({ notableLocationId: id },
+            await Location.findOneAndUpdate({ locationId: id },
                 {
                     locationName: location.locationName,
                     locationImage: location.locationImage
@@ -63,7 +63,7 @@ const deleteLocation = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkLocation = await Location.findOne({
-                notableLocationId: id
+                locationId: id
             })
             if (checkLocation === null) {
                 return resolve({
@@ -72,7 +72,7 @@ const deleteLocation = (id) => {
                 })
             }
 
-            await Location.findOneAndDelete({ notableLocationId: id },
+            await Location.findOneAndDelete({ locationId: id },
                 { new: true })
             resolve({
                 status: 'OK',
@@ -89,7 +89,7 @@ const getDetailLocation = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkLocation = await Location.findOne({
-                notableLocationId: id
+                locationId: id
             })
             if (checkLocation === null) {
                 return resolve({

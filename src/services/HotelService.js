@@ -2,7 +2,7 @@ import Hotel from '../models/Hotel.js'
 import RoomType from '../models/RoomType.js'
 import Room from '../models/Room.js'
 import Schedule from '../models/Schedule.js'
-import Location from '../models/NotableLocation.js'
+import Location from '../models/Location.js'
 
 const createHotel = (hotel) => {
     return new Promise(async (resolve, reject) => {
@@ -157,7 +157,7 @@ const searchHotel = (filter) => {
                 })
             }
             //Chuyển sang id của các địa điểm đã tìm thấy
-            const locationIds = locations.map(location => location.notableLocationId)
+            const locationIds = locations.map(location => location.locationId)
             //Tìm các hotel thuộc các địa điểm trên
             const checkHotel = await Hotel.find({
                 locationId: {$in: locationIds}
@@ -229,54 +229,20 @@ const userFilterHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
-            if (filter.email) {
-                formatFilter.email = filter.email.replace(/\s+/g, ' ').trim()
-                formatFilter.email = { $regex: new RegExp(formatFilter.email, 'i') } // Không phân biệt hoa thường
+            if(filter.hotelStar){
+                formatFilter.hotelStar = filter.hotelStar
             }
-            if (filter.fullname) {
-                formatFilter.fullname = filter.fullname.replace(/\s+/g, ' ').trim()
-                formatFilter.fullname = { $regex: new RegExp(formatFilter.fullname, 'i') } // Không phân biệt hoa thường
-            }
-            if (filter.phoneNumber) {
-                formatFilter.phoneNumber = filter.phoneNumber.replace(/\s+/g, ' ').trim()
-                formatFilter.phoneNumber = { $regex: new RegExp(formatFilter.phoneNumber) }
-            }
-            if (filter.roleId) {
-                formatFilter.roleId = filter.roleId.replace(/\s+/g, ' ').trim()
-                formatFilter.roleId = { $regex: new RegExp(formatFilter.roleId, 'i') }
-            }
-            if(filter.locationId){
-
-            }
-            const checkUser = await User.find(formatFilter);
-            if (checkUser.length === 0) {
+            const filterHotel = await Hotel.find(formatFilter);
+            if (filterHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `The User is not found`
-                })
-            }
-            if (!filter.birthDate) {
-                return resolve({
-                    status: 'OK',
-                    message: 'Filter User successfully',
-                    data: checkUser
-                })
-            }
-            const checkUserIds = checkUser.map(user => user.userId)
-            const finalCheckUser = await User.find({
-                birthDate: filter.birthDate,
-                userId: {$in: checkUserIds} 
-            })
-            if (finalCheckUser.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `The User is not found`
+                    message: `No hotel is found`
                 })
             }
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
-                data: finalCheckUser
+                data: filterHotel
             })
 
         } catch (e) {

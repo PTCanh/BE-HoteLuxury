@@ -69,7 +69,7 @@ const searchHotel = async (req, res) => {
     }
 };
 
-const filterHotel = async (req, res) => {
+const userFilterHotel = async (req, res) => {
     try {
         const response = await hotelService.userFilterHotel(req.query);
         return res.status(200).json(response);
@@ -98,6 +98,6 @@ export default {
     getDetailHotel,
     getAllHotel,
     searchHotel,
-    filterHotel,
+    userFilterHotel,
     adminFilterHotel
 }

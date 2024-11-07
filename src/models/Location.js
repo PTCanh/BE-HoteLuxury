@@ -4,8 +4,8 @@ const AutoIncrement = pkg(mongoose);
 
 const { Schema } = mongoose;
 
-const notableLocationSchema = new Schema({
-    notableLocationId: {
+const locationSchema = new Schema({
+    locationId: {
         type: Number,
         unique: true
     },
@@ -19,8 +19,8 @@ const notableLocationSchema = new Schema({
     }
 });
 
-notableLocationSchema.plugin(AutoIncrement, { inc_field: 'notableLocationId', start_seq: 1 });
+locationSchema.plugin(AutoIncrement, { inc_field: 'locationId', start_seq: 1 });
 
-const NotableLocation = mongoose.model('NotableLocation', notableLocationSchema);
+const Location = mongoose.model('Location', locationSchema);
 
-export default NotableLocation;
+export default Location;
