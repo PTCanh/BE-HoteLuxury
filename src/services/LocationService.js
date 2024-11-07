@@ -13,11 +13,7 @@ const createLocation = (location) => {
                     message: 'The location is exist'
                 })
             }
-
-            await Location.create({
-                locationName: location.locationName,
-                locationImage: location.locationImage
-            })
+            await Location.create(location)
             resolve({
                 status: 'OK',
                 message: 'Create location successfully',
@@ -43,10 +39,7 @@ const updateLocation = (location, id) => {
             }
 
             await Location.findOneAndUpdate({ locationId: id },
-                {
-                    locationName: location.locationName,
-                    locationImage: location.locationImage
-                },
+                location,
                 { new: true })
             resolve({
                 status: 'OK',
