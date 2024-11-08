@@ -14,7 +14,7 @@ const roomSchema = new Schema({
         required: true
     },
     roomNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     // roomStatus: {

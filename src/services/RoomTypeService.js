@@ -130,32 +130,43 @@ const getAllRoomType = () => {
     })
 }
 
-const searchRoomType = (query) => {
+const filterRoomType = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!query.roomTypeName) {
+            const formatFilter = {}
+            if(filter.hotelId){
+                formatFilter.hotelId = filter.hotelId
+            }
+            if(filter.roomTypeQuantity){
+                formatFilter.roomTypeQuantity = filter.roomTypeQuantity
+            }
+            if (filter.roomTypeName) {
+                formatFilter.roomTypeName = filter.roomTypeName.replace(/\s+/g, ' ').trim()
+                formatFilter.roomTypeName = { $regex: new RegExp(formatFilter.roomTypeName, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.roomTypePrice) {
+                formatFilter.roomTypePrice = filter.roomTypePrice.replace(/\s+/g, ' ').trim()
+                formatFilter.roomTypePrice = { $regex: new RegExp(formatFilter.roomTypePrice) }
+            }
+            if (filter.hotelType) {
+                formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
+            }
+            if(filter.maxPeople){
+                formatFilter.maxPeople = filter.maxPeople
+            }
+            const filterRoomType = await RoomType.find(formatFilter);
+            if (filterRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is required'
+                    message: `No RoomType is found`
                 })
             }
-            const roomTypeName = query.roomTypeName.replace(/\s+/g, ' ').trim()
-            const checkRoomType = await RoomType.find({
-                roomTypeName: { $regex: new RegExp(roomTypeName, 'i') } // Không phân biệt hoa thường
-            });
-            if (checkRoomType.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: 'The RoomType is not exist'
-                })
-            }
-
             resolve({
                 status: 'OK',
-                message: 'Search RoomType successfully',
-                data: checkRoomType
+                message: 'Filter RoomType successfully',
+                data: filterRoomType
             })
-
         } catch (e) {
             reject(e)
         }
@@ -168,5 +179,5 @@ export default {
     deleteRoomType,
     getDetailRoomType,
     getAllRoomType,
-    searchRoomType
+    filterRoomType
 }

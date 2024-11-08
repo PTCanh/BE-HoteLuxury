@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get('/search', roomTypeController.searchRoomType)
+router.get('/filter', roomTypeController.filterRoomType)
 router.post('/', roomTypeController.createRoomType)
 router.put('/:id', roomTypeController.updateRoomType)
 router.delete('/:id', roomTypeController.deleteRoomType)

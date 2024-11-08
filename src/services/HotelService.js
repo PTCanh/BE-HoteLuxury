@@ -228,12 +228,34 @@ const searchHotel = (filter) => {
 const userFilterHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
+            //Khách sạn đã tìm kiếm
+            const searchedHotels = await searchHotel(filter)
+            if(!searchedHotels.hotels || searchedHotels.hotels.length === 0){
+                return resolve({
+                    status: 'ERR',
+                    message: `Can not filter any hotels`
+                })
+            }
+            const searchedHotelIds = searchedHotels.hotels.map(hotel => hotel.hotelId)
+            //Lọc khách sạn
             const formatFilter = {}
+            if (filter.hotelType) {
+                formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
+            }
             if(filter.hotelStar){
                 formatFilter.hotelStar = filter.hotelStar
             }
             const filterHotel = await Hotel.find(formatFilter);
-            if (filterHotel.length === 0) {
+            const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)
+            //Tìm hotelId có trong cả tìm kiếm và lọc
+            const intersectedHotelIds = searchedHotelIds.filter(hotelId => filterHotelIds.includes(hotelId));
+            //Lấy thông tin khách sạn từ hotelId
+            const finalFilterHotel = await Hotel.find({
+                hotelId: {$in: intersectedHotelIds}
+            });
+
+            if (finalFilterHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
                     message: `No hotel is found`
@@ -242,7 +264,7 @@ const userFilterHotel = (filter) => {
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
-                data: filterHotel
+                data: finalFilterHotel
             })
 
         } catch (e) {
@@ -266,6 +288,10 @@ const adminFilterHotel = (filter) => {
             if (filter.hotelPhoneNumber) {
                 formatFilter.hotelPhoneNumber = filter.hotelPhoneNumber.replace(/\s+/g, ' ').trim()
                 formatFilter.hotelPhoneNumber = { $regex: new RegExp(formatFilter.hotelPhoneNumber) }
+            }
+            if (filter.hotelType) {
+                formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
             }
             if(filter.hotelStar){
                 formatFilter.hotelStar = filter.hotelStar

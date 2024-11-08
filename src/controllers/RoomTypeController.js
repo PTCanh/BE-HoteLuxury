@@ -58,9 +58,9 @@ const getAllRoomType = async (req, res) => {
     }
 };
 
-const searchRoomType = async (req, res) => {
+const filterRoomType = async (req, res) => {
     try {
-        const response = await roomTypeService.searchRoomType(req.query);
+        const response = await roomTypeService.filterRoomType(req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
@@ -75,5 +75,5 @@ export default {
     deleteRoomType,
     getDetailRoomType,
     getAllRoomType,
-    searchRoomType
+    filterRoomType
 }

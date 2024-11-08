@@ -197,32 +197,29 @@ const getAllRoom = () => {
     })
 }
 
-const searchRoom = (query) => {
+const filterRoom = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!query.roomStatus) {
+            const formatFilter = {}
+            if(filter.roomTypeId){
+                formatFilter.roomTypeId = filter.roomTypeId
+            }
+            if (filter.roomNumber) {
+                formatFilter.roomNumber = filter.roomNumber.replace(/\s+/g, ' ').trim()
+                formatFilter.roomNumber = { $regex: new RegExp(formatFilter.roomNumber) }
+            }
+            const filterRoom = await Room.find(formatFilter);
+            if (filterRoom.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The room status is required'
+                    message: `No room is found`
                 })
             }
-            const roomStatus = query.roomStatus.replace(/\s+/g, ' ').trim()
-            const checkRoom = await Room.find({
-                roomStatus: { $regex: new RegExp(`^${roomStatus}$`, 'i') } // Không phân biệt hoa thường
-            });
-            if (checkRoom.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `The room is not found`
-                })
-            }
-
             resolve({
                 status: 'OK',
-                message: 'Search Room successfully',
-                data: checkRoom
+                message: 'Filter room successfully',
+                data: filterRoom
             })
-
         } catch (e) {
             reject(e)
         }
@@ -235,5 +232,5 @@ export default {
     deleteRoom,
     getDetailRoom,
     getAllRoom,
-    searchRoom
+    filterRoom
 }
