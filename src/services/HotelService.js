@@ -1,6 +1,7 @@
 import Hotel from '../models/Hotel.js'
 import RoomType from '../models/RoomType.js'
 import Room from '../models/Room.js'
+import User from '../models/User.js'
 import Schedule from '../models/Schedule.js'
 import Location from '../models/Location.js'
 
@@ -90,18 +91,24 @@ const getDetailHotel = (id) => {
         try {
             const checkHotel = await Hotel.findOne({
                 hotelId: id
-            })
+            }).lean()
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR',
                     message: 'The hotel is not exist'
                 })
             }
-
+            const checkUser = await User.findOne({
+                userId: checkHotel.userId
+            })
+            const finalHotel = {
+                ...checkHotel,
+                fullname: checkUser.fullname || null
+            }
             resolve({
                 status: 'OK',
                 message: 'Get detail hotel successfully',
-                data: checkHotel
+                data: finalHotel
             })
 
         } catch (e) {
