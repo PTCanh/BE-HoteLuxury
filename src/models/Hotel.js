@@ -43,15 +43,12 @@ const hotelSchema = new Schema({
     },
     ratingAverage: {
         type: Number,
-        required: true
     },
     ratingQuantity: {
         type: Number,
-        required: true
     },
     locationId: {
         type: Number,
-        required: true
     }
 });
 

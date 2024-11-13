@@ -25,7 +25,7 @@ const userSchema = new Schema({
     },
     gender: {
         type: String,
-        enum: ['Name', 'Nữ']
+        enum: ['Nam', 'Nữ']
     },
     birthDate: {
         type: Date
