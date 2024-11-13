@@ -1,9 +1,13 @@
-import { handleResetPasswordTokenService, refreshTokenJwtService,createAndSendOTPService, generalOTPToken,
-    verifyUserService} from '../services/JwtService.js'
-import {createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService, 
-    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService} from '../services/UserService.js'
+import {
+    handleResetPasswordTokenService, refreshTokenJwtService, createAndSendOTPService, generalOTPToken,
+    verifyUserService
+} from '../services/JwtService.js'
+import {
+    createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
+    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService
+} from '../services/UserService.js'
 
-export const createUserController = async (req,res) => {
+export const createUserController = async (req, res) => {
     try {
         const image = req.file ? `${req.file.filename}` : null;
         const userData = {
@@ -13,12 +17,12 @@ export const createUserController = async (req,res) => {
         const { fullname, email, password, roleId } = req.body
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
-        if(!email|| !password){
+        if (!email || !password) {
             return res.status(404).json({
                 status: 'ERR1',
                 message: 'The input is required'
             })
-        } else if(!isCheckEmail){
+        } else if (!isCheckEmail) {
             return res.status(404).json({
                 status: 'ERR2',
                 message: 'The input is not email'
@@ -33,24 +37,24 @@ export const createUserController = async (req,res) => {
     }
 }
 
-export const loginUserController = async (req,res) => {
+export const loginUserController = async (req, res) => {
     try {
-        const { email, password} = req.body
+        const { email, password } = req.body
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
-        if(!email|| !password){
+        if (!email || !password) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
-        } else if(!isCheckEmail){
+        } else if (!isCheckEmail) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is not email'
             })
         }
         const response = await loginUserService(req.body)
-        const {refresh_token, ...newResponse} = response
+        const { refresh_token, ...newResponse } = response
         res.cookie('refresh_token', refresh_token, {
             HttpOnly: true,
             Secure: false,
@@ -64,7 +68,7 @@ export const loginUserController = async (req,res) => {
     }
 }
 
-export const logoutUserController = async (req,res) => {
+export const logoutUserController = async (req, res) => {
     try {
         res.clearCookie('refresh_token')
         return res.status(200).json({
@@ -78,10 +82,10 @@ export const logoutUserController = async (req,res) => {
     }
 }
 
-export const resetUserPasswordController = async (req,res) => {
+export const resetUserPasswordController = async (req, res) => {
     try {
         const email = req.body.email
-        if(!email){
+        if (!email) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The email is required'
@@ -114,17 +118,17 @@ export const createAndSendOTPController = async (req, res) => {
         const { email, password, confirmPassword } = req.body
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
-        if(!email|| !password|| !confirmPassword){
+        if (!email || !password || !confirmPassword) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
-        } else if(!isCheckEmail){
+        } else if (!isCheckEmail) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is not email'
             })
-        } else if(password !== confirmPassword){
+        } else if (password !== confirmPassword) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The password is not equal confirmPassword'
@@ -153,15 +157,19 @@ export const verifyUserController = async (req, res) => {
     }
 }
 
-export const updateUserController = async (req,res) => {
+export const updateUserController = async (req, res) => {
     try {
         const userId = req.params.id
-        const image = req.file ? `${req.file.filename}` : null;
-        const userData = {
-            ...req.body,
-            image
+        const userData = req.body
+        if (!req.body.image) {
+            const image = req.file ? `${req.file.filename}` : null;
+            userData = {
+                ...req.body,
+                image
+            }
         }
-        if(!userId){
+
+        if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The user is required'
@@ -176,10 +184,10 @@ export const updateUserController = async (req,res) => {
     }
 }
 
-export const deleteUserController = async (req,res) => {
+export const deleteUserController = async (req, res) => {
     try {
         const userId = req.params.id
-        if(!userId){
+        if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The user is required'
@@ -194,7 +202,7 @@ export const deleteUserController = async (req,res) => {
     }
 }
 
-export const getAllUserController = async (req,res) => {
+export const getAllUserController = async (req, res) => {
     try {
         const response = await getAllUserService()
         return res.status(200).json(response)
@@ -205,10 +213,10 @@ export const getAllUserController = async (req,res) => {
     }
 }
 
-export const getDetailsUserController = async (req,res) => {
+export const getDetailsUserController = async (req, res) => {
     try {
         const userId = req.params.id
-        if(!userId){
+        if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The user is required'
@@ -223,10 +231,10 @@ export const getDetailsUserController = async (req,res) => {
     }
 }
 
-export const refreshToken = async (req,res) => {
+export const refreshToken = async (req, res) => {
     try {
         const token = req.cookies.refresh_token
-        if(!token){
+        if (!token) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'The token is required'
@@ -241,7 +249,7 @@ export const refreshToken = async (req,res) => {
     }
 }
 
-export const filterUserController = async (req,res) => {
+export const filterUserController = async (req, res) => {
     try {
         const response = await filterUserService(req.query)
         return res.status(200).json(response)
@@ -252,7 +260,7 @@ export const filterUserController = async (req,res) => {
     }
 }
 
-export const getAllHotelManagerController = async (req,res) => {
+export const getAllHotelManagerController = async (req, res) => {
     try {
         const response = await getAllHotelManagerService()
         return res.status(200).json(response)

@@ -19,10 +19,13 @@ const createHotel = async (req, res) => {
 const updateHotel = async (req, res) => {
     try {
         const id = req.params.id
-        const hotelImage = req.file ? `${req.file.filename}` : "1.png";
-        const hotelData = {
-            ...req.body,
-            hotelImage
+        const hotelData = req.body
+        if (!req.body.hotelImage) {
+            const hotelImage = req.file ? `${req.file.filename}` : "1.png";
+            hotelData = {
+                ...req.body,
+                hotelImage
+            }
         }
         const response = await hotelService.updateHotel(hotelData, id);
         return res.status(200).json(response);

@@ -19,10 +19,13 @@ const createRoomType = async (req, res) => {
 const updateRoomType = async (req, res) => {
     try {
         const id = req.params.id
-        const roomTypeImage = req.file ? `${req.file.filename}` : "1.png";
-        const roomTypeData = {
-            ...req.body,
-            roomTypeImage
+        const roomTypeData = req.body
+        if (!req.body.roomTypeImage) {
+            const roomTypeImage = req.file ? `${req.file.filename}` : "1.png";
+            roomTypeData = {
+                ...req.body,
+                roomTypeImage
+            }
         }
         const response = await roomTypeService.updateRoomType(roomTypeData, id);
         return res.status(200).json(response);
