@@ -20,12 +20,9 @@ const updateLocation = async (req, res) => {
   try {
     const id = req.params.id
     const locationData = req.body
-    if (!req.body.locationImage) {
-      const locationImage = req.file ? `${req.file.filename}` : "1.png";
-      locationData = {
-        ...req.body,
-        locationImage
-      }
+    const locationImage = req.file ? `${req.file.filename}` : "";
+    if (locationImage) {
+      locationData.locationImage = locationImage
     }
     const response = await locationService.updateLocation(locationData, id);
     return res.status(200).json(response);

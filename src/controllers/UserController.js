@@ -161,14 +161,10 @@ export const updateUserController = async (req, res) => {
     try {
         const userId = req.params.id
         const userData = req.body
-        if (!req.body.image) {
-            const image = req.file ? `${req.file.filename}` : null;
-            userData = {
-                ...req.body,
-                image
-            }
+        const image = req.file ? `${req.file.filename}` : null;
+        if (image) {
+            userData.image = image
         }
-
         if (!userId) {
             return res.status(200).json({
                 status: 'ERR',
