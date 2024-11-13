@@ -98,21 +98,10 @@ const getDetailHotel = (id) => {
                     message: 'The hotel is not exist'
                 })
             }
-            const checkUser = await User.findOne({
-                userId: checkHotel.userId
-            })
-            const checkLocation = await Location.findOne({
-                locationId: checkHotel.locationId
-            })            
-            const finalHotel = {
-                ...checkHotel,
-                fullname: checkUser.fullname || null,
-                locationName: checkLocation.locationName || null
-            }
             resolve({
                 status: 'OK',
                 message: 'Get detail hotel successfully',
-                data: finalHotel
+                data: checkHotel
             })
 
         } catch (e) {
