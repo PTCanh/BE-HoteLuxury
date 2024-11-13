@@ -3,10 +3,10 @@ import locationService from "../services/LocationService.js";
 const createLocation = async (req, res) => {
   try {
     const locationImage = req.file ? `${req.file.filename}` : "1.png";
-        const locationData = {
-            ...req.body,
-            locationImage
-        }
+    const locationData = {
+      ...req.body,
+      locationImage
+    }
     const response = await locationService.createLocation(locationData);
     return res.status(200).json(response);
   } catch (e) {
@@ -20,10 +20,10 @@ const updateLocation = async (req, res) => {
   try {
     const id = req.params.id
     const locationImage = req.file ? `${req.file.filename}` : "1.png";
-        const locationData = {
-            ...req.body,
-            locationImage
-        }
+    const locationData = {
+      ...req.body,
+      locationImage
+    }
     const response = await locationService.updateLocation(locationData, id);
     return res.status(200).json(response);
   } catch (e) {

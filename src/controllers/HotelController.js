@@ -2,7 +2,12 @@ import hotelService from "../services/HotelService.js";
 
 const createHotel = async (req, res) => {
     try {
-        const response = await hotelService.createHotel(req.body);
+        const hotelImage = req.file ? `${req.file.filename}` : "1.png";
+        const hotelData = {
+            ...req.body,
+            hotelImage
+        }
+        const response = await hotelService.createHotel(hotelData);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
@@ -12,9 +17,14 @@ const createHotel = async (req, res) => {
 };
 
 const updateHotel = async (req, res) => {
-    const id = req.params.id
     try {
-        const response = await hotelService.updateHotel(req.body, id);
+        const id = req.params.id
+        const hotelImage = req.file ? `${req.file.filename}` : "1.png";
+        const hotelData = {
+            ...req.body,
+            hotelImage
+        }
+        const response = await hotelService.updateHotel(hotelData, id);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
