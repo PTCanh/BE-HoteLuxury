@@ -1,5 +1,7 @@
 import RoomType from '../models/RoomType.js'
 import Room from '../models/Room.js'
+import Hotel from '../models/Hotel.js'
+import jwt from 'jsonwebtoken'
 
 const createRoomType = (roomType) => {
     return new Promise(async (resolve, reject) => {
@@ -107,10 +109,24 @@ const getDetailRoomType = (id) => {
     })
 }
 
-const getAllRoomType = () => {
+const getAllRoomType = (headers) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkRoomType = await RoomType.find()
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            if(decoded.roleId !== "R2"){
+                return resolve({
+                    status: '401',
+                    message: 'Not authenticated'
+                })
+            }
+            const checkHotel = await Hotel.find({
+                userId:decoded.userId
+            })
+            const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+            const checkRoomType = await RoomType.find({
+                hotelId: {$in : checkHotelIds}
+            })
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
@@ -134,10 +150,10 @@ const filterRoomType = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
-            if(filter.hotelId){
+            if (filter.hotelId) {
                 formatFilter.hotelId = filter.hotelId
             }
-            if(filter.roomTypeQuantity){
+            if (filter.roomTypeQuantity) {
                 formatFilter.roomTypeQuantity = filter.roomTypeQuantity
             }
             if (filter.roomTypeName) {
@@ -148,11 +164,7 @@ const filterRoomType = (filter) => {
                 formatFilter.roomTypePrice = filter.roomTypePrice.replace(/\s+/g, ' ').trim()
                 formatFilter.roomTypePrice = { $regex: new RegExp(formatFilter.roomTypePrice) }
             }
-            if (filter.hotelType) {
-                formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
-                formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
-            }
-            if(filter.maxPeople){
+            if (filter.maxPeople) {
                 formatFilter.maxPeople = filter.maxPeople
             }
             const filterRoomType = await RoomType.find(formatFilter);

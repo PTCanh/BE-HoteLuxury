@@ -59,7 +59,7 @@ const getDetailRoomType = async (req, res) => {
 
 const getAllRoomType = async (req, res) => {
     try {
-        const response = await roomTypeService.getAllRoomType();
+        const response = await roomTypeService.getAllRoomType(req.headers);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
