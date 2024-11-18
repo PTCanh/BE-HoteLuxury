@@ -4,6 +4,7 @@ import Room from '../models/Room.js'
 import User from '../models/User.js'
 import Schedule from '../models/Schedule.js'
 import Location from '../models/Location.js'
+import jwt from 'jsonwebtoken'
 
 const createHotel = (hotel) => {
     return new Promise(async (resolve, reject) => {
@@ -110,17 +111,23 @@ const getDetailHotel = (id) => {
     })
 }
 
-const getAllHotel = () => {
+const getAllHotel = (headers) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkHotel = await Hotel.find()
-            if (checkHotel === null) {
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let checkHotel = {}
+            if (decoded.roleId === "R2") {
+                checkHotel = await Hotel.find({
+                    userId: decoded.userId
+                })
                 return resolve({
-                    status: 'ERR',
-                    message: 'The hotel is empty'
+                    status: 'OK',
+                    message: 'Get all hotel successfully',
+                    data: checkHotel
                 })
             }
-
+            checkHotel = await Hotel.find()
             resolve({
                 status: 'OK',
                 message: 'Get all hotel successfully',
@@ -142,7 +149,7 @@ const searchHotel = (filter) => {
                     message: `dayStart and dayEnd are required`
                 })
             }
-            
+
             const formatFilter = {}
             if (filter.locationName) {
                 formatFilter.locationName = filter.locationName.replace(/\s+/g, ' ').trim()
@@ -150,7 +157,7 @@ const searchHotel = (filter) => {
             }
             //Tìm các địa điểm khớp dữ liệu nhập vào
             const locations = await Location.find(formatFilter)
-            if(locations.length === 0){
+            if (locations.length === 0) {
                 return resolve({
                     status: 'ERR',
                     message: `Can not find the location`
@@ -160,7 +167,7 @@ const searchHotel = (filter) => {
             const locationIds = locations.map(location => location.locationId)
             //Tìm các hotel thuộc các địa điểm trên
             const checkHotel = await Hotel.find({
-                locationId: {$in: locationIds}
+                locationId: { $in: locationIds }
             });
             if (checkHotel.length === 0) {
                 return resolve({
@@ -210,7 +217,7 @@ const searchHotel = (filter) => {
             //Tìm những hotel còn trống
             const availableHotels = await Hotel.find({
                 hotelId: { $in: availableHotelIds }
-            }) 
+            })
             //console.log('availableHotels: ', availableHotels.length)
             resolve({
                 status: 'OK',
@@ -230,7 +237,7 @@ const userFilterHotel = (filter) => {
         try {
             //Khách sạn đã tìm kiếm
             const searchedHotels = await searchHotel(filter)
-            if(!searchedHotels.hotels || searchedHotels.hotels.length === 0){
+            if (!searchedHotels.hotels || searchedHotels.hotels.length === 0) {
                 return resolve({
                     status: 'ERR',
                     message: `Can not filter any hotels`
@@ -243,7 +250,7 @@ const userFilterHotel = (filter) => {
                 formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
                 formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
             }
-            if(filter.hotelStar){
+            if (filter.hotelStar) {
                 formatFilter.hotelStar = filter.hotelStar
             }
             const filterHotel = await Hotel.find(formatFilter);
@@ -252,7 +259,7 @@ const userFilterHotel = (filter) => {
             const intersectedHotelIds = searchedHotelIds.filter(hotelId => filterHotelIds.includes(hotelId));
             //Lấy thông tin khách sạn từ hotelId
             const finalFilterHotel = await Hotel.find({
-                hotelId: {$in: intersectedHotelIds}
+                hotelId: { $in: intersectedHotelIds }
             });
 
             if (finalFilterHotel.length === 0) {
@@ -293,10 +300,10 @@ const adminFilterHotel = (filter) => {
                 formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
                 formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
             }
-            if(filter.hotelStar){
+            if (filter.hotelStar) {
                 formatFilter.hotelStar = filter.hotelStar
             }
-            if(filter.locationId){
+            if (filter.locationId) {
                 formatFilter.locationId = filter.locationId
             }
             const filterHotel = await Hotel.find(formatFilter);

@@ -59,7 +59,7 @@ const getDetailHotel = async (req, res) => {
 
 const getAllHotel = async (req, res) => {
     try {
-        const response = await hotelService.getAllHotel();
+        const response = await hotelService.getAllHotel(req.headers);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
