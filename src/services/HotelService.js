@@ -280,7 +280,7 @@ const userFilterHotel = (filter) => {
     })
 }
 
-const adminFilterHotel = (filter) => {
+const filterHotel = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
@@ -306,7 +306,19 @@ const adminFilterHotel = (filter) => {
             if (filter.locationId) {
                 formatFilter.locationId = filter.locationId
             }
-            const filterHotel = await Hotel.find(formatFilter);
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let filterHotel = {}
+            if (decoded.roleId === "R2") {
+                formatFilter.userId = decoded.userId
+                filterHotel = await Hotel.find(formatFilter)
+                return resolve({
+                    status: 'OK',
+                    message: 'Get all hotel successfully',
+                    data: filterHotel
+                })
+            }
+            filterHotel = await Hotel.find(formatFilter);
             if (filterHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
@@ -332,5 +344,5 @@ export default {
     getAllHotel,
     searchHotel,
     userFilterHotel,
-    adminFilterHotel
+    filterHotel
 }

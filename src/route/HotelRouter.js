@@ -6,7 +6,7 @@ import upload from "../utils/UploadFile.js";
 const router = express.Router();
 
 router.get('/user-filter', hotelController.userFilterHotel)
-router.get('/filter', hotelController.adminFilterHotel)
+router.get('/filter', hotelController.filterHotel)
 router.get('/search', hotelController.searchHotel)
 router.post('/', upload.single("hotelImage"), hotelController.createHotel)
 router.put('/:id', upload.single("hotelImage"), hotelController.updateHotel)

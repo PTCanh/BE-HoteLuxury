@@ -90,9 +90,9 @@ const userFilterHotel = async (req, res) => {
     }
 };
 
-const adminFilterHotel = async (req, res) => {
+const filterHotel = async (req, res) => {
     try {
-        const response = await hotelService.adminFilterHotel(req.query);
+        const response = await hotelService.filterHotel(req.headers, req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
@@ -109,5 +109,5 @@ export default {
     getAllHotel,
     searchHotel,
     userFilterHotel,
-    adminFilterHotel
+    filterHotel
 }
