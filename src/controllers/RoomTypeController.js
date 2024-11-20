@@ -67,6 +67,16 @@ const getAllRoomType = async (req, res) => {
         });
     }
 };
+const getRoomTypeByHotelId = async (req, res) => {
+    try {
+        const response = await roomTypeService.getRoomTypeByHotelId(req.params.hotelId);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
 
 const filterRoomType = async (req, res) => {
     try {
@@ -85,5 +95,6 @@ export default {
     deleteRoomType,
     getDetailRoomType,
     getAllRoomType,
-    filterRoomType
+    filterRoomType,
+    getRoomTypeByHotelId
 }

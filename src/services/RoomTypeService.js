@@ -108,6 +108,30 @@ const getDetailRoomType = (id) => {
         }
     })
 }
+const getRoomTypeByHotelId = (hotelId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkRoomType = await RoomType.find({
+                hotelId: hotelId
+            })
+            if (checkRoomType.length === 0) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'The RoomType is not exist'
+                })
+            }
+
+            resolve({
+                status: 'OK',
+                message: 'Get all RoomType by hotelId successfully',
+                data: checkRoomType
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 const getAllRoomType = (headers) => {
     return new Promise(async (resolve, reject) => {
@@ -191,5 +215,6 @@ export default {
     deleteRoomType,
     getDetailRoomType,
     getAllRoomType,
-    filterRoomType
+    filterRoomType,
+    getRoomTypeByHotelId
 }

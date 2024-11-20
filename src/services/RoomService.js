@@ -155,6 +155,13 @@ const getDetailRoom = (id) => {
             const checkRoom = await Room.findOne({
                 roomId: id
             })
+            .populate({
+                path: 'roomTypeId',
+                model: 'RoomType',
+                localField: 'roomTypeId',
+                foreignField: 'roomTypeId',
+                select: 'hotelId roomTypePrice'
+            })
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
@@ -201,15 +208,30 @@ const filterRoom = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
-            if(filter.roomTypeId){
+            if (filter.roomTypeId) {
                 formatFilter.roomTypeId = filter.roomTypeId
             }
             if (filter.roomNumber) {
                 formatFilter.roomNumber = filter.roomNumber.replace(/\s+/g, ' ').trim()
                 formatFilter.roomNumber = { $regex: new RegExp(formatFilter.roomNumber) }
             }
-            const filterRoom = await Room.find(formatFilter);
-            if (filterRoom.length === 0) {
+            
+            const filterRoom = await Room.find(formatFilter)
+            .populate({
+                path: 'roomTypeId',
+                model: 'RoomType',
+                localField: 'roomTypeId',
+                foreignField: 'roomTypeId',
+                match: filter.hotelId ? { hotelId: filter.hotelId } : {},
+                select: 'hotelId roomTypePrice'
+            })
+            const validRooms = filterRoom.filter(room => room.roomTypeId !== null);
+            // if(query.hotelId){
+            //     filterRoom = filterRoom.filter((room) => {
+            //         return room.roomTypeId?.hotelId?.toString() === query.hotelId
+            //     })
+            // }
+            if (validRooms.length === 0) {
                 return resolve({
                     status: 'ERR',
                     message: `No room is found`
@@ -218,10 +240,11 @@ const filterRoom = (filter) => {
             resolve({
                 status: 'OK',
                 message: 'Filter room successfully',
-                data: filterRoom
+                data: validRooms
             })
         } catch (e) {
             reject(e)
+            console.error(e)
         }
     })
 }

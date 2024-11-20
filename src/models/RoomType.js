@@ -15,7 +15,6 @@ const roomTypeSchema = new Schema({
     },
     roomTypeQuantity: {
         type: Number,
-        required: true
     },
     // roomEmptyQuantity: {
     //     type: Number,
