@@ -88,7 +88,8 @@ export const loginUserService = (userLogin) => {
                 message: 'SUCCESS',
                 access_token,
                 refresh_token,
-                roleId: checkUser.roleId
+                roleId: checkUser.roleId,
+                userId: checkUser.userId,
             })
 
         } catch (e) {
