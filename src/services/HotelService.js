@@ -151,24 +151,27 @@ const searchHotel = (filter) => {
             }
 
             const formatFilter = {}
-            if (filter.locationName) {
-                formatFilter.locationName = filter.locationName.replace(/\s+/g, ' ').trim()
-                formatFilter.locationName = { $regex: new RegExp(formatFilter.locationName, 'i') } // Không phân biệt hoa thường
+            if (filter.hotelAddress) {
+                formatFilter.hotelAddress = filter.hotelAddress.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelAddress = { $regex: new RegExp(formatFilter.hotelAddress, 'i') } // Không phân biệt hoa thường
             }
             //Tìm các địa điểm khớp dữ liệu nhập vào
-            const locations = await Location.find(formatFilter)
-            if (locations.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `Can not find the location`
-                })
-            }
+            // const locations = await Location.find(formatFilter)
+            // if (locations.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `Can not find the location`
+            //     })
+            // }
             //Chuyển sang id của các địa điểm đã tìm thấy
-            const locationIds = locations.map(location => location.locationId)
+            // const locationIds = locations.map(location => location.locationId)
             //Tìm các hotel thuộc các địa điểm trên
-            const checkHotel = await Hotel.find({
-                locationId: { $in: locationIds }
-            });
+            // const checkHotel = await Hotel.find({
+            //     locationId: { $in: locationIds }
+            // });
+
+            //Tìm các hotel theo địa chỉ hotel
+            const checkHotel = await Hotel.find(formatFilter);
             if (checkHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
