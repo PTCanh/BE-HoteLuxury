@@ -250,11 +250,12 @@ const userFilterHotel = (filter) => {
             //Lọc khách sạn
             const formatFilter = {}
             if (filter.hotelType) {
-                formatFilter.hotelType = filter.hotelType.replace(/\s+/g, ' ').trim()
-                formatFilter.hotelType = { $regex: new RegExp(formatFilter.hotelType, 'i') }
+                const hotelTypes = filter.hotelType.split(',')
+                formatFilter.hotelType = {$in: hotelTypes}
             }
             if (filter.hotelStar) {
-                formatFilter.hotelStar = filter.hotelStar
+                const hotelStars = filter.hotelStar.split(',')
+                formatFilter.hotelStar = {$in: hotelStars}
             }
             const filterHotel = await Hotel.find(formatFilter);
             const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)

@@ -209,6 +209,102 @@ const filterRoomType = (filter) => {
     })
 }
 
+const availableRoomTypes = (filter) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!filter.dayStart || !filter.dayEnd) {
+                return resolve({
+                    status: 'ERR',
+                    message: `dayStart and dayEnd are required`
+                })
+            }
+
+            // const formatFilter = {}
+            // if (filter.hotelAddress) {
+            //     formatFilter.hotelAddress = filter.hotelAddress.replace(/\s+/g, ' ').trim()
+            //     formatFilter.hotelAddress = { $regex: new RegExp(formatFilter.hotelAddress, 'i') } // Không phân biệt hoa thường
+            // }
+            //Tìm các địa điểm khớp dữ liệu nhập vào
+            // const locations = await Location.find(formatFilter)
+            // if (locations.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `Can not find the location`
+            //     })
+            // }
+            //Chuyển sang id của các địa điểm đã tìm thấy
+            // const locationIds = locations.map(location => location.locationId)
+            //Tìm các hotel thuộc các địa điểm trên
+            // const checkHotel = await Hotel.find({
+            //     locationId: { $in: locationIds }
+            // });
+
+            //Tìm các hotel theo địa chỉ hotel
+            // const checkHotel = await Hotel.find(formatFilter);
+            // if (checkHotel.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `Can not find any hotels`
+            //     })
+            // }
+            // const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+            // //Tìm tất cả roomType của khách sạn
+            // const roomTypes = await RoomType.find({
+            //     hotelId: { $in: checkHotelIds }
+            // })
+            //console.log('RoomType: ', roomTypes.length)
+            //Chuyển thành mảng roomTypeId
+            // const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId)
+            // Find all Rooms associated with all the RoomType
+            const rooms = await Room.find({ roomTypeId: { $in: roomTypeIds } });
+            //console.log('Room: ', rooms.length)
+            //Chuyển thành mảng roomId
+            const roomIds = rooms.map(room => room.roomId)
+            //Tìm tất cả phòng đã được đặt
+            const bookedRoomIds = await Schedule.find({
+                roomId: { $in: roomIds },
+                $or: [
+                    { dayStart: { $gte: filter.dayStart, $lte: filter.dayEnd } },
+                    { dayEnd: { $gte: filter.dayStart, $lte: filter.dayEnd } }
+                ]
+            }).distinct("roomId");
+            //console.log('BookedRoom: ', bookedRoomIds.length)
+            //Tìm những phòng còn trống
+            const availableRooms = await Room.find({
+                roomId: { $in: roomIds, $nin: bookedRoomIds }
+            });
+            //console.log('AvailableRoom: ', availableRooms)
+            //Tìm id của roomType của các phòng trống
+            const availableRoomTypeIds = availableRooms.map(room => room.roomTypeId)
+            //console.log('availableRoomTypeIds: ', availableRoomTypeIds)
+            //Tìm những roomType của các phòng trống
+            const availableRoomTypes = await RoomType.find({
+                roomTypeId: { $in: availableRoomTypeIds }
+            })
+            //console.log('availableRoomTypes: ', availableRoomTypes)
+            //Tìm id của hotel của các phòng trống
+            const availableHotelIds = availableRoomTypes.map(roomType => roomType.hotelId)
+            //console.log('availableHotelIds: ', availableHotelIds.length)
+            //console.log('availableHotelIds: ', availableHotelIds)
+            //Tìm những hotel còn trống
+            const availableHotels = await Hotel.find({
+                hotelId: { $in: availableHotelIds }
+            })
+            //console.log('availableHotels: ', availableHotels.length)
+            resolve({
+                status: 'OK',
+                message: 'Search hotel successfully',
+                hotels: availableHotels,
+                //roomTypes: availableRoomTypes
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+ 
+
 export default {
     createRoomType,
     updateRoomType,
