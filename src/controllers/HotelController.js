@@ -101,6 +101,17 @@ const filterHotel = async (req, res) => {
     }
 };
 
+const suggestedHotel = async (req, res) => {
+    try {
+        const response = await hotelService.suggestedHotel(req.query);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createHotel,
     updateHotel,
@@ -109,5 +120,6 @@ export default {
     getAllHotel,
     searchHotel,
     userFilterHotel,
-    filterHotel
+    filterHotel,
+    suggestedHotel
 }

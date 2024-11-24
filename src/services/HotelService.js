@@ -149,12 +149,22 @@ const searchHotel = (filter) => {
                     message: `dayStart and dayEnd are required`
                 })
             }
-
-            const formatFilter = {}
-            if (filter.hotelAddress) {
-                formatFilter.hotelAddress = filter.hotelAddress.replace(/\s+/g, ' ').trim()
-                formatFilter.hotelAddress = { $regex: new RegExp(formatFilter.hotelAddress, 'i') } // Không phân biệt hoa thường
-            }
+            // Bộ lọc
+            const regex = new RegExp(filter.filter, 'i');
+            //Khách sạn đã tìm kiếm
+            const hotels = await Hotel.find()
+                .populate({
+                    path: "locationId",
+                    model: "Location",
+                    localField: "locationId",
+                    foreignField: "locationId",
+                    select: "locationName",
+                }).lean()
+            const formatHotels = hotels.map(hotel => ({
+                ...hotel,
+                locationId: hotel.locationId.locationId,
+                locationName: hotel.locationId.locationName
+            }))
             //Tìm các địa điểm khớp dữ liệu nhập vào
             // const locations = await Location.find(formatFilter)
             // if (locations.length === 0) {
@@ -171,7 +181,15 @@ const searchHotel = (filter) => {
             // });
 
             //Tìm các hotel theo địa chỉ hotel
-            const checkHotel = await Hotel.find(formatFilter);
+            const checkHotel = formatHotels.filter((hotel) => {
+                return (
+                    regex.test(hotel.locationName) ||
+                    regex.test(hotel.hotelName) ||
+                    regex.test(hotel.hotelAddress)
+                );
+            })
+
+            //const checkHotel = await Hotel.find(formatFilter);
             if (checkHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
@@ -249,13 +267,17 @@ const userFilterHotel = (filter) => {
             const searchedHotelIds = searchedHotels.hotels.map(hotel => hotel.hotelId)
             //Lọc khách sạn
             const formatFilter = {}
+            if (filter.hotelName) {
+                formatFilter.hotelName = filter.hotelName.replace(/\s+/g, ' ').trim()
+                formatFilter.hotelName = { $regex: new RegExp(formatFilter.hotelName, 'i') } // Không phân biệt hoa thường
+            }
             if (filter.hotelType) {
                 const hotelTypes = filter.hotelType.split(',')
-                formatFilter.hotelType = {$in: hotelTypes}
+                formatFilter.hotelType = { $in: hotelTypes }
             }
             if (filter.hotelStar) {
                 const hotelStars = filter.hotelStar.split(',')
-                formatFilter.hotelStar = {$in: hotelStars}
+                formatFilter.hotelStar = { $in: hotelStars }
             }
             const filterHotel = await Hotel.find(formatFilter);
             const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)
@@ -340,6 +362,44 @@ const filterHotel = (headers, filter) => {
     })
 }
 
+const suggestedHotel = (filter) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Bộ lọc
+            const regex = new RegExp(filter.filter, 'i');
+            //Khách sạn đã tìm kiếm
+            const hotels = await Hotel.find()
+                .populate({
+                    path: "locationId",
+                    model: "Location",
+                    localField: "locationId",
+                    foreignField: "locationId",
+                    select: "locationName",
+                }).lean()
+            const formatHotels = hotels.map(hotel => ({
+                ...hotel,
+                locationId: hotel.locationId.locationId,
+                locationName: hotel.locationId.locationName
+            }))
+            const suggestedHotels = formatHotels.filter((hotel) => {
+                return (
+                    regex.test(hotel.locationName) ||
+                    regex.test(hotel.hotelName) ||
+                    regex.test(hotel.hotelAddress)
+                );
+            })
+            resolve({
+                status: 'OK',
+                message: 'Filter Hotel successfully',
+                data: suggestedHotels
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createHotel,
     updateHotel,
@@ -348,5 +408,6 @@ export default {
     getAllHotel,
     searchHotel,
     userFilterHotel,
-    filterHotel
+    filterHotel,
+    suggestedHotel
 }
