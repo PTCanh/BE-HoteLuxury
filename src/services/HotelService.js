@@ -230,6 +230,22 @@ const searchHotel = (filter) => {
             const availableRoomTypes = await RoomType.find({
                 roomTypeId: { $in: availableRoomTypeIds }
             })
+            //Tính giá nhỏ nhất của từng khách sạn
+            let minPriceOfHotels = {}
+            availableRoomTypes.forEach((roomType) => {
+                if(!minPriceOfHotels[roomType.hotelId]){
+                    minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
+                }else{
+                    if(minPriceOfHotels[roomType.hotelId] > roomType.roomTypePrice){
+                        minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
+                    }
+                }
+            })
+            let minPriceArray = Object.entries(minPriceOfHotels).map(([hotelId, minPrice]) => ({
+                hotelId,
+                minPrice,
+            }));
+            //console.log(minPriceArray);
             //console.log('availableRoomTypes: ', availableRoomTypes)
             //Tìm id của hotel của các phòng trống
             const availableHotelIds = availableRoomTypes.map(roomType => roomType.hotelId)
@@ -238,7 +254,10 @@ const searchHotel = (filter) => {
             //Tìm những hotel còn trống
             const availableHotels = await Hotel.find({
                 hotelId: { $in: availableHotelIds }
-            })
+            }).lean()
+            availableHotels.forEach((hotel) => {
+                hotel.minPrice = minPriceOfHotels[hotel.hotelId] || null; // Lấy giá từ minPriceOfHotels hoặc để null nếu không có
+            });
             //console.log('availableHotels: ', availableHotels.length)
             resolve({
                 status: 'OK',
@@ -257,51 +276,74 @@ const userFilterHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             //Khách sạn đã tìm kiếm
-            const searchedHotels = await searchHotel(filter)
-            if (!searchedHotels.hotels || searchedHotels.hotels.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `Can not filter any hotels`
-                })
-            }
-            const searchedHotelIds = searchedHotels.hotels.map(hotel => hotel.hotelId)
+            const searchedHotel = await searchHotel(filter)
+            const searchedHotels = searchedHotel.hotels
+            // if (!searchedHotels.hotels || searchedHotels.hotels.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `Can not filter any hotels`
+            //     })
+            // }
+            //const searchedHotelIds = searchedHotels.hotels.map(hotel => hotel.hotelId)
             //Lọc khách sạn
-            const formatFilter = {}
-            if (filter.hotelName) {
-                formatFilter.hotelName = filter.hotelName.replace(/\s+/g, ' ').trim()
-                formatFilter.hotelName = { $regex: new RegExp(formatFilter.hotelName, 'i') } // Không phân biệt hoa thường
-            }
-            if (filter.hotelType) {
-                const hotelTypes = filter.hotelType.split(',')
-                formatFilter.hotelType = { $in: hotelTypes }
-            }
-            if (filter.hotelStar) {
-                const hotelStars = filter.hotelStar.split(',')
-                formatFilter.hotelStar = { $in: hotelStars }
-            }
-            const filterHotel = await Hotel.find(formatFilter);
-            const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)
-            //Tìm hotelId có trong cả tìm kiếm và lọc
-            const intersectedHotelIds = searchedHotelIds.filter(hotelId => filterHotelIds.includes(hotelId));
-            //Lấy thông tin khách sạn từ hotelId
-            const finalFilterHotel = await Hotel.find({
-                hotelId: { $in: intersectedHotelIds }
+            // const formatFilter = {}
+            // if (filter.hotelName) {
+            //     formatFilter.hotelName = filter.hotelName.replace(/\s+/g, ' ').trim()
+            //     formatFilter.hotelName = { $regex: new RegExp(formatFilter.hotelName, 'i') } // Không phân biệt hoa thường
+            // }
+            // if (filter.hotelType) {
+            //     const hotelTypes = filter.hotelType.split(',')
+            //     formatFilter.hotelType = { $in: hotelTypes }
+            // }
+            // if (filter.hotelStar) {
+            //     const hotelStars = filter.hotelStar.split(',')
+            //     formatFilter.hotelStar = { $in: hotelStars }
+            // }
+            const formatFilter = {
+                hotelName: filter.hotelName ? filter.hotelName.replace(/\s+/g, ' ').trim().toLowerCase() : null,
+                hotelType: filter.hotelType ? filter.hotelType.split(',') : null,
+                hotelStar: filter.hotelStar ? filter.hotelStar.split(',') : null,
+            };
+            //console.log(formatFilter)
+            // const filteredHotels = searchedHotels.filter((hotel) => {
+            //     return (
+            //         (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&
+            //         (!formatFilter.hotelType || (hotel.hotelType && formatFilter.hotelType.includes(hotel.hotelType))) &&
+            //         (!formatFilter.hotelStar || (hotel.hotelStar && formatFilter.hotelStar.includes(String(hotel.hotelStar))))
+            //     );
+            // });
+            const filteredHotels = searchedHotels.filter((hotel) => {
+                return (
+                    (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&
+                    (!formatFilter.hotelType || (Array.isArray(formatFilter.hotelType) && formatFilter.hotelType.includes(hotel.hotelType))) &&
+                    (!formatFilter.hotelStar || (Array.isArray(formatFilter.hotelStar) && formatFilter.hotelStar.includes(String(hotel.hotelStar))))
+                );
             });
+            
+            // const filterHotel = await Hotel.find(formatFilter);
+            // const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)
+            // //Tìm hotelId có trong cả tìm kiếm và lọc
+            // const intersectedHotelIds = searchedHotelIds.filter(hotelId => filterHotelIds.includes(hotelId));
+            // //Lấy thông tin khách sạn từ hotelId
+            // const finalFilterHotel = await Hotel.find({
+            //     hotelId: { $in: intersectedHotelIds }
+            // });
 
-            if (finalFilterHotel.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `No hotel is found`
-                })
-            }
+            // if (finalFilterHotel.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `No hotel is found`
+            //     })
+            // }
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
-                data: finalFilterHotel
+                data: filteredHotels
             })
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }
