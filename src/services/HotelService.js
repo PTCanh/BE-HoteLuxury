@@ -305,8 +305,9 @@ const userFilterHotel = (filter) => {
                 hotelName: filter.hotelName ? filter.hotelName.replace(/\s+/g, ' ').trim().toLowerCase() : null,
                 hotelType: filter.hotelType ? filter.hotelType.split(',') : null,
                 hotelStar: filter.hotelStar ? filter.hotelStar.split(',') : null,
+                minPrice: filter.minPrice ? filter.minPrice.split(',') : null,
             };
-            //console.log(formatFilter)
+            //console.log(formatFilter, parseFloat(formatFilter.minPrice[0]))
             // const filteredHotels = searchedHotels.filter((hotel) => {
             //     return (
             //         (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&
@@ -319,7 +320,12 @@ const userFilterHotel = (filter) => {
                 return (
                     (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&
                     (!formatFilter.hotelType || (Array.isArray(formatFilter.hotelType) && formatFilter.hotelType.includes(hotel.hotelType))) &&
-                    (!formatFilter.hotelStar || (Array.isArray(formatFilter.hotelStar) && formatFilter.hotelStar.includes(String(hotel.hotelStar))))
+                    (!formatFilter.hotelStar || (Array.isArray(formatFilter.hotelStar) && formatFilter.hotelStar.includes(String(hotel.hotelStar)))) &&
+                    (!formatFilter.minPrice || (
+                        Array.isArray(formatFilter.minPrice) &&
+                        parseFloat(hotel.minPrice) >= parseFloat(formatFilter.minPrice[0]) &&
+                        parseFloat(hotel.minPrice) <= parseFloat(formatFilter.minPrice[1])
+                    ))
                 );
             });
             
