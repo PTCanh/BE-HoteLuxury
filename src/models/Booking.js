@@ -25,6 +25,15 @@ const bookingSchema = new Schema({
         type: String,
         required: true
     },
+    price: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true,
+        default:"Chưa thanh toán"
+    },
     customerName: {
         type: String,
         required: true

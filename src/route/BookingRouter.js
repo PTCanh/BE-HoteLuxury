@@ -4,6 +4,7 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
+router.get("/momo_return", bookingController.handlePaymentReturn); // Định nghĩa tuyến đường để xử lý phản hồi từ MoMo
 router.get('/search', bookingController.searchBooking)
 router.post('/', bookingController.createBooking)
 router.put('/:id', bookingController.updateBooking)

@@ -27,11 +27,15 @@ const createBooking = (booking) => {
             });
             if(availableRooms.length === 0){
                 return resolve({
-                    status: 'OK',
+                    status: 'ERR',
                     message: 'All rooms are used',
                 })
             }
             //console.log("availableRooms: ",availableRooms.length)
+            const checkRoomType = await RoomType.findOne({
+                roomTypeId: booking.roomTypeId
+            })
+            booking.price = checkRoomType?.roomTypePrice || '0'
             const newBooking = await Booking.create(booking)
             const newSchedule = {
                 roomId: availableRooms[0].roomId,
@@ -43,10 +47,12 @@ const createBooking = (booking) => {
             resolve({
                 status: 'OK',
                 message: 'Create Booking and Schedule successfully',
+                data: newBooking
             })
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }
@@ -188,11 +194,43 @@ const searchBooking = (header) => {
     })
 }
 
+const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const booking = await Booking.findOneAndUpdate(
+          { bookingId: bookingId },
+          { paymentUrl: paymentUrl },
+          { new: true }
+        );
+  
+        if (!booking) {
+          return resolve({
+            status: "ERR",
+            message: "Booking not found",
+          });
+        }
+  
+        resolve({
+          status: "OK",
+          message: "Payment URL updated successfully",
+          data: booking,
+        });
+      } catch (e) {
+        reject({
+          status: "ERR",
+          message: "Error from server",
+          error: e.message,
+        });
+      }
+    });
+  };
+
 export default {
     createBooking,
     updateBooking,
     deleteBooking,
     getDetailBooking,
     getAllBooking,
-    searchBooking
+    searchBooking,
+    updateBookingPaymentUrl
 }
