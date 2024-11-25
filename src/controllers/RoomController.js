@@ -60,7 +60,7 @@ const getAllRoom = async (req, res) => {
 
 const filterRoom = async (req, res) => {
     try {
-        const response = await roomService.filterRoom(req.query);
+        const response = await roomService.filterRoom(req.headers, req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({

@@ -49,6 +49,7 @@ const hotelSchema = new Schema({
     },
     locationId: {
         type: Number,
+        required: true
     }
 });
 

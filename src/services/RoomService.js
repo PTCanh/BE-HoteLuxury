@@ -1,6 +1,7 @@
 import Room from '../models/Room.js'
 import RoomType from '../models/RoomType.js'
 import Hotel from '../models/Hotel.js'
+import jwt from 'jsonwebtoken'
 
 const createRoom = (room) => {
     return new Promise(async (resolve, reject) => {
@@ -155,13 +156,13 @@ const getDetailRoom = (id) => {
             const checkRoom = await Room.findOne({
                 roomId: id
             })
-            .populate({
-                path: 'roomTypeId',
-                model: 'RoomType',
-                localField: 'roomTypeId',
-                foreignField: 'roomTypeId',
-                select: 'hotelId roomTypePrice'
-            })
+                .populate({
+                    path: 'roomTypeId',
+                    model: 'RoomType',
+                    localField: 'roomTypeId',
+                    foreignField: 'roomTypeId',
+                    select: 'hotelId roomTypePrice'
+                })
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
@@ -204,7 +205,7 @@ const getAllRoom = () => {
     })
 }
 
-const filterRoom = (filter) => {
+const filterRoom = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
@@ -215,32 +216,57 @@ const filterRoom = (filter) => {
                 formatFilter.roomNumber = filter.roomNumber.replace(/\s+/g, ' ').trim()
                 formatFilter.roomNumber = { $regex: new RegExp(formatFilter.roomNumber) }
             }
-            
-            const filterRoom = await Room.find(formatFilter)
-            .populate({
-                path: 'roomTypeId',
-                model: 'RoomType',
-                localField: 'roomTypeId',
-                foreignField: 'roomTypeId',
-                match: filter.hotelId ? { hotelId: filter.hotelId } : {},
-                select: 'hotelId roomTypePrice'
-            })
-            const validRooms = filterRoom.filter(room => room.roomTypeId !== null);
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let filterRoom = {}
+            if (decoded.roleId === "R2") {
+                const checkHotel = await Hotel.find({
+                    userId: decoded.userId
+                })
+                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                const checkRoomType = await RoomType.find({
+                    hotelId: { $in: checkHotelIds }
+                })
+                const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
+                formatFilter.roomTypeId = { $in: checkRoomTypeIds }
+                filterRoom = await Room.find(formatFilter)
+                    .populate({
+                        path: 'roomTypeId',
+                        model: 'RoomType',
+                        localField: 'roomTypeId',
+                        foreignField: 'roomTypeId',
+                        select: 'hotelId roomTypePrice'
+                    })
+                return resolve({
+                    status: 'OK',
+                    message: 'Get all Room successfully',
+                    data: filterRoom
+                })
+            }
+            filterRoom = await Room.find(formatFilter)
+                .populate({
+                    path: 'roomTypeId',
+                    model: 'RoomType',
+                    localField: 'roomTypeId',
+                    foreignField: 'roomTypeId',
+                    select: 'hotelId roomTypePrice'
+                })
+            //const validRooms = filterRoom.filter(room => room.roomTypeId !== null);
             // if(query.hotelId){
             //     filterRoom = filterRoom.filter((room) => {
             //         return room.roomTypeId?.hotelId?.toString() === query.hotelId
             //     })
             // }
-            if (validRooms.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `No room is found`
-                })
-            }
+            // if (validRooms.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `No room is found`
+            //     })
+            // }
             resolve({
                 status: 'OK',
                 message: 'Filter room successfully',
-                data: validRooms
+                data: filterRoom
             })
         } catch (e) {
             reject(e)

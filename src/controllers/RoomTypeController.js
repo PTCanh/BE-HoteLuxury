@@ -80,7 +80,7 @@ const getRoomTypeByHotelId = async (req, res) => {
 
 const filterRoomType = async (req, res) => {
     try {
-        const response = await roomTypeService.filterRoomType(req.query);
+        const response = await roomTypeService.filterRoomType(req.headers, req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({

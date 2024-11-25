@@ -193,7 +193,8 @@ const searchHotel = (filter) => {
             if (checkHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `Can not find any hotels`
+                    message: `Can not find any hotels`,
+                    hotels: checkHotel
                 })
             }
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
@@ -241,11 +242,12 @@ const searchHotel = (filter) => {
                     }
                 }
             })
-            let minPriceArray = Object.entries(minPriceOfHotels).map(([hotelId, minPrice]) => ({
-                hotelId,
-                minPrice,
-            }));
-            //console.log(minPriceArray);
+            // let minPriceArray = Object.entries(minPriceOfHotels).map(([hotelId, minPrice]) => ({
+            //     hotelId,
+            //     minPrice,
+            // }));
+            // console.log(minPriceOfHotels);
+            // console.log(minPriceArray);
             //console.log('availableRoomTypes: ', availableRoomTypes)
             //Tìm id của hotel của các phòng trống
             const availableHotelIds = availableRoomTypes.map(roomType => roomType.hotelId)
@@ -312,6 +314,7 @@ const userFilterHotel = (filter) => {
             //         (!formatFilter.hotelStar || (hotel.hotelStar && formatFilter.hotelStar.includes(String(hotel.hotelStar))))
             //     );
             // });
+            //console.log(searchedHotels)
             const filteredHotels = searchedHotels.filter((hotel) => {
                 return (
                     (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&

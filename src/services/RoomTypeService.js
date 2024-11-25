@@ -171,7 +171,7 @@ const getAllRoomType = (headers) => {
     })
 }
 
-const filterRoomType = (filter) => {
+const filterRoomType = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
@@ -192,7 +192,23 @@ const filterRoomType = (filter) => {
             if (filter.maxPeople) {
                 formatFilter.maxPeople = filter.maxPeople
             }
-            const filterRoomType = await RoomType.find(formatFilter);
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let filterRoomType = {}
+            if (decoded.roleId === "R2") {
+                const checkHotel = await Hotel.find({
+                    userId: decoded.userId
+                })
+                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                formatFilter.hotelId = {$in: checkHotelIds}
+                filterRoomType = await RoomType.find(formatFilter)
+                return resolve({
+                    status: 'OK',
+                    message: 'Get all RoomType successfully',
+                    data: filterRoomType
+                })
+            }
+            filterRoomType = await RoomType.find(formatFilter);
             if (filterRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
