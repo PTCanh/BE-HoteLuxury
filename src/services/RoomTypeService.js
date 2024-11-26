@@ -199,7 +199,7 @@ const filterRoomType = (headers, filter) => {
                 const checkHotel = await Hotel.find({
                     userId: decoded.userId
                 })
-                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId).filter(hotelId => !filter.hotelId || hotelId === Number(filter.hotelId))
                 formatFilter.hotelId = {$in: checkHotelIds}
                 filterRoomType = await RoomType.find(formatFilter)
                 return resolve({

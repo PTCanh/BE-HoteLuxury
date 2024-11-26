@@ -223,11 +223,11 @@ const filterRoom = (headers, filter) => {
                 const checkHotel = await Hotel.find({
                     userId: decoded.userId
                 })
-                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId).filter(hotelId => !filter.hotelId || hotelId === Number(filter.hotelId))
                 const checkRoomType = await RoomType.find({
                     hotelId: { $in: checkHotelIds }
                 })
-                const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
+                const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId).filter(roomTypeId => !filter.roomTypeId || roomTypeId === Number(filter.roomTypeId))
                 formatFilter.roomTypeId = { $in: checkRoomTypeIds }
                 filterRoom = await Room.find(formatFilter)
                     .populate({
