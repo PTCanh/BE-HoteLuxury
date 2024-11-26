@@ -4,17 +4,18 @@ import paymentService from '../services/PaymentService.js';
 const createBooking = async (req, res) => {
     try {
         const response = await bookingService.createBooking(req.body);
-        console.log(response)
-        if (response.status === "OK") {
-            const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
-            return res.status(200).json({
-                status: "OK",
-                message: "Booking created successfully",
-                paymentUrl: paymentUrl
-            });
-        } else {
-            return res.status(404).json(response);
-        }
+        // console.log(response)
+        // if (response.status === "OK") {
+        //     const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
+        //     return res.status(200).json({
+        //         status: "OK",
+        //         message: "Booking created successfully",
+        //         paymentUrl: paymentUrl
+        //     });
+        // } else {
+        //     return res.status(404).json(response);
+        // }
+        return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,

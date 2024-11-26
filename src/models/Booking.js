@@ -29,6 +29,11 @@ const bookingSchema = new Schema({
         type: String,
         required: true
     },
+    isConfirmed: {
+        type: Boolean,
+        required: true,
+        default:"false"
+    },
     status: {
         type: String,
         required: true,

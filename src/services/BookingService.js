@@ -16,37 +16,46 @@ const createBooking = (booking) => {
             const bookedRoomIds = await Schedule.find({
                 roomId: { $in: roomIds },
                 $or: [
-                    { dayStart: { $gte: booking.dayStart, $lte: booking.dayEnd }},
-                    {dayEnd: { $gte: booking.dayStart, $lte: booking.dayEnd } }
+                    { dayStart: { $gte: booking.dayStart, $lte: booking.dayEnd } },
+                    { dayEnd: { $gte: booking.dayStart, $lte: booking.dayEnd } }
                 ]
             }).distinct("roomId");
-            
-            //console.log("bookedRoomIds: ",bookedRoomIds.length)
+
+            //console.log("bookedRoomIds: ",bookedRoomIds)
             const availableRooms = await Room.find({
                 roomId: { $in: roomIds, $nin: bookedRoomIds }
             });
-            if(availableRooms.length === 0){
+            if (availableRooms.length === 0) {
                 return resolve({
-                    status: 'ERR',
+                    status: 'ERR0',
                     message: 'All rooms are used',
+                })
+            }
+            if (availableRooms.length < booking.roomQuantity) {
+                return resolve({
+                    status: 'ERR1',
+                    message: 'Rooms are not enough',
                 })
             }
             //console.log("availableRooms: ",availableRooms.length)
             const checkRoomType = await RoomType.findOne({
                 roomTypeId: booking.roomTypeId
             })
-            booking.price = checkRoomType?.roomTypePrice || '0'
+            //Tính tổng tiền
+            const roomTypePrice = parseFloat(checkRoomType?.roomTypePrice) || 0;
+            const roomQuantity = parseInt(booking.roomQuantity) || 0;
+            booking.price = (roomTypePrice * roomQuantity).toString();
             const newBooking = await Booking.create(booking)
-            const newSchedule = {
-                roomId: availableRooms[0].roomId,
-                bookingId: newBooking.bookingId,
-                dayStart: booking.dayStart,
-                dayEnd: booking.dayEnd
-            }
-            await Schedule.create(newSchedule)
+            // const newSchedule = {
+            //     roomId: availableRooms[0].roomId,
+            //     bookingId: newBooking.bookingId,
+            //     dayStart: booking.dayStart,
+            //     dayEnd: booking.dayEnd
+            // }
+            // await Schedule.create(newSchedule)
             resolve({
                 status: 'OK',
-                message: 'Create Booking and Schedule successfully',
+                message: 'Create Booking successfully',
                 data: newBooking
             })
 
@@ -69,10 +78,64 @@ const updateBooking = (booking, id) => {
                     message: 'The Booking is not exist'
                 })
             }
-
-            await Booking.findOneAndUpdate({ bookingId: id },
+            const searchedBooking = await Booking.findOne({ bookingId: id })
+            const updatedBooking = await Booking.findOneAndUpdate({ bookingId: id },
                 booking,
                 { new: true })
+            if (booking.isConfirmed === true && searchedBooking.isConfirmed === false) {
+                // Find all Rooms associated with the RoomType
+                const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId });
+
+                // Get the IDs of all Rooms for the RoomType
+                const roomIds = rooms.map(room => room.roomId);
+
+                const bookedRoomIds = await Schedule.find({
+                    roomId: { $in: roomIds },
+                    $or: [
+                        { dayStart: { $gte: updatedBooking.dayStart, $lte: updatedBooking.dayEnd } },
+                        { dayEnd: { $gte: updatedBooking.dayStart, $lte: updatedBooking.dayEnd } }
+                    ]
+                }).distinct("roomId");
+                //console.log(bookedRoomIds)
+                //console.log("bookedRoomIds: ",bookedRoomIds.length)
+                const availableRooms = await Room.find({
+                    roomId: { $in: roomIds, $nin: bookedRoomIds }
+                }).sort({ roomId: 1 }); // Sắp xếp roomId tăng dần
+                //console.log(availableRooms)
+                if (availableRooms.length === 0) {
+                    await Booking.findOneAndUpdate({ bookingId: id },
+                        { isConfirmed: false },
+                        { new: true })
+                    return resolve({
+                        status: 'ERR0',
+                        message: 'All rooms are used',
+                    })
+                }
+                if (availableRooms.length < booking.roomQuantity) {
+                    await Booking.findOneAndUpdate({ bookingId: id },
+                        { isConfirmed: false },
+                        { new: true })
+                    return resolve({
+                        status: 'ERR1',
+                        message: 'Rooms are not enough',
+                    })
+                }
+
+                // Tạo mảng newSchedules
+                //const newSchedules = [];
+                for (let i = 0; i < updatedBooking.roomQuantity; i++) {
+                    const newSchedule = new Schedule({
+                        roomId: availableRooms[i].roomId, // Lấy roomId theo thứ tự
+                        bookingId: updatedBooking.bookingId,
+                        dayStart: updatedBooking.dayStart,
+                        dayEnd: updatedBooking.dayEnd,
+                    });
+                    await newSchedule.save()
+                }
+
+                // Thêm các schedule vào cơ sở dữ liệu
+                //await Schedule.insertMany(newSchedules); // lỗi autoIncrement
+            }
             resolve({
                 status: 'OK',
                 message: 'Update Booking successfully',
@@ -196,34 +259,34 @@ const searchBooking = (header) => {
 
 const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
     return new Promise(async (resolve, reject) => {
-      try {
-        const booking = await Booking.findOneAndUpdate(
-          { bookingId: bookingId },
-          { paymentUrl: paymentUrl },
-          { new: true }
-        );
-  
-        if (!booking) {
-          return resolve({
-            status: "ERR",
-            message: "Booking not found",
-          });
+        try {
+            const booking = await Booking.findOneAndUpdate(
+                { bookingId: bookingId },
+                { paymentUrl: paymentUrl },
+                { new: true }
+            );
+
+            if (!booking) {
+                return resolve({
+                    status: "ERR",
+                    message: "Booking not found",
+                });
+            }
+
+            resolve({
+                status: "OK",
+                message: "Payment URL updated successfully",
+                data: booking,
+            });
+        } catch (e) {
+            reject({
+                status: "ERR",
+                message: "Error from server",
+                error: e.message,
+            });
         }
-  
-        resolve({
-          status: "OK",
-          message: "Payment URL updated successfully",
-          data: booking,
-        });
-      } catch (e) {
-        reject({
-          status: "ERR",
-          message: "Error from server",
-          error: e.message,
-        });
-      }
     });
-  };
+};
 
 export default {
     createBooking,
