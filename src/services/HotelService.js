@@ -234,10 +234,10 @@ const searchHotel = (filter) => {
             //Tính giá nhỏ nhất của từng khách sạn
             let minPriceOfHotels = {}
             availableRoomTypes.forEach((roomType) => {
-                if(!minPriceOfHotels[roomType.hotelId]){
+                if (!minPriceOfHotels[roomType.hotelId]) {
                     minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
-                }else{
-                    if(minPriceOfHotels[roomType.hotelId] > roomType.roomTypePrice){
+                } else {
+                    if (minPriceOfHotels[roomType.hotelId] > roomType.roomTypePrice) {
                         minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
                     }
                 }
@@ -328,7 +328,7 @@ const userFilterHotel = (filter) => {
                     ))
                 );
             });
-            
+
             // const filterHotel = await Hotel.find(formatFilter);
             // const filterHotelIds = filterHotel.map(hotel => hotel.hotelId)
             // //Tìm hotelId có trong cả tìm kiếm và lọc
@@ -435,14 +435,36 @@ const suggestedHotel = (filter) => {
             const suggestedHotels = formatHotels.filter((hotel) => {
                 return (
                     regex.test(hotel.locationName) ||
-                    regex.test(hotel.hotelName) ||
-                    regex.test(hotel.hotelAddress)
+                    regex.test(hotel.hotelName) 
+                    // ||
+                    // regex.test(hotel.hotelAddress)
                 );
             })
+            const provinces = await Hotel.distinct("hotelAddress"); // Lấy tất cả hotelAddress
+            const uniqueProvinces = provinces
+                .map((address) => address.split(',').pop().trim()) // Lấy phần cuối (tỉnh/thành phố)
+                .filter((value, index, self) => self.indexOf(value) === index); // Loại bỏ trùng lặp
+            //console.log(uniqueProvinces);
+            const suggestedProvinces = uniqueProvinces.filter((province) => {
+                return (
+                    regex.test(province)
+                );
+            })
+            //console.log(suggestedProvinces);
+            // const addresses = await Hotel.find({
+            //     hotelAddress: { $regex: new RegExp(filter.filter, 'i') } // Tìm các địa chỉ có từ "Bình"
+            // }).distinct("hotelAddress"); // Chỉ lấy các địa chỉ duy nhất
+            
+            // const suggestions = addresses
+            //     .map((address) => address.split(',').pop().trim()) // Lấy phần tỉnh/thành phố
+            //     .filter((value, index, self) => self.indexOf(value) === index); // Loại bỏ trùng lặp
+            
+            //console.log(suggestions);
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
-                data: suggestedHotels
+                data: suggestedHotels,
+                provinces : suggestedProvinces
             })
 
         } catch (e) {
