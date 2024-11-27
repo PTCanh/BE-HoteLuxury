@@ -85,23 +85,51 @@ const deleteRoomType = (id) => {
     })
 }
 
-const getDetailRoomType = (id) => {
+const getDetailRoomType = (id, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkRoomType = await RoomType.findOne({
-                roomTypeId: id
-            })
-            if (checkRoomType === null) {
+            if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is not exist'
+                    message: `dayStart and dayEnd are required`
                 })
             }
+            //tìm roomtype theo id
+            const checkRoomType = await RoomType.findOne({
+                roomTypeId: id
+            }).lean()
+            //Tìm tất cả room của roomtype
+            const rooms = await Room.find({ roomTypeId: checkRoomType.roomTypeId });
+            //Chuyển thành mảng roomId của hotel
+            const roomIds = rooms.map(room => room.roomId)
+            //Tìm tất cả phòng đã được đặt
+            const bookedRoomIds = await Schedule.find({
+                roomId: { $in: roomIds },
+                $or: [
+                    { dayStart: { $gte: filter.dayStart, $lte: filter.dayEnd } },
+                    { dayEnd: { $gte: filter.dayStart, $lte: filter.dayEnd } }
+                ]
+            }).distinct("roomId");
+            //console.log('BookedRoom: ', bookedRoomIds.length)
+            //Tìm những phòng còn trống của hotel
+            const availableRooms = await Room.find({
+                roomId: { $in: roomIds, $nin: bookedRoomIds }
+            });
+            const formatedRommType = {
+                ...checkRoomType,
+                availableRoomQuantity: availableRooms.length
+            }
+            // if (checkRoomType === null) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: 'The RoomType is not exist'
+            //     })
+            // }
 
             resolve({
                 status: 'OK',
                 message: 'Get detail RoomType successfully',
-                data: checkRoomType
+                data: formatedRommType,
             })
 
         } catch (e) {

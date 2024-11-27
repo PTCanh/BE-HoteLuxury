@@ -47,6 +47,9 @@ const bookingSchema = new Schema({
         type: String,
         required: true
     },
+    note: {
+        type: String
+    },
     dayStart: {
         type: Date,
         required: true
