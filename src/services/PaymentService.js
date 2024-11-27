@@ -71,7 +71,7 @@ const handlePaymentReturn = async (req, res) => {
 
         if (resultCode === '0') {
             // Thanh toán thành công
-            await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã thanh toán" }, { new: true });
+            await bookingService.updateBooking({ status: "Đã thanh toán", isConfirmed: true }, bookingId);
 
             //return res.redirect('http://localhost:3000/user/appointments');
             return res.status(200).json({

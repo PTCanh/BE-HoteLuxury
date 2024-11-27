@@ -4,17 +4,20 @@ import paymentService from '../services/PaymentService.js';
 const createBooking = async (req, res) => {
     try {
         const response = await bookingService.createBooking(req.body);
-        // console.log(response)
-        // if (response.status === "OK") {
-        //     const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
-        //     return res.status(200).json({
-        //         status: "OK",
-        //         message: "Booking created successfully",
-        //         paymentUrl: paymentUrl
-        //     });
-        // } else {
-        //     return res.status(404).json(response);
-        // }
+        //console.log(response)
+        if (response.status === "OK" && response.data.paymentMethod === "Chuyển khoản") {
+            const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
+            return res.status(200).json({
+                status: "OK2",
+                message: "Booking created successfully",
+                data: paymentUrl
+            });
+        } else if (response.status === "OK" && response.data.paymentMethod === "Tiền mặt") {
+            return res.status(200).json(response);
+        }
+        else {
+            return res.status(404).json(response);
+        }
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
@@ -61,7 +64,7 @@ const getDetailBooking = async (req, res) => {
 
 const getAllBooking = async (req, res) => {
     try {
-        const response = await bookingService.getAllBooking();
+        const response = await bookingService.getAllBooking(req.headers, req.query);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
@@ -85,7 +88,7 @@ const handlePaymentReturn = async (req, res) => {
     //console.log('TEST HANDLE PAYMENT RETURN'); 
     //console.log('Response',res);
     return paymentService.handlePaymentReturn(req, res);
-  };
+};
 
 export default {
     createBooking,

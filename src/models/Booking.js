@@ -47,6 +47,10 @@ const bookingSchema = new Schema({
         type: String,
         required: true
     },
+    customerEmail: {
+        type: String,
+        required: true
+    },
     note: {
         type: String
     },

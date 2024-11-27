@@ -3,6 +3,7 @@ import RoomType from '../models/RoomType.js'
 import Hotel from '../models/Hotel.js'
 import Schedule from '../models/Schedule.js'
 import Room from '../models/Room.js'
+import jwt from 'jsonwebtoken'
 
 const createBooking = (booking) => {
     return new Promise(async (resolve, reject) => {
@@ -200,16 +201,88 @@ const getDetailBooking = (id) => {
     })
 }
 
-const getAllBooking = () => {
+const getAllBooking = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkBooking = await Booking.find()
-            if (checkBooking.length === 0) {
+            //console.log(headers, filter)
+            const formatFilter = {}
+            if (filter.isConfirmed) {
+                formatFilter.isConfirmed = filter.isConfirmed
+            }
+            if (filter.roomTypeId) {
+                formatFilter.roomTypeId = filter.roomTypeId
+            }
+            if (filter.customerName) {
+                formatFilter.customerName = filter.customerName.replace(/\s+/g, ' ').trim()
+                formatFilter.customerName = { $regex: new RegExp(formatFilter.customerName, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.status) {
+                formatFilter.status = filter.status.replace(/\s+/g, ' ').trim()
+                formatFilter.status = { $regex: new RegExp(formatFilter.status, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.paymentMethod) {
+                formatFilter.paymentMethod = filter.paymentMethod.replace(/\s+/g, ' ').trim()
+                formatFilter.paymentMethod = { $regex: new RegExp(formatFilter.paymentMethod, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.customerPhone) {
+                formatFilter.customerPhone = filter.customerPhone.replace(/\s+/g, ' ').trim()
+                formatFilter.customerPhone = { $regex: new RegExp(formatFilter.customerPhone, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.customerEmail) {
+                formatFilter.customerEmail = filter.customerEmail.replace(/\s+/g, ' ').trim()
+                formatFilter.customerEmail = { $regex: new RegExp(formatFilter.customerEmail, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.dayStart) {
+                formatFilter.dayStart = new Date(filter.dayStart)
+                //formatFilter.dayStart = { $regex: new RegExp(formatFilter.dayStart, 'i') } // Không phân biệt hoa thường
+            }
+            if (filter.dayEnd) {
+                formatFilter.dayEnd = new Date(filter.dayEnd)
+                //formatFilter.dayEnd = { $regex: new RegExp(formatFilter.dayEnd, 'i') } // Không phân biệt hoa thường
+            }
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            if(decoded.roleId === "R2"){
+                const checkHotel = await Hotel.find({
+                    userId: decoded.userId
+                })
+                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                const checkRoomType = await RoomType.find({
+                    hotelId: {$in: checkHotelIds}
+                })
+                const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
+                formatFilter.roomTypeId = {$in: checkRoomTypeIds}
+                const allBookingOfHotel = await Booking.find(formatFilter)
                 return resolve({
-                    status: 'ERR',
-                    message: 'The Booking is empty'
+                    status: 'OK',
+                    message: 'Get all Booking successfully',
+                    data: allBookingOfHotel
                 })
             }
+            if(decoded.roleId === "R3"){
+                // const checkHotel = await Hotel.find({
+                //     userId: decoded.userId
+                // })
+                // const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                // const checkRoomType = await RoomType.find({
+                //     hotelId: {$in: checkHotelIds}
+                // })
+                // const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
+                formatFilter.userId = decoded.userId
+                const allBookingOfHotel = await Booking.find(formatFilter)
+                return resolve({
+                    status: 'OK',
+                    message: 'Get all Booking successfully',
+                    data: allBookingOfHotel
+                })
+            }
+            const checkBooking = await Booking.find()
+            // if (checkBooking.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: 'The Booking is empty'
+            //     })
+            // }
 
             resolve({
                 status: 'OK',
@@ -219,6 +292,7 @@ const getAllBooking = () => {
 
         } catch (e) {
             reject(e)
+            console.error(e)
         }
     })
 }
