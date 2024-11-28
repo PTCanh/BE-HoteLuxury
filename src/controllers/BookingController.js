@@ -90,6 +90,18 @@ const handlePaymentReturn = async (req, res) => {
     return paymentService.handlePaymentReturn(req, res);
 };
 
+const confirmBooking = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await bookingService.confirmBooking(id);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createBooking,
     updateBooking,
@@ -97,5 +109,6 @@ export default {
     getDetailBooking,
     getAllBooking,
     searchBooking,
-    handlePaymentReturn
+    handlePaymentReturn,
+    confirmBooking
 }

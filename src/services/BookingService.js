@@ -362,6 +362,50 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
     });
 };
 
+const confirmBooking = async (bookingId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkBooking = await Booking.findOne({ bookingId: bookingId });
+
+            // Find all Rooms associated with the RoomType
+            const rooms = await Room.find({ roomTypeId: checkBooking.roomTypeId });
+
+            // Get the IDs of all Rooms for the RoomType
+            const roomIds = rooms.map(room => room.roomId);
+
+            const bookedRoomIds = await Schedule.find({
+                roomId: { $in: roomIds },
+                $or: [
+                    { dayStart: { $gte: checkBooking.dayStart, $lte: checkBooking.dayEnd } },
+                    { dayEnd: { $gte: checkBooking.dayStart, $lte: checkBooking.dayEnd } }
+                ]
+            }).distinct("roomId");
+            //console.log(bookedRoomIds)
+            //console.log("bookedRoomIds: ",bookedRoomIds.length)
+            const availableRooms = await Room.find({
+                roomId: { $in: roomIds, $nin: bookedRoomIds }
+            })
+            if (checkBooking.roomQuantity > availableRooms.length) {
+                return resolve({
+                    status: "ERR",
+                    message: "Not enough rooms",
+                });
+            }
+
+            resolve({
+                status: "OK",
+                message: "Have enough rooms",
+            });
+        } catch (e) {
+            reject({
+                status: "ERR",
+                message: "Error from server",
+                error: e.message,
+            });
+        }
+    });
+};
+
 export default {
     createBooking,
     updateBooking,
@@ -369,5 +413,6 @@ export default {
     getDetailBooking,
     getAllBooking,
     searchBooking,
-    updateBookingPaymentUrl
+    updateBookingPaymentUrl,
+    confirmBooking
 }

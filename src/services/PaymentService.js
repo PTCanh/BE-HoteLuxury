@@ -73,11 +73,11 @@ const handlePaymentReturn = async (req, res) => {
             // Thanh toán thành công
             await bookingService.updateBooking({ status: "Đã thanh toán", isConfirmed: true }, bookingId);
 
-            //return res.redirect('http://localhost:3000/user/appointments');
-            return res.status(200).json({
-              status: "OK",
-              message: "Payment successful",
-            });
+            return res.redirect('http://localhost:3000/home');
+            // return res.status(200).json({
+            //   status: "OK",
+            //   message: "Payment successful",
+            // });
         } else {
             // Thanh toán thất bại
             //await bookingService.updateBookingStatus(bookingId, "S3");
