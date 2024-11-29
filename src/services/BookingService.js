@@ -294,7 +294,12 @@ const getAllBooking = (headers, filter) => {
                 })
                 const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
                 formatFilter.roomTypeId = { $in: checkRoomTypeIds }
-                const allBookingOfHotel = await Booking.find(formatFilter)
+                let allBookingOfHotel = await Booking.find(formatFilter)
+                allBookingOfHotel = allBookingOfHotel.sort((a, b) => {
+                    const dateA = new Date(a.dayStart);
+                    const dateB = new Date(b.dayStart);
+                    return dateA - dateB;
+                })
                 return resolve({
                     status: 'OK',
                     message: 'Get all Booking successfully',
@@ -348,7 +353,11 @@ const getAllBooking = (headers, filter) => {
                     roomNumber: booking.bookingId?.roomId.roomNumber || null,
                     roomTypeId: booking.roomTypeId.roomTypeId,
                     bookingId: booking.bookingId?.bookingId || null,
-                }))
+                })).sort((a, b) => {
+                    const dateA = new Date(a.dayStart);
+                    const dateB = new Date(b.dayStart);
+                    return dateA - dateB;
+                })
                 const currentDate = new Date();
                 const today = currentDate.toISOString().split('T')[0]
                 //const bookingStatus = ["Chờ xác nhận", "Đã xác nhận", "Đang thực hiện", "Đã hoàn tất", "Đã hủy"]
