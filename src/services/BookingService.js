@@ -181,18 +181,35 @@ const getDetailBooking = (id) => {
         try {
             const checkBooking = await Booking.findOne({
                 bookingId: id
-            })
-            if (checkBooking === null) {
-                return resolve({
-                    status: 'ERR',
-                    message: 'The Booking is not exist'
-                })
+            }).populate({
+                path: 'bookingId',
+                model: 'Schedule',
+                localField: 'bookingId',
+                foreignField: 'bookingId',
+                populate: {
+                    path: 'roomId', // Từ Schedule, populate tiếp sang Room
+                    model: 'Room',
+                    localField: 'roomId',
+                    foreignField: 'roomId',
+                    select: 'roomNumber', // Chỉ lấy trường roomNumber
+                },
+            }).lean()
+            const formatedBooking = {
+                ...checkBooking,
+                bookingId: checkBooking.bookingId.bookingId,
+                roomNumber: checkBooking.bookingId.roomId.roomNumber
             }
+            // if (checkBooking === null) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: 'The Booking is not exist'
+            //     })
+            // }
 
             resolve({
                 status: 'OK',
                 message: 'Get detail Booking successfully',
-                data: checkBooking
+                data: formatedBooking
             })
 
         } catch (e) {
@@ -242,16 +259,16 @@ const getAllBooking = (headers, filter) => {
             }
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            if(decoded.roleId === "R2"){
+            if (decoded.roleId === "R2") {
                 const checkHotel = await Hotel.find({
                     userId: decoded.userId
                 })
                 const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
                 const checkRoomType = await RoomType.find({
-                    hotelId: {$in: checkHotelIds}
+                    hotelId: { $in: checkHotelIds }
                 })
                 const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
-                formatFilter.roomTypeId = {$in: checkRoomTypeIds}
+                formatFilter.roomTypeId = { $in: checkRoomTypeIds }
                 const allBookingOfHotel = await Booking.find(formatFilter)
                 return resolve({
                     status: 'OK',
@@ -259,7 +276,7 @@ const getAllBooking = (headers, filter) => {
                     data: allBookingOfHotel
                 })
             }
-            if(decoded.roleId === "R3"){
+            if (decoded.roleId === "R3") {
                 // const checkHotel = await Hotel.find({
                 //     userId: decoded.userId
                 // })
