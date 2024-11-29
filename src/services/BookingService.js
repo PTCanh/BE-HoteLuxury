@@ -182,10 +182,24 @@ const getDetailBooking = (id) => {
             const checkBooking = await Booking.findOne({
                 bookingId: id
             }).populate({
+                path: 'roomTypeId',
+                model: 'RoomType',
+                localField: 'roomTypeId',
+                foreignField: 'roomTypeId',
+                select: 'hotelId roomTypeName roomTypeImage',
+                populate: {
+                    path: 'hotelId',
+                    model: 'Hotel',
+                    localField: 'hotelId',
+                    foreignField: 'hotelId',
+                    select: 'hotelName'
+                }
+            }).populate({
                 path: 'bookingId',
                 model: 'Schedule',
                 localField: 'bookingId',
                 foreignField: 'bookingId',
+                select: 'roomId',
                 populate: {
                     path: 'roomId', // Từ Schedule, populate tiếp sang Room
                     model: 'Room',
@@ -196,8 +210,12 @@ const getDetailBooking = (id) => {
             }).lean()
             const formatedBooking = {
                 ...checkBooking,
-                bookingId: checkBooking.bookingId.bookingId,
-                roomNumber: checkBooking.bookingId.roomId.roomNumber
+                hotelName: checkBooking.roomTypeId.hotelId.hotelName,
+                roomTypeName: checkBooking.roomTypeId.roomTypeName,
+                roomTypeImage: checkBooking.roomTypeId.roomTypeImage,
+                roomNumber: checkBooking.bookingId?.roomId.roomNumber || null,
+                roomTypeId: checkBooking.roomTypeId.roomTypeId,
+                bookingId: checkBooking.bookingId?.bookingId || null,
             }
             // if (checkBooking === null) {
             //     return resolve({
@@ -249,6 +267,13 @@ const getAllBooking = (headers, filter) => {
                 formatFilter.customerEmail = filter.customerEmail.replace(/\s+/g, ' ').trim()
                 formatFilter.customerEmail = { $regex: new RegExp(formatFilter.customerEmail, 'i') } // Không phân biệt hoa thường
             }
+            if (filter.isConfirmed) {
+                formatFilter.isConfirmed = filter.isConfirmed
+            }
+            if (filter.status) {
+                formatFilter.status = filter.status.replace(/\s+/g, ' ').trim()
+                formatFilter.status = { $regex: new RegExp(formatFilter.status, 'i') } // Không phân biệt hoa thường
+            }
             if (filter.dayStart) {
                 formatFilter.dayStart = new Date(filter.dayStart)
                 //formatFilter.dayStart = { $regex: new RegExp(formatFilter.dayStart, 'i') } // Không phân biệt hoa thường
@@ -286,11 +311,69 @@ const getAllBooking = (headers, filter) => {
                 // })
                 // const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
                 formatFilter.userId = decoded.userId
-                const allBookingOfHotel = await Booking.find(formatFilter)
+                const allBookingOfUser = await Booking.find(formatFilter)
+                    .populate({
+                        path: 'roomTypeId',
+                        model: 'RoomType',
+                        localField: 'roomTypeId',
+                        foreignField: 'roomTypeId',
+                        select: 'hotelId roomTypeName roomTypeImage',
+                        populate: {
+                            path: 'hotelId',
+                            model: 'Hotel',
+                            localField: 'hotelId',
+                            foreignField: 'hotelId',
+                            select: 'hotelName'
+                        }
+                    })
+                    .populate({
+                        path: 'bookingId',
+                        model: 'Schedule',
+                        localField: 'bookingId',
+                        foreignField: 'bookingId',
+                        select: 'roomId',
+                        populate: {
+                            path: 'roomId', // Từ Schedule, populate tiếp sang Room
+                            model: 'Room',
+                            localField: 'roomId',
+                            foreignField: 'roomId',
+                            select: 'roomNumber', // Chỉ lấy trường roomNumber
+                        },
+                    }).lean()
+                let formatedAllBookingOfUser = allBookingOfUser.map((booking) => ({
+                    ...booking,
+                    hotelName: booking.roomTypeId.hotelId.hotelName,
+                    roomTypeName: booking.roomTypeId.roomTypeName,
+                    roomTypeImage: booking.roomTypeId.roomTypeImage,
+                    roomNumber: booking.bookingId?.roomId.roomNumber || null,
+                    roomTypeId: booking.roomTypeId.roomTypeId,
+                    bookingId: booking.bookingId?.bookingId || null,
+                }))
+                const currentDate = new Date();
+                const today = currentDate.toISOString().split('T')[0]
+                //const bookingStatus = ["Chờ xác nhận", "Đã xác nhận", "Đang thực hiện", "Đã hoàn tất", "Đã hủy"]
+                if (filter.bookingStatus) {
+                    if (filter.bookingStatus === "Chờ xác nhận") {
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === false))
+                    }
+                    else if (filter.bookingStatus === "Đã xác nhận") {
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] > today))
+                    }
+                    else if (filter.bookingStatus === "Đang thực hiện") {
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] <= today && booking.dayEnd.toISOString().split('T')[0] >= today))
+                    }
+                    else if (filter.bookingStatus === "Đã hoàn tất") {
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayEnd.toISOString().split('T')[0] < today))
+                    }
+                    else if (filter.bookingStatus === "Đã hủy") {
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.status === "Đã hết phòng" || booking.status === "Đã hủy"))
+                    }
+                }
+
                 return resolve({
                     status: 'OK',
                     message: 'Get all Booking successfully',
-                    data: allBookingOfHotel
+                    data: formatedAllBookingOfUser
                 })
             }
             const checkBooking = await Booking.find()
