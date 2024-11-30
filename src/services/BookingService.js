@@ -363,16 +363,26 @@ const getAllBooking = (headers, filter) => {
                         },
                     },
                 ])
+                const allSchedule = await Schedule.find()
+                .populate({
+                    path: 'roomId',
+                    model: 'Room',
+                    localField: 'roomId',
+                    foreignField: 'roomId',
+                    select: 'roomNumber'
+                }).lean()
                 let formatedAllBookingOfUser = populatedBookings.map((booking) => {
                     // Lấy roomNumber từ booking.bookingId.roomId (nếu có)
-                    let roomNumbers = [];
-                    if (Array.isArray(booking.bookingId)) {
-                        roomNumbers = booking.bookingId
-                            .map((schedule) => schedule.roomId?.roomNumber)
-                            .filter((roomNumber) => roomNumber); // Lọc bỏ các giá trị `null` hoặc `undefined`
-                    } else if (booking.bookingId?.roomId?.roomNumber) {
-                        roomNumbers.push(booking.bookingId.roomId.roomNumber);
-                    }
+                    // let roomNumbers = [];
+                    // if (Array.isArray(booking.bookingId)) {
+                    //     roomNumbers = booking.bookingId
+                    //         .map((schedule) => schedule.roomId?.roomNumber)
+                    //         .filter((roomNumber) => roomNumber); // Lọc bỏ các giá trị `null` hoặc `undefined`
+                    // } else if (booking.bookingId?.roomId?.roomNumber) {
+                    //     roomNumbers.push(booking.bookingId.roomId.roomNumber);
+                    // }
+                    const checkSchedule = allSchedule.filter(schedule => (schedule.bookingId === booking.originalBookingId))
+                    const roomNumbers = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
 
                     return {
                         ...booking,
