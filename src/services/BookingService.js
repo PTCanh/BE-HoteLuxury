@@ -327,8 +327,14 @@ const getAllBooking = (headers, filter) => {
                 // })
                 // const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
                 formatFilter.userId = decoded.userId
-                const allBookingOfUser = await Booking.find(formatFilter)
-                    .populate({
+                const allBookingOfUser = await Booking.find(formatFilter).lean()
+                // Lưu lại bookingId gốc
+                allBookingOfUser.forEach(booking => {
+                    booking.originalBookingId = booking.bookingId;
+                })
+                // Sau đó, thực hiện populate
+                const populatedBookings = await Booking.populate(allBookingOfUser, [
+                    {
                         path: 'roomTypeId',
                         model: 'RoomType',
                         localField: 'roomTypeId',
@@ -341,8 +347,8 @@ const getAllBooking = (headers, filter) => {
                             foreignField: 'hotelId',
                             select: 'hotelName'
                         }
-                    })
-                    .populate({
+                    },
+                    {
                         path: 'bookingId',
                         model: 'Schedule',
                         localField: 'bookingId',
@@ -355,20 +361,33 @@ const getAllBooking = (headers, filter) => {
                             foreignField: 'roomId',
                             select: 'roomNumber', // Chỉ lấy trường roomNumber
                         },
-                    }).lean()
-                let formatedAllBookingOfUser = allBookingOfUser.map((booking) => ({
-                    ...booking,
-                    hotelName: booking.roomTypeId.hotelId.hotelName,
-                    roomTypeName: booking.roomTypeId.roomTypeName,
-                    roomTypeImage: booking.roomTypeId.roomTypeImage,
-                    roomNumber: booking.bookingId?.roomId.roomNumber || null,
-                    roomTypeId: booking.roomTypeId.roomTypeId,
-                    bookingId: booking.bookingId?.bookingId || null,
-                })).sort((a, b) => {
+                    },
+                ])
+                let formatedAllBookingOfUser = populatedBookings.map((booking) => {
+                    // Lấy roomNumber từ booking.bookingId.roomId (nếu có)
+                    let roomNumbers = [];
+                    if (Array.isArray(booking.bookingId)) {
+                        roomNumbers = booking.bookingId
+                            .map((schedule) => schedule.roomId?.roomNumber)
+                            .filter((roomNumber) => roomNumber); // Lọc bỏ các giá trị `null` hoặc `undefined`
+                    } else if (booking.bookingId?.roomId?.roomNumber) {
+                        roomNumbers.push(booking.bookingId.roomId.roomNumber);
+                    }
+
+                    return {
+                        ...booking,
+                        hotelName: booking.roomTypeId?.hotelId?.hotelName || null,
+                        roomTypeName: booking.roomTypeId?.roomTypeName || null,
+                        roomTypeImage: booking.roomTypeId?.roomTypeImage || null,
+                        roomNumber: roomNumbers, // Mảng roomNumber
+                        roomTypeId: booking.roomTypeId?.roomTypeId || null,
+                        bookingId: booking.originalBookingId, // Giữ bookingId dù không populate được
+                    };
+                }).sort((a, b) => {
                     const dateA = new Date(a.dayStart);
                     const dateB = new Date(b.dayStart);
                     return dateA - dateB;
-                })
+                });
                 const currentDate = new Date();
                 const today = currentDate.toISOString().split('T')[0]
                 //const bookingStatus = ["Chờ xác nhận", "Đã xác nhận", "Đang thực hiện", "Đã hoàn tất", "Đã hủy"]
