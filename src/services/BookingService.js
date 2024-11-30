@@ -179,7 +179,7 @@ const deleteBooking = (id) => {
 const getDetailBooking = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkBooking = await Booking.findOne({
+            const checkBooking = await Booking.find({
                 bookingId: id
             }).populate({
                 path: 'roomTypeId',
@@ -208,14 +208,24 @@ const getDetailBooking = (id) => {
                     select: 'roomNumber', // Chỉ lấy trường roomNumber
                 },
             }).lean()
+            const checkSchedule = await Schedule.find({
+                bookingId: id
+            }).populate({
+                path: 'roomId',
+                model: 'Room',
+                localField: 'roomId',
+                foreignField: 'roomId',
+                select: 'roomNumber'
+            }).lean()
+            const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
             const formatedBooking = {
-                ...checkBooking,
-                hotelName: checkBooking.roomTypeId.hotelId.hotelName,
-                roomTypeName: checkBooking.roomTypeId.roomTypeName,
-                roomTypeImage: checkBooking.roomTypeId.roomTypeImage,
-                roomNumber: checkBooking.bookingId?.roomId.roomNumber || null,
-                roomTypeId: checkBooking.roomTypeId.roomTypeId,
-                bookingId: checkBooking.bookingId?.bookingId || null,
+                ...checkBooking[0],
+                hotelName: checkBooking[0].roomTypeId?.hotelId.hotelName || null,
+                roomTypeName: checkBooking[0].roomTypeId?.roomTypeName || null,
+                roomTypeImage: checkBooking[0].roomTypeId?.roomTypeImage || null,
+                roomNumber: roomNumber,
+                roomTypeId: checkBooking[0].roomTypeId?.roomTypeId || null,
+                bookingId: checkBooking[0].bookingId?.bookingId || null,
             }
             // if (checkBooking === null) {
             //     return resolve({
@@ -232,6 +242,7 @@ const getDetailBooking = (id) => {
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }
