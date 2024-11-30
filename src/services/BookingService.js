@@ -393,16 +393,16 @@ const getAllBooking = (headers, filter) => {
                 //const bookingStatus = ["Chờ xác nhận", "Đã xác nhận", "Đang thực hiện", "Đã hoàn tất", "Đã hủy"]
                 if (filter.bookingStatus) {
                     if (filter.bookingStatus === "Chờ xác nhận") {
-                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === false))
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === false && booking.status !== "Đã hết phòng" && booking.status !== "Đã hủy"))
                     }
                     else if (filter.bookingStatus === "Đã xác nhận") {
-                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] > today))
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] > today && booking.status !== "Đã hết phòng" && booking.status !== "Đã hủy"))
                     }
                     else if (filter.bookingStatus === "Đang thực hiện") {
-                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] <= today && booking.dayEnd.toISOString().split('T')[0] >= today))
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayStart.toISOString().split('T')[0] <= today && booking.dayEnd.toISOString().split('T')[0] >= today && booking.status !== "Đã hết phòng" && booking.status !== "Đã hủy"))
                     }
                     else if (filter.bookingStatus === "Đã hoàn tất") {
-                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayEnd.toISOString().split('T')[0] < today))
+                        formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.isConfirmed === true && booking.dayEnd.toISOString().split('T')[0] < today && booking.status !== "Đã hết phòng" && booking.status !== "Đã hủy"))
                     }
                     else if (filter.bookingStatus === "Đã hủy") {
                         formatedAllBookingOfUser = formatedAllBookingOfUser.filter((booking) => (booking.status === "Đã hết phòng" || booking.status === "Đã hủy"))
