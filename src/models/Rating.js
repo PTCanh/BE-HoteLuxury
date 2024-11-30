@@ -17,6 +17,10 @@ const ratingSchema = new Schema({
         type: Number,
         required: true
     },
+    ratingDescription: {
+        type: String,
+        required: true
+    },
     hotelId: {
         type: Number,
         required: true

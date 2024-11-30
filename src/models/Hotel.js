@@ -43,9 +43,11 @@ const hotelSchema = new Schema({
     },
     ratingAverage: {
         type: Number,
+        default: 0
     },
     ratingQuantity: {
         type: Number,
+        default: 0
     },
     locationId: {
         type: Number,
