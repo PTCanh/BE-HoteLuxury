@@ -358,6 +358,7 @@ export const hotelManagerDashboardService = (hotelId, filter) => {
             // const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             // const checkHotel = await Hotel.find({userId:decoded.userId})
             // const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+            const checkHotel = await Hotel.findOne({ hotelId: hotelId})
             const checkRoomType = await RoomType.find({ hotelId: hotelId })
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
             const totalCancelledBookingOfHotel = await Booking.find({
@@ -576,6 +577,8 @@ export const hotelManagerDashboardService = (hotelId, filter) => {
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
+                ratingQuantity: checkHotel.ratingQuantity,
+                ratingAverage: checkHotel.ratingAverage,
                 totalBookingOfHotel: totalBookingOfHotel.length,
                 totalCancelledBookingOfHotel: totalCancelledBookingOfHotel.length,
                 totalBookingsByRoomType: totalBookingsByRoomType,
