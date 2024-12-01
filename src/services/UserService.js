@@ -209,7 +209,11 @@ export const getDetailsUserService = (id) => {
         try {
             const user = await User.findOne({
                 userId: id
-            })
+            }).lean()
+            const formatedUser = {
+                ...user,
+                birthDate: user.birthDate.toISOString().split('T')[0]
+            }
             if (user === null) {
                 resolve({
                     status: 'ERR',
@@ -220,11 +224,12 @@ export const getDetailsUserService = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Success',
-                data: user
+                data: formatedUser
             })
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }
@@ -288,3 +293,54 @@ export const getAllHotelManagerService = () => {
         }
     })
 }
+
+export const updatePassword = async (userId, oldPassword, newPassword, confirmPassword) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // Tìm người dùng theo userId
+        const user = await User.findOne({ userId: userId });
+        if (!user) {
+          return resolve({
+            status: "ERR",
+            message: "User not found",
+          });
+        }
+  
+        // Kiểm tra mật khẩu cũ
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {
+          return resolve({
+            status: "ERR1",
+            message: "Mật khẩu cũ không đúng",
+          });
+        }
+  
+        // Kiểm tra mật khẩu mới và xác nhận mật khẩu mới
+        if (newPassword !== confirmPassword) {
+          return resolve({
+            status: "ERR2",
+            message: "New password and confirm password do not match",
+          });
+        }
+  
+        // Mã hóa mật khẩu mới
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+  
+        // Cập nhật mật khẩu mới
+        user.password = hashedPassword;
+        await user.save();
+  
+        resolve({
+          status: "OK",
+          message: "Password updated successfully",
+        });
+      } catch (e) {
+        reject({
+          status: "ERR",
+          message: "Error from server",
+          error: e.message,
+        });
+      }
+    });
+  };

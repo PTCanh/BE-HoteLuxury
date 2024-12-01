@@ -2,7 +2,7 @@ import express from "express";
 import { createUserController,loginUserController,updateUserController, deleteUserController, getAllUserController, 
     getDetailsUserController, refreshToken, logoutUserController, resetUserPasswordController, 
     handleResetPasswordTokenController, verifyUserController,
-    createAndSendOTPController, filterUserController, getAllHotelManagerController} from "../controllers/UserController.js";
+    createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController} from "../controllers/UserController.js";
 import { authMiddleware,authUserMiddleware } from "../middlewares/authMiddleware.js";
 import upload from "../utils/UploadFile.js";
 
@@ -21,7 +21,8 @@ router.post('/', upload.single("image"), createUserController)
 router.put('/:id', upload.single("image"), updateUserController)
 router.delete('/:id',authMiddleware ,deleteUserController)
 router.get('/', getAllUserController)
-router.get('/:id',authUserMiddleware , getDetailsUserController)
+router.get('/:id', getDetailsUserController)
+router.post("/update-password", updatePasswordController);
 //authentication
 router.post('/refresh_token',refreshToken)
 

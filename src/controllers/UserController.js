@@ -266,3 +266,16 @@ export const getAllHotelManagerController = async (req, res) => {
         })
     }
 }
+
+export const updatePasswordController = async (req, res) => {
+    try {
+      const { userId, oldPassword, newPassword, confirmPassword } = req.body;
+  
+      const result = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
+      return res.status(200).json(result);
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+  };
