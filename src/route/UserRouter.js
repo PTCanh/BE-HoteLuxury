@@ -2,7 +2,8 @@ import express from "express";
 import { createUserController,loginUserController,updateUserController, deleteUserController, getAllUserController, 
     getDetailsUserController, refreshToken, logoutUserController, resetUserPasswordController, 
     handleResetPasswordTokenController, verifyUserController,
-    createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController} from "../controllers/UserController.js";
+    createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
+    hotelManagerDashboardController} from "../controllers/UserController.js";
 import { authMiddleware,authUserMiddleware } from "../middlewares/authMiddleware.js";
 import upload from "../utils/UploadFile.js";
 
@@ -15,6 +16,7 @@ router.post('/logout', logoutUserController)
 router.post('/reset-password', resetUserPasswordController)
 router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
+router.get('/hotel-manager/dashboard', hotelManagerDashboardController)
 router.get('/hotel-manager', getAllHotelManagerController)
 router.get('/filter', filterUserController)
 router.post('/', upload.single("image"), createUserController)

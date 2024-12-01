@@ -4,7 +4,7 @@ import {
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
-    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword
+    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword, hotelManagerDashboardService
 } from '../services/UserService.js'
 
 export const createUserController = async (req, res) => {
@@ -269,13 +269,24 @@ export const getAllHotelManagerController = async (req, res) => {
 
 export const updatePasswordController = async (req, res) => {
     try {
-      const { userId, oldPassword, newPassword, confirmPassword } = req.body;
-  
-      const result = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
-      return res.status(200).json(result);
+        const { userId, oldPassword, newPassword, confirmPassword } = req.body;
+
+        const result = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
+        return res.status(200).json(result);
     } catch (e) {
         return res.status(404).json({
             message: e
         })
     }
-  };
+};
+
+export const hotelManagerDashboardController = async (req, res) => {
+    try {
+        const response = await hotelManagerDashboardService(req.query.hotelId, req.query)
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
