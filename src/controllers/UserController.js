@@ -4,7 +4,7 @@ import {
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
-    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService
+    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword
 } from '../services/UserService.js'
 
 export const createUserController = async (req, res) => {
