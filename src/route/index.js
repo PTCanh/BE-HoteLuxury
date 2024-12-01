@@ -8,6 +8,7 @@ import locationRouter from "./LocationRouter.js"
 import bookingRouter from "./BookingRouter.js"
 import cartRouter from "./CartRouter.js"
 import scheduleRouter from "./ScheduleRouter.js"
+import ratingRouter from "./RatingRouter.js"
 
 const routes = (app) => {
     app.use('/', homePageRouter)
@@ -20,6 +21,7 @@ const routes = (app) => {
     app.use('/booking',bookingRouter)
     app.use('/cart',cartRouter)
     app.use('/schedule',scheduleRouter)
+    app.use('/rating',ratingRouter)
 }
 
 export default routes
