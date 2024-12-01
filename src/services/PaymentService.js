@@ -73,7 +73,7 @@ const handlePaymentReturn = async (req, res) => {
             // Thanh toán thành công
             await bookingService.updateBooking({ status: "Đã thanh toán", isConfirmed: true }, bookingId);
 
-            return res.redirect('http://localhost:3000/home');
+            return res.redirect('http://localhost:3000/info/trips');
             // return res.status(200).json({
             //   status: "OK",
             //   message: "Payment successful",
@@ -81,11 +81,12 @@ const handlePaymentReturn = async (req, res) => {
         } else {
             // Thanh toán thất bại
             //await bookingService.updateBookingStatus(bookingId, "S3");
-            await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã hủy" }, { new: true })
-            return res.status(400).json({
-                status: "ERR",
-                message: "Payment failed",
-            });
+            await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã hủy", isConfirmed: true }, { new: true })
+            return res.redirect('http://localhost:3000/info/trips');
+            // return res.status(400).json({
+            //     status: "ERR",
+            //     message: "Payment failed",
+            // });
         }
     } catch (error) {
         console.error('Error handling payment return:', error.message);
