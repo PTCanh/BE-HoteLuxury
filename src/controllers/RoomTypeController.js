@@ -48,7 +48,7 @@ const deleteRoomType = async (req, res) => {
 const getDetailRoomType = async (req, res) => {
     const id = req.params.id
     try {
-        const response = await roomTypeService.getDetailRoomType(id, req.query);
+        const response = await roomTypeService.getDetailRoomType(id, req.query,req.headers);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
