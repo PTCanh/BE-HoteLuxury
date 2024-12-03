@@ -102,6 +102,17 @@ const confirmBooking = async (req, res) => {
     }
 };
 
+const getAllBookingByHotelManager = async (req, res) => {
+    try {
+        const response = await bookingService.getAllBookingByHotelManager(req.headers, req.query);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createBooking,
     updateBooking,
@@ -110,5 +121,6 @@ export default {
     getAllBooking,
     searchBooking,
     handlePaymentReturn,
-    confirmBooking
+    confirmBooking,
+    getAllBookingByHotelManager
 }
