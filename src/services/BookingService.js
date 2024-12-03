@@ -365,6 +365,7 @@ const getAllBooking = (headers, filter) => {
 
                 return {
                     ...booking,
+                    hotelId: booking.roomTypeId?.hotelId?.hotelId || null,
                     hotelName: booking.roomTypeId?.hotelId?.hotelName || null,
                     roomTypeName: booking.roomTypeId?.roomTypeName || null,
                     roomTypeImage: booking.roomTypeId?.roomTypeImage || null,
