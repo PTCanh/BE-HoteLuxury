@@ -1,9 +1,10 @@
 import Rating from '../models/Rating.js'
 import Hotel from '../models/Hotel.js'
+import Booking from '../models/Booking.js'
 import jwt from 'jsonwebtoken'
 
 
-const createRating = async (headers, rating) => {
+const createRating = async (headers, rating, bookingId) => {
     return new Promise(async (resolve, reject) => {
         try {
             const token = headers.authorization.split(' ')[1]
@@ -28,11 +29,16 @@ const createRating = async (headers, rating) => {
                 },
                 {new: true}
             )
+            const updateBooking = await Booking.findOneAndUpdate({bookingId: bookingId},
+                {
+                    isRating: true
+                },
+                {new: true}
+            )
             resolve({
                 status: "OK",
                 message: "Create rating successfully",
-                data: newRating,
-                hotel: updateHotel
+                data: newRating
             })
         } catch (e) {
             reject(e)

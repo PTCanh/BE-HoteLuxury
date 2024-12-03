@@ -34,6 +34,11 @@ const bookingSchema = new Schema({
         required: true,
         default:"false"
     },
+    isRating: {
+        type: Boolean,
+        required: true,
+        default:"false"
+    },
     status: {
         type: String,
         required: true,
