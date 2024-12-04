@@ -22,7 +22,7 @@ const bookingSchema = new Schema({
         required: true
     },
     roomQuantity: {
-        type: String,
+        type: Number,
         required: true
     },
     price: {
