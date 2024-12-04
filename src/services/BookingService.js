@@ -112,7 +112,7 @@ const updateBooking = (booking, id) => {
                         message: 'All rooms are used',
                     })
                 }
-                if (availableRooms.length < booking.roomQuantity) {
+                if (availableRooms.length < updatedBooking.roomQuantity) {
                     await Booking.findOneAndUpdate({ bookingId: id },
                         { isConfirmed: false },
                         { new: true })
