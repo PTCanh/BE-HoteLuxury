@@ -1,0 +1,300 @@
+[{
+  "_id": {
+    "$oid": "67232981c434086bb7f6a9bb"
+  },
+  "userId": 17,
+  "hotelName": "Khách sạn MerPerle Đà Lạt",
+  "hotelAddress": "1 Đ.Hùng Vương, Phường 10, Thành phố Đà Lạt",
+  "hotelStar": 5,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<p><em>Check-in khách sạn 5 sao hot nhất trung tâm thành phố Đà Lạt. Được mệnh danh \"Little Paris\"&nbsp;giữa lòng thành phố - với vị trí vô cùng thuận tiện, lối kiến trúc thanh lịch, nội thất và thiết kế thông minh, ấn tượng, trang thiết bị hài hòa mang đậm nét trẻ trung, hiện đại. Đặc biệt tất cả các phòng nghỉ của khách sạn đều được trang bị máy lạnh, các phòng đều có tầm nhìn bao quát thành phố từ trên cao.</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732674204016-MerPerleDalatHotel.png",
+  "hotelPhoneNumber": "1234567890",
+  "ratingAverage": 4.3,
+  "ratingQuantity": 6,
+  "locationId": 1,
+  "hotelId": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672329d11459ce8d17ef3f87"
+  },
+  "userId": 3,
+  "hotelName": " Sheraton Phú Quốc Long Beach Resort",
+  "hotelAddress": "Bãi Dài, X. Gành Dầu, H. Phú Quốc, T. Kiên Giang",
+  "hotelStar": 4,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<p><strong>Tổ hợp Mua sắm Grand World</strong></p><p>Nằm trong khu phức hợp nghỉ dưỡng và giải trí Corona &amp; Phú Quốc United Center, với quy mô 85 hecta, sở hữu nhiều công trình kiến trúc nổi bật và hùng vĩ với kiến trúc tinh xảo, những con phố kinh doanh nhộn nhịp, phong cách. Nơi đây còn diễn ra hàng trăm sự kiện và bữa tiệc hoành tráng, tái hiện một loạt các khu giải trí sôi động như Venice, Thượng Hải, Chợ Đêm và nhiều hơn nữa. Tất cả hoạt động không ngừng nghỉ 24 giờ một ngày, 365 ngày một năm, tạo nên một môi trường lễ hội liên tục và bất tận đầy sôi động, tương tự như những thị trấn không ngủ nổi tiếng khắp thế giới.</p><p><strong>Công viên chủ đề VinWonders</strong></p><p>VinWonders là công viên giải trí đầu tiên tại Việt Nam và là lớn nhất ở Đông Nam Á. Bao gồm 6 khu vực giải trí theo chủ đề độc đáo, có sức chứa 20,000 khách/ngày và hơn 60 trò chơi đẳng cấp thế giới. Bể cá không chứa kim loại với diện tích 15,000 mét vuông. Top 5 bể cá lớn nhất thế giới, tầm nhìn vô cực mới với kính cường lực phục hồi 200 mét vuông. Tàu lượn siêu tốc có vận tốc nhanh nhất Việt Nam 95 km/h.</p><p><strong>Vườn thú Vinpearl Safari</strong></p><p>Công viên chăm sóc và bảo tồn động vật bán hoang dã đầu tiên và lớn nhất tại Việt Nam, được xây dựng theo tiêu chuẩn Safari quốc tế và hơn thế nữa. Vinpearl Safari Phú Quốc là “ngôi nhà chung” của hơn 3000 cá thể, thuộc 150 loài động vật khác nhau từ Châu Âu, Châu Mỹ, Nam Phi, v.v. Trong công viên này, các loài động vật được nuôi dưỡng trong điều kiện tốt nhất theo tiêu chuẩn quốc tế.</p><p><strong>Tổ hợp Giải trí Corona</strong></p><p><strong>Sân golf Vinpearl</strong></p><p>Nằm giữa khu rừng nguyên sinh tại phía Bắc Phú Quốc, mang đến cho người chơi trải nghiệm trong thiên nhiên trên một hòn đảo thiên đường.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732677922475-Sheraton_LongBeach_PhuQuoc.png",
+  "hotelPhoneNumber": "1234567890",
+  "ratingAverage": 4,
+  "ratingQuantity": 2,
+  "locationId": 12,
+  "hotelId": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67232b91822f3fd6d1efd526"
+  },
+  "userId": 17,
+  "hotelName": "Khu nghỉ dưỡng Ana Mandara Villas Dalat Resort and Spa",
+  "hotelAddress": "Lê Lai, P.5, Tp. Đà Lạt",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<p><em>T​rải nghiệm ​không gian biệt thự cổ ​gần 100 năm ẩn mình ​giữa rừng thông xanh ngút ngàn​, tận hưởng những phút giây bình yên trong khí trời se se lạnh của vùng cao nguyên Đà Lạt.</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732677820561-Ana_Mandara_Villas_Dalat.png",
+  "hotelPhoneNumber": "1234567890",
+  "ratingAverage": 4.5,
+  "ratingQuantity": 4,
+  "locationId": 1,
+  "hotelId": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673492d548f4ce650f03e9c7"
+  },
+  "userId": 17,
+  "hotelName": "Khách sạn Colline Đà Lạt",
+  "hotelAddress": "10 Phan Bội Châu, Phường 1, Đà Lạt",
+  "hotelStar": 4,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<p><em>Check-in khách sạn 4 sao hot nhất trung tâm thành phố Đà Lạt. Được mệnh danh \"Little Paris\"&nbsp;giữa lòng thành phố - với vị trí vô cùng thuận tiện, lối kiến trúc thanh lịch, nội thất và thiết kế thông minh, ấn tượng, trang thiết bị hài hòa mang đậm nét trẻ trung, hiện đại. Đặc biệt tất cả các phòng nghỉ của khách sạn đều được trang bị máy lạnh, các phòng đều có tầm nhìn bao quát thành phố từ trên cao.</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732677726460-Colline_DaLat.png",
+  "hotelPhoneNumber": "1234567890",
+  "ratingAverage": 4.5,
+  "ratingQuantity": 40,
+  "locationId": 1,
+  "hotelId": 8,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674691e0a357967b67d0209e"
+  },
+  "userId": 17,
+  "hotelName": "Khu nghỉ dưỡng Đà Lạt Wonder",
+  "hotelAddress": "Số 19, đường Hoa Hồng, KDL Hồ Tuyền Lâm, phường 4, Tp.Đà Lạt",
+  "hotelStar": 4,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<p><em>Được mệnh danh là Châu Âu thu nhỏ giữa lòng thành phố Đà Lạt, được bao quanh bởi khung cảnh thiên nhiên xanh mát, Khu nghỉ dưỡng Đà Lạt Wonder được xem là một gợi ý lý tưởng cho kỳ nghỉ dưỡng lãng mạn bên bạn bè và người thân.</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732678112402-DaLat_Wonder.png",
+  "hotelPhoneNumber": "0987654321",
+  "locationId": 1,
+  "hotelId": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469252a357967b67d020a3"
+  },
+  "userId": 17,
+  "hotelName": "Khu nghỉ dưỡng Terracotta Đà Lạt",
+  "hotelAddress": "Phân khu chức năng 7.9, KDL Hồ Tuyền Lâm, P.3, Tp. Đà Lạt",
+  "hotelStar": 4,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<p><em>Nằm tại vị trí đắc địa bên cạnh hồ Tuyền Lâm, Khu nghỉ dưỡng Terracotta được bao phủ bởi rừng thông xanh, cách trung tâm thành phố Đà Lạt chỉ 15 phút di chuyển bằng xe.&nbsp;</em></p><p><em>Tất cả các phòng nghỉ ở đây được thiết kế theo không gian mở về hướng vườn, rừng thông hoặc bờ hồ xinh đẹp để khách hàng tận hưởng cảm giác gần gũi và hoà mình với thiên nhiên. Đi kèm là những tiện nghi sang trọng hiện đại hợp với lối kiến trúc phương Tây và các món đồ nội thất tinh tế đến từng chi tiết.&nbsp;Với không gian mở, rộng lớn, rất thích hợp để tổ chức tiệc ngoài trời, hoạt động nhóm và lễ cưới… Ở đây cũng rất thích hợp cho các gia đình hoặc những ai có nhu cầu nghỉ dưỡng vì chỉ cần ở quanh quẩn trong khuôn viên cũng đủ khiến người ta thư giãn rồi.</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732678226689-Terracotta_DaLat.png",
+  "hotelPhoneNumber": "0987654321",
+  "locationId": 1,
+  "hotelId": 11,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674692aca357967b67d020a8"
+  },
+  "userId": 17,
+  "hotelName": "Khách sạn Mường Thanh Đà Lạt",
+  "hotelAddress": "42 Phan Bội Châu, P.1, Tp. Đà Lạt",
+  "hotelStar": 3,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<p><em>Khách sạn nằm ngay cạnh hồ Xuân Hương thơ mộng, và gần ngay chợ Đà Lạt. Thật tuyệt vời nếu sáng sớm hay xế chiều bạn có thể thử cảm giác dạo quanh 1 vòng hồ Xuân Hương để hít thở không khí trong lành, ngắm bình minh vừa lên hoặc hoàng hôn xuống, và cảm nhận cuộc sống êm đềm nơi Phố Núi. Tối đến bạn có thể tản bộ ra chợ đêm Đà Lạt chỉ khoảng 5 phút đi bộ, vừa tản bộ, vừa thưởng thức các món ăn vặt đậm chất Đà Lạt như bánh tráng nước, khoai nướng, sữa đậu nành nóng hổi...</em></p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1732678316032-MuongThanh_DaLat.png",
+  "hotelPhoneNumber": "0987654321",
+  "locationId": 1,
+  "hotelId": 12,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3200c0e5dd8c2bc49ea5"
+  },
+  "userId": 3,
+  "hotelName": "Khu nghỉ dưỡng Maia Quy Nhơn",
+  "hotelAddress": "Khu kinh tế Nhơn Hội, phường Cát Tiên, huyện Phú Cát, tỉnh Bình Định",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khu nghỉ dưỡng Maia Quy Nhơn</strong></h4><p><strong>Khám Phá Ẩm Thực</strong></p><p>Với đặc sản từ biển cả, như bánh xèo hải sản tươi ngon và bún mắm thơm ngon, bạn sẽ được thỏa mãn vị giác bằng những hương vị độc đáo của địa phương. Hãy không bỏ lỡ cơ hội thử các món ăn phong phú và hấp dẫn tại các quán ẩm thực địa phương, nơi bạn có thể tận hưởng hương vị đậm đà của biển và vị tinh tế của ẩm thực Việt Nam. Quy Nhơn thật sự là thiên đường cho những người yêu thích ẩm thực và hải sản tươi ngon.</p><p><strong>Bãi Biển Kỳ Co</strong></p><p>Biển Kỳ Co ở Quy Nhơn là một điểm đến tuyệt vời không thể bỏ lỡ. Với làn nước trong xanh và bãi cát mịn, nó là một thiên đàng cho những người yêu biển cả và sự hoang sơ của thiên nhiên.&nbsp;Lặn ngắm san hô, hoặc khám phá các hang động kỳ vĩ ven biển để có trải nghiệm không gì sánh bằng</p><p><strong>Tháp Bánh Ít</strong></p><p>Trên hành trình khám phá Quy Nhơn, đừng bỏ lỡ cơ hội ghé thăm Tháp Bánh Ít, còn được biết đến với tên gọi Tháp Bạc. Đây là một quần thể kiến trúc độc đáo với bốn tòa tháp xây theo kiến trúc của người Chăm. Nhìn từ xa, chúng giống như chiếc bánh ít, vì vậy người dân địa phương thường gọi chúng là Tháp Bánh Ít. Đây là một điểm đến độc đáo để tìm hiểu về văn hóa và lịch sử địa phương.</p><p><strong>Đảo Hòn Khô</strong></p><p>Hòn Khô là một hòn đảo nhỏ với bãi biển cát trắng tuyệt đẹp và nước biển trong xanh bên cạnh những vách núi đá đặc trưng. Tận hưởng nắng vàng và cát trắng, thưởng thức các món hải sản ngon lành chế biến từ người dân địa phương, khám phá vẻ đẹp tự nhiên của đảo, hoặc thậm chí tham gia các hoạt động như đi dạo bằng thuyền và bơi lội trong làn nước biển mát mẻ.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733112320360-Maia_QuyNhon.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 4,
+  "hotelId": 13,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3302c0e5dd8c2bc49ef0"
+  },
+  "userId": 3,
+  "hotelName": "Khách sạn Imperial Vũng Tàu",
+  "hotelAddress": "159 Thùy Vân, Phường Thắng Tam, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "hotelStar": 5,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khách sạn Imperial Vũng Tàu</strong></h4><p>- Là khách sạn 5 sao duy nhất tại Vũng Tàu được lấy cảm hứng dựa trên kiến trúc độc đáo thời kỳ phục hưng Châu Âu, bạn sẽ&nbsp;dễ dàng có những bức ảnh ngàn like&nbsp;khi&nbsp;thả dáng&nbsp;tại khuôn viên&nbsp;sang trọng của khách sạn hay hồ bơi thiết kế cổ điển.</p><p>- Khuyến khích các thiên thần nhỏ của gia đình tham gia hoạt động vui chơi giải trí như bơi lội, nấu ăn, tô màu, xây cát..</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733112578972-Imperial_VungTau.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 2,
+  "hotelId": 14,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3408c0e5dd8c2bc49f4b"
+  },
+  "userId": 3,
+  "hotelName": "Khu nghỉ dưỡng Movenpick Cam Ranh",
+  "hotelAddress": "Lô D12 Đại lộ Nguyễn Tất Thành ,Cam Hải Đông , Huyện Cam Lâm , Khánh Hòa",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khu nghỉ dưỡng Movenpick Cam Ranh</strong></h4><p>-&nbsp;<strong>Adventure Rope Park ,&nbsp;</strong>công viên mạo hiểm vượt chướng ngại vật đầu tiên tại Nha Trang.&nbsp;Gồm&nbsp;45 chướng ngại vật, với 04&nbsp;level khác nhau. Yếu tố&nbsp;độ cao hay&nbsp;thấp được thiết kế chuyên nghiệp và an toàn nhất cho quý khách, từ cấp độ căn bản đến nâng cao&nbsp;. Đây sẽ là một thử thách thú vị và độc đáo nhất khi quý khách lưu trú tại đây.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733112840200-Movenpick_NhaTrang.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 3,
+  "hotelId": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d34d9c0e5dd8c2bc49fb0"
+  },
+  "userId": 3,
+  "hotelName": "InterContinental Đà Nẵng Sun Peninsula Resort",
+  "hotelAddress": "Bãi Bắc, Bán Đảo Sơn Trà, Đà Nẵng",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở InterContinental Đà Nẵng Sun Peninsula Resort</strong></h4><p>- Thoải mái bơi lội trong làn nước ấm áp với 2 hồ bơi rộng lớn ở khuôn viên Resort</p><p>- Nhấm nháp 01 Ly rượu vang hay đơn giản các loại Cocktail, Smoothies... tại The Long Bar với kiến trúc độc đáo, gần ngay bên cạnh hồ bơi trẻ em</p><p>- Hòa mình vào loạt hoạt động thú vị tại Resort: chèo kayak, lặn ngắm san hô ở vùng biển lặng sóng của vịnh Bãi Bắc riêng tư hay thư giãn với các động tác uyển chuyển của Thái Cực Quyền và Yoga</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733113049501-InterContinental_DaNang.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 13,
+  "hotelId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d35a5c0e5dd8c2bc49fe0"
+  },
+  "userId": 3,
+  "hotelName": "Khách sạn Sofitel Legend Metropole Hà Nội",
+  "hotelAddress": "15 Ngô Quyền, quận Hoàn Kiếm, Hà Nội",
+  "hotelStar": 5,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khách sạn Sofitel Legend Metropole Hà Nội</strong></h4><p><strong>Hầm trú ẩn bí mật ở Metropole</strong></p><p>Hầm tránh bom tại khách sạn Sofitel Metropole Hà Nội là nơi trú ẩn cho những vị khách quan trọng tới đây trong thời kỳ chiến tranh.&nbsp;Tour khám phá và tìm hiểu về lịch sử của căn hầm, cũng như những giai đoạn quan trọng của khách sạn huyền thoại này trong giai đoạn ác liệt của cuộc chiến tranh.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733113253218-Metropole_HaNoi.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 14,
+  "hotelId": 17,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d367ac0e5dd8c2bc4a01f"
+  },
+  "userId": 3,
+  "hotelName": "Khu nghỉ dưỡng Angsana Lăng Cô Huế",
+  "hotelAddress": "Làng Cù Dù, Xã Lộc Vinh, Huyện Phú Lộc, Tỉnh Thừa Thiên Huế",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khu nghỉ dưỡng Angsana Lăng Cô Huế</strong></h4><p>-&nbsp;Bể bơi có dòng chảy ôm trọn toàn bộ khu nghỉ dưỡng, tẻ ra thành nhiều nhánh nhỏ, hồ nhỏ và hội lại tại một bể bơi lớn hướng biển – một nơi thích hợp cho gia đình vui chơi và ngắm toàn cảnh khu nghỉ dưỡng</p><p>-&nbsp;Sở hữu một bờ biển dài và đẹp. Vì gần vịnh, nên biển ở Angsana lúc nào cũng dịu dàng như cô gái Huế. Nước biển Lăng Cô trong vắt. Bờ biển thoai thoải dốc nên phải lội khá xa bờ, bạn mới tới được độ sâu lý tưởng để tắm. Nhưng bù lại, bờ biển khá rộng đủ để bạn có thể chơi các trò chơi trên biển.</p><p>-&nbsp;<strong>Angsana Lăng Cô Huế</strong>&nbsp;nằm trong quần thể nghỉ dưỡng nổi tiếng nối liền khu nghỉ dưỡng cao cấp Bayan Tree và khu sân golf nên nếu là người ưa thích chơi golf, đây sẽ là một địa chỉ tuyệt vời dành cho bạn.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733113466123-Angsana_Hue.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 15,
+  "hotelId": 18,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3773c0e5dd8c2bc4a045"
+  },
+  "userId": 3,
+  "hotelName": "Khách sạn Wink Sài Gòn",
+  "hotelAddress": "75 Nguyễn Bỉnh Khiêm, Phường Đakao, Quận 1, Tp.Hồ Chí Minh",
+  "hotelStar": 5,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khách sạn Wink Sài Gòn</strong></h4><p>Một loại hình du lịch kiểu mới, một kỷ nguyên du lịch mới. Wink hiểu bạn.</p><p><strong>HIGH-TECH</strong></p><p>- Check in tự động</p><p>- Thẻ khóa phòng cũng là thẻ chi tiêu</p><p>- Chìa khóa phòng tích hợp điện thoại</p><p>- Wink app</p><p>- Máy bán hàng tự động</p><p>- Phòng giặt là tự động</p><p>- Wifi tốc độ cao</p><p>- Mã giảm giá ứng dụng Grab</p><p><strong>HIGH -LIFE</strong></p><p>- Đội ngũ Wink Guide phục vụ 24/7</p><p>- Grab &amp; Go và quầy bar luôn mở cửa</p><p>- Bia tươi, cà phê và cocktail đặc biệt</p><p>- Không gian làm việc chung Toong</p><p>- Các đối tác địa phương</p><p>- Thân thiện môi trường</p><p>- Tiêu chuẩn LEED vàng V4</p><p>- Phòng gym 24/7</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733113715772-Wink_SaiGon.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 16,
+  "hotelId": 19,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3894c0e5dd8c2bc4a08d"
+  },
+  "userId": 3,
+  "hotelName": "Khu nghỉ dưỡng Movenpick Phan Thiết",
+  "hotelAddress": "Hòn Giồ - Đường Thuận Quý, Ấp Tiến Hòa, Xã Tiến Thành, Thành phố Phan Thiết, Tỉnh Bình Thuận",
+  "hotelStar": 5,
+  "hotelType": "Khu nghỉ dưỡng",
+  "hotelDescription": "<h4><strong>Trải nghiệm phải thử ở Khu nghỉ dưỡng Movenpick Phan Thiết</strong></h4><p><strong>Hòa mình vào dịch vụ spa</strong>: Movenpick Phan Thiết có một khu vực spa được đầu tư chỉn chu,&nbsp;nơi bạn có thể tận hưởng các liệu pháp thư giãn và chăm sóc cơ thể chuyên nghiệp trong không gian yên tĩnh, được&nbsp;phục vụ&nbsp;bởi các chuyên gia lâu năm.</p><p><strong>Tận hưởng ẩm thực đa dạng</strong>: Khu nghỉ dưỡng có nhiều nhà hàng và quầy bar phục vụ các món ăn đa dạng từ ẩm thực Việt Nam đến ẩm thực quốc tế. Bạn có thể thưởng thức các món hải sản tươi ngon và các món đặc sản địa phương.</p><p><strong>Trải nghiệm hoạt động trẻ em</strong>&nbsp;thú vị thông qua&nbsp;<a href=\"https://drive.google.com/file/d/1hoPLXIBfW_TleTVQvYoiZ98fqYjOzGOd/view\" rel=\"noopener noreferrer\" target=\"_blank\">Little Bird (Kid Club)</a>&nbsp;và thưởng thức \"Chocolate Hour\" đặc trưng của thương hiệu&nbsp;Movenpick.</p><p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733114004788-Movenpick_PhanThiet.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 17,
+  "hotelId": 20,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d396fc0e5dd8c2bc4a14f"
+  },
+  "userId": 3,
+  "hotelName": "Khách sạn Victory Tây Ninh",
+  "hotelAddress": "Số 255, Đường 30/4, Tp. Tây Ninh, tỉnh Tây Ninh",
+  "hotelStar": 2,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733114223548-Victory_TayNinh.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 18,
+  "hotelId": 21,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3a1dc0e5dd8c2bc4a19b"
+  },
+  "userId": 3,
+  "hotelName": "Khách sạn Kaya Phú Yên",
+  "hotelAddress": " 238 Hùng Vương, Phường 7, Tuy Hòa, Phú Yên",
+  "hotelStar": 4,
+  "hotelType": "Khách sạn",
+  "hotelDescription": "<p><strong>Quy định về thời gian nhận, trả phòng của khách sạn:</strong></p><p>Thời gian nhận phòng: 11:00</p><p>Thời gian trả phòng: 14:00</p>",
+  "hotelImage": "1733114397372-Kaya_PhuYen.png",
+  "hotelPhoneNumber": "0987654321",
+  "ratingAverage": 0,
+  "ratingQuantity": 0,
+  "locationId": 19,
+  "hotelId": 22,
+  "__v": 0
+}]

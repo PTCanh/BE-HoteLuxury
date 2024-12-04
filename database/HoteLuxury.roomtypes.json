@@ -1,0 +1,322 @@
+[{
+  "_id": {
+    "$oid": "6723362e47eea3afa8ca064d"
+  },
+  "hotelId": 1,
+  "roomTypeQuantity": 3,
+  "roomTypeName": "MerPele Bình Thường",
+  "roomTypePrice": "1500000",
+  "roomTypeImage": "1732678800450-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6723369047eea3afa8ca0650"
+  },
+  "hotelId": 1,
+  "roomTypeQuantity": 4,
+  "roomTypeName": "MerPele Sang Trọng",
+  "roomTypePrice": "2500000",
+  "roomTypeImage": "1732678822394-SangTrong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672c6b243f675a9996d2fd53"
+  },
+  "hotelId": 2,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Sheraton Bình Thường",
+  "roomTypePrice": "1500000",
+  "roomTypeImage": "1732678800450-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 11,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6743403388a621eed0533ec7"
+  },
+  "hotelId": 3,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Ana Mandara Villas Bình Thường",
+  "roomTypePrice": "1500000",
+  "roomTypeImage": "1732679030549-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 12,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6744885d0031fa6e13c1c36e"
+  },
+  "hotelId": 8,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Colline Bình Thường",
+  "roomTypePrice": "1750000",
+  "roomTypeImage": "1732678781362-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>Hướng thành phố</p><p>24m²</p><p>Phòng không hút thuốc</p><p>1 Giường King (1m8x2m)</p><p>Vòi hoa sen</p><p>Cửa sổ</p><p>Máy lạnh</p>",
+  "roomTypeId": 13,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469405a357967b67d0211d"
+  },
+  "hotelId": 8,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Colline Sang Trọng",
+  "roomTypePrice": "2750000",
+  "roomTypeImage": "1732678661781-SangTrong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 14,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674695a6a357967b67d0230d"
+  },
+  "hotelId": 3,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Ân Mandara Villas  Sang trọng",
+  "roomTypePrice": "3990000",
+  "roomTypeImage": "1732679078321-SangTrong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469603a357967b67d023a3"
+  },
+  "hotelId": 10,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Wonder Bình Thường",
+  "roomTypePrice": "1990000",
+  "roomTypeImage": "1732679171043-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469624a357967b67d023aa"
+  },
+  "hotelId": 10,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Wonder Sang Trọng",
+  "roomTypePrice": "4250000",
+  "roomTypeImage": "1732679204200-SangTrong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 17,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469666a357967b67d023f4"
+  },
+  "hotelId": 11,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Terracotta Bình Thường",
+  "roomTypePrice": "2850000",
+  "roomTypeImage": "1732679270223-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 18,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469685a357967b67d023fe"
+  },
+  "hotelId": 11,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Terracotta Sang Trọng",
+  "roomTypePrice": "5490000",
+  "roomTypeImage": "1732679301248-SangTrong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 19,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674696c3a357967b67d0245e"
+  },
+  "hotelId": 12,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Mường Thanh Bình Thường",
+  "roomTypePrice": "1990000",
+  "roomTypeImage": "1732679363935-BinhThuong.png",
+  "maxPeople": 2,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 20,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674696e6a357967b67d02465"
+  },
+  "hotelId": 12,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Mường Thanh Sang Trọng",
+  "roomTypePrice": "3390000",
+  "roomTypeImage": "1732679398552-SangTrong.png",
+  "maxPeople": 2,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 21,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d328bc0e5dd8c2bc49ec4"
+  },
+  "hotelId": 13,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Maia Bình Thường",
+  "roomTypePrice": "2349000",
+  "roomTypeImage": "1733112459622-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 22,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3358c0e5dd8c2bc49f27"
+  },
+  "hotelId": 14,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Imperial Bình Thường",
+  "roomTypePrice": "1990000",
+  "roomTypeImage": "1733112664889-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 23,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3445c0e5dd8c2bc49f6c"
+  },
+  "hotelId": 15,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Movenpick Bình Thường",
+  "roomTypePrice": "2150000",
+  "roomTypeImage": "1733112901805-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 24,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3506c0e5dd8c2bc49fcd"
+  },
+  "hotelId": 16,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "InterContinental Bình Thường",
+  "roomTypePrice": "1790000",
+  "roomTypeImage": "1733113094809-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 25,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d35c7c0e5dd8c2bc49ff9"
+  },
+  "hotelId": 17,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Metropole Bình Thường",
+  "roomTypePrice": "2750000",
+  "roomTypeImage": "1733113287048-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 26,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3699c0e5dd8c2bc4a035"
+  },
+  "hotelId": 18,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Angsana Bình Thường",
+  "roomTypePrice": "990000",
+  "roomTypeImage": "1733113497538-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 27,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d37b4c0e5dd8c2bc4a066"
+  },
+  "hotelId": 19,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Wink Bình Thường",
+  "roomTypePrice": "850000",
+  "roomTypeImage": "1733113780336-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 28,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d38c5c0e5dd8c2bc4a0a3"
+  },
+  "hotelId": 20,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "MovenpickPT Bình Thường",
+  "roomTypePrice": "2100000",
+  "roomTypeImage": "1733114053016-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 29,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3996c0e5dd8c2bc4a175"
+  },
+  "hotelId": 21,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "VictoryTN Bình Thường",
+  "roomTypePrice": "750000",
+  "roomTypeImage": "1733114262409-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 30,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3a46c0e5dd8c2bc4a1b2"
+  },
+  "hotelId": 22,
+  "roomTypeQuantity": 1,
+  "roomTypeName": "Kaya Bình Thường",
+  "roomTypePrice": "490000",
+  "roomTypeImage": "1733114438751-BinhThuong.png",
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
+  "roomTypeId": 31,
+  "__v": 0
+}]

@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "6718c94a391ae5244b324880"
+  },
+  "id": "userId",
+  "reference_value": null,
+  "seq": 17
+},
+{
+  "_id": {
+    "$oid": "67232981391ae5244b329a45"
+  },
+  "id": "hotelId",
+  "reference_value": null,
+  "seq": 22
+},
+{
+  "_id": {
+    "$oid": "6723362e391ae5244b32ad4c"
+  },
+  "id": "roomTypeId",
+  "reference_value": null,
+  "seq": 31
+},
+{
+  "_id": {
+    "$oid": "67233979391ae5244b32b0a6"
+  },
+  "id": "roomId",
+  "reference_value": null,
+  "seq": 38
+},
+{
+  "_id": {
+    "$oid": "67275e21391ae5244b32f2f2"
+  },
+  "id": "cartId",
+  "reference_value": null,
+  "seq": 0
+},
+{
+  "_id": {
+    "$oid": "6727776b391ae5244b32fce1"
+  },
+  "id": "scheduleId",
+  "reference_value": null,
+  "seq": 0
+},
+{
+  "_id": {
+    "$oid": "67279519391ae5244b33119e"
+  },
+  "reference_value": null,
+  "id": "bookingId",
+  "seq": 0
+},
+{
+  "_id": {
+    "$oid": "672cd4a8391ae5244b33a4cf"
+  },
+  "id": "locationId",
+  "reference_value": null,
+  "seq": 19
+},
+{
+  "_id": {
+    "$oid": "674c07bf605da4de1bdd1819"
+  },
+  "id": "ratingId",
+  "reference_value": null,
+  "seq": 0
+}]

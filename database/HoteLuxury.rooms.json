@@ -1,0 +1,252 @@
+[{
+  "_id": {
+    "$oid": "67233979c72bd7e61ac0e7cc"
+  },
+  "roomTypeId": 1,
+  "roomNumber": "101",
+  "roomId": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67233993c72bd7e61ac0e7d0"
+  },
+  "roomTypeId": 1,
+  "roomNumber": "102",
+  "roomId": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6723399ec72bd7e61ac0e7d5"
+  },
+  "roomTypeId": 1,
+  "roomNumber": "103",
+  "roomId": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672339ecc72bd7e61ac0e7da"
+  },
+  "roomTypeId": 2,
+  "roomNumber": "201",
+  "roomId": 4,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67233d341db2d0c4a07547ee"
+  },
+  "roomTypeId": 2,
+  "roomNumber": "202",
+  "roomId": 6,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67233e9f4a7b2c292bb2e546"
+  },
+  "roomTypeId": 2,
+  "roomNumber": "203",
+  "roomId": 7,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67233ee8c42c85e0702af29d"
+  },
+  "roomTypeId": 2,
+  "roomNumber": "204",
+  "roomId": 8,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672c6b5f3f675a9996d2fd63"
+  },
+  "roomTypeId": 11,
+  "roomNumber": "101",
+  "roomId": 17,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6743405088a621eed0533ece"
+  },
+  "roomTypeId": 12,
+  "roomNumber": "101",
+  "roomId": 18,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674489835c114ae6bb8dbe37"
+  },
+  "roomTypeId": 13,
+  "roomNumber": "101",
+  "roomId": 19,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469435a357967b67d0215c"
+  },
+  "roomTypeId": 14,
+  "roomNumber": "102",
+  "roomId": 20,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674695c6a357967b67d02351"
+  },
+  "roomTypeId": 15,
+  "roomNumber": "201",
+  "roomId": 21,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6746963ca357967b67d023ce"
+  },
+  "roomTypeId": 16,
+  "roomNumber": "101",
+  "roomId": 22,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469643a357967b67d023dc"
+  },
+  "roomTypeId": 17,
+  "roomNumber": "201",
+  "roomId": 23,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6746968ea357967b67d02418"
+  },
+  "roomTypeId": 18,
+  "roomNumber": "101",
+  "roomId": 24,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67469696a357967b67d02426"
+  },
+  "roomTypeId": 19,
+  "roomNumber": "201",
+  "roomId": 25,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674696f9a357967b67d02489"
+  },
+  "roomTypeId": 20,
+  "roomNumber": "101",
+  "roomId": 26,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674696ffa357967b67d02497"
+  },
+  "roomTypeId": 21,
+  "roomNumber": "201",
+  "roomId": 27,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d329ec0e5dd8c2bc49ede"
+  },
+  "roomTypeId": 22,
+  "roomNumber": "101",
+  "roomId": 29,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3365c0e5dd8c2bc49f41"
+  },
+  "roomTypeId": 23,
+  "roomNumber": "101",
+  "roomId": 30,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d344ec0e5dd8c2bc49f86"
+  },
+  "roomTypeId": 24,
+  "roomNumber": "101",
+  "roomId": 31,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d35d2c0e5dd8c2bc4a013"
+  },
+  "roomTypeId": 26,
+  "roomNumber": "101",
+  "roomId": 32,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d37bdc0e5dd8c2bc4a080"
+  },
+  "roomTypeId": 28,
+  "roomNumber": "101",
+  "roomId": 33,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d38fbc0e5dd8c2bc4a108"
+  },
+  "roomTypeId": 29,
+  "roomNumber": "101",
+  "roomId": 34,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d39a0c0e5dd8c2bc4a18f"
+  },
+  "roomTypeId": 30,
+  "roomNumber": "101",
+  "roomId": 35,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3a56c0e5dd8c2bc4a1cc"
+  },
+  "roomTypeId": 31,
+  "roomNumber": "101",
+  "roomId": 36,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3b77c0e5dd8c2bc4a5e5"
+  },
+  "roomTypeId": 27,
+  "roomNumber": "101",
+  "roomId": 37,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "674d3b82c0e5dd8c2bc4a5f6"
+  },
+  "roomTypeId": 25,
+  "roomNumber": "101",
+  "roomId": 38,
+  "__v": 0
+}]

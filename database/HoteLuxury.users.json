@@ -1,0 +1,273 @@
+[{
+  "_id": {
+    "$oid": "6718c94a80602d8f327400cb"
+  },
+  "email": "admin@gmail.com",
+  "password": "$2b$10$EI6EpmtPYFuyks6fl7DAJOmC5CRNa3KqEIbcInP5WF55MdvUSKqam",
+  "fullname": "PHAN TUAN CANH",
+  "roleId": "R1",
+  "isVerified": true,
+  "otpCode": "$2b$10$ojZ1tBTk7whPHoYatuaGyupO.VqkTMlBUclv6ri.H1FwkELPeXdjO",
+  "userId": 1,
+  "__v": 0,
+  "address": "53 Linh Trung",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "gender": "Nam",
+  "image": "1732678377564-meme-meo-khoc-5-1725388333.jpg",
+  "phoneNumber": "0935348140",
+  "updatedAt": {
+    "$date": "2024-11-27T03:32:57.570Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "672323b916b30c3ed81169b2"
+  },
+  "email": "hotelmanager@gmail.com",
+  "password": "$2b$10$G/L1RVxLr7Tzxt.0B6R0w.vDlTCDrgCQvLqWaTddQ9b.7s8n9E..u",
+  "roleId": "R2",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2024-10-31T06:29:13.775Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T02:01:01.234Z"
+  },
+  "userId": 3,
+  "__v": 0,
+  "address": "Quảng Ngãi",
+  "birthDate": {
+    "$date": "2024-11-27T00:00:00.000Z"
+  },
+  "fullname": "Nguyễn Nhật Duy",
+  "gender": "Nam",
+  "image": "1732672861204-1729759220468-wallpaperflare.com_wallpaper.jpg",
+  "phoneNumber": "0987654321"
+},
+{
+  "_id": {
+    "$oid": "672323d116b30c3ed81169b7"
+  },
+  "email": "abcde@gmail.com",
+  "password": "$2b$10$Bp80baGBoDFjocnOUR62L.J03xQxvWLtIsFqrnyOAZC9eT7XhXLdu",
+  "roleId": "R2",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2024-10-31T06:29:37.958Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T02:01:37.575Z"
+  },
+  "userId": 5,
+  "__v": 0,
+  "address": "Bình Định",
+  "birthDate": {
+    "$date": "2024-11-27T00:00:00.000Z"
+  },
+  "fullname": "L T H 2",
+  "gender": "Nam",
+  "image": "1732672897568-1731932328071-logo.png",
+  "phoneNumber": "0987654321"
+},
+{
+  "_id": {
+    "$oid": "672323df16b30c3ed81169bc"
+  },
+  "email": "user@gmail.com",
+  "password": "$2b$10$Mv0MblEvehtsMwWDrHBs9./qN49oeae5Ieh7X97/9eguSKg/llyVm",
+  "roleId": "R3",
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2024-10-31T06:29:51.414Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-01T07:54:23.007Z"
+  },
+  "userId": 8,
+  "__v": 0,
+  "address": "Quảng Ngãi",
+  "birthDate": {
+    "$date": "2024-11-23T00:00:00.000Z"
+  },
+  "fullname": "KiritoPrime",
+  "gender": "Nam",
+  "phoneNumber": "0981154321",
+  "image": "1733039662997-1729572455665-8bb52e37220d8ba4fe00a892defafb76.jpg"
+},
+{
+  "_id": {
+    "$oid": "672323f416b30c3ed81169c6"
+  },
+  "email": "abc123456@gmail.com",
+  "password": "$2b$10$DVID9y/53AM7VB/uMeSJCuIJ59RcmqcoJsARKwGu8RlAUGEHbIIb6",
+  "roleId": "R3",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2024-10-31T06:30:12.335Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T02:03:08.695Z"
+  },
+  "userId": 9,
+  "__v": 0,
+  "address": "a",
+  "birthDate": {
+    "$date": "2024-11-27T00:00:00.000Z"
+  },
+  "fullname": "N Q T",
+  "gender": "Nam",
+  "phoneNumber": "0987654321"
+},
+{
+  "_id": {
+    "$oid": "67287535612e9f494d688075"
+  },
+  "email": "phantuancanh4@gmail.com",
+  "password": "$2b$10$mJFjIQ2GFrIQyVNS14Q84uCo9MculwghHJVm73Hr.X0gReU1k8aum",
+  "fullname": "Canh",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "1234567890",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2024-11-04T07:18:13.405Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-07T04:02:47.867Z"
+  },
+  "userId": 12,
+  "__v": 0,
+  "address": "abcde",
+  "gender": "Nam",
+  "image": null
+},
+{
+  "_id": {
+    "$oid": "6728758f612e9f494d68807a"
+  },
+  "email": "phantuancanh5@gmail.com",
+  "password": "$2b$10$b9O9WQ4SFBPe.LdqNAOuSOWd1j8IKTrhYEdehrRRZCRqcPgu4faRO",
+  "fullname": "Canh",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "1234567890",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2024-11-04T07:19:43.998Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-07T04:02:38.266Z"
+  },
+  "userId": 13,
+  "__v": 0,
+  "address": "abc",
+  "gender": "Nam",
+  "image": null
+},
+{
+  "_id": {
+    "$oid": "672877b47c6bec1837b34110"
+  },
+  "email": "phantuancanh6@gmail.com",
+  "password": "$2b$10$DIzLQcmy1yBq1WkcPZ0PI.9JSoO4AMwPOCkV27aVsC7icx.NdTJ3a",
+  "fullname": "Phan Tuấn Cảnh",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "1234567890",
+  "isVerified": false,
+  "createdAt": {
+    "$date": "2024-11-04T07:28:52.902Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-07T04:02:14.294Z"
+  },
+  "userId": 14,
+  "__v": 0,
+  "address": "abc",
+  "gender": "Nam",
+  "image": null
+},
+{
+  "_id": {
+    "$oid": "6728ca94f3e0c130efe64867"
+  },
+  "email": "phantuancanh7@gmail.com",
+  "password": "$2b$10$RwZHx88v1t/eqYAWNUiOrO3ktrDg0HAcJ7wH6WuC70Vw2J3ceDg46",
+  "fullname": "Phan Tuấn Cảnh",
+  "address": "12 abc Street",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "1234567890",
+  "image": null,
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2024-11-04T13:22:28.186Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-07T04:01:38.825Z"
+  },
+  "userId": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6728cad0f3e0c130efe6486d"
+  },
+  "email": "phantuancanh8@gmail.com",
+  "password": "$2b$10$RWiuvf5nCFrQvvG0MLgmL.85Uw.I3ah0SrZRaAHBQw1sgkzQE/UO6",
+  "fullname": "Phan Tuấn Cảnh",
+  "address": "12 abc Street",
+  "gender": "Male",
+  "birthDate": {
+    "$date": "2003-09-26T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "1234567890",
+  "image": null,
+  "isVerified": true,
+  "createdAt": {
+    "$date": "2024-11-04T13:23:28.147Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-07T04:03:12.205Z"
+  },
+  "userId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "673d538ee0c63c3d60d0bd4e"
+  },
+  "email": "21110383@student.hcmute.edu.vn",
+  "password": "$2b$10$fwTI4gzgorCr0reIn8usSuE5E54j.zxYxwIgtUxXaP/4atxxU7G5W",
+  "fullname": "Phan Tuấn Cảnh",
+  "roleId": "R2",
+  "isVerified": true,
+  "otpCode": "$2b$10$rq7NNugl7RLZ8dt08EIk2enu5Fd5xKTFA1ArU1xG4UoXk2qV8qZM6",
+  "createdAt": {
+    "$date": "2024-11-20T03:12:15.003Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T04:11:07.394Z"
+  },
+  "userId": 17,
+  "__v": 0,
+  "address": "Quảng Ngãi",
+  "birthDate": {
+    "$date": "2024-11-27T00:00:00.000Z"
+  },
+  "gender": "Nam",
+  "image": "1732680667378-1731932382031-1731927975972-1729759220468-wallpaperflare.com_wallpaper.jpg",
+  "phoneNumber": "0987654321"
+}]
