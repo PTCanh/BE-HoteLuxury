@@ -34,7 +34,7 @@ export const generalOTPToken = async (email) => {
     const otp_token = jwt.sign({
         email: email,
         otp: Math.floor(100000 + Math.random() * 900000).toString()
-    }, process.env.SECRET_KEY, { expiresIn: '30s' })
+    }, process.env.SECRET_KEY, { expiresIn: '60s' })
 
     return otp_token
 }
