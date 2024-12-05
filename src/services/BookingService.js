@@ -573,7 +573,10 @@ const getAllBookingByHotelManager = (headers, filter) => {
                 const checkHotel = await Hotel.find({
                     userId: decoded.userId
                 })
-                const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                let checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
+                if(filter.hotelId){
+                    checkHotelIds = checkHotelIds.filter(hotelId => (hotelId === Number(filter.hotelId)))
+                }
                 const checkRoomType = await RoomType.find({
                     hotelId: { $in: checkHotelIds }
                 })
