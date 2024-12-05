@@ -527,7 +527,7 @@ const getAllBookingByHotelManager = (headers, filter) => {
             //console.log(headers, filter)
             const formatFilter = {}
             if (filter.isConfirmed) {
-                formatFilter.isConfirmed = Boolean(filter.isConfirmed)
+                formatFilter.isConfirmed = JSON.parse(filter.isConfirmed)
             }
             if (filter.roomTypeId) {
                 formatFilter.roomTypeId = filter.roomTypeId
@@ -551,9 +551,6 @@ const getAllBookingByHotelManager = (headers, filter) => {
             if (filter.customerEmail) {
                 formatFilter.customerEmail = filter.customerEmail.replace(/\s+/g, ' ').trim()
                 formatFilter.customerEmail = { $regex: new RegExp(formatFilter.customerEmail, 'i') } // Không phân biệt hoa thường
-            }
-            if (filter.isConfirmed) {
-                formatFilter.isConfirmed = filter.isConfirmed
             }
             if (filter.status) {
                 formatFilter.status = filter.status.replace(/\s+/g, ' ').trim()
