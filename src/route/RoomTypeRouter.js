@@ -6,6 +6,7 @@ import upload from "../utils/UploadFile.js";
 const router = express.Router();
 
 router.get('/available', roomTypeController.availableRoomTypes)
+router.get('/by-hotel-manager/:id', roomTypeController.getDetailRoomTypeByHotelManager)
 router.get('/find-by-hotelId/:hotelId', roomTypeController.getRoomTypeByHotelId)
 router.get('/filter', roomTypeController.filterRoomType)
 router.post('/', upload.single("roomTypeImage"), roomTypeController.createRoomType)

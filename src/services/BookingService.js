@@ -571,7 +571,7 @@ const getAllBookingByHotelManager = (headers, filter) => {
                     userId: decoded.userId
                 })
                 let checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
-                if(filter.hotelId){
+                if (filter.hotelId) {
                     checkHotelIds = checkHotelIds.filter(hotelId => (hotelId === Number(filter.hotelId)))
                 }
                 const checkRoomType = await RoomType.find({
@@ -580,7 +580,20 @@ const getAllBookingByHotelManager = (headers, filter) => {
                 const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
                 formatFilter.roomTypeId = { $in: checkRoomTypeIds }
                 let allBookingOfHotel = await Booking.find(formatFilter)
-                allBookingOfHotel = allBookingOfHotel.sort((a, b) => {
+                    .populate({
+                        path: 'roomTypeId',
+                        model: 'RoomType',
+                        localField: 'roomTypeId',
+                        foreignField: 'roomTypeId',
+                        select: 'hotelId'
+                    }).lean()
+                allBookingOfHotel = allBookingOfHotel.map((booking) => {
+                    return {
+                        ...booking,
+                        hotelId: booking.roomTypeId?.hotelId || null,
+                        roomTypeId: booking.roomTypeId?.roomTypeId || null,
+                    };
+                }).sort((a, b) => {
                     const dateA = new Date(a.dayStart);
                     const dateB = new Date(b.dayStart);
                     return dateA - dateB;

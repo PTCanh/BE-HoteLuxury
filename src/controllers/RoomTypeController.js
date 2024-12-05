@@ -100,6 +100,19 @@ const availableRoomTypes = async (req, res) => {
     }
 };
 
+const getDetailRoomTypeByHotelManager = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await roomTypeService.getDetailRoomTypeByHotelManager(id, req.query,req.headers);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
+
 export default {
     createRoomType,
     updateRoomType,
@@ -108,5 +121,6 @@ export default {
     getAllRoomType,
     filterRoomType,
     getRoomTypeByHotelId,
-    availableRoomTypes
+    availableRoomTypes,
+    getDetailRoomTypeByHotelManager
 }

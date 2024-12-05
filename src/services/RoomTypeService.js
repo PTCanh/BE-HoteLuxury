@@ -88,18 +88,18 @@ const deleteRoomType = (id) => {
 const getDetailRoomType = (id, filter, headers) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const token = headers.authorization.split(' ')[1]
-            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            if(decoded.roleId === "R2"){
-                const checkRoomType = await RoomType.findOne({
-                    roomTypeId: id
-                })
-                return resolve({
-                    status: 'OK',
-                    message: 'Get detail RoomType successfully',
-                    data: checkRoomType,
-                })
-            }
+            //const token = headers.authorization.split(' ')[1]
+            //const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            // if(decoded.roleId === "R2"){
+            //     const checkRoomType = await RoomType.findOne({
+            //         roomTypeId: id
+            //     })
+            //     return resolve({
+            //         status: 'OK',
+            //         message: 'Get detail RoomType successfully',
+            //         data: checkRoomType,
+            //     })
+            // }
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
@@ -320,6 +320,33 @@ const availableRoomTypes = (filter) => {
     })
 }
  
+const getDetailRoomTypeByHotelManager = (id, filter, headers) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            if(decoded.roleId === "R2"){
+                const checkRoomType = await RoomType.findOne({
+                    roomTypeId: id
+                })
+                return resolve({
+                    status: 'OK',
+                    message: 'Get detail RoomType successfully',
+                    data: checkRoomType,
+                })
+            }
+            
+            resolve({
+                status: 'OK',
+                message: 'Get detail RoomType successfully',
+                data: [],
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 export default {
     createRoomType,
@@ -329,5 +356,6 @@ export default {
     getAllRoomType,
     filterRoomType,
     getRoomTypeByHotelId,
-    availableRoomTypes
+    availableRoomTypes,
+    getDetailRoomTypeByHotelManager
 }
