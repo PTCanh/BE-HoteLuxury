@@ -34,7 +34,7 @@ export const generalOTPToken = async (email) => {
     const otp_token = jwt.sign({
         email: email,
         otp: Math.floor(100000 + Math.random() * 900000).toString()
-    }, process.env.SECRET_KEY, { expiresIn: '60s' })
+    }, process.env.SECRET_KEY, { expiresIn: '30s' })
 
     return otp_token
 }
@@ -76,7 +76,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
             const subject = 'Verify account'
             if (checkUser !== null) {
                 if (checkUser.isVerified) {
-                    resolve({
+                    return resolve({
                         status: 'ERR',
                         message: 'The email is already exists!'
                     })
@@ -89,7 +89,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                     )
 
                     await sendMail(email, text, subject)
-                    resolve({
+                    return resolve({
                         status: 'OK',
                         message: text,
                         otp_token: otp_token, 
@@ -125,14 +125,14 @@ export const verifyUserService = async (otpCode, otp_token) => {
             })
             const compareOTP = bcrypt.compareSync(otpCode, checkEmail.otpCode)
             if (!otpCode || otpCode.trim() === '') {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The otp is required!'
                 })
             }
             if (!compareOTP) {
-                resolve({
-                    status: 'ERR',
+                return resolve({
+                    status: 'ERR1',
                     message: 'The otp is wrong!'
                 })
             } else {
@@ -148,7 +148,10 @@ export const verifyUserService = async (otpCode, otp_token) => {
             }
 
         } catch (e) {
-            reject(e)
+            reject({
+                status: 'ERROR',
+                message: e
+            })
         }
     })
 }
@@ -158,7 +161,7 @@ export const refreshTokenJwtService = async (token) => {
         try {
             jwt.verify(token, process.env.REFRESH_TOKEN, async (err, user) => {
                 if (err) {
-                    resolve({
+                    return resolve({
                         status: 'ERROR',
                         message: 'The authentication'
                     })
@@ -167,7 +170,7 @@ export const refreshTokenJwtService = async (token) => {
                     userId: user?.userId,
                     roleId: user?.roleId
                 })
-                resolve({
+                return resolve({
                     status: 'OK',
                     message: 'SUCCESS',
                     access_token

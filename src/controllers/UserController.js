@@ -151,9 +151,7 @@ export const verifyUserController = async (req, res) => {
         const response = await verifyUserService(otpCode, otp_token);
         return res.status(200).json(response)
     } catch (e) {
-        return res.status(404).json({
-            message: e
-        })
+        return res.status(401).json(e)
     }
 }
 

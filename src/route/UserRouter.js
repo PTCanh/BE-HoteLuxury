@@ -4,7 +4,7 @@ import { createUserController,loginUserController,updateUserController, deleteUs
     handleResetPasswordTokenController, verifyUserController,
     createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
     hotelManagerDashboardController} from "../controllers/UserController.js";
-import { authMiddleware,authUserMiddleware } from "../middlewares/authMiddleware.js";
+import { authMiddleware, authUserMiddleware, verifyToken } from "../middlewares/authMiddleware.js";
 import upload from "../utils/UploadFile.js";
 
 const router = express.Router();

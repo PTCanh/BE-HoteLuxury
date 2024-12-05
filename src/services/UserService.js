@@ -176,7 +176,7 @@ export const deleteUserService = (id) => {
                 userId: id
             })
             if (checkUser === null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The user is not defined'
                 })
@@ -221,7 +221,7 @@ export const getDetailsUserService = (id) => {
                 birthDate: user.birthDate.toISOString().split('T')[0]
             }
             if (user === null) {
-                resolve({
+                return resolve({
                     status: 'ERR',
                     message: 'The user is not defined'
                 })
