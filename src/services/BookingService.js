@@ -527,7 +527,7 @@ const getAllBookingByHotelManager = (headers, filter) => {
             //console.log(headers, filter)
             const formatFilter = {}
             if (filter.isConfirmed) {
-                formatFilter.isConfirmed = filter.isConfirmed
+                formatFilter.isConfirmed = Boolean(filter.isConfirmed)
             }
             if (filter.roomTypeId) {
                 formatFilter.roomTypeId = filter.roomTypeId
