@@ -43,9 +43,10 @@ const createBooking = (booking) => {
                 roomTypeId: booking.roomTypeId
             })
             //Tính tổng tiền
-            const roomTypePrice = parseFloat(checkRoomType?.roomTypePrice) || 0;
-            const roomQuantity = parseInt(booking.roomQuantity) || 0;
-            booking.price = (roomTypePrice * roomQuantity).toString();
+            // const roomTypePrice = parseFloat(checkRoomType?.roomTypePrice) || 0;
+            // const roomQuantity = parseInt(booking.roomQuantity) || 0;
+            // booking.price = (roomTypePrice * roomQuantity).toString();
+
             const newBooking = await Booking.create(booking)
             // const newSchedule = {
             //     roomId: availableRooms[0].roomId,
