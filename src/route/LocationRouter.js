@@ -5,10 +5,10 @@ import upload from "../utils/UploadFile.js";
 
 const router = express.Router();
 
-router.get('/filter', locationController.filterLocation)
-router.post('/', upload.single("locationImage"), locationController.createLocation)
-router.put('/:id', upload.single("locationImage"), locationController.updateLocation)
-router.delete('/:id', locationController.deleteLocation)
+router.get('/filter', authMiddleware, locationController.filterLocation)
+router.post('/', authMiddleware, upload.single("locationImage"), locationController.createLocation)
+router.put('/:id', authMiddleware, upload.single("locationImage"), locationController.updateLocation)
+router.delete('/:id', authMiddleware, locationController.deleteLocation)
 router.get('/:id', locationController.getDetailLocation)
 router.get('/', locationController.getAllLocation)
 

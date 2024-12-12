@@ -216,10 +216,13 @@ export const getDetailsUserService = (id) => {
             const user = await User.findOne({
                 userId: id
             }).lean()
-            const formatedUser = {
-                ...user,
-                birthDate: user.birthDate.toISOString().split('T')[0]
+            if(user.birthDate){
+                user.birthDate = user.birthDate.toISOString().split('T')[0]
             }
+            // const formatedUser = {
+            //     ...user,
+            //     birthDate: user.birthDate.toISOString().split('T')[0]
+            // }
             if (user === null) {
                 return resolve({
                     status: 'ERR',
@@ -230,7 +233,7 @@ export const getDetailsUserService = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Success',
-                data: formatedUser
+                data: user
             })
 
         } catch (e) {
