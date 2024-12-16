@@ -12,7 +12,7 @@ dotenv.config();
 let app = express();
 
 app.use(cors({
-    origin: "http://localhost:3000", // Frontend URL
+    origin: "https://be-hoteluxury.vercel.app/", // Frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
