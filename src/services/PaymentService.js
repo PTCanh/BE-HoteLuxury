@@ -73,7 +73,7 @@ const handlePaymentReturn = async (req, res) => {
             // Thanh toán thành công
             await bookingService.updateBooking({ status: "Đã thanh toán", isConfirmed: true }, bookingId);
 
-            return res.redirect('http://localhost:3000/info/trips');
+            return res.redirect('https://fe-hoteluxury.vercel.app/info/trips');
             // return res.status(200).json({
             //   status: "OK",
             //   message: "Payment successful",
@@ -82,7 +82,7 @@ const handlePaymentReturn = async (req, res) => {
             // Thanh toán thất bại
             //await bookingService.updateBookingStatus(bookingId, "S3");
             await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã hủy", isConfirmed: true }, { new: true })
-            return res.redirect('http://localhost:3000/info/trips');
+            return res.redirect('https://fe-hoteluxury.vercel.app/info/trips');
             // return res.status(400).json({
             //     status: "ERR",
             //     message: "Payment failed",
