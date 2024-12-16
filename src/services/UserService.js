@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { generalAccessToken, generalRefreshToken, generalResetPasswordToken } from './JwtService.js'
 import dotenv from 'dotenv'
-import sendMail from '../utils/sendMail.js'
+import sendMail from '../utils/SendMail.js'
 dotenv.config()
 
 export const createUserService = (newUser) => {
