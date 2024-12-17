@@ -159,7 +159,7 @@ const adminAvatar = (headers) => {
       resolve({
         status: 'OK',
         message: 'Success',
-        data: `https://be-hote-luxury.vercel.app/uploads/${checkUser.image}`
+        data: checkUser.image
       })
 
     } catch (e) {
