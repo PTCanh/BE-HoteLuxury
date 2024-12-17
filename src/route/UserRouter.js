@@ -5,7 +5,7 @@ import { createUserController,loginUserController,updateUserController, deleteUs
     createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
     hotelManagerDashboardController} from "../controllers/UserController.js";
 import { authMiddleware, authHotelManagerMiddleware, authUserMiddleware, verifyToken } from "../middlewares/authMiddleware.js";
-import upload from "../utils/UploadFile.js";
+import { upload, uploadToCloudinary } from "../utils/UploadFile.js";
 
 const router = express.Router();
 
@@ -19,8 +19,8 @@ router.get('/reset-password/:token', handleResetPasswordTokenController)
 router.get('/hotel-manager/dashboard', authHotelManagerMiddleware, hotelManagerDashboardController)
 router.get('/hotel-manager', getAllHotelManagerController)
 router.get('/filter', filterUserController)
-router.post('/', authMiddleware, upload.single("image"), createUserController)
-router.put('/:id', verifyToken, upload.single("image"), updateUserController)
+router.post('/', authMiddleware, upload.single("image"), uploadToCloudinary, createUserController)
+router.put('/:id', verifyToken, upload.single("image"), uploadToCloudinary, updateUserController)
 router.delete('/:id', authMiddleware, deleteUserController)
 router.get('/', getAllUserController)
 router.get('/:id', getDetailsUserController)
