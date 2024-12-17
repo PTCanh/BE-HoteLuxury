@@ -53,6 +53,8 @@ export const handleResetPasswordTokenService = async (token) => {
             resolve({
                 status: 'OK',
                 message: `Token is valid. Your new password of ${decoded.email} is ${tempPassword}`,
+                email: decoded.email,
+                newPassword: tempPassword
             })
         } catch (e) {
             reject(e)

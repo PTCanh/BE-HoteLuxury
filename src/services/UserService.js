@@ -122,13 +122,14 @@ export const resetUserPasswordService = (email) => {
             // Create reset password link
             const resetLink = `${process.env.WEB_LINK}/user/reset-password/${token}`;
             // Create text
-            const text = `Click the link to reset your password: ${resetLink}`
+            const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
             const subject = 'Reset password'
             sendMail(email, text, subject)
 
             resolve({
                 status: 'OK',
                 message: 'Password reset link has been sent to your email',
+                data: token
             })
 
         } catch (e) {
