@@ -1,5 +1,5 @@
 import Location from '../models/Location.js'
-
+import Hotel from '../models/Hotel.js'
 
 const createLocation = (location) => {
     return new Promise(async (resolve, reject) => {
@@ -60,13 +60,20 @@ const deleteLocation = (id) => {
             })
             if (checkLocation === null) {
                 return resolve({
-                    status: 'ERR',
+                    status: 'ERR0',
                     message: 'The location is not exist'
                 })
             }
-
-            await Location.findOneAndDelete({ locationId: id },
-                { new: true })
+            const checkHotel = await Hotel.findOne({
+                locationId: id
+            })
+            if (checkHotel !== null) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'The location has hotels'
+                })
+            }
+            await Location.findOneAndDelete({ locationId: id })
             resolve({
                 status: 'OK',
                 message: 'Delete location successfully',

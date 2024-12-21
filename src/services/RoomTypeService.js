@@ -2,6 +2,7 @@ import RoomType from '../models/RoomType.js'
 import Room from '../models/Room.js'
 import Hotel from '../models/Hotel.js'
 import Schedule from '../models/Schedule.js'
+import Booking from '../models/Booking.js'
 import jwt from 'jsonwebtoken'
 
 const createRoomType = (roomType) => {
@@ -60,13 +61,27 @@ const updateRoomType = (roomType, id) => {
 const deleteRoomType = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
+            let today = new Date()
+            today = today.toISOString().split('T')[0]
+
             const checkRoomType = await RoomType.findOne({
                 roomTypeId: id
             })
             if (checkRoomType === null) {
                 return resolve({
-                    status: 'ERR',
+                    status: 'ERR0',
                     message: 'The RoomType is not exist'
+                })
+            }
+            const checkBooking = await Booking.findOne({
+                roomTypeId: id,
+                dayEnd: {$gte: today}
+            })
+
+            if (checkBooking !== null) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'The roomtype has bookings'
                 })
             }
 

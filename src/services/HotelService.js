@@ -4,6 +4,7 @@ import Room from '../models/Room.js'
 import User from '../models/User.js'
 import Schedule from '../models/Schedule.js'
 import Location from '../models/Location.js'
+import Booking from '../models/Booking.js'
 import jwt from 'jsonwebtoken'
 
 const createHotel = (hotel) => {
@@ -51,12 +52,15 @@ const updateHotel = (hotel, id) => {
 const deleteHotel = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
+            let today = new Date()
+            today = today.toISOString().split('T')[0]
+
             const checkHotel = await Hotel.findOne({
                 hotelId: id
             })
             if (checkHotel === null) {
                 return resolve({
-                    status: 'ERR',
+                    status: 'ERR0',
                     message: 'The hotel is not exist'
                 })
             }
@@ -66,6 +70,18 @@ const deleteHotel = (id) => {
 
             // Collect RoomType IDs to delete later
             const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId);
+
+            const checkBooking = await Booking.findOne({
+                roomTypeId: {$in: roomTypeIds},
+                dayEnd: {$gte: today}
+            })
+
+            if (checkBooking !== null) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'The hotel has bookings'
+                })
+            }
 
             // 5. Delete all Rooms
             await Room.deleteMany({ roomTypeId: { $in: roomTypeIds } });
