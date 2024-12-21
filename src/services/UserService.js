@@ -606,9 +606,10 @@ export const googleLoginUserService = (googleLogin) => {
                 email: googleLogin.email
             })
             if (checkUser === null) {
+                const hash = bcrypt.hashSync(googleLogin.jti, 10)
                 checkUser = await User.create({
                     email: googleLogin.email,
-                    password: googleLogin.jti,
+                    password: hash,
                     fullname: googleLogin.name,
                     image: googleLogin.picture,
                     isVerified: true
