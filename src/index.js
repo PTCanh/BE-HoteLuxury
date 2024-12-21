@@ -13,6 +13,7 @@ let app = express();
 
 app.use(cors({
     origin: "https://hoteluxury.vercel.app", // Frontend URL
+    //origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

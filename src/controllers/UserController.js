@@ -4,7 +4,8 @@ import {
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
-    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword, hotelManagerDashboardService
+    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword, 
+    hotelManagerDashboardService, googleLoginUserService
 } from '../services/UserService.js'
 
 export const createUserController = async (req, res) => {
@@ -282,6 +283,23 @@ export const hotelManagerDashboardController = async (req, res) => {
     try {
         const response = await hotelManagerDashboardService(req.query.hotelId, req.query)
         return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+export const googleLoginUserController = async (req, res) => {
+    try {
+        const response = await googleLoginUserService(req.body)
+        const { refresh_token, ...newResponse } = response
+        res.cookie('refresh_token', refresh_token, {
+            HttpOnly: true,
+            Secure: false,
+            SameSite: 'Strict'
+        })
+        return res.status(200).json(newResponse)
     } catch (e) {
         return res.status(404).json({
             message: e

@@ -123,6 +123,7 @@ export const resetUserPasswordService = (email) => {
             const resetLink = `${process.env.WEB_LINK}/user/reset-password/${token}`;
             // Create text
             const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
+            //const text = `Click the link to reset your password: http://localhost:3000/newpassword`
             const subject = 'Reset password'
             sendMail(email, text, subject)
 
@@ -594,6 +595,54 @@ export const hotelManagerDashboardService = (hotelId, filter) => {
         } catch (e) {
             reject(e)
             console.log(e)
+        }
+    })
+}
+
+export const googleLoginUserService = (googleLogin) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let checkUser = await User.findOne({
+                email: googleLogin.email
+            })
+            if (checkUser === null) {
+                checkUser = await User.create({
+                    email: googleLogin.email,
+                    password: googleLogin.jti,
+                    fullname: googleLogin.name,
+                    image: googleLogin.picture,
+                    isVerified: true
+                })
+            } else {
+                if (!checkUser.isVerified) {
+                    return resolve({
+                        status: 'ERR2',
+                        message: 'The email is not verified'
+                    })
+                }
+            }
+
+            const access_token = await generalAccessToken({
+                userId: checkUser.userId,
+                roleId: checkUser.roleId
+            })
+
+            const refresh_token = await generalRefreshToken({
+                userId: checkUser.userId,
+                roleId: checkUser.roleId
+            })
+
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                access_token,
+                refresh_token,
+                roleId: checkUser.roleId,
+                userId: checkUser.userId,
+            })
+
+        } catch (e) {
+            reject(e)
         }
     })
 }
