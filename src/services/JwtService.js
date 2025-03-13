@@ -189,7 +189,8 @@ export const refreshTokenJwtService = async (refreshToken, accessToken) => {
             })
             const refresh_token = await generalRefreshToken({
                 userId: checkUser.userId,
-                roleId: checkUser.roleId
+                roleId: checkUser.roleId,
+                exp: decoded.exp
             })
             const hashedToken = bcrypt.hashSync(refresh_token, 10)
             await User.findOneAndUpdate({ userId: checkUser.userId },
