@@ -158,46 +158,50 @@ export const verifyUserService = async (otpCode, otp_token) => {
     })
 }
 
-export const refreshTokenJwtService = async (token) => {
+export const refreshTokenJwtService = async (refreshToken, accessToken) => {
     return new Promise(async (resolve, reject) => {
         try {
-            jwt.verify(token, process.env.REFRESH_TOKEN, async (err, user) => {
-                if (err) {
-                    return resolve({
-                        status: 'ERROR',
-                        message: 'The authentication'
-                    })
-                }
-                const checkUser = await User.findOne({ userId: user.userId })
-                const compareToken = bcrypt.compareSync(token, checkUser.refreshToken)
-                if (!compareToken) {
-                    return resolve({
-                        status: 'ERROR',
-                        message: 'Token không hợp lệ'
-                    })
-                }
-                const access_token = await generalAccessToken({
-                    userId: user?.userId,
-                    roleId: user?.roleId
-                })
-                const refresh_token = await generalRefreshToken({
-                    userId: checkUser.userId,
-                    roleId: checkUser.roleId
-                })
-                const hashedToken = bcrypt.hashSync(refresh_token, 10)
-                await User.findOneAndUpdate({ userId: user.userId },
-                    { refreshToken: hashedToken },
-                    { new: true }
-                )
+            const decoded = jwt.decode(refreshToken, process.env.REFRESH_TOKEN)
+            const checkUser = await User.findOne({ userId: decoded.userId })
+            if (!checkUser) {
                 return resolve({
-                    status: 'OK',
-                    message: 'SUCCESS',
-                    access_token,
-                    refresh_token
+                    status: 404,
+                    message: 'Không tìm thấy user'
                 })
+            }
+            const compareToken = bcrypt.compareSync(refreshToken, checkUser.refreshToken)
+            if (!compareToken) {
+                return resolve({
+                    status: 401,
+                    message: 'Token không hợp lệ'
+                })
+            }
+            const decoded_access_token = jwt.decode(accessToken, process.env.ACCESS_TOKEN)
+            if(!decoded_access_token.userId || (decoded_access_token.userId != decoded.userId)){
+                return resolve({
+                    status: 401,
+                    message: 'Token không hợp lệ'
+                })
+            }
+            const access_token = await generalAccessToken({
+                userId: checkUser.userId,
+                roleId: checkUser.roleId
             })
-
-
+            const refresh_token = await generalRefreshToken({
+                userId: checkUser.userId,
+                roleId: checkUser.roleId
+            })
+            const hashedToken = bcrypt.hashSync(refresh_token, 10)
+            await User.findOneAndUpdate({ userId: checkUser.userId },
+                { refreshToken: hashedToken },
+                { new: true }
+            )
+            return resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                access_token,
+                refresh_token
+            })
         } catch (e) {
             reject(e)
         }

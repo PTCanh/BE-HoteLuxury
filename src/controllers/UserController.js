@@ -235,14 +235,21 @@ export const getDetailsUserController = async (req, res) => {
 
 export const refreshToken = async (req, res) => {
     try {
-        const token = req.cookies.refresh_token
-        if (!token) {
-            return res.status(200).json({
+        const access_token = req.body?.access_token
+        if (!access_token) {
+            return res.status(401).json({
                 status: 'ERR',
                 message: 'The token is required'
             })
         }
-        const response = await refreshTokenJwtService(token)
+        const token = req.cookies?.refresh_token
+        if (!token) {
+            return res.status(401).json({
+                status: 'ERR',
+                message: 'The token is required'
+            })
+        }
+        const response = await refreshTokenJwtService(token, access_token)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
