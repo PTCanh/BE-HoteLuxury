@@ -60,13 +60,15 @@ export const loginUserService = (userLogin) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The email is not defined'
+                    message: 'The email is not defined',
+                    statusCode: 422
                 })
             } else {
                 if (!checkUser.isVerified) {
                     return resolve({
                         status: 'ERR2',
-                        message: 'The email is not verified'
+                        message: 'The email is not verified',
+                        statusCode: 422
                     })
                 }
             }
@@ -78,7 +80,8 @@ export const loginUserService = (userLogin) => {
                     errors:[{
                         field:"password",
                         message:"Tài khoản hoặc mật khẩu không chính xác"
-                    }]
+                    }],
+                    statusCode: 422
                 })
             }
 
@@ -106,7 +109,8 @@ export const loginUserService = (userLogin) => {
                 userId: checkUser.userId,
                 fullname: checkUser.fullname,
                 avatar: checkUser.image,
-                email: checkUser.email
+                email: checkUser.email,
+                statusCode: 200
             })
 
         } catch (e) {
