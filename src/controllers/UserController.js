@@ -300,13 +300,13 @@ export const hotelManagerDashboardController = async (req, res) => {
 export const googleLoginUserController = async (req, res) => {
     try {
         const response = await googleLoginUserService(req.body)
-        const { refresh_token, ...newResponse } = response
-        res.cookie('refresh_token', refresh_token, {
+        //const { refresh_token, ...newResponse } = response
+        res.cookie('refresh_token', response.refresh_token, {
             HttpOnly: true,
-            Secure: false,
+            Secure: true,
             SameSite: 'Strict'
         })
-        return res.status(200).json(newResponse)
+        return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
