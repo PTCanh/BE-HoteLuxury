@@ -74,7 +74,11 @@ export const loginUserService = (userLogin) => {
             if (!comparePassword) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user or password is incorrect',
+                    message: 'Tài khoản hoặc mật khẩu không chính xác',
+                    errors:[{
+                        field:"password",
+                        message:"Tài khoản hoặc mật khẩu không chính xác"
+                    }]
                 })
             }
 
