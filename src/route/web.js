@@ -1,9 +1,22 @@
 import express from "express";
+import { createUserController,loginUserController,updateUserController, deleteUserController, getAllUserController, 
+    getDetailsUserController, refreshToken, logoutUserController, resetUserPasswordController, 
+    handleResetPasswordTokenController, verifyUserController,
+    createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
+    hotelManagerDashboardController, googleLoginUserController} from "../controllers/UserController.js";
+import { authMiddleware, authHotelManagerMiddleware, authUserMiddleware, verifyToken } from "../middlewares/authMiddleware.js";
+import { upload, uploadToCloudinary } from "../utils/UploadFile.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    return res.send("Homepage");
-});
+router.post('/sign-up',createAndSendOTPController)
+router.post('/verify-account/:token',verifyUserController)
+router.post('/sign-in',loginUserController)
+router.post('/google-sign-in',googleLoginUserController)
+router.post('/logout', logoutUserController)
+router.post('/reset-password', resetUserPasswordController)
+router.get('/reset-password/:token', handleResetPasswordTokenController)
+//authentication
+router.post('/refresh-token',refreshToken)
 
-export default router;
+export default router

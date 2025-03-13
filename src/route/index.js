@@ -11,7 +11,7 @@ import scheduleRouter from "./ScheduleRouter.js"
 import ratingRouter from "./RatingRouter.js"
 
 const routes = (app) => {
-    app.use('/', homePageRouter)
+    app.use('/auth', homePageRouter)
     app.use('/user', userRouter)
     app.use('/admin',adminRouter)
     app.use('/hotel',hotelRouter)

@@ -459,7 +459,11 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
             if (!booking) {
                 return resolve({
                     status: "ERR",
-                    message: "Booking not found",
+                    message: "Không tìm thấy đơn đặt phòng",
+                    errors:[{
+                        field:"",
+                        message:""
+                    }]
                 });
             }
 
@@ -471,8 +475,11 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
         } catch (e) {
             reject({
                 status: "ERR",
-                message: "Error from server",
-                error: e.message,
+                message: "Lỗi server",
+                errors:[{
+                    field:"",
+                    message:""
+                }]
             });
         }
     });
@@ -504,7 +511,11 @@ const confirmBooking = async (bookingId) => {
             if (checkBooking.roomQuantity > availableRooms.length) {
                 return resolve({
                     status: "ERR",
-                    message: "Not enough rooms",
+                    message: "Không đủ phòng",
+                    errors:[{
+                        field:"",
+                        message:""
+                    }]
                 });
             }
 
@@ -515,8 +526,11 @@ const confirmBooking = async (bookingId) => {
         } catch (e) {
             reject({
                 status: "ERR",
-                message: "Error from server",
-                error: e.message,
+                message: "Lỗi server",
+                errors:[{
+                    field:"",
+                    message:""
+                }]
             });
         }
     });

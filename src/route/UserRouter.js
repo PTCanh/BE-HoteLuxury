@@ -9,13 +9,13 @@ import { upload, uploadToCloudinary } from "../utils/UploadFile.js";
 
 const router = express.Router();
 
-router.post('/sign-up',createAndSendOTPController)
-router.post('/verify-account/:token',verifyUserController)
-router.post('/sign-in',loginUserController)
-router.post('/google-sign-in',googleLoginUserController)
-router.post('/logout', logoutUserController)
-router.post('/reset-password', resetUserPasswordController)
-router.get('/reset-password/:token', handleResetPasswordTokenController)
+// router.post('/sign-up',createAndSendOTPController)
+// router.post('/verify-account/:token',verifyUserController)
+// router.post('/sign-in',loginUserController)
+// router.post('/google-sign-in',googleLoginUserController)
+// router.post('/logout', logoutUserController)
+// router.post('/reset-password', resetUserPasswordController)
+// router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
 router.get('/hotel-manager/dashboard', authHotelManagerMiddleware, hotelManagerDashboardController)
 router.get('/hotel-manager', getAllHotelManagerController)
@@ -27,6 +27,6 @@ router.get('/', getAllUserController)
 router.get('/:id', getDetailsUserController)
 router.post("/update-password", verifyToken, updatePasswordController);
 //authentication
-router.post('/refresh_token',refreshToken)
+//router.post('/refresh_token',refreshToken)
 
 export default router

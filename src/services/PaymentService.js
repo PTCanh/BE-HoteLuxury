@@ -92,7 +92,11 @@ const handlePaymentReturn = async (req, res) => {
         console.error('Error handling payment return:', error.message);
         return res.status(500).json({
             status: "ERR",
-            message: "Error from server",
+            message: "Lỗi server",
+            errors:[{
+                field:"",
+                message:""
+            }]
         });
     }
 };

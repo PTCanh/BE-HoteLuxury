@@ -9,7 +9,7 @@ dotenv.config()
 export const generalAccessToken = async (payload) => {
     const access_token = jwt.sign({
         ...payload
-    }, process.env.ACCESS_TOKEN, { expiresIn: '24h' })
+    }, process.env.ACCESS_TOKEN, { expiresIn: '5m' })
 
     return access_token
 }
@@ -17,7 +17,7 @@ export const generalAccessToken = async (payload) => {
 export const generalRefreshToken = async (payload) => {
     const refresh_token = jwt.sign({
         ...payload
-    }, process.env.REFRESH_TOKEN, { expiresIn: '365d' })
+    }, process.env.REFRESH_TOKEN, { expiresIn: '1d' })
 
     return refresh_token
 }
@@ -94,7 +94,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                     return resolve({
                         status: 'OK',
                         message: text,
-                        otp_token: otp_token, 
+                        otp_token: otp_token,
                     })
                 }
             }
@@ -168,14 +168,60 @@ export const refreshTokenJwtService = async (token) => {
                         message: 'The authentication'
                     })
                 }
+                const checkUser = await User.findOne({ userId: user.userId })
+                const compareToken = bcrypt.compareSync(token, checkUser.refreshToken)
+                if (!compareToken) {
+                    return resolve({
+                        status: 'ERROR',
+                        message: 'Token không hợp lệ'
+                    })
+                }
                 const access_token = await generalAccessToken({
                     userId: user?.userId,
                     roleId: user?.roleId
                 })
+                const refresh_token = await generalRefreshToken({
+                    userId: checkUser.userId,
+                    roleId: checkUser.roleId
+                })
+                const hashedToken = bcrypt.hashSync(refresh_token, 10)
+                await User.findOneAndUpdate({ userId: user.userId },
+                    { refreshToken: hashedToken },
+                    { new: true }
+                )
                 return resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    access_token
+                    access_token,
+                    refresh_token
+                })
+            })
+
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+export const logoutUserService = async (token) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            jwt.verify(token, process.env.REFRESH_TOKEN, async (err, user) => {
+                if (err) {
+                    return resolve({
+                        status: 'ERROR',
+                        message: 'The authentication'
+                    })
+                }
+                const checkUser = await User.findOne({ userId: user.userId })
+                await User.findOneAndUpdate({ userId: user.userId },
+                    { refreshToken: '' },
+                    { new: true }
+                )
+                return resolve({
+                    status: 'OK',
+                    message: 'SUCCESS',
                 })
             })
 

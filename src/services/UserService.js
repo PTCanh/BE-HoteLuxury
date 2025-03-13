@@ -71,7 +71,6 @@ export const loginUserService = (userLogin) => {
                 }
             }
             const comparePassword = bcrypt.compareSync(password, checkUser.password)
-
             if (!comparePassword) {
                 return resolve({
                     status: 'ERR',
@@ -88,6 +87,11 @@ export const loginUserService = (userLogin) => {
                 userId: checkUser.userId,
                 roleId: checkUser.roleId
             })
+            const hashedToken = bcrypt.hashSync(refresh_token, 10)
+            await User.findOneAndUpdate({email: email},
+                {refreshToken: hashedToken},
+                {new: true}
+            )
 
             resolve({
                 status: 'OK',
@@ -96,6 +100,9 @@ export const loginUserService = (userLogin) => {
                 refresh_token,
                 roleId: checkUser.roleId,
                 userId: checkUser.userId,
+                fullname: checkUser.fullname,
+                avatar: checkUser.image,
+                email: checkUser.email
             })
 
         } catch (e) {
@@ -313,7 +320,11 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
             if (!user) {
                 return resolve({
                     status: "ERR",
-                    message: "User not found",
+                    message: "Không tìm thấy user",
+                    errors:[{
+                        field:"",
+                        message:""
+                    }]
                 });
             }
 
@@ -323,6 +334,10 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                 return resolve({
                     status: "ERR1",
                     message: "Mật khẩu cũ không đúng",
+                    errors:[{
+                        field:"oldPassword",
+                        message:"Mật khẩu cũ không đúng"
+                    }]
                 });
             }
 
@@ -330,7 +345,11 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
             if (newPassword !== confirmPassword) {
                 return resolve({
                     status: "ERR2",
-                    message: "New password and confirm password do not match",
+                    message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau",
+                    errors:[{
+                        field:"confirmPassword",
+                        message:"Mật khẩu mới và xác nhận mật khẩu không giống nhau"
+                    }]
                 });
             }
 
@@ -349,8 +368,11 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
         } catch (e) {
             reject({
                 status: "ERR",
-                message: "Error from server",
-                error: e.message,
+                message: "Lỗi server",
+                errors:[{
+                    field:"",
+                    message:""
+                }]
             });
         }
     });
@@ -632,6 +654,11 @@ export const googleLoginUserService = (googleLogin) => {
                 userId: checkUser.userId,
                 roleId: checkUser.roleId
             })
+            const hashedToken = bcrypt.hashSync(refresh_token, 10)
+            await User.findOneAndUpdate({email: googleLogin.email},
+                {refreshToken: hashedToken},
+                {new: true}
+            )
 
             resolve({
                 status: 'OK',
@@ -640,6 +667,9 @@ export const googleLoginUserService = (googleLogin) => {
                 refresh_token,
                 roleId: checkUser.roleId,
                 userId: checkUser.userId,
+                fullname: checkUser.fullname,
+                avatar: checkUser.image,
+                email: checkUser.email
             })
 
         } catch (e) {

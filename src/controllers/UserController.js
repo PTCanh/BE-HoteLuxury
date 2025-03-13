@@ -1,6 +1,6 @@
 import {
     handleResetPasswordTokenService, refreshTokenJwtService, createAndSendOTPService, generalOTPToken,
-    verifyUserService
+    verifyUserService, logoutUserService
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
@@ -55,13 +55,12 @@ export const loginUserController = async (req, res) => {
             })
         }
         const response = await loginUserService(req.body)
-        const { refresh_token, ...newResponse } = response
-        res.cookie('refresh_token', refresh_token, {
+        res.cookie('refresh_token', response.refresh_token, {
             HttpOnly: true,
-            Secure: false,
+            Secure: true,
             SameSite: 'Strict'
         })
-        return res.status(200).json(newResponse)
+        return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -70,7 +69,15 @@ export const loginUserController = async (req, res) => {
 }
 
 export const logoutUserController = async (req, res) => {
+    const token = req.cookies?.refresh_token
     try {
+        if(!token){
+            return res.status(200).json({
+                status: 'ERR',
+                message: 'Không có token'
+            })
+        }
+        await logoutUserService(token)
         res.clearCookie('refresh_token')
         return res.status(200).json({
             status: 'OK',
