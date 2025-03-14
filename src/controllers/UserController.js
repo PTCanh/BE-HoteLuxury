@@ -59,7 +59,7 @@ export const loginUserController = async (req, res) => {
             return res.status(422).json({
                 status: 'ERR',
                 message: 'The input is required',
-                errors:[{
+                errors: [{
                     field: "email",
                     message: "Không được để trống email và mật khẩu"
                 }]
@@ -68,7 +68,7 @@ export const loginUserController = async (req, res) => {
             return res.status(422).json({
                 status: 'ERR',
                 message: 'The input is not email',
-                errors:[{
+                errors: [{
                     field: "email",
                     message: "Email sai định dạng"
                 }]
@@ -89,12 +89,16 @@ export const loginUserController = async (req, res) => {
 }
 
 export const logoutUserController = async (req, res) => {
-    const token = req.cookies?.refresh_token
+    const token = req.body?.refresh_token
     try {
         if (!token) {
-            return res.status(200).json({
+            return res.status(401).json({
                 status: 'ERR',
-                message: 'Không có token'
+                message: 'Không có token',
+                errors: [{
+                    field: "",
+                    message: ""
+                }]
             })
         }
         await logoutUserService(token)
@@ -114,9 +118,13 @@ export const resetUserPasswordController = async (req, res) => {
     try {
         const email = req.body.email
         if (!email) {
-            return res.status(200).json({
+            return res.status(422).json({
                 status: 'ERR',
-                message: 'The email is required'
+                message: 'The email is required',
+                errors: [{
+                    field: "email",
+                    message: "The email is required"
+                }]
             })
         }
         const response = await resetUserPasswordService(email)
@@ -147,19 +155,39 @@ export const createAndSendOTPController = async (req, res) => {
         const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
         const isCheckEmail = reg.test(email)
         if (!email || !password || !confirmPassword) {
-            return res.status(200).json({
+            return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'The input is required',
+                errors: [{
+                    field: "email",
+                    message: "The input is required"
+                },
+                {
+                    field: "password",
+                    message: "The input is required"
+                },
+                {
+                    field: "confirmPassword",
+                    message: "The input is required"
+                }]
             })
         } else if (!isCheckEmail) {
-            return res.status(200).json({
+            return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is not email'
+                message: 'The input is not email',
+                errors: [{
+                    field: "email",
+                    message: "The input is not email"
+                }]
             })
         } else if (password !== confirmPassword) {
-            return res.status(200).json({
+            return res.status(422).json({
                 status: 'ERR',
-                message: 'The password is not equal confirmPassword'
+                message: 'Mật khẩu và xác nhận mật khẩu không giống nhau',
+                errors: [{
+                    field: "confirmPassword",
+                    message: "Mật khẩu và xác nhận mật khẩu không giống nhau"
+                }]
             })
         }
         const otp_token = await generalOTPToken(req.body.email)
@@ -192,7 +220,7 @@ export const updateUserController = async (req, res) => {
             userData.image = image
         }
         if (!userId) {
-            return res.status(200).json({
+            return res.status(404).json({
                 status: 'ERR',
                 message: 'The user is required'
             })
@@ -210,7 +238,7 @@ export const deleteUserController = async (req, res) => {
     try {
         const userId = req.params.id
         if (!userId) {
-            return res.status(200).json({
+            return res.status(404).json({
                 status: 'ERR',
                 message: 'The user is required'
             })
@@ -239,7 +267,7 @@ export const getDetailsUserController = async (req, res) => {
     try {
         const userId = req.params.id
         if (!userId) {
-            return res.status(200).json({
+            return res.status(404).json({
                 status: 'ERR',
                 message: 'The user is required'
             })
@@ -255,13 +283,23 @@ export const getDetailsUserController = async (req, res) => {
 
 export const refreshToken = async (req, res) => {
     try {
-        const access_token = req.headers?.access_token
-        if (!access_token) {
+        const authHeader = req.headers?.authorization
+        if (!authHeader) {
             return res.status(401).json({
                 status: 'ERR',
                 message: 'Access token is required'
             })
         }
+        const parts = authHeader.split(" ");
+        if (parts.length !== 2 || parts[0] !== "Bearer") {
+            return res.status(401).json({
+                status: "ERR",
+                message: "Invalid token format",
+            });
+        }
+
+        const access_token = parts[1]
+        
         const token = req.body?.refresh_token
         if (!token) {
             return res.status(401).json({

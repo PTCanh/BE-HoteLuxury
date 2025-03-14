@@ -6,7 +6,7 @@ dotenv.config()
 export const authMiddleware = (req, res, next) => {
     if(!req.headers.authorization){
         return res.status(401).json({
-            message: 'The token is empty',
+            message: 'Không có token',
             status: 'ERROR'
         })
     }
@@ -14,7 +14,7 @@ export const authMiddleware = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERROR'
             })
         }
@@ -22,7 +22,7 @@ export const authMiddleware = (req, res, next) => {
             next()
         }else{
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERR'
             })
         }
@@ -32,7 +32,7 @@ export const authMiddleware = (req, res, next) => {
 export const authHotelManagerMiddleware = (req, res, next) => {
     if(!req.headers.authorization){
         return res.status(401).json({
-            message: 'The token is empty',
+            message: 'Không có token',
             status: 'ERROR'
         })
     }
@@ -40,7 +40,7 @@ export const authHotelManagerMiddleware = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERROR'
             })
         }
@@ -48,7 +48,7 @@ export const authHotelManagerMiddleware = (req, res, next) => {
             next()
         }else{
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERR'
             })
         }
@@ -58,7 +58,7 @@ export const authHotelManagerMiddleware = (req, res, next) => {
 export const authUserMiddleware = (req, res, next) => {
     if(!req.headers.authorization){
         return res.status(401).json({
-            message: 'The token is empty',
+            message: 'Không có token',
             status: 'ERROR'
         })
     }
@@ -66,7 +66,7 @@ export const authUserMiddleware = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERROR'
             })
         }
@@ -74,7 +74,7 @@ export const authUserMiddleware = (req, res, next) => {
             next()
         }else{
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERR'
             })
         }
@@ -83,7 +83,7 @@ export const authUserMiddleware = (req, res, next) => {
 export const verifyToken = (req, res, next) => {
     if(!req.headers.authorization){
         return res.status(401).json({
-            message: 'The token is empty',
+            message: 'Không có token',
             status: 'ERROR'
         })
     }
@@ -91,7 +91,7 @@ export const verifyToken = (req, res, next) => {
     jwt.verify(token, process.env.ACCESS_TOKEN, function(err, user){
         if(err){
             return res.status(401).json({
-                message: 'Unauthorized',
+                message: 'Token không hợp lệ',
                 status: 'ERROR'
             })
         }
