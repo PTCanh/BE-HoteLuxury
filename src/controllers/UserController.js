@@ -4,7 +4,7 @@ import {
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
-    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword, 
+    getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword,
     hotelManagerDashboardService, googleLoginUserService
 } from '../services/UserService.js'
 
@@ -21,12 +21,24 @@ export const createUserController = async (req, res) => {
         if (!email || !password) {
             return res.status(404).json({
                 status: 'ERR1',
-                message: 'The input is required'
+                message: 'Không được để trống email và mật khẩu',
+                errors: [{
+                    field: "email",
+                    message: "Không được để trống email và mật khẩu"
+                },
+                {
+                    field: "password",
+                    message: "Không được để trống email và mật khẩu"
+                }]
             })
         } else if (!isCheckEmail) {
             return res.status(404).json({
                 status: 'ERR2',
-                message: 'The input is not email'
+                message: 'Email sai định dạng',
+                errors: [{
+                    field: "email",
+                    message: "Email sai định dạng"
+                }]
             })
         }
         const response = await createUserService(userData)
@@ -46,12 +58,20 @@ export const loginUserController = async (req, res) => {
         if (!email || !password) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is required'
+                message: 'The input is required',
+                errors:[{
+                    field: "email",
+                    message: "Không được để trống email và mật khẩu"
+                }]
             })
         } else if (!isCheckEmail) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is not email'
+                message: 'The input is not email',
+                errors:[{
+                    field: "email",
+                    message: "Email sai định dạng"
+                }]
             })
         }
         const response = await loginUserService(req.body)
@@ -71,7 +91,7 @@ export const loginUserController = async (req, res) => {
 export const logoutUserController = async (req, res) => {
     const token = req.cookies?.refresh_token
     try {
-        if(!token){
+        if (!token) {
             return res.status(200).json({
                 status: 'ERR',
                 message: 'Không có token'
@@ -235,18 +255,18 @@ export const getDetailsUserController = async (req, res) => {
 
 export const refreshToken = async (req, res) => {
     try {
-        const access_token = req.body?.access_token
+        const access_token = req.headers?.access_token
         if (!access_token) {
             return res.status(401).json({
                 status: 'ERR',
-                message: 'The token is required'
+                message: 'Access token is required'
             })
         }
-        const token = req.cookies?.refresh_token
+        const token = req.body?.refresh_token
         if (!token) {
             return res.status(401).json({
                 status: 'ERR',
-                message: 'The token is required'
+                message: 'Refresh token is required'
             })
         }
         const response = await refreshTokenJwtService(token, access_token)
