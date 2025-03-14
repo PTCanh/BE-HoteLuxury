@@ -80,7 +80,8 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                 if (checkUser.isVerified) {
                     return resolve({
                         status: 'ERR',
-                        message: 'The email is already exists!'
+                        message: 'The email is already exists!',
+                        statusCode:"404"
                     })
                 } else {
 
@@ -129,13 +130,23 @@ export const verifyUserService = async (otpCode, otp_token) => {
             if (!otpCode || otpCode.trim() === '') {
                 return resolve({
                     status: 'ERR',
-                    message: 'The otp is required!'
+                    message: 'The otp is required!',
+                    errors:[{
+                        field:"otpCode",
+                        message:"OTP không được bỏ trống"
+                    }],
+                    statusCode:"422"
                 })
             }
             if (!compareOTP) {
                 return resolve({
                     status: 'ERR1',
-                    message: 'The otp is wrong!'
+                    message: 'The otp is wrong!',
+                    errors:[{
+                        field:"otpCode",
+                        message:"OTP không chính xác"
+                    }],
+                    statusCode:"422"
                 })
             } else {
                 await User.findOneAndUpdate(
@@ -145,7 +156,8 @@ export const verifyUserService = async (otpCode, otp_token) => {
                 )
                 resolve({
                     status: 'OK',
-                    message: 'Verify successfully'
+                    message: 'Verify successfully',
+                    statusCode:"200"
                 })
             }
 
@@ -158,40 +170,41 @@ export const verifyUserService = async (otpCode, otp_token) => {
     })
 }
 
-export const refreshTokenJwtService = async (refreshToken, accessToken) => {
+export const refreshTokenJwtService = async (refreshToken) => {
     return new Promise(async (resolve, reject) => {
         try {
             const decoded = jwt.decode(refreshToken, process.env.REFRESH_TOKEN)
             const checkUser = await User.findOne({ userId: decoded.userId })
             if (!checkUser) {
                 return resolve({
-                    status: 404,
-                    message: 'Không tìm thấy user'
+                    status: 'ERR',
+                    message: 'Không tìm thấy user',
+                    statusCode: 401
                 })
             }
             const compareToken = bcrypt.compareSync(refreshToken, checkUser.refreshToken)
             if (!compareToken) {
                 return resolve({
-                    status: 401,
+                    statusCode: 401,
                     message: 'Token không hợp lệ'
                 })
             }
-            const decoded_access_token = jwt.decode(accessToken, process.env.ACCESS_TOKEN)
-            if(!decoded_access_token.userId || (decoded_access_token.userId != decoded.userId)){
-                return resolve({
-                    status: 401,
-                    message: 'Token không hợp lệ'
-                })
-            }
+            // const decoded_access_token = jwt.decode(accessToken, process.env.ACCESS_TOKEN)
+            // if(!decoded_access_token.userId || (decoded_access_token.userId != decoded.userId)){
+            //     return resolve({
+            //         statusCode: 401,
+            //         message: 'Token không hợp lệ'
+            //     })
+            // }
             const access_token = await generalAccessToken({
                 userId: checkUser.userId,
                 roleId: checkUser.roleId
             })
-            const refresh_token = await generalRefreshToken({
-                userId: checkUser.userId,
-                roleId: checkUser.roleId,
-                exp: decoded.exp
-            })
+            const refresh_token = jwt.sign(
+                { userId: decoded.userId, roleId: decoded.roleId },
+                process.env.REFRESH_TOKEN,
+                { expiresIn: `${decoded.exp - Math.floor(Date.now() / 1000)}s` } // Set remaining time
+            );
             const hashedToken = bcrypt.hashSync(refresh_token, 10)
             await User.findOneAndUpdate({ userId: checkUser.userId },
                 { refreshToken: hashedToken },
@@ -201,7 +214,8 @@ export const refreshTokenJwtService = async (refreshToken, accessToken) => {
                 status: 'OK',
                 message: 'SUCCESS',
                 access_token,
-                refresh_token
+                refresh_token,
+                statusCode:200
             })
         } catch (e) {
             reject(e)
@@ -216,7 +230,8 @@ export const logoutUserService = async (token) => {
                 if (err) {
                     return resolve({
                         status: 'ERROR',
-                        message: 'The authentication'
+                        message: 'The authentication',
+                        statusCode:"401"
                     })
                 }
                 const checkUser = await User.findOne({ userId: user.userId })
@@ -227,6 +242,7 @@ export const logoutUserService = async (token) => {
                 return resolve({
                     status: 'OK',
                     message: 'SUCCESS',
+                    statusCode:"200"
                 })
             })
 

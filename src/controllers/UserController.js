@@ -283,22 +283,22 @@ export const getDetailsUserController = async (req, res) => {
 
 export const refreshToken = async (req, res) => {
     try {
-        const authHeader = req.headers?.authorization
-        if (!authHeader) {
-            return res.status(401).json({
-                status: 'ERR',
-                message: 'Access token is required'
-            })
-        }
-        const parts = authHeader.split(" ");
-        if (parts.length !== 2 || parts[0] !== "Bearer") {
-            return res.status(401).json({
-                status: "ERR",
-                message: "Invalid token format",
-            });
-        }
+        // const authHeader = req.headers?.authorization
+        // if (!authHeader) {
+        //     return res.status(401).json({
+        //         status: 'ERR',
+        //         message: 'Access token is required'
+        //     })
+        // }
+        // const parts = authHeader.split(" ");
+        // if (parts.length !== 2 || parts[0] !== "Bearer") {
+        //     return res.status(401).json({
+        //         status: "ERR",
+        //         message: "Invalid token format",
+        //     });
+        // }
 
-        const access_token = parts[1]
+        // const access_token = parts[1]
         
         const token = req.body?.refresh_token
         if (!token) {
@@ -307,8 +307,8 @@ export const refreshToken = async (req, res) => {
                 message: 'Refresh token is required'
             })
         }
-        const response = await refreshTokenJwtService(token, access_token)
-        return res.status(200).json(response)
+        const response = await refreshTokenJwtService(token)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e

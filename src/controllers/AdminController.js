@@ -14,7 +14,7 @@ const adminHomePage = async (req, res) => {
   const adminAvatar = async (req, res) => {
     try {
       const response = await adminService.adminAvatar(req.headers);
-      return res.status(200).json(response);
+      return res.status(response.statusCode).json(response);
     } catch (e) {
       return res.status(404).json({
         message: e,

@@ -13,12 +13,11 @@ const createBooking = async (req, res) => {
                 data: paymentUrl
             });
         } else if (response.status === "OK" && response.data.paymentMethod === "Tiền mặt") {
-            return res.status(200).json(response);
+            return res.status(response.statusCode).json(response);
         }
         else {
             return res.status(404).json(response);
         }
-        return res.status(200).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,
@@ -30,7 +29,7 @@ const updateBooking = async (req, res) => {
     const id = req.params.id
     try {
         const response = await bookingService.updateBooking(req.body, id);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,
@@ -42,7 +41,7 @@ const deleteBooking = async (req, res) => {
     const id = req.params.id
     try {
         const response = await bookingService.deleteBooking(id);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,

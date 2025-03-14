@@ -28,7 +28,8 @@ const updateSchedule = (schedule, id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist'
+                    message: 'The Schedule is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -55,7 +56,8 @@ const deleteSchedule = (id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist'
+                    message: 'The Schedule is not exist',
+                    statusCode:"404"
                 })
             }
             //delete schedule
@@ -83,7 +85,8 @@ const getDetailSchedule = (id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist'
+                    message: 'The Schedule is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -106,7 +109,8 @@ const getAllSchedule = () => {
             if (checkSchedule.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is empty'
+                    message: 'The Schedule is empty',
+                    statusCode:"404"
                 })
             }
 

@@ -134,6 +134,7 @@ const adminHomePage = async () => {
         totalBookingThisMonth: totalBookingThisMonth,
         revenueThisMonth: revenueThisMonth.length ? revenueThisMonth[0].totalRevenue : 0,
         revenueEachMonth: revenueEachMonth,
+        statusCode: 200
       });
     } catch (e) {
       reject(e);
@@ -152,14 +153,16 @@ const adminAvatar = (headers) => {
       if (checkUser === null) {
         return resolve({
           status: 'ERR',
-          message: 'The user is not defined'
+          message: 'The user is not defined',
+          statusCode: 404
         })
       }
 
       resolve({
         status: 'OK',
         message: 'Success',
-        data: checkUser.image
+        data: checkUser.image,
+        statusCode: 200
       })
 
     } catch (e) {

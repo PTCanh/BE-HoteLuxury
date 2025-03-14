@@ -28,7 +28,8 @@ const createRoom = (room) => {
             if (checkRoom !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room number already exists for this hotel'
+                    message: 'The Room number already exists for this hotel',
+                    statusCode:"404"
                 });
             }
             await Room.create(room)
@@ -73,7 +74,8 @@ const updateRoom = (room, id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is not exist'
+                    message: 'The Room is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -116,7 +118,8 @@ const deleteRoom = (id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The Room is not exist'
+                    message: 'The Room is not exist',
+                    statusCode:"404"
                 })
             }
             const checkSchedule = await Schedule.findOne({
@@ -127,7 +130,8 @@ const deleteRoom = (id) => {
             if (checkSchedule !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The room has bookings'
+                    message: 'The room has bookings',
+                    statusCode:"404"
                 })
             }
             await Room.findOneAndDelete({ roomId: id },
@@ -180,7 +184,8 @@ const getDetailRoom = (id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is not exist'
+                    message: 'The Room is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -203,7 +208,8 @@ const getAllRoom = () => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is empty'
+                    message: 'The Room is empty',
+                    statusCode:"404"
                 })
             }
 

@@ -16,7 +16,8 @@ const addToCart = (cart, access_token) => {
             if (checkCart !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType already exists'
+                    message: 'The RoomType already exists',
+                    statusCode:"404"
                 });
             }
             await Cart.create({
@@ -71,7 +72,8 @@ const deleteRoomTypeFromCart = (id) => {
             if (checkCart === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Cart is not exist'
+                    message: 'The Cart is not exist',
+                    statusCode:"404"
                 })
             }
             //delete schedule
@@ -101,7 +103,8 @@ const getDetailCart = (access_token) => {
             if (checkCart === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Cart is not exist'
+                    message: 'The Cart is not exist',
+                    statusCode:"404"
                 })
             }
 

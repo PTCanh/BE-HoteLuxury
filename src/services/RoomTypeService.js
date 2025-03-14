@@ -15,7 +15,8 @@ const createRoomType = (roomType) => {
             if (checkRoomType !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is exist'
+                    message: 'The RoomType is exist',
+                    statusCode:"404"
                 })
             }
 
@@ -40,7 +41,8 @@ const updateRoomType = (roomType, id) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is not exist'
+                    message: 'The RoomType is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -70,7 +72,8 @@ const deleteRoomType = (id) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The RoomType is not exist'
+                    message: 'The RoomType is not exist',
+                    statusCode:"404"
                 })
             }
             const checkBooking = await Booking.findOne({
@@ -81,7 +84,8 @@ const deleteRoomType = (id) => {
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The roomtype has bookings'
+                    message: 'The roomtype has bookings',
+                    statusCode:"404"
                 })
             }
 
@@ -118,7 +122,8 @@ const getDetailRoomType = (id, filter, headers) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`
+                    message: `dayStart and dayEnd are required`,
+                    statusCode:"404"
                 })
             }
             //tìm roomtype theo id
@@ -173,7 +178,8 @@ const getRoomTypeByHotelId = (hotelId) => {
             if (checkRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is not exist'
+                    message: 'The RoomType is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -210,7 +216,8 @@ const getAllRoomType = (headers) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is empty'
+                    message: 'The RoomType is empty',
+                    statusCode:"404"
                 })
             }
 
@@ -267,7 +274,8 @@ const filterRoomType = (headers, filter) => {
             if (filterRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `No RoomType is found`
+                    message: `No RoomType is found`,
+                    statusCode:"404"
                 })
             }
             resolve({
@@ -287,7 +295,8 @@ const availableRoomTypes = (filter) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`
+                    message: `dayStart and dayEnd are required`,
+                    statusCode:"404"
                 })
             }
             //tìm tất cả roomType của hotel

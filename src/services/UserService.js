@@ -21,7 +21,8 @@ export const createUserService = (newUser) => {
             if (checkUser !== null) {
                 return resolve({
                     status: 'ERR3',
-                    message: 'The email is already exists!'
+                    message: 'The email is already exists!',
+                    statusCode:"404"
                 })
             }
             const hash = bcrypt.hashSync(password, 10)
@@ -128,7 +129,8 @@ export const resetUserPasswordService = (email) => {
             if (checkEmail === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The email is not defined'
+                    message: 'The email is not defined',
+                    statusCode:"404"
                 })
             }
 
@@ -163,7 +165,8 @@ export const updateUserService = (id, data) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'The user is not defined',
+                    statusCode:"404"
                 })
             }
             if (data.password) {
@@ -195,7 +198,8 @@ export const deleteUserService = (id) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'The user is not defined',
+                    statusCode:"404"
                 })
             }
 
@@ -243,7 +247,8 @@ export const getDetailsUserService = (id) => {
             if (user === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined'
+                    message: 'The user is not defined',
+                    statusCode:"404"
                 })
             }
 
@@ -287,7 +292,8 @@ export const filterUserService = (filter) => {
             if (filterUser.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `The User is not found`
+                    message: `The User is not found`,
+                    statusCode:"404"
                 })
             }
             resolve({
@@ -648,7 +654,8 @@ export const googleLoginUserService = (googleLogin) => {
                 if (!checkUser.isVerified) {
                     return resolve({
                         status: 'ERR2',
-                        message: 'The email is not verified'
+                        message: 'The email is not verified',
+                        statusCode:"404"
                     })
                 }
             }

@@ -10,13 +10,15 @@ const createLocation = (location) => {
             if (checkLocation !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is exist'
+                    message: 'The location is exist',
+                    statusCode:"404"
                 })
             }
             await Location.create(location)
             resolve({
                 status: 'OK',
                 message: 'Create location successfully',
+                statusCode:"200"
             })
 
         } catch (e) {
@@ -34,7 +36,8 @@ const updateLocation = (location, id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist'
+                    message: 'The location is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -61,7 +64,8 @@ const deleteLocation = (id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The location is not exist'
+                    message: 'The location is not exist',
+                    statusCode:"404"
                 })
             }
             const checkHotel = await Hotel.findOne({
@@ -70,7 +74,8 @@ const deleteLocation = (id) => {
             if (checkHotel !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location has hotels'
+                    message: 'The location has hotels',
+                    statusCode:"404"
                 })
             }
             await Location.findOneAndDelete({ locationId: id })
@@ -94,7 +99,8 @@ const getDetailLocation = (id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist'
+                    message: 'The location is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -117,7 +123,8 @@ const getAllLocation = () => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is empty'
+                    message: 'The location is empty',
+                    statusCode:"404"
                 })
             }
 
@@ -145,7 +152,8 @@ const filterLocation = (filter) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist'
+                    message: 'The location is not exist',
+                    statusCode:"404"
                 })
             }
 

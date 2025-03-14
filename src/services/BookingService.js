@@ -30,12 +30,14 @@ const createBooking = (booking) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'All rooms are used',
+                    statusCode:"404"
                 })
             }
             if (availableRooms.length < booking.roomQuantity) {
                 return resolve({
                     status: 'ERR1',
                     message: 'Rooms are not enough',
+                    statusCode:"404"
                 })
             }
             //console.log("availableRooms: ",availableRooms.length)
@@ -58,7 +60,8 @@ const createBooking = (booking) => {
             resolve({
                 status: 'OK',
                 message: 'Create Booking successfully',
-                data: newBooking
+                data: newBooking,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -77,7 +80,8 @@ const updateBooking = (booking, id) => {
             if (checkBooking === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Booking is not exist'
+                    message: 'The Booking is not exist',
+                    statusCode:"404"
                 })
             }
             const searchedBooking = await Booking.findOne({ bookingId: id })
@@ -111,6 +115,7 @@ const updateBooking = (booking, id) => {
                     return resolve({
                         status: 'ERR0',
                         message: 'All rooms are used',
+                        statusCode:"404"
                     })
                 }
                 if (availableRooms.length < updatedBooking.roomQuantity) {
@@ -120,6 +125,7 @@ const updateBooking = (booking, id) => {
                     return resolve({
                         status: 'ERR1',
                         message: 'Rooms are not enough',
+                        statusCode:"404"
                     })
                 }
 
@@ -158,7 +164,8 @@ const deleteBooking = (id) => {
             if (checkBooking === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Booking is not exist'
+                    message: 'The Booking is not exist',
+                    statusCode:"404"
                 })
             }
             //delete schedule

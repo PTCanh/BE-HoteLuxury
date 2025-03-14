@@ -31,7 +31,8 @@ const updateHotel = (hotel, id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Hotel is not exist'
+                    message: 'The Hotel is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -61,7 +62,8 @@ const deleteHotel = (id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The hotel is not exist'
+                    message: 'The hotel is not exist',
+                    statusCode:"404"
                 })
             }
 
@@ -79,7 +81,8 @@ const deleteHotel = (id) => {
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel has bookings'
+                    message: 'The hotel has bookings',
+                    statusCode:"404"
                 })
             }
 
@@ -112,7 +115,8 @@ const getDetailHotel = (id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel is not exist'
+                    message: 'The hotel is not exist',
+                    statusCode:"404"
                 })
             }
             resolve({
@@ -162,7 +166,8 @@ const searchHotel = (filter) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`
+                    message: `dayStart and dayEnd are required`,
+                    statusCode:"404"
                 })
             }
             // Bộ lọc
@@ -210,7 +215,8 @@ const searchHotel = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `Can not find any hotels`,
-                    hotels: checkHotel
+                    hotels: checkHotel,
+                    statusCode:"404"
                 })
             }
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
@@ -415,7 +421,8 @@ const filterHotel = (headers, filter) => {
             if (filterHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `No hotel is found`
+                    message: `No hotel is found`,
+                    statusCode:"404"
                 })
             }
             resolve({
