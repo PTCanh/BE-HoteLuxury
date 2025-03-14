@@ -15,7 +15,7 @@ const updateSchedule = async (req, res) => {
     const id = req.params.id
     try {
         const response = await scheduleService.updateSchedule(req.body, id);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,
@@ -27,7 +27,7 @@ const deleteSchedule = async (req, res) => {
     const id = req.params.id
     try {
         const response = await scheduleService.deleteSchedule(id);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,
@@ -39,7 +39,7 @@ const getDetailSchedule = async (req, res) => {
     const id = req.params.id
     try {
         const response = await scheduleService.getDetailSchedule(id);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,
@@ -50,7 +50,7 @@ const getDetailSchedule = async (req, res) => {
 const getAllSchedule = async (req, res) => {
     try {
         const response = await scheduleService.getAllSchedule();
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e,

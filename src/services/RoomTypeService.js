@@ -16,7 +16,7 @@ const createRoomType = (roomType) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The RoomType is exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -24,6 +24,7 @@ const createRoomType = (roomType) => {
             resolve({
                 status: 'OK',
                 message: 'Create RoomType successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -42,7 +43,7 @@ const updateRoomType = (roomType, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The RoomType is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -52,6 +53,7 @@ const updateRoomType = (roomType, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update RoomType successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -73,19 +75,19 @@ const deleteRoomType = (id) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'The RoomType is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const checkBooking = await Booking.findOne({
                 roomTypeId: id,
-                dayEnd: {$gte: today}
+                dayEnd: { $gte: today }
             })
 
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
                     message: 'The roomtype has bookings',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -96,6 +98,7 @@ const deleteRoomType = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete RoomType and all associated Rooms successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -123,7 +126,7 @@ const getDetailRoomType = (id, filter, headers) => {
                 return resolve({
                     status: 'ERR',
                     message: `dayStart and dayEnd are required`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             //tìm roomtype theo id
@@ -162,6 +165,7 @@ const getDetailRoomType = (id, filter, headers) => {
                 status: 'OK',
                 message: 'Get detail RoomType successfully',
                 data: formatedRommType,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -179,14 +183,15 @@ const getRoomTypeByHotelId = (hotelId) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The RoomType is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get all RoomType by hotelId successfully',
-                data: checkRoomType
+                data: checkRoomType,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -200,31 +205,32 @@ const getAllRoomType = (headers) => {
         try {
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            if(decoded.roleId !== "R2"){
+            if (decoded.roleId !== "R2") {
                 return resolve({
-                    status: '401',
+                    statusCode: 401,
                     message: 'Not authenticated'
                 })
             }
             const checkHotel = await Hotel.find({
-                userId:decoded.userId
+                userId: decoded.userId
             })
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
             const checkRoomType = await RoomType.find({
-                hotelId: {$in : checkHotelIds}
+                hotelId: { $in: checkHotelIds }
             })
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
                     message: 'The RoomType is empty',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get all RoomType successfully',
-                data: checkRoomType
+                data: checkRoomType,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -262,12 +268,13 @@ const filterRoomType = (headers, filter) => {
                     userId: decoded.userId
                 })
                 const checkHotelIds = checkHotel.map(hotel => hotel.hotelId).filter(hotelId => !filter.hotelId || hotelId === Number(filter.hotelId))
-                formatFilter.hotelId = {$in: checkHotelIds}
+                formatFilter.hotelId = { $in: checkHotelIds }
                 filterRoomType = await RoomType.find(formatFilter)
                 return resolve({
                     status: 'OK',
                     message: 'Get all RoomType successfully',
-                    data: filterRoomType
+                    data: filterRoomType,
+                    statusCode: 200
                 })
             }
             filterRoomType = await RoomType.find(formatFilter);
@@ -275,13 +282,14 @@ const filterRoomType = (headers, filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `No RoomType is found`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
                 message: 'Filter RoomType successfully',
-                data: filterRoomType
+                data: filterRoomType,
+                statusCode: 200
             })
         } catch (e) {
             reject(e)
@@ -296,7 +304,7 @@ const availableRoomTypes = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `dayStart and dayEnd are required`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             //tìm tất cả roomType của hotel
@@ -334,22 +342,22 @@ const availableRoomTypes = (filter) => {
             resolve({
                 status: 'OK',
                 message: 'Get available RoomType successfully',
-                hotels: availableRoomTypes
+                hotels: availableRoomTypes,
+                statusCode: 200
             })
 
         } catch (e) {
             reject(e)
-            console.log(e)
         }
     })
 }
- 
+
 const getDetailRoomTypeByHotelManager = (id, filter, headers) => {
     return new Promise(async (resolve, reject) => {
         try {
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            if(decoded.roleId === "R2"){
+            if (decoded.roleId === "R2") {
                 const checkRoomType = await RoomType.findOne({
                     roomTypeId: id
                 })
@@ -359,7 +367,7 @@ const getDetailRoomTypeByHotelManager = (id, filter, headers) => {
                     data: checkRoomType,
                 })
             }
-            
+
             resolve({
                 status: 'OK',
                 message: 'Get detail RoomType successfully',

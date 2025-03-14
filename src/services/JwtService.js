@@ -81,7 +81,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                     return resolve({
                         status: 'ERR',
                         message: 'The email is already exists!',
-                        statusCode:"404"
+                        statusCode: 404
                     })
                 } else {
 
@@ -131,22 +131,22 @@ export const verifyUserService = async (otpCode, otp_token) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The otp is required!',
-                    errors:[{
-                        field:"otpCode",
-                        message:"OTP không được bỏ trống"
+                    errors: [{
+                        field: "otpCode",
+                        message: "OTP không được bỏ trống"
                     }],
-                    statusCode:"422"
+                    statusCode: "422"
                 })
             }
             if (!compareOTP) {
                 return resolve({
                     status: 'ERR1',
                     message: 'The otp is wrong!',
-                    errors:[{
-                        field:"otpCode",
-                        message:"OTP không chính xác"
+                    errors: [{
+                        field: "otpCode",
+                        message: "OTP không chính xác"
                     }],
-                    statusCode:"422"
+                    statusCode: "422"
                 })
             } else {
                 await User.findOneAndUpdate(
@@ -157,7 +157,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
                 resolve({
                     status: 'OK',
                     message: 'Verify successfully',
-                    statusCode:"200"
+                    statusCode: 200
                 })
             }
 
@@ -215,7 +215,7 @@ export const refreshTokenJwtService = async (refreshToken) => {
                 message: 'SUCCESS',
                 access_token,
                 refresh_token,
-                statusCode:200
+                statusCode: 200
             })
         } catch (e) {
             reject(e)
@@ -231,7 +231,7 @@ export const logoutUserService = async (token) => {
                     return resolve({
                         status: 'ERROR',
                         message: 'The authentication',
-                        statusCode:"401"
+                        statusCode: "401"
                     })
                 }
                 const checkUser = await User.findOne({ userId: user.userId })
@@ -242,7 +242,7 @@ export const logoutUserService = async (token) => {
                 return resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    statusCode:"200"
+                    statusCode: 200
                 })
             })
 

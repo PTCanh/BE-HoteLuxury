@@ -7,7 +7,7 @@ const createSchedule = (schedule) => {
     return new Promise(async (resolve, reject) => {
         try {
             await Schedule.create(schedule)
-            
+
             resolve({
                 status: 'OK',
                 message: 'Create Schedule successfully',
@@ -29,7 +29,7 @@ const updateSchedule = (schedule, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Schedule is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -39,6 +39,7 @@ const updateSchedule = (schedule, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update Schedule successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -57,7 +58,7 @@ const deleteSchedule = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Schedule is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             //delete schedule
@@ -68,6 +69,7 @@ const deleteSchedule = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete Schedule successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -86,14 +88,15 @@ const getDetailSchedule = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Schedule is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get detail Schedule successfully',
-                data: checkSchedule
+                data: checkSchedule,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -110,14 +113,15 @@ const getAllSchedule = () => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Schedule is empty',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get all Schedule successfully',
-                data: checkSchedule
+                data: checkSchedule,
+                statusCode: 200
             })
 
         } catch (e) {

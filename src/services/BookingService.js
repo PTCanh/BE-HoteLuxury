@@ -30,14 +30,14 @@ const createBooking = (booking) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'All rooms are used',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             if (availableRooms.length < booking.roomQuantity) {
                 return resolve({
                     status: 'ERR1',
                     message: 'Rooms are not enough',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             //console.log("availableRooms: ",availableRooms.length)
@@ -81,7 +81,7 @@ const updateBooking = (booking, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Booking is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const searchedBooking = await Booking.findOne({ bookingId: id })
@@ -115,7 +115,7 @@ const updateBooking = (booking, id) => {
                     return resolve({
                         status: 'ERR0',
                         message: 'All rooms are used',
-                        statusCode:"404"
+                        statusCode: 404
                     })
                 }
                 if (availableRooms.length < updatedBooking.roomQuantity) {
@@ -125,7 +125,7 @@ const updateBooking = (booking, id) => {
                     return resolve({
                         status: 'ERR1',
                         message: 'Rooms are not enough',
-                        statusCode:"404"
+                        statusCode: 404
                     })
                 }
 
@@ -147,6 +147,7 @@ const updateBooking = (booking, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update Booking successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -165,7 +166,7 @@ const deleteBooking = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Booking is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             //delete schedule
@@ -176,6 +177,7 @@ const deleteBooking = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete Booking successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -467,9 +469,9 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
                 return resolve({
                     status: "ERR",
                     message: "Không tìm thấy đơn đặt phòng",
-                    errors:[{
-                        field:"",
-                        message:""
+                    errors: [{
+                        field: "",
+                        message: ""
                     }]
                 });
             }
@@ -483,9 +485,9 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors:[{
-                    field:"",
-                    message:""
+                errors: [{
+                    field: "",
+                    message: ""
                 }]
             });
         }
@@ -519,9 +521,9 @@ const confirmBooking = async (bookingId) => {
                 return resolve({
                     status: "ERR",
                     message: "Không đủ phòng",
-                    errors:[{
-                        field:"",
-                        message:""
+                    errors: [{
+                        field: "",
+                        message: ""
                     }]
                 });
             }
@@ -534,9 +536,9 @@ const confirmBooking = async (bookingId) => {
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors:[{
-                    field:"",
-                    message:""
+                errors: [{
+                    field: "",
+                    message: ""
                 }]
             });
         }

@@ -17,7 +17,7 @@ const addToCart = (cart, access_token) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The RoomType already exists',
-                    statusCode:"404"
+                    statusCode:404
                 });
             }
             await Cart.create({
@@ -73,7 +73,7 @@ const deleteRoomTypeFromCart = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Cart is not exist',
-                    statusCode:"404"
+                    statusCode:404
                 })
             }
             //delete schedule
@@ -104,7 +104,7 @@ const getDetailCart = (access_token) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Cart is not exist',
-                    statusCode:"404"
+                    statusCode:404
                 })
             }
 

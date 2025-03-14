@@ -29,7 +29,7 @@ const createRoom = (room) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Room number already exists for this hotel',
-                    statusCode:"404"
+                    statusCode: 404
                 });
             }
             await Room.create(room)
@@ -57,6 +57,7 @@ const createRoom = (room) => {
             resolve({
                 status: 'OK',
                 message: 'Create Room successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -75,7 +76,7 @@ const updateRoom = (room, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Room is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -98,6 +99,7 @@ const updateRoom = (room, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update Room successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -119,19 +121,19 @@ const deleteRoom = (id) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'The Room is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const checkSchedule = await Schedule.findOne({
                 roomId: id,
-                dayEnd: {$gte: today}
+                dayEnd: { $gte: today }
             })
 
             if (checkSchedule !== null) {
                 return resolve({
                     status: 'ERR',
                     message: 'The room has bookings',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             await Room.findOneAndDelete({ roomId: id },
@@ -160,6 +162,7 @@ const deleteRoom = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete Room successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -185,14 +188,15 @@ const getDetailRoom = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Room is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get detail Room successfully',
-                data: checkRoom
+                data: checkRoom,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -209,14 +213,15 @@ const getAllRoom = () => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Room is empty',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get all Room successfully',
-                data: checkRoom
+                data: checkRoom,
+                statusCode: 200
             })
 
         } catch (e) {

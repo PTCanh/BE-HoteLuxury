@@ -22,7 +22,7 @@ export const createUserService = (newUser) => {
                 return resolve({
                     status: 'ERR3',
                     message: 'The email is already exists!',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const hash = bcrypt.hashSync(password, 10)
@@ -78,9 +78,9 @@ export const loginUserService = (userLogin) => {
                 return resolve({
                     status: 'ERR',
                     message: 'Tài khoản hoặc mật khẩu không chính xác',
-                    errors:[{
-                        field:"password",
-                        message:"Tài khoản hoặc mật khẩu không chính xác"
+                    errors: [{
+                        field: "password",
+                        message: "Tài khoản hoặc mật khẩu không chính xác"
                     }],
                     statusCode: 422
                 })
@@ -96,9 +96,9 @@ export const loginUserService = (userLogin) => {
                 roleId: checkUser.roleId
             })
             const hashedToken = bcrypt.hashSync(refresh_token, 10)
-            await User.findOneAndUpdate({email: email},
-                {refreshToken: hashedToken},
-                {new: true}
+            await User.findOneAndUpdate({ email: email },
+                { refreshToken: hashedToken },
+                { new: true }
             )
 
             resolve({
@@ -130,7 +130,7 @@ export const resetUserPasswordService = (email) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The email is not defined',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -147,7 +147,8 @@ export const resetUserPasswordService = (email) => {
             resolve({
                 status: 'OK',
                 message: 'Password reset link has been sent to your email',
-                data: token
+                data: token,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -166,7 +167,7 @@ export const updateUserService = (id, data) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The user is not defined',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             if (data.password) {
@@ -180,7 +181,8 @@ export const updateUserService = (id, data) => {
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: updatedUser
+                data: updatedUser,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -199,7 +201,7 @@ export const deleteUserService = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The user is not defined',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -207,6 +209,7 @@ export const deleteUserService = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete user success',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -237,7 +240,7 @@ export const getDetailsUserService = (id) => {
             const user = await User.findOne({
                 userId: id
             }).lean()
-            if(user.birthDate){
+            if (user.birthDate) {
                 user.birthDate = user.birthDate.toISOString().split('T')[0]
             }
             // const formatedUser = {
@@ -248,14 +251,15 @@ export const getDetailsUserService = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The user is not defined',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Success',
-                data: user
+                data: user,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -293,13 +297,14 @@ export const filterUserService = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `The User is not found`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
                 message: 'Filter User successfully',
-                data: filterUser
+                data: filterUser,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -335,9 +340,9 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                 return resolve({
                     status: "ERR",
                     message: "Không tìm thấy user",
-                    errors:[{
-                        field:"",
-                        message:""
+                    errors: [{
+                        field: "",
+                        message: ""
                     }]
                 });
             }
@@ -348,9 +353,9 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                 return resolve({
                     status: "ERR1",
                     message: "Mật khẩu cũ không đúng",
-                    errors:[{
-                        field:"oldPassword",
-                        message:"Mật khẩu cũ không đúng"
+                    errors: [{
+                        field: "oldPassword",
+                        message: "Mật khẩu cũ không đúng"
                     }]
                 });
             }
@@ -360,9 +365,9 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                 return resolve({
                     status: "ERR2",
                     message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau",
-                    errors:[{
-                        field:"confirmPassword",
-                        message:"Mật khẩu mới và xác nhận mật khẩu không giống nhau"
+                    errors: [{
+                        field: "confirmPassword",
+                        message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau"
                     }]
                 });
             }
@@ -383,9 +388,9 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors:[{
-                    field:"",
-                    message:""
+                errors: [{
+                    field: "",
+                    message: ""
                 }]
             });
         }
@@ -399,7 +404,7 @@ export const hotelManagerDashboardService = (hotelId, filter) => {
             // const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             // const checkHotel = await Hotel.find({userId:decoded.userId})
             // const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
-            const checkHotel = await Hotel.findOne({ hotelId: hotelId})
+            const checkHotel = await Hotel.findOne({ hotelId: hotelId })
             const checkRoomType = await RoomType.find({ hotelId: hotelId })
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
             const totalCancelledBookingOfHotel = await Booking.find({
@@ -655,7 +660,7 @@ export const googleLoginUserService = (googleLogin) => {
                     return resolve({
                         status: 'ERR2',
                         message: 'The email is not verified',
-                        statusCode:"404"
+                        statusCode: 404
                     })
                 }
             }
@@ -670,9 +675,9 @@ export const googleLoginUserService = (googleLogin) => {
                 roleId: checkUser.roleId
             })
             const hashedToken = bcrypt.hashSync(refresh_token, 10)
-            await User.findOneAndUpdate({email: googleLogin.email},
-                {refreshToken: hashedToken},
-                {new: true}
+            await User.findOneAndUpdate({ email: googleLogin.email },
+                { refreshToken: hashedToken },
+                { new: true }
             )
 
             resolve({

@@ -128,7 +128,7 @@ export const resetUserPasswordController = async (req, res) => {
             })
         }
         const response = await resetUserPasswordService(email)
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -226,7 +226,7 @@ export const updateUserController = async (req, res) => {
             })
         }
         const response = await updateUserService(userId, userData)
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -244,7 +244,7 @@ export const deleteUserController = async (req, res) => {
             })
         }
         const response = await deleteUserService(userId)
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -273,7 +273,7 @@ export const getDetailsUserController = async (req, res) => {
             })
         }
         const response = await getDetailsUserService(userId)
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -299,7 +299,7 @@ export const refreshToken = async (req, res) => {
         // }
 
         // const access_token = parts[1]
-        
+
         const token = req.body?.refresh_token
         if (!token) {
             return res.status(401).json({
@@ -319,7 +319,7 @@ export const refreshToken = async (req, res) => {
 export const filterUserController = async (req, res) => {
     try {
         const response = await filterUserService(req.query)
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e

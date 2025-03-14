@@ -32,7 +32,7 @@ const updateHotel = (hotel, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The Hotel is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -42,6 +42,7 @@ const updateHotel = (hotel, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update hotel successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -63,7 +64,7 @@ const deleteHotel = (id) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'The hotel is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -74,15 +75,15 @@ const deleteHotel = (id) => {
             const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId);
 
             const checkBooking = await Booking.findOne({
-                roomTypeId: {$in: roomTypeIds},
-                dayEnd: {$gte: today}
+                roomTypeId: { $in: roomTypeIds },
+                dayEnd: { $gte: today }
             })
 
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
                     message: 'The hotel has bookings',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -98,6 +99,7 @@ const deleteHotel = (id) => {
             resolve({
                 status: 'OK',
                 message: 'Delete hotel, all associated RoomType and Room successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -116,13 +118,14 @@ const getDetailHotel = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The hotel is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
                 message: 'Get detail hotel successfully',
-                data: checkHotel
+                data: checkHotel,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -167,7 +170,7 @@ const searchHotel = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `dayStart and dayEnd are required`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             // Bộ lọc
@@ -216,7 +219,7 @@ const searchHotel = (filter) => {
                     status: 'ERR',
                     message: `Can not find any hotels`,
                     hotels: checkHotel,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
@@ -287,6 +290,7 @@ const searchHotel = (filter) => {
                 status: 'OK',
                 message: 'Search hotel successfully',
                 hotels: availableHotels,
+                statusCode: 200
                 //roomTypes: availableRoomTypes
             })
 
@@ -414,7 +418,8 @@ const filterHotel = (headers, filter) => {
                 return resolve({
                     status: 'OK',
                     message: 'Get all hotel successfully',
-                    data: filterHotel
+                    data: filterHotel,
+                    statusCode: 200
                 })
             }
             filterHotel = await Hotel.find(formatFilter);
@@ -422,13 +427,14 @@ const filterHotel = (headers, filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `No hotel is found`,
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
-                data: filterHotel
+                data: filterHotel,
+                statusCode: 200
             })
         } catch (e) {
             reject(e)
@@ -458,7 +464,7 @@ const suggestedHotel = (filter) => {
             const suggestedHotels = formatHotels.filter((hotel) => {
                 return (
                     regex.test(hotel.locationName) ||
-                    regex.test(hotel.hotelName) 
+                    regex.test(hotel.hotelName)
                     // ||
                     // regex.test(hotel.hotelAddress)
                 );
@@ -477,17 +483,17 @@ const suggestedHotel = (filter) => {
             // const addresses = await Hotel.find({
             //     hotelAddress: { $regex: new RegExp(filter.filter, 'i') } // Tìm các địa chỉ có từ "Bình"
             // }).distinct("hotelAddress"); // Chỉ lấy các địa chỉ duy nhất
-            
+
             // const suggestions = addresses
             //     .map((address) => address.split(',').pop().trim()) // Lấy phần tỉnh/thành phố
             //     .filter((value, index, self) => self.indexOf(value) === index); // Loại bỏ trùng lặp
-            
+
             //console.log(suggestions);
             resolve({
                 status: 'OK',
                 message: 'Filter Hotel successfully',
                 data: suggestedHotels,
-                provinces : suggestedProvinces
+                provinces: suggestedProvinces
             })
 
         } catch (e) {

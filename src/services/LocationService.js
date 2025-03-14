@@ -11,14 +11,14 @@ const createLocation = (location) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location is exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             await Location.create(location)
             resolve({
                 status: 'OK',
                 message: 'Create location successfully',
-                statusCode:"200"
+                statusCode: 200
             })
 
         } catch (e) {
@@ -37,7 +37,7 @@ const updateLocation = (location, id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
@@ -47,6 +47,7 @@ const updateLocation = (location, id) => {
             resolve({
                 status: 'OK',
                 message: 'Update location successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -65,7 +66,7 @@ const deleteLocation = (id) => {
                 return resolve({
                     status: 'ERR0',
                     message: 'The location is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             const checkHotel = await Hotel.findOne({
@@ -75,13 +76,14 @@ const deleteLocation = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location has hotels',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
             await Location.findOneAndDelete({ locationId: id })
             resolve({
                 status: 'OK',
                 message: 'Delete location successfully',
+                statusCode: 200
             })
 
         } catch (e) {
@@ -100,14 +102,15 @@ const getDetailLocation = (id) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get detail location successfully',
-                data: checkLocation
+                data: checkLocation,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -124,14 +127,15 @@ const getAllLocation = () => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location is empty',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Get all location successfully',
-                data: checkLocation
+                data: checkLocation,
+                statusCode: 200
             })
 
         } catch (e) {
@@ -153,14 +157,15 @@ const filterLocation = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: 'The location is not exist',
-                    statusCode:"404"
+                    statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
                 message: 'Search location successfully',
-                data: checkLocation
+                data: checkLocation,
+                statusCode: 200
             })
 
         } catch (e) {
