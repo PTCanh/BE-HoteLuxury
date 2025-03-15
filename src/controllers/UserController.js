@@ -1,6 +1,6 @@
 import {
     handleResetPasswordTokenService, refreshTokenJwtService, createAndSendOTPService, generalOTPToken,
-    verifyUserService, logoutUserService
+    verifyUserService, logoutUserService, handleResetPasswordService
 } from '../services/JwtService.js'
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
@@ -135,12 +135,33 @@ export const resetUserPasswordController = async (req, res) => {
 
 export const handleResetPasswordTokenController = async (req, res) => {
     const token = req.params.token;
+    const otpCode = req.body.otpCode
     try {
         // Verify the token
-        const response = await handleResetPasswordTokenService(token);
-        return res.status(200).json(response)
+        const response = await handleResetPasswordTokenService(token, otpCode);
+        return res.status(response.statusCode).json(response)
     } catch (e) {
-        return res.status(404).json({
+        return res.status(401).json({
+            message: e
+        })
+    }
+}
+
+export const handleResetPasswordController = async (req, res) => {
+    try {
+        if(req.body.password != req.body.confirmPassword){
+            return res.status(422).json({
+                message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau",
+                errors: [{
+                    field: "confirmPassword",
+                    message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau"
+                }]
+            })
+        }
+        const response = await handleResetPasswordService(req.body, req.params.token);
+        return res.status(response.statusCode).json(response)
+    } catch (e) {
+        return res.status(401).json({
             message: e
         })
     }

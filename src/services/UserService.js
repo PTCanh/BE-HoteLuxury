@@ -6,7 +6,7 @@ import Schedule from '../models/Schedule.js'
 import Room from '../models/Room.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { generalAccessToken, generalRefreshToken, generalResetPasswordToken } from './JwtService.js'
+import { generalAccessToken, generalRefreshToken, generalResetPasswordToken, generalOTPToken } from './JwtService.js'
 import dotenv from 'dotenv'
 import sendMail from '../utils/SendMail.js'
 dotenv.config()
@@ -136,18 +136,19 @@ export const resetUserPasswordService = (email) => {
 
             // Create reset password token
             const token = await generalResetPasswordToken(email);
+            const decoded = jwt.verify(token, process.env.SECRET_KEY)
             // Create reset password link
             const resetLink = `${process.env.WEB_LINK}/user/reset-password/${token}`;
             // Create text
             //const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
             //const text = `Click the link to reset your password: http://localhost:3000/newpassword`
-            const text = `Click the link to reset your password: http://localhost:3000/newpassword`
+            const text = `Your OTP for reset password is: ${decoded.otp}. It is valid for 15 minutes.`
             const subject = 'Reset password'
             sendMail(email, text, subject)
 
             resolve({
                 status: 'OK',
-                message: 'Password reset link has been sent to your email',
+                message: 'Password reset OTP has been sent to your email',
                 data: token,
                 statusCode: 200
             })

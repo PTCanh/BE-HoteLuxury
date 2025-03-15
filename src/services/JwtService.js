@@ -24,7 +24,8 @@ export const generalRefreshToken = async (payload) => {
 
 export const generalResetPasswordToken = async (email) => {
     const reset_password_token = jwt.sign({
-        email: email
+        email: email,
+        otp: Math.floor(100000 + Math.random() * 900000).toString()
     }, process.env.SECRET_KEY, { expiresIn: '15m' })
 
     return reset_password_token
@@ -39,12 +40,57 @@ export const generalOTPToken = async (email) => {
     return otp_token
 }
 
-export const handleResetPasswordTokenService = async (token) => {
+export const handleResetPasswordTokenService = async (token, otpCode) => {
     return new Promise(async (resolve, reject) => {
         try {
             const decoded = jwt.verify(token, process.env.SECRET_KEY);
-            const tempPassword = crypto.randomBytes(8).toString('hex').slice(0, 8);
-            const hash = bcrypt.hashSync(tempPassword, 10)
+            const otpFromToken = decoded.otp; // Extract OTP from the token
+            const intOTPCode = parseInt(otpCode, 10)
+            if (otpFromToken != intOTPCode) {
+                resolve({
+                    status: 'OK',
+                    message: `OTP không chính xác. Vui lòng nhập lại OTP`,
+                    errors: [{
+                        field: "otpCode",
+                        message: "OTP không chính xác. Vui lòng nhập lại OTP"
+                    }],
+                    statusCode: 422
+                })
+            }
+            // await User.findOneAndUpdate(
+            //     { email: decoded.email },  // Điều kiện tìm kiếm
+            //     { password: hash },  // Giá trị cần cập nhật
+            //     { new: true }
+            // )
+            resolve({
+                status: 'OK',
+                message: `OTP chính xác. Chuyển sang trang khôi phục mật khẩu`,
+                email: decoded.email,
+                statusCode: 200
+            })
+        } catch (e) {
+            reject({
+                status: 'ERROR',
+                message: e
+            })
+        }
+    })
+}
+
+export const handleResetPasswordService = async (body, token) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let decoded = {}
+            jwt.verify(token, process.env.SECRET_KEY, function (err, user) {
+                if (err) {
+                    return res.status(401).json({
+                        message: 'Token không hợp lệ',
+                        status: 'ERROR'
+                    })
+                }
+                decoded = user
+            })
+            const hash = bcrypt.hashSync(body.password, 10)
             await User.findOneAndUpdate(
                 { email: decoded.email },  // Điều kiện tìm kiếm
                 { password: hash },  // Giá trị cần cập nhật
@@ -52,12 +98,14 @@ export const handleResetPasswordTokenService = async (token) => {
             )
             resolve({
                 status: 'OK',
-                message: `Token is valid. Your new password of ${decoded.email} is ${tempPassword}`,
-                email: decoded.email,
-                newPassword: tempPassword
+                message: "Khôi phục mật khẩu thành công",
+                statusCode: 200
             })
         } catch (e) {
-            reject(e)
+            reject({
+                status: 'ERROR',
+                message: e
+            })
         }
     })
 }

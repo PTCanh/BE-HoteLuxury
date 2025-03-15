@@ -1,7 +1,7 @@
 import express from "express";
 import { createUserController,loginUserController,updateUserController, deleteUserController, getAllUserController, 
     getDetailsUserController, refreshToken, logoutUserController, resetUserPasswordController, 
-    handleResetPasswordTokenController, verifyUserController,
+    handleResetPasswordTokenController, handleResetPasswordController, verifyUserController,
     createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
     hotelManagerDashboardController, googleLoginUserController} from "../controllers/UserController.js";
 import { authMiddleware, authHotelManagerMiddleware, authUserMiddleware, verifyToken } from "../middlewares/authMiddleware.js";
@@ -14,8 +14,9 @@ router.post('/verify-account/:token',verifyUserController)
 router.post('/sign-in',loginUserController)
 router.post('/google-sign-in',googleLoginUserController)
 router.post('/logout', logoutUserController)
-router.post('/reset-password', resetUserPasswordController)
-router.get('/reset-password/:token', handleResetPasswordTokenController)
+router.post('/forgot-password', resetUserPasswordController)
+router.post('/forgot-password/:token', handleResetPasswordTokenController)
+router.post('/reset-password/:token', handleResetPasswordController)
 //authentication
 router.post('/refresh-token',refreshToken)
 
