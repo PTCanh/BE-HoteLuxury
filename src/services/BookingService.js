@@ -29,14 +29,14 @@ const createBooking = (booking) => {
             if (availableRooms.length === 0) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'All rooms are used',
+                    message: 'Tất cả phòng đã được sử dụng',
                     statusCode: 404
                 })
             }
             if (availableRooms.length < booking.roomQuantity) {
                 return resolve({
                     status: 'ERR1',
-                    message: 'Rooms are not enough',
+                    message: 'Không đủ phòng',
                     statusCode: 404
                 })
             }
@@ -59,7 +59,7 @@ const createBooking = (booking) => {
             // await Schedule.create(newSchedule)
             resolve({
                 status: 'OK',
-                message: 'Create Booking successfully',
+                message: 'Tạo đơn đặt phòng thành công',
                 data: newBooking,
                 statusCode: 200
             })
@@ -80,7 +80,7 @@ const updateBooking = (booking, id) => {
             if (checkBooking === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Booking is not exist',
+                    message: 'Đơn đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -114,7 +114,7 @@ const updateBooking = (booking, id) => {
                         { new: true })
                     return resolve({
                         status: 'ERR0',
-                        message: 'All rooms are used',
+                        message: 'Tất cả phòng đã được sử dụng',
                         statusCode: 404
                     })
                 }
@@ -124,7 +124,7 @@ const updateBooking = (booking, id) => {
                         { new: true })
                     return resolve({
                         status: 'ERR1',
-                        message: 'Rooms are not enough',
+                        message: 'Không đủ phòng',
                         statusCode: 404
                     })
                 }
@@ -146,7 +146,7 @@ const updateBooking = (booking, id) => {
             }
             resolve({
                 status: 'OK',
-                message: 'Update Booking successfully',
+                message: 'Cập nhật đơn đặt phòng thành công',
                 statusCode: 200
             })
 
@@ -165,7 +165,7 @@ const deleteBooking = (id) => {
             if (checkBooking === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Booking is not exist',
+                    message: 'Đơn đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -176,7 +176,7 @@ const deleteBooking = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'Delete Booking successfully',
+                message: 'Xóa đơn đặt phòng thành công',
                 statusCode: 200
             })
 
@@ -246,7 +246,7 @@ const getDetailBooking = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'Get detail Booking successfully',
+                message: 'Xem chi tiết đơn đặt phòng thành công',
                 data: formatedBooking
             })
 
@@ -411,7 +411,7 @@ const getAllBooking = (headers, filter) => {
 
             return resolve({
                 status: 'OK',
-                message: 'Get all Booking successfully',
+                message: 'Xem tất cả đơn đặt phòng thành công',
                 data: formatedAllBookingOfUser
             })
 
@@ -446,7 +446,7 @@ const searchBooking = (header) => {
 
             resolve({
                 status: 'OK',
-                message: 'Search Booking successfully',
+                message: 'TÌm kiếm đơn đặt phòng thành công',
                 //data: checkBooking
             })
 
@@ -475,7 +475,7 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
 
             resolve({
                 status: "OK",
-                message: "Payment URL updated successfully",
+                message: "Payment URL cập nhật thành công",
                 data: booking,
                 statusCode: 200
             });
@@ -522,7 +522,7 @@ const confirmBooking = async (bookingId) => {
 
             resolve({
                 status: "OK",
-                message: "Have enough rooms",
+                message: "Đủ phòng",
                 statusCode: 200
             });
         } catch (e) {
@@ -614,7 +614,7 @@ const getAllBookingByHotelManager = (headers, filter) => {
                 })
                 return resolve({
                     status: 'OK',
-                    message: 'Get all Booking successfully',
+                    message: 'Xem tất cả đơn đặt phòng thành công',
                     data: allBookingOfHotel
                 })
             }
@@ -628,7 +628,7 @@ const getAllBookingByHotelManager = (headers, filter) => {
 
             resolve({
                 status: 'OK',
-                message: 'Get all Booking successfully',
+                message: 'Xem tất cả đơn đặt phòng thành công',
                 data: []
             })
 

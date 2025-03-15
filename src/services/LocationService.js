@@ -10,14 +10,14 @@ const createLocation = (location) => {
             if (checkLocation !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is exist',
+                    message: 'Địa điểm đã tồn tại',
                     statusCode: 404
                 })
             }
             await Location.create(location)
             resolve({
                 status: 'OK',
-                message: 'Create location successfully',
+                message: 'Tạo địa điểm thành công',
                 statusCode: 200
             })
 
@@ -36,7 +36,7 @@ const updateLocation = (location, id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist',
+                    message: 'Địa điểm không tồn tại',
                     statusCode: 404
                 })
             }
@@ -46,7 +46,7 @@ const updateLocation = (location, id) => {
                 { new: true })
             resolve({
                 status: 'OK',
-                message: 'Update location successfully',
+                message: 'Cập nhật địa điểm thành công',
                 statusCode: 200
             })
 
@@ -65,7 +65,7 @@ const deleteLocation = (id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The location is not exist',
+                    message: 'Địa điểm không tồn tại',
                     statusCode: 404
                 })
             }
@@ -75,14 +75,14 @@ const deleteLocation = (id) => {
             if (checkHotel !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location has hotels',
+                    message: 'Địa điểm đã có khách sạn',
                     statusCode: 404
                 })
             }
             await Location.findOneAndDelete({ locationId: id })
             resolve({
                 status: 'OK',
-                message: 'Delete location successfully',
+                message: 'Xóa địa điểm thành công',
                 statusCode: 200
             })
 
@@ -101,14 +101,14 @@ const getDetailLocation = (id) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist',
+                    message: 'Địa điểm không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get detail location successfully',
+                message: 'Xem chi tiết địa điểm thành công',
                 data: checkLocation,
                 statusCode: 200
             })
@@ -126,14 +126,14 @@ const getAllLocation = () => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is empty',
+                    message: 'Địa điểm không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get all location successfully',
+                message: 'Xem tất cả địa điểm thành công',
                 data: checkLocation,
                 statusCode: 200
             })
@@ -156,14 +156,14 @@ const filterLocation = (filter) => {
             if (checkLocation === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The location is not exist',
+                    message: 'Địa điểm không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Search location successfully',
+                message: 'Tìm kiếm địa điểm thành công',
                 data: checkLocation,
                 statusCode: 200
             })

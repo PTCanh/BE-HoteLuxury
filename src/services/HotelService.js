@@ -13,7 +13,7 @@ const createHotel = (hotel) => {
             await Hotel.create(hotel)
             resolve({
                 status: 'OK',
-                message: 'Create hotel successfully',
+                message: 'Tạo khách sạn thành công',
             })
 
         } catch (e) {
@@ -31,7 +31,7 @@ const updateHotel = (hotel, id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Hotel is not exist',
+                    message: 'Khách sạn không tồn tại',
                     statusCode: 404
                 })
             }
@@ -41,7 +41,7 @@ const updateHotel = (hotel, id) => {
                 { new: true })
             resolve({
                 status: 'OK',
-                message: 'Update hotel successfully',
+                message: 'Cập nhật khách sạn thành công',
                 statusCode: 200
             })
 
@@ -63,7 +63,7 @@ const deleteHotel = (id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The hotel is not exist',
+                    message: 'Khách sạn không tồn tại',
                     statusCode: 404
                 })
             }
@@ -82,7 +82,7 @@ const deleteHotel = (id) => {
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel has bookings',
+                    message: 'Khách sạn có đơn đặt phòng',
                     statusCode: 404
                 })
             }
@@ -98,7 +98,7 @@ const deleteHotel = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'Delete hotel, all associated RoomType and Room successfully',
+                message: 'Xóa khách sạn, tất cả phòng và loại phòng của khách sạn thành công',
                 statusCode: 200
             })
 
@@ -117,13 +117,13 @@ const getDetailHotel = (id) => {
             if (checkHotel === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The hotel is not exist',
+                    message: 'Khách sạn không tồn tại',
                     statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
-                message: 'Get detail hotel successfully',
+                message: 'Xem chi tiết khách sạn thành công',
                 data: checkHotel,
                 statusCode: 200
             })
@@ -146,14 +146,14 @@ const getAllHotel = (headers) => {
                 })
                 return resolve({
                     status: 'OK',
-                    message: 'Get all hotel successfully',
+                    message: 'Xem tất cả khách sạn thành công',
                     data: checkHotel
                 })
             }
             checkHotel = await Hotel.find()
             resolve({
                 status: 'OK',
-                message: 'Get all hotel successfully',
+                message: 'Xem tất cả khách sạn thành công',
                 data: checkHotel
             })
 
@@ -169,7 +169,7 @@ const searchHotel = (filter) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`,
+                    message: `dayStart và dayEnd phải có`,
                     statusCode: 404
                 })
             }
@@ -217,7 +217,7 @@ const searchHotel = (filter) => {
             if (checkHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `Can not find any hotels`,
+                    message: `Không tìm thấy khách sạn nào`,
                     hotels: checkHotel,
                     statusCode: 404
                 })
@@ -288,7 +288,7 @@ const searchHotel = (filter) => {
             //console.log('availableHotels: ', availableHotels.length)
             resolve({
                 status: 'OK',
-                message: 'Search hotel successfully',
+                message: 'Tìm khách sạn thành công',
                 hotels: availableHotels,
                 statusCode: 200
                 //roomTypes: availableRoomTypes
@@ -372,7 +372,7 @@ const userFilterHotel = (filter) => {
             // }
             resolve({
                 status: 'OK',
-                message: 'Filter Hotel successfully',
+                message: 'Lọc khách sạn thành công',
                 data: filteredHotels
             })
 
@@ -417,7 +417,7 @@ const filterHotel = (headers, filter) => {
                 filterHotel = await Hotel.find(formatFilter)
                 return resolve({
                     status: 'OK',
-                    message: 'Get all hotel successfully',
+                    message: 'Xem tất cả khách sạn thành công',
                     data: filterHotel,
                     statusCode: 200
                 })
@@ -426,13 +426,13 @@ const filterHotel = (headers, filter) => {
             if (filterHotel.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `No hotel is found`,
+                    message: `Không tìm thấy khách sạn nào`,
                     statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
-                message: 'Filter Hotel successfully',
+                message: 'Lọc khách sạn thành công',
                 data: filterHotel,
                 statusCode: 200
             })
@@ -491,7 +491,7 @@ const suggestedHotel = (filter) => {
             //console.log(suggestions);
             resolve({
                 status: 'OK',
-                message: 'Filter Hotel successfully',
+                message: 'Lọc khách sạn thành công',
                 data: suggestedHotels,
                 provinces: suggestedProvinces
             })

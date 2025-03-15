@@ -58,7 +58,7 @@ export const loginUserController = async (req, res) => {
         if (!email || !password) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is required',
+                message: 'Không được để trống email và mật khẩu',
                 errors: [{
                     field: "email",
                     message: "Không được để trống email và mật khẩu"
@@ -67,7 +67,7 @@ export const loginUserController = async (req, res) => {
         } else if (!isCheckEmail) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is not email',
+                message: 'Email sai định dạng',
                 errors: [{
                     field: "email",
                     message: "Email sai định dạng"
@@ -117,10 +117,10 @@ export const resetUserPasswordController = async (req, res) => {
         if (!email) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The email is required',
+                message: 'Email không được để trống',
                 errors: [{
                     field: "email",
-                    message: "The email is required"
+                    message: "Email không được để trống"
                 }]
             })
         }
@@ -175,27 +175,27 @@ export const createAndSendOTPController = async (req, res) => {
         if (!email || !password || !confirmPassword) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is required',
+                message: 'Không được để trống',
                 errors: [{
                     field: "email",
-                    message: "The input is required"
+                    message: "Email không được để trống"
                 },
                 {
                     field: "password",
-                    message: "The input is required"
+                    message: "Mật khẩu không được để trống"
                 },
                 {
                     field: "confirmPassword",
-                    message: "The input is required"
+                    message: "Xác nhận mật khẩu không được để trống"
                 }]
             })
         } else if (!isCheckEmail) {
             return res.status(422).json({
                 status: 'ERR',
-                message: 'The input is not email',
+                message: 'Email không đúng định dạng',
                 errors: [{
                     field: "email",
-                    message: "The input is not email"
+                    message: "Email không đúng định dạng"
                 }]
             })
         } else if (password !== confirmPassword) {
@@ -240,7 +240,7 @@ export const updateUserController = async (req, res) => {
         if (!userId) {
             return res.status(404).json({
                 status: 'ERR',
-                message: 'The user is required'
+                message: 'Cần phải có user'
             })
         }
         const response = await updateUserService(userId, userData)
@@ -258,7 +258,7 @@ export const deleteUserController = async (req, res) => {
         if (!userId) {
             return res.status(404).json({
                 status: 'ERR',
-                message: 'The user is required'
+                message: 'Cần phải có user'
             })
         }
         const response = await deleteUserService(userId)
@@ -287,7 +287,7 @@ export const getDetailsUserController = async (req, res) => {
         if (!userId) {
             return res.status(404).json({
                 status: 'ERR',
-                message: 'The user is required'
+                message: 'Cần phải có user'
             })
         }
         const response = await getDetailsUserService(userId)
@@ -322,7 +322,7 @@ export const refreshToken = async (req, res) => {
         if (!token) {
             return res.status(401).json({
                 status: 'ERR',
-                message: 'Refresh token is required'
+                message: 'Refresh token bị thiếu'
             })
         }
         const response = await refreshTokenJwtService(token)

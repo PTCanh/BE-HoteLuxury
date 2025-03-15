@@ -122,13 +122,13 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
             const hashedPassword = bcrypt.hashSync(password, 10)
             const hashedOTP = bcrypt.hashSync(otpFromToken, 10)
             const verifyLink = `${process.env.WEB_LINK}/user/verify-account/${otp_token}`;
-            const text = `Your OTP for email verification is: ${otpFromToken}. It is valid for 60 seconds.`
-            const subject = 'Verify account'
+            const text = `OTP để xác thực email của bạn là: ${otpFromToken}. Nó có hiệu lực trong 60 giây.`
+            const subject = 'Xác thực tài khoản'
             if (checkUser !== null) {
                 if (checkUser.isVerified) {
                     return resolve({
                         status: 'ERR',
-                        message: 'The email is already exists!',
+                        message: 'Email đã tồn tại!',
                         statusCode: 404
                     })
                 } else {
@@ -180,7 +180,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
             if (!otpCode || otpCode.trim() === '') {
                 return resolve({
                     status: 'ERR',
-                    message: 'The otp is required!',
+                    message: 'The otp không được để trống!',
                     errors: [{
                         field: "otpCode",
                         message: "OTP không được bỏ trống"
@@ -191,7 +191,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
             if (!compareOTP) {
                 return resolve({
                     status: 'ERR1',
-                    message: 'The otp is wrong!',
+                    message: 'The otp không chính xác!',
                     errors: [{
                         field: "otpCode",
                         message: "OTP không chính xác"
@@ -206,7 +206,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
                 )
                 resolve({
                     status: 'OK',
-                    message: 'Verify successfully',
+                    message: 'Xác thực thành công',
                     statusCode: 200
                 })
             }

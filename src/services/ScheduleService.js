@@ -10,7 +10,7 @@ const createSchedule = (schedule) => {
 
             resolve({
                 status: 'OK',
-                message: 'Create Schedule successfully',
+                message: 'Tạo lịch đặt phòng thành công',
             })
 
         } catch (e) {
@@ -28,7 +28,7 @@ const updateSchedule = (schedule, id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist',
+                    message: 'Lịch đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -38,7 +38,7 @@ const updateSchedule = (schedule, id) => {
                 { new: true })
             resolve({
                 status: 'OK',
-                message: 'Update Schedule successfully',
+                message: 'Cập nhật lịch đặt phòng thành công',
                 statusCode: 200
             })
 
@@ -57,7 +57,7 @@ const deleteSchedule = (id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist',
+                    message: 'Lịch đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -68,7 +68,7 @@ const deleteSchedule = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'Delete Schedule successfully',
+                message: 'Xóa lịch đặt phòng thành công',
                 statusCode: 200
             })
 
@@ -87,14 +87,14 @@ const getDetailSchedule = (id) => {
             if (checkSchedule === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is not exist',
+                    message: 'Lịch đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get detail Schedule successfully',
+                message: 'Xem chi tiết lịch đặt phòng thành công',
                 data: checkSchedule,
                 statusCode: 200
             })
@@ -112,14 +112,14 @@ const getAllSchedule = () => {
             if (checkSchedule.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Schedule is empty',
+                    message: 'Lịch đặt phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get all Schedule successfully',
+                message: 'Xem tất cả lịch đặt phòng thành công',
                 data: checkSchedule,
                 statusCode: 200
             })
@@ -153,7 +153,7 @@ const searchSchedule = (body) => {
 
             resolve({
                 status: 'OK',
-                message: 'Search Schedule successfully',
+                message: 'Tìm kiếm lịch đặt phòng thành công',
                 //data: checkSchedule
             })
 

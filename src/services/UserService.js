@@ -21,7 +21,7 @@ export const createUserService = (newUser) => {
             if (checkUser !== null) {
                 return resolve({
                     status: 'ERR3',
-                    message: 'The email is already exists!',
+                    message: 'Email đã tồn tại!',
                     statusCode: 404
                 })
             }
@@ -61,14 +61,14 @@ export const loginUserService = (userLogin) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The email is not defined',
+                    message: 'Email không tồn tại',
                     statusCode: 422
                 })
             } else {
                 if (!checkUser.isVerified) {
                     return resolve({
                         status: 'ERR2',
-                        message: 'The email is not verified',
+                        message: 'Email chưa được xác thực',
                         statusCode: 422
                     })
                 }
@@ -129,7 +129,7 @@ export const resetUserPasswordService = (email) => {
             if (checkEmail === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The email is not defined',
+                    message: 'Email không tồn tại',
                     statusCode: 404
                 })
             }
@@ -142,13 +142,13 @@ export const resetUserPasswordService = (email) => {
             // Create text
             //const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
             //const text = `Click the link to reset your password: http://localhost:3000/newpassword`
-            const text = `Your OTP for reset password is: ${decoded.otp}. It is valid for 15 minutes.`
-            const subject = 'Reset password'
+            const text = `OTP để khôi phục mật khẩu của bạn là: ${decoded.otp}. Nó có hiệu lực trong 15 phút.`
+            const subject = 'Khôi phục mật khẩu'
             sendMail(email, text, subject)
 
             resolve({
                 status: 'OK',
-                message: 'Password reset OTP has been sent to your email',
+                message: 'OTP khôi phục mật khẩu đã được gửi đến email của bạn',
                 data: token,
                 statusCode: 200
             })
@@ -168,7 +168,7 @@ export const updateUserService = (id, data) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined',
+                    message: 'User không tồn tại',
                     statusCode: 404
                 })
             }
@@ -202,7 +202,7 @@ export const deleteUserService = (id) => {
             if (checkUser === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined',
+                    message: 'User không tồn tại',
                     statusCode: 404
                 })
             }
@@ -210,7 +210,7 @@ export const deleteUserService = (id) => {
             await User.findOneAndDelete({ userId: id })
             resolve({
                 status: 'OK',
-                message: 'Delete user success',
+                message: 'Xóa user thành công',
                 statusCode: 200
             })
 
@@ -252,7 +252,7 @@ export const getDetailsUserService = (id) => {
             if (user === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The user is not defined',
+                    message: 'User không tồn tại',
                     statusCode: 404
                 })
             }
@@ -298,13 +298,13 @@ export const filterUserService = (filter) => {
             if (filterUser.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `The User is not found`,
+                    message: `Không tìm thấy user nào`,
                     statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
-                message: 'Filter User successfully',
+                message: 'Lọc user thành công',
                 data: filterUser,
                 statusCode: 200
             })
@@ -387,7 +387,7 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
 
             resolve({
                 status: "OK",
-                message: "Password updated successfully",
+                message: "Cập nhật mật khẩu thành công",
             });
         } catch (e) {
             reject({
@@ -661,7 +661,7 @@ export const googleLoginUserService = (googleLogin) => {
                 if (!checkUser.isVerified) {
                     return resolve({
                         status: 'ERR2',
-                        message: 'The email is not verified',
+                        message: 'Email chưa được xác thực',
                         statusCode: 404
                     })
                 }

@@ -15,7 +15,7 @@ const createRoomType = (roomType) => {
             if (checkRoomType !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is exist',
+                    message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -23,7 +23,7 @@ const createRoomType = (roomType) => {
             await RoomType.create(roomType)
             resolve({
                 status: 'OK',
-                message: 'Create RoomType successfully',
+                message: 'Tạo loại phòng thành công',
                 statusCode: 200
             })
 
@@ -42,7 +42,7 @@ const updateRoomType = (roomType, id) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is not exist',
+                    message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -52,7 +52,7 @@ const updateRoomType = (roomType, id) => {
                 { new: true })
             resolve({
                 status: 'OK',
-                message: 'Update RoomType successfully',
+                message: 'Cập nhật loại phòng thành công',
                 statusCode: 200
             })
 
@@ -74,7 +74,7 @@ const deleteRoomType = (id) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The RoomType is not exist',
+                    message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -86,7 +86,7 @@ const deleteRoomType = (id) => {
             if (checkBooking !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The roomtype has bookings',
+                    message: 'Loại phòng đã có đơn đặt phòng',
                     statusCode: 404
                 })
             }
@@ -97,7 +97,7 @@ const deleteRoomType = (id) => {
 
             resolve({
                 status: 'OK',
-                message: 'Delete RoomType and all associated Rooms successfully',
+                message: 'Xóa loại phòng và tất cả phòng trong loại này thành công',
                 statusCode: 200
             })
 
@@ -125,7 +125,7 @@ const getDetailRoomType = (id, filter, headers) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`,
+                    message: `dayStart và dayEnd cần có`,
                     statusCode: 404
                 })
             }
@@ -163,7 +163,7 @@ const getDetailRoomType = (id, filter, headers) => {
 
             resolve({
                 status: 'OK',
-                message: 'Get detail RoomType successfully',
+                message: 'Xem chi tiết loại phòng thành công',
                 data: formatedRommType,
                 statusCode: 200
             })
@@ -182,14 +182,14 @@ const getRoomTypeByHotelId = (hotelId) => {
             if (checkRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is not exist',
+                    message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get all RoomType by hotelId successfully',
+                message: 'Xem tất cả loại phòng bằng hotelId thành công',
                 data: checkRoomType,
                 statusCode: 200
             })
@@ -208,7 +208,7 @@ const getAllRoomType = (headers) => {
             if (decoded.roleId !== "R2") {
                 return resolve({
                     statusCode: 401,
-                    message: 'Not authenticated'
+                    message: 'Không có quyền'
                 })
             }
             const checkHotel = await Hotel.find({
@@ -221,14 +221,14 @@ const getAllRoomType = (headers) => {
             if (checkRoomType === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The RoomType is empty',
+                    message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get all RoomType successfully',
+                message: 'Xem tất cả loại phòng thành công',
                 data: checkRoomType,
                 statusCode: 200
             })
@@ -272,7 +272,7 @@ const filterRoomType = (headers, filter) => {
                 filterRoomType = await RoomType.find(formatFilter)
                 return resolve({
                     status: 'OK',
-                    message: 'Get all RoomType successfully',
+                    message: 'Xem tất cả loại phòng thành công',
                     data: filterRoomType,
                     statusCode: 200
                 })
@@ -281,13 +281,13 @@ const filterRoomType = (headers, filter) => {
             if (filterRoomType.length === 0) {
                 return resolve({
                     status: 'ERR',
-                    message: `No RoomType is found`,
+                    message: `Không tìm thấy loại phòng nào`,
                     statusCode: 404
                 })
             }
             resolve({
                 status: 'OK',
-                message: 'Filter RoomType successfully',
+                message: 'Lọc loại phòng thành công',
                 data: filterRoomType,
                 statusCode: 200
             })
@@ -303,7 +303,7 @@ const availableRoomTypes = (filter) => {
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',
-                    message: `dayStart and dayEnd are required`,
+                    message: `dayStart và dayEnd cần có`,
                     statusCode: 404
                 })
             }
@@ -341,7 +341,7 @@ const availableRoomTypes = (filter) => {
             })
             resolve({
                 status: 'OK',
-                message: 'Get available RoomType successfully',
+                message: 'Lấy các loại phòng còn trống thành công',
                 hotels: availableRoomTypes,
                 statusCode: 200
             })
@@ -363,14 +363,14 @@ const getDetailRoomTypeByHotelManager = (id, filter, headers) => {
                 })
                 return resolve({
                     status: 'OK',
-                    message: 'Get detail RoomType successfully',
+                    message: 'Xem chi tiết loại phòng thành công',
                     data: checkRoomType,
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get detail RoomType successfully',
+                message: 'Xem chi tiết loại phòng thành công',
                 data: [],
             })
 

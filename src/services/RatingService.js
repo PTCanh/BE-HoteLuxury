@@ -37,7 +37,7 @@ const createRating = async (headers, rating, bookingId) => {
             )
             resolve({
                 status: "OK",
-                message: "Create rating successfully",
+                message: "Tạo đánh giá thành công",
                 data: newRating
             })
         } catch (e) {
@@ -55,7 +55,7 @@ const getAllRatingByHotelId = async (hotelId) => {
             })
             resolve({
                 status: "OK",
-                message: "Get all ratings successfully",
+                message: "Xem tất cả đánh giá thành công",
                 data: allRatings
             })
         } catch (e) {

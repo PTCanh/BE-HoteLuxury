@@ -153,7 +153,7 @@ const adminAvatar = (headers) => {
       if (checkUser === null) {
         return resolve({
           status: 'ERR',
-          message: 'The user is not defined',
+          message: 'User không xác định',
           statusCode: 404
         })
       }

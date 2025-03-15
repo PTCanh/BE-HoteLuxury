@@ -28,7 +28,7 @@ const createRoom = (room) => {
             if (checkRoom !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room number already exists for this hotel',
+                    message: 'Số phòng trên đã tồn tại ở khách sạn này',
                     statusCode: 404
                 });
             }
@@ -56,7 +56,7 @@ const createRoom = (room) => {
             })
             resolve({
                 status: 'OK',
-                message: 'Create Room successfully',
+                message: 'Tạo phòng thành công',
                 statusCode: 200
             })
 
@@ -75,7 +75,7 @@ const updateRoom = (room, id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is not exist',
+                    message: 'Phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -98,7 +98,7 @@ const updateRoom = (room, id) => {
             // }
             resolve({
                 status: 'OK',
-                message: 'Update Room successfully',
+                message: 'Cập nhật phòng thành công',
                 statusCode: 200
             })
 
@@ -120,7 +120,7 @@ const deleteRoom = (id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR0',
-                    message: 'The Room is not exist',
+                    message: 'Phòng không tồn tại',
                     statusCode: 404
                 })
             }
@@ -132,7 +132,7 @@ const deleteRoom = (id) => {
             if (checkSchedule !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The room has bookings',
+                    message: 'Phòng đã có đơn đặt phòng',
                     statusCode: 404
                 })
             }
@@ -161,7 +161,7 @@ const deleteRoom = (id) => {
             })
             resolve({
                 status: 'OK',
-                message: 'Delete Room successfully',
+                message: 'Xóa phòng thành công',
                 statusCode: 200
             })
 
@@ -187,14 +187,14 @@ const getDetailRoom = (id) => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is not exist',
+                    message: 'Phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get detail Room successfully',
+                message: 'Xem chi tiết phòng thành công',
                 data: checkRoom,
                 statusCode: 200
             })
@@ -212,14 +212,14 @@ const getAllRoom = () => {
             if (checkRoom === null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'The Room is empty',
+                    message: 'Phòng không tồn tại',
                     statusCode: 404
                 })
             }
 
             resolve({
                 status: 'OK',
-                message: 'Get all Room successfully',
+                message: 'Xem tất cả phòng thành công',
                 data: checkRoom,
                 statusCode: 200
             })
@@ -264,7 +264,7 @@ const filterRoom = (headers, filter) => {
                     })
                 return resolve({
                     status: 'OK',
-                    message: 'Get all Room successfully',
+                    message: 'Xem tất cả phòng thành công',
                     data: filterRoom
                 })
             }
@@ -290,7 +290,7 @@ const filterRoom = (headers, filter) => {
             // }
             resolve({
                 status: 'OK',
-                message: 'Filter room successfully',
+                message: 'Lọc phòng thành công',
                 data: filterRoom
             })
         } catch (e) {
