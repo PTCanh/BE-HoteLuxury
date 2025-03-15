@@ -83,9 +83,10 @@ export const handleResetPasswordService = async (body, token) => {
             let decoded = {}
             jwt.verify(token, process.env.SECRET_KEY, function (err, user) {
                 if (err) {
-                    return res.status(401).json({
+                    return resolve({
                         message: 'Token không hợp lệ',
-                        status: 'ERROR'
+                        status: 'ERROR',
+                        statusCode: 401
                     })
                 }
                 decoded = user
