@@ -469,10 +469,7 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
                 return resolve({
                     status: "ERR",
                     message: "Không tìm thấy đơn đặt phòng",
-                    errors: [{
-                        field: "",
-                        message: ""
-                    }]
+                    statusCode: 404
                 });
             }
 
@@ -480,15 +477,13 @@ const updateBookingPaymentUrl = async (bookingId, paymentUrl) => {
                 status: "OK",
                 message: "Payment URL updated successfully",
                 data: booking,
+                statusCode: 200
             });
         } catch (e) {
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors: [{
-                    field: "",
-                    message: ""
-                }]
+                statusCode: 500
             });
         }
     });
@@ -521,25 +516,20 @@ const confirmBooking = async (bookingId) => {
                 return resolve({
                     status: "ERR",
                     message: "Không đủ phòng",
-                    errors: [{
-                        field: "",
-                        message: ""
-                    }]
+                    statusCode: 404
                 });
             }
 
             resolve({
                 status: "OK",
                 message: "Have enough rooms",
+                statusCode: 200
             });
         } catch (e) {
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors: [{
-                    field: "",
-                    message: ""
-                }]
+                statusCode: 500
             });
         }
     });

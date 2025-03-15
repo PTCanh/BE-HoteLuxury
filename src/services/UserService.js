@@ -139,8 +139,9 @@ export const resetUserPasswordService = (email) => {
             // Create reset password link
             const resetLink = `${process.env.WEB_LINK}/user/reset-password/${token}`;
             // Create text
-            const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
+            //const text = `Click the link to reset your password: https://hoteluxury.vercel.app/newpassword`
             //const text = `Click the link to reset your password: http://localhost:3000/newpassword`
+            const text = `Click the link to reset your password: http://localhost:3000/newpassword`
             const subject = 'Reset password'
             sendMail(email, text, subject)
 
@@ -343,7 +344,8 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                     errors: [{
                         field: "",
                         message: ""
-                    }]
+                    }],
+                    statusCode: 404
                 });
             }
 
@@ -356,7 +358,8 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                     errors: [{
                         field: "oldPassword",
                         message: "Mật khẩu cũ không đúng"
-                    }]
+                    }],
+                    statusCode: 422
                 });
             }
 
@@ -368,7 +371,8 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
                     errors: [{
                         field: "confirmPassword",
                         message: "Mật khẩu mới và xác nhận mật khẩu không giống nhau"
-                    }]
+                    }],
+                    statusCode: 422
                 });
             }
 
@@ -388,10 +392,7 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
             reject({
                 status: "ERR",
                 message: "Lỗi server",
-                errors: [{
-                    field: "",
-                    message: ""
-                }]
+                statusCode: 500
             });
         }
     });

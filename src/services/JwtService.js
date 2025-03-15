@@ -96,6 +96,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                         status: 'OK',
                         message: text,
                         otp_token: otp_token,
+                        statusCode: 200
                     })
                 }
             }
@@ -111,6 +112,7 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                 status: 'OK',
                 message: text,
                 otp_token: otp_token,
+                statusCode: 200
             })
         } catch (e) {
             reject(e)
@@ -135,7 +137,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
                         field: "otpCode",
                         message: "OTP không được bỏ trống"
                     }],
-                    statusCode: "422"
+                    statusCode: 422
                 })
             }
             if (!compareOTP) {
@@ -146,7 +148,7 @@ export const verifyUserService = async (otpCode, otp_token) => {
                         field: "otpCode",
                         message: "OTP không chính xác"
                     }],
-                    statusCode: "422"
+                    statusCode: 422
                 })
             } else {
                 await User.findOneAndUpdate(
@@ -185,6 +187,7 @@ export const refreshTokenJwtService = async (refreshToken) => {
             const compareToken = bcrypt.compareSync(refreshToken, checkUser.refreshToken)
             if (!compareToken) {
                 return resolve({
+                    status: 'ERR',
                     statusCode: 401,
                     message: 'Token không hợp lệ'
                 })
@@ -230,8 +233,8 @@ export const logoutUserService = async (token) => {
                 if (err) {
                     return resolve({
                         status: 'ERROR',
-                        message: 'The authentication',
-                        statusCode: "401"
+                        message: 'Token không hợp lệ',
+                        statusCode: 401
                     })
                 }
                 const checkUser = await User.findOne({ userId: user.userId })

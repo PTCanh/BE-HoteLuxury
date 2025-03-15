@@ -101,12 +101,9 @@ export const logoutUserController = async (req, res) => {
                 }]
             })
         }
-        await logoutUserService(token)
+        const response = await logoutUserService(token)
         res.clearCookie('refresh_token')
-        return res.status(200).json({
-            status: 'OK',
-            message: 'Logout successfully'
-        })
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -192,7 +189,7 @@ export const createAndSendOTPController = async (req, res) => {
         }
         const otp_token = await generalOTPToken(req.body.email)
         const response = await createAndSendOTPService(req.body, otp_token);
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(404).json({
             message: e
@@ -205,7 +202,7 @@ export const verifyUserController = async (req, res) => {
     const otpCode = req.body.otpCode
     try {
         const response = await verifyUserService(otpCode, otp_token);
-        return res.status(200).json(response)
+        return res.status(response.statusCode).json(response)
     } catch (e) {
         return res.status(401).json(e)
     }
@@ -343,7 +340,7 @@ export const updatePasswordController = async (req, res) => {
         const { userId, oldPassword, newPassword, confirmPassword } = req.body;
 
         const result = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
-        return res.status(200).json(result);
+        return res.status(response.statusCode).json(result);
     } catch (e) {
         return res.status(404).json({
             message: e
