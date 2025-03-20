@@ -44,6 +44,14 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    isConfirmed: {
+        type: Boolean,
+        default: true
+    },
+    active: {
+        type: Boolean,
+        default: true
+    },
     otpCode: {
         type: String
     },

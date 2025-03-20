@@ -149,13 +149,28 @@ export const createAndSendOTPService = async (newUser, otp_token) => {
                     })
                 }
             }
-
-            await User.create({
-                fullname,
-                email,
-                password: hashedPassword,
-                otpCode: hashedOTP
-            })
+            if (newUser.roleId === 'R2') {
+                await User.create({
+                    fullname,
+                    email,
+                    password: hashedPassword,
+                    otpCode: hashedOTP,
+                    roleId: 'R2',
+                    gender: newUser.gender,
+                    phoneNumber: newUser.phoneNumber,
+                    address: newUser.address,
+                    birthDate: newUser.birthDate,
+                    isConfirmed: false,
+                })
+            }
+            else {
+                await User.create({
+                    fullname,
+                    email,
+                    password: hashedPassword,
+                    otpCode: hashedOTP
+                })
+            }
             await sendMail(email, text, subject)
             resolve({
                 status: 'OK',

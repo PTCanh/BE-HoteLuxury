@@ -62,14 +62,28 @@ export const loginUserService = (userLogin) => {
                 return resolve({
                     status: 'ERR',
                     message: 'Email không tồn tại',
-                    statusCode: 422
+                    statusCode: 404
                 })
             } else {
                 if (!checkUser.isVerified) {
                     return resolve({
-                        status: 'ERR2',
+                        status: 'ERR',
                         message: 'Email chưa được xác thực',
-                        statusCode: 422
+                        statusCode: 404
+                    })
+                }
+                if (!checkUser.isConfirmed) {
+                    return resolve({
+                        status: 'ERR',
+                        message: 'Email chưa được xác nhận',
+                        statusCode: 404
+                    })
+                }
+                if (!checkUser.active) {
+                    return resolve({
+                        status: 'ERR',
+                        message: 'Tài khoản đã bị khóa',
+                        statusCode: 404
                     })
                 }
             }
@@ -660,8 +674,22 @@ export const googleLoginUserService = (googleLogin) => {
             } else {
                 if (!checkUser.isVerified) {
                     return resolve({
-                        status: 'ERR2',
+                        status: 'ERR',
                         message: 'Email chưa được xác thực',
+                        statusCode: 404
+                    })
+                }
+                if (!checkUser.isConfirmed) {
+                    return resolve({
+                        status: 'ERR',
+                        message: 'Email chưa được xác nhận',
+                        statusCode: 404
+                    })
+                }
+                if (!checkUser.active) {
+                    return resolve({
+                        status: 'ERR',
+                        message: 'Tài khoản đã bị khóa',
                         statusCode: 404
                     })
                 }
