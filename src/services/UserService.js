@@ -237,7 +237,9 @@ export const deleteUserService = (id) => {
 export const getAllUserService = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allUsers = await User.find()
+            const allUsers = await User.find({
+                roleId: "R3"
+            })
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
@@ -333,7 +335,27 @@ export const getAllHotelManagerService = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const allUsers = await User.find({
-                roleId: "R2"
+                roleId: "R2",
+                isConfirmed: true
+            })
+            resolve({
+                status: 'OK',
+                message: 'SUCCESS',
+                data: allUsers
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+export const getAllPendingHotelManagerService = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const allUsers = await User.find({
+                roleId: "R2",
+                isConfirmed: false
             })
             resolve({
                 status: 'OK',

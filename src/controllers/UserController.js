@@ -5,7 +5,7 @@ import {
 import {
     createUserService, loginUserService, updateUserService, deleteUserService, getAllUserService,
     getDetailsUserService, resetUserPasswordService, filterUserService, getAllHotelManagerService, updatePassword,
-    hotelManagerDashboardService, googleLoginUserService
+    hotelManagerDashboardService, googleLoginUserService, getAllPendingHotelManagerService
 } from '../services/UserService.js'
 
 export const createUserController = async (req, res) => {
@@ -348,6 +348,17 @@ export const filterUserController = async (req, res) => {
 export const getAllHotelManagerController = async (req, res) => {
     try {
         const response = await getAllHotelManagerService()
+        return res.status(200).json(response)
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        })
+    }
+}
+
+export const getAllPendingHotelManagerController = async (req, res) => {
+    try {
+        const response = await getAllPendingHotelManagerService()
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({
