@@ -74,5 +74,31 @@ const uploadToCloudinary = async (req, res, next) => {
   }
 };
 
+// Function to upload multiple files to Cloudinary
+const uploadMultipleToCloudinary = async (req, res, next) => {
+  try {
+    if (!req.files || req.files.length === 0) return next();
+
+    const uploadPromises = req.files.map((file) => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { resource_type: "auto", folder: "uploads" },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result.secure_url);
+          }
+        );
+        uploadStream.end(file.buffer);
+      });
+    });
+
+    req.fileUrls = await Promise.all(uploadPromises);
+    next();
+  } catch (error) {
+    console.error("Error uploading files to Cloudinary:", error);
+    return res.status(500).json({ error: "Failed to upload multiple files to Cloudinary" });
+  }
+};
+
 // Export multer upload and Cloudinary upload middleware
-export { upload, uploadToCloudinary };
+export { upload, uploadToCloudinary, uploadMultipleToCloudinary };

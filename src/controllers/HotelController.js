@@ -2,10 +2,10 @@ import hotelService from "../services/HotelService.js";
 
 const createHotel = async (req, res) => {
     try {
-        const hotelImage = req.file ? `${req.file.filename}` : "1.png";
+        const hotelImages = req.files ? `${req.fileUrls}` : [""];
         const hotelData = {
             ...req.body,
-            hotelImage
+            hotelImages
         }
         const response = await hotelService.createHotel(hotelData);
         return res.status(200).json(response);
@@ -20,9 +20,9 @@ const updateHotel = async (req, res) => {
     try {
         const id = req.params.id
         const hotelData = req.body
-        const hotelImage = req.file ? `${req.file.filename}` : "";
-        if (hotelImage) {
-            hotelData.hotelImage = hotelImage
+        const hotelImages = req.files ? `${req.fileUrls}` : [""];
+        if (hotelImages[0]) {
+            hotelData.hotelImages = hotelImages
         }
         const response = await hotelService.updateHotel(hotelData, id);
         return res.status(response.statusCode).json(response);

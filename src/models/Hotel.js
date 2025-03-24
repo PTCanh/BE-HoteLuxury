@@ -37,6 +37,10 @@ const hotelSchema = new Schema({
         type: String,
         required: true
     },
+    hotelImages: {
+        type: [String], // Array of strings to store multiple image URLs
+        required: true
+    },
     hotelPhoneNumber: {
         type: String,
         required: true

@@ -42,7 +42,8 @@ export const createUserService = (newUser) => {
                 resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    data: createdUser
+                    data: createdUser,
+                    statusCode: 200
                 })
             }
         } catch (e) {
