@@ -2,10 +2,10 @@ import roomTypeService from "../services/RoomTypeService.js";
 
 const createRoomType = async (req, res) => {
     try {
-        const roomTypeImage = req.file ? `${req.file.filename}` : "1.png";
+        const roomTypeImages = req.files && req.fileUrls.length > 0 ? req.fileUrls : [];
         const roomTypeData = {
             ...req.body,
-            roomTypeImage
+            roomTypeImages
         }
         const response = await roomTypeService.createRoomType(roomTypeData);
         return res.status(response.statusCode).json(response);
@@ -20,9 +20,9 @@ const updateRoomType = async (req, res) => {
     try {
         const id = req.params.id
         const roomTypeData = req.body
-        const roomTypeImage = req.file ? `${req.file.filename}` : "";
-        if (roomTypeImage) {
-            roomTypeData.roomTypeImage = roomTypeImage
+        const roomTypeImages = req.files && req.fileUrls.length > 0 ? req.fileUrls : [];
+        if (roomTypeImages.length > 0) {
+            roomTypeData.roomTypeImages = roomTypeImages
         }
         const response = await roomTypeService.updateRoomType(roomTypeData, id);
         return res.status(response.statusCode).json(response);
