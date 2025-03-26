@@ -30,7 +30,7 @@ const updateRoomType = async (req, res) => {
         }
         // Conditionally update roomTypeImages if they exist
         if (req.galleryUrls && req.galleryUrls.length > 0) {
-            roomTypeData.roomTypeImages = [...checkRoomType.roomTypeImages, ...req.galleryUrls];
+            roomTypeData.roomTypeImages = [...req.body.roomTypeImages, ...req.galleryUrls];
         }
         const response = await roomTypeService.updateRoomType(roomTypeData, id);
         return res.status(response.statusCode).json(response);

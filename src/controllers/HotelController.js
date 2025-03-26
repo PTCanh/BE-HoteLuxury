@@ -30,7 +30,7 @@ const updateHotel = async (req, res) => {
         }
         // Conditionally update hotelImages if they exist
         if (req.galleryUrls && req.galleryUrls.length > 0) {
-            hotelData.hotelImages = [...checkHotel.hotelImages, ...req.galleryUrls];
+            hotelData.hotelImages = [...req.body.hotelImages, ...req.galleryUrls];
         }
         const response = await hotelService.updateHotel(hotelData, id);
         return res.status(response.statusCode).json(response);
