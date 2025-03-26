@@ -2,10 +2,10 @@ import roomTypeService from "../services/RoomTypeService.js";
 
 const createRoomType = async (req, res) => {
     try {
-        const roomTypeImages = req.files && req.fileUrls.length > 0 ? req.fileUrls : [];
         const roomTypeData = {
             ...req.body,
-            roomTypeImages
+            roomTypeImage: req.thumbnailUrl || "", // Single image (thumbnail)
+            roomTypeImages: req.galleryUrls || []  // Multiple images (gallery)
         }
         const response = await roomTypeService.createRoomType(roomTypeData);
         return res.status(response.statusCode).json(response);
@@ -20,9 +20,13 @@ const updateRoomType = async (req, res) => {
     try {
         const id = req.params.id
         const roomTypeData = req.body
-        const roomTypeImages = req.files && req.fileUrls.length > 0 ? req.fileUrls : [];
-        if (roomTypeImages.length > 0) {
-            roomTypeData.roomTypeImages = roomTypeImages
+        // Conditionally update roomTypeImage if it exists
+        if (req.thumbnailUrl) {
+            roomTypeData.roomTypeImage = req.thumbnailUrl;
+        }
+        // Conditionally update roomTypeImages if they exist
+        if (req.galleryUrls && req.galleryUrls.length > 0) {
+            roomTypeData.roomTypeImages = req.galleryUrls;
         }
         const response = await roomTypeService.updateRoomType(roomTypeData, id);
         return res.status(response.statusCode).json(response);

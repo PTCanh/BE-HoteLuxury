@@ -100,5 +100,97 @@ const uploadMultipleToCloudinary = async (req, res, next) => {
   }
 };
 
+const uploadHotelImagesToCloudinary = async (req, res, next) => {
+  try {
+    if (!req.files) return next(); // No files uploaded, proceed
+
+    // Upload hotelImage (thumbnail) if provided
+    if (req.files.hotelImage && req.files.hotelImage.length > 0) {
+      const thumbnailResult = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { resource_type: "image", folder: "hotels/thumbnails" },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result.secure_url); // Store URL
+          }
+        );
+        uploadStream.end(req.files.hotelImage[0].buffer);
+      });
+
+      req.thumbnailUrl = thumbnailResult; // Store thumbnail URL in req
+    }
+
+    // Upload multiple hotelImages (gallery)
+    if (req.files.hotelImages && req.files.hotelImages.length > 0) {
+      const uploadPromises = req.files.hotelImages.map((file) => {
+        return new Promise((resolve, reject) => {
+          const uploadStream = cloudinary.uploader.upload_stream(
+            { resource_type: "image", folder: "hotels/gallery" },
+            (error, result) => {
+              if (error) return reject(error);
+              resolve(result.secure_url);
+            }
+          );
+          uploadStream.end(file.buffer);
+        });
+      });
+
+      req.galleryUrls = await Promise.all(uploadPromises); // Store gallery URLs in req
+    }
+
+    next(); // Proceed to controller
+
+  } catch (error) {
+    console.error("Cloudinary Upload Error:", error);
+    return res.status(500).json({ error: "Failed to upload images to Cloudinary" });
+  }
+};
+
+const uploadRoomTypeImagesToCloudinary = async (req, res, next) => {
+  try {
+    if (!req.files) return next(); // No files uploaded, proceed
+
+    // Upload roomTypeImage (thumbnail) if provided
+    if (req.files.roomTypeImage && req.files.roomTypeImage.length > 0) {
+      const thumbnailResult = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { resource_type: "image", folder: "roomtypes/thumbnails" },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve(result.secure_url); // Store URL
+          }
+        );
+        uploadStream.end(req.files.roomTypeImage[0].buffer);
+      });
+
+      req.thumbnailUrl = thumbnailResult; // Store thumbnail URL in req
+    }
+
+    // Upload multiple roomTypeImages (gallery)
+    if (req.files.roomTypeImages && req.files.roomTypeImages.length > 0) {
+      const uploadPromises = req.files.roomTypeImages.map((file) => {
+        return new Promise((resolve, reject) => {
+          const uploadStream = cloudinary.uploader.upload_stream(
+            { resource_type: "image", folder: "roomtypes/gallery" },
+            (error, result) => {
+              if (error) return reject(error);
+              resolve(result.secure_url);
+            }
+          );
+          uploadStream.end(file.buffer);
+        });
+      });
+
+      req.galleryUrls = await Promise.all(uploadPromises); // Store gallery URLs in req
+    }
+
+    next(); // Proceed to controller
+
+  } catch (error) {
+    console.error("Cloudinary Upload Error:", error);
+    return res.status(500).json({ error: "Failed to upload images to Cloudinary" });
+  }
+};
+
 // Export multer upload and Cloudinary upload middleware
-export { upload, uploadToCloudinary, uploadMultipleToCloudinary };
+export { upload, uploadToCloudinary, uploadMultipleToCloudinary, uploadHotelImagesToCloudinary, uploadRoomTypeImagesToCloudinary };
