@@ -1,4 +1,5 @@
 import hotelService from "../services/HotelService.js";
+import Hotel from '../models/Hotel.js'
 
 const createHotel = async (req, res) => {
     try {
@@ -19,6 +20,9 @@ const createHotel = async (req, res) => {
 const updateHotel = async (req, res) => {
     try {
         const id = req.params.id
+        const checkHotel = await Hotel.findOne({
+            hotelId: id
+        })
         const hotelData = req.body
         // Conditionally update hotelImage if it exists
         if (req.thumbnailUrl) {
@@ -26,7 +30,7 @@ const updateHotel = async (req, res) => {
         }
         // Conditionally update hotelImages if they exist
         if (req.galleryUrls && req.galleryUrls.length > 0) {
-            hotelData.hotelImages = req.galleryUrls;
+            hotelData.hotelImages = [...checkHotel.hotelImages, ...req.galleryUrls];
         }
         const response = await hotelService.updateHotel(hotelData, id);
         return res.status(response.statusCode).json(response);
