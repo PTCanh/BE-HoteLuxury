@@ -15,7 +15,7 @@ const createRoomType = (roomType) => {
             if (checkRoomType !== null) {
                 return resolve({
                     status: 'ERR',
-                    message: 'Loại phòng không tồn tại',
+                    message: 'Tên loại phòng đã tồn tại',
                     statusCode: 404
                 })
             }
