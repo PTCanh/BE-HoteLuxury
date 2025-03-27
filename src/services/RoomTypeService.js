@@ -8,9 +8,10 @@ import jwt from 'jsonwebtoken'
 const createRoomType = (roomType) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const checkRoomType = await RoomType.findOne({
                 hotelId: roomType.hotelId,
-                roomTypeName: { $regex: new RegExp(`^${roomType.roomTypeName}$`, 'i') }
+                roomTypeName: { $regex: new RegExp(`^${escapeRegex(roomType.roomTypeName.trim())}$`, 'i') }
             })
             if (checkRoomType !== null) {
                 return resolve({
