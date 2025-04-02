@@ -231,7 +231,7 @@ const searchHotel = (filter) => {
             //Chuyển thành mảng roomTypeId
             const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId)
             // Find all Rooms associated with all the RoomType
-            const rooms = await Room.find({ roomTypeId: { $in: roomTypeIds } });
+            const rooms = await Room.find({ roomTypeId: { $in: roomTypeIds }, isActive: true });
             //console.log('Room: ', rooms.length)
             //Chuyển thành mảng roomId
             const roomIds = rooms.map(room => room.roomId)
@@ -246,7 +246,8 @@ const searchHotel = (filter) => {
             //console.log('BookedRoom: ', bookedRoomIds.length)
             //Tìm những phòng còn trống
             const availableRooms = await Room.find({
-                roomId: { $in: roomIds, $nin: bookedRoomIds }
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
             });
             //console.log('AvailableRoom: ', availableRooms)
             //Tìm id của roomType của các phòng trống

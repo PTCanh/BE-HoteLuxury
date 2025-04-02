@@ -22,7 +22,8 @@ const createRoom = (room) => {
             // Check if a room with the same roomNumber exists in any RoomType for this hotel
             const checkRoom = await Room.findOne({
                 roomNumber: room.roomNumber,
-                roomTypeId: { $in: roomTypeIds } // Check across all RoomTypes for this hotel
+                roomTypeId: { $in: roomTypeIds }, // Check across all RoomTypes for this hotel
+                isActive: true
             });
 
             if (checkRoom !== null) {

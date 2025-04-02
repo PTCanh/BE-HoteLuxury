@@ -14,13 +14,12 @@ const roomSchema = new Schema({
         required: true
     },
     roomNumber: {
-        type: String,
-        required: true
+        type: String
     },
-    // roomStatus: {
-    //     type: String,
-    //     required: true
-    // }
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 });
 
 roomSchema.plugin(AutoIncrement, { inc_field: 'roomId', start_seq: 1 });

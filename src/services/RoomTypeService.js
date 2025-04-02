@@ -21,7 +21,13 @@ const createRoomType = (roomType) => {
                 })
             }
 
-            await RoomType.create(roomType)
+            const newRoomType = await RoomType.create(roomType)
+            for (let i = 1; i <= roomType.roomTypeQuantity; i++) {
+                await Room.create({
+                    roomTypeId: newRoomType.roomTypeId
+                })
+            }
+
             resolve({
                 status: 'OK',
                 message: 'Tạo loại phòng thành công',
@@ -46,6 +52,29 @@ const updateRoomType = (roomType, id) => {
                     message: 'Loại phòng không tồn tại',
                     statusCode: 404
                 })
+            }
+            if (roomType.roomTypeQuantity) {
+                if (checkRoomType.roomTypeQuantity < roomType.roomTypeQuantity) {
+                    for (let i = checkRoomType.roomTypeQuantity; i < roomType.roomTypeQuantity; i++) {
+                        await Room.create({
+                            roomTypeId: checkRoomType.roomTypeId
+                        })
+                    }
+                }
+                else if (checkRoomType.roomTypeQuantity > roomType.roomTypeQuantity) {
+                    let flag = 0
+                    const roomIds = await Room.find({ roomTypeId: checkRoomType.roomTypeId, isActive: true }).distinct("roomId")
+                    for (let i = checkRoomType.roomTypeQuantity; i > roomType.roomTypeQuantity; i--) {
+                        await Room.findOneAndUpdate({
+                            roomId: roomIds[roomIds.length - 1 - flag]
+                        }, {
+                            isActive: false
+                        }, {
+                            new: true
+                        })
+                        flag += 1
+                    }
+                }
             }
 
             await RoomType.findOneAndUpdate({ roomTypeId: id },
@@ -135,7 +164,7 @@ const getDetailRoomType = (id, filter, headers) => {
                 roomTypeId: id
             }).lean()
             //Tìm tất cả room của roomtype
-            const rooms = await Room.find({ roomTypeId: checkRoomType.roomTypeId });
+            const rooms = await Room.find({ roomTypeId: checkRoomType.roomTypeId, isActive: true });
             //Chuyển thành mảng roomId của hotel
             const roomIds = rooms.map(room => room.roomId)
             //Tìm tất cả phòng đã được đặt
@@ -149,7 +178,8 @@ const getDetailRoomType = (id, filter, headers) => {
             //console.log('BookedRoom: ', bookedRoomIds.length)
             //Tìm những phòng còn trống của hotel
             const availableRooms = await Room.find({
-                roomId: { $in: roomIds, $nin: bookedRoomIds }
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
             });
             const formatedRommType = {
                 ...checkRoomType,
@@ -315,7 +345,7 @@ const availableRoomTypes = (filter) => {
             //Chuyển thành mảng Id
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
             //Tìm tất cả room của hotel
-            const rooms = await Room.find({ roomTypeId: { $in: checkRoomTypeIds } });
+            const rooms = await Room.find({ roomTypeId: { $in: checkRoomTypeIds }, isActive: true });
             //console.log('Room: ', rooms.length)
             //Chuyển thành mảng roomId của hotel
             const roomIds = rooms.map(room => room.roomId)
@@ -330,7 +360,8 @@ const availableRoomTypes = (filter) => {
             //console.log('BookedRoom: ', bookedRoomIds.length)
             //Tìm những phòng còn trống của hotel
             const availableRooms = await Room.find({
-                roomId: { $in: roomIds, $nin: bookedRoomIds }
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
             });
             //console.log('AvailableRoom: ', availableRooms)
             //Tìm id của roomType của các phòng trống

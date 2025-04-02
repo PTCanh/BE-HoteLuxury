@@ -9,7 +9,10 @@ const createBooking = (booking) => {
     return new Promise(async (resolve, reject) => {
         try {
             // Find all Rooms associated with the RoomType
-            const rooms = await Room.find({ roomTypeId: booking.roomTypeId });
+            const rooms = await Room.find({
+                roomTypeId: booking.roomTypeId,
+                isActive: true
+            });
 
             // Get the IDs of all Rooms for the RoomType
             const roomIds = rooms.map(room => room.roomId);
@@ -24,7 +27,8 @@ const createBooking = (booking) => {
 
             //console.log("bookedRoomIds: ",bookedRoomIds)
             const availableRooms = await Room.find({
-                roomId: { $in: roomIds, $nin: bookedRoomIds }
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
             });
             if (availableRooms.length === 0) {
                 return resolve({
@@ -90,7 +94,7 @@ const updateBooking = (booking, id) => {
                 { new: true })
             if (booking.isConfirmed === true && searchedBooking.isConfirmed === false && (updatedBooking.status === "Chưa thanh toán" || updatedBooking.status === "Đã thanh toán")) {
                 // Find all Rooms associated with the RoomType
-                const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId });
+                const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId, isActive: true });
 
                 // Get the IDs of all Rooms for the RoomType
                 const roomIds = rooms.map(room => room.roomId);
@@ -105,7 +109,8 @@ const updateBooking = (booking, id) => {
                 //console.log(bookedRoomIds)
                 //console.log("bookedRoomIds: ",bookedRoomIds.length)
                 const availableRooms = await Room.find({
-                    roomId: { $in: roomIds, $nin: bookedRoomIds }
+                    roomId: { $in: roomIds, $nin: bookedRoomIds },
+                    isActive: true
                 }).sort({ roomId: 1 }); // Sắp xếp roomId tăng dần
                 //console.log(availableRooms)
                 if (availableRooms.length === 0) {
@@ -495,7 +500,7 @@ const confirmBooking = async (bookingId) => {
             const checkBooking = await Booking.findOne({ bookingId: bookingId });
 
             // Find all Rooms associated with the RoomType
-            const rooms = await Room.find({ roomTypeId: checkBooking.roomTypeId });
+            const rooms = await Room.find({ roomTypeId: checkBooking.roomTypeId, isActive: true });
 
             // Get the IDs of all Rooms for the RoomType
             const roomIds = rooms.map(room => room.roomId);
@@ -510,7 +515,8 @@ const confirmBooking = async (bookingId) => {
             //console.log(bookedRoomIds)
             //console.log("bookedRoomIds: ",bookedRoomIds.length)
             const availableRooms = await Room.find({
-                roomId: { $in: roomIds, $nin: bookedRoomIds }
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
             })
             if (checkBooking.roomQuantity > availableRooms.length) {
                 return resolve({
