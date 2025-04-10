@@ -191,7 +191,7 @@ export const updateUserService = (id, data) => {
                 data.password = bcrypt.hashSync(data.password, 10)
             }
             if (data.isConfirmed === true) {
-                const text = 'Tài khoản của bạn đã được xác nhận'
+                const text = 'Tài khoản của bạn đã được xác nhận.'
                 const subject = 'Xác nhận tài khoản'
                 sendMail(checkUser.email, text, subject)
             }
