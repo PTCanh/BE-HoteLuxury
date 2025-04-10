@@ -190,6 +190,11 @@ export const updateUserService = (id, data) => {
             if (data.password) {
                 data.password = bcrypt.hashSync(data.password, 10)
             }
+            if (data.isConfirmed === true) {
+                const text = 'Tài khoản của bạn đã được xác nhận'
+                const subject = 'Xác nhận tài khoản'
+                sendMail(checkUser.email, text, subject)
+            }
             const updatedUser = await User.findOneAndUpdate(
                 { userId: id },  // Điều kiện tìm kiếm
                 data,  // Giá trị cần cập nhật
