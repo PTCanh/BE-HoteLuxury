@@ -227,8 +227,19 @@ const searchHotel = (filter) => {
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
             //Tìm tất cả roomType của khách sạn
             const roomTypes = await RoomType.find({
-                hotelId: { $in: checkHotelIds }
-            })
+                hotelId: { $in: checkHotelIds },
+                $expr: {
+                    $and: [
+                        { $gte: ["$adultQuantity", filter.adultQuantity] },
+                        {
+                            $gte: [
+                                { $add: ["$adultQuantity", "$childQuantity"] },
+                                filter.adultQuantity + filter.childQuantity
+                            ]
+                        }
+                    ]
+                }
+            });
             //console.log('RoomType: ', roomTypes.length)
             //Chuyển thành mảng roomTypeId
             const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId)
@@ -255,6 +266,23 @@ const searchHotel = (filter) => {
             //Tìm id của roomType của các phòng trống
             const availableRoomTypeIds = availableRooms.map(room => room.roomTypeId)
             //console.log('availableRoomTypeIds: ', availableRoomTypeIds)
+            //Gộp roomTypeId và currentRooms thành Object
+            const result = Object.values(
+                availableRoomTypeIds.reduce((acc, roomTypeId) => {
+                    if (!acc[roomTypeId]) {
+                        acc[roomTypeId] = { roomTypeId, currentRooms: 1 };
+                    } else {
+                        acc[roomTypeId].currentRooms += 1;
+                    }
+                    return acc;
+                }, {})
+            );
+            //Tìm object có roomTypeId còn đủ phòng
+            const filterResult = result.filter((roomtype) => {
+                return roomtype.currentRooms >= filter.currentRooms;
+            });
+            //Map thành mảng roomTypeId
+            const filterResultIds = filterResult.map(roomtype => roomtype.roomTypeId)
             //Tìm những roomType của các phòng trống
             const availableRoomTypes = await RoomType.find({
                 roomTypeId: { $in: availableRoomTypeIds }
@@ -468,8 +496,8 @@ const suggestedHotel = (filter) => {
                 }).lean()
             const formatHotels = hotels.map(hotel => ({
                 ...hotel,
-                locationId: hotel.locationId.locationId,
-                locationName: hotel.locationId.locationName
+                locationId: hotel.locationId?.locationId || null,
+                locationName: hotel.locationId?.locationName || null
             }))
             const suggestedHotels = formatHotels.filter((hotel) => {
                 return (
