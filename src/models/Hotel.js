@@ -55,6 +55,10 @@ const hotelSchema = new Schema({
     },
     locationId: {
         type: Number
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 

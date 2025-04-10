@@ -26,7 +26,8 @@ const updateHotel = (hotel, id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkHotel = await Hotel.findOne({
-                hotelId: id
+                hotelId: id,
+                isDeleted: false
             })
             if (checkHotel === null) {
                 return resolve({
@@ -36,7 +37,7 @@ const updateHotel = (hotel, id) => {
                 })
             }
 
-            await Hotel.findOneAndUpdate({ hotelId: id },
+            await Hotel.findOneAndUpdate({ hotelId: id, isDeleted: false },
                 hotel,
                 { new: true })
             resolve({
@@ -58,7 +59,8 @@ const deleteHotel = (id) => {
             today = today.toISOString().split('T')[0]
 
             const checkHotel = await Hotel.findOne({
-                hotelId: id
+                hotelId: id,
+                isDeleted: false
             })
             if (checkHotel === null) {
                 return resolve({
@@ -112,7 +114,8 @@ const getDetailHotel = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkHotel = await Hotel.findOne({
-                hotelId: id
+                hotelId: id,
+                isDeleted: false
             }).lean()
             if (checkHotel === null) {
                 return resolve({
@@ -142,7 +145,8 @@ const getAllHotel = (headers) => {
             let checkHotel = {}
             if (decoded.roleId === "R2") {
                 checkHotel = await Hotel.find({
-                    userId: decoded.userId
+                    userId: decoded.userId,
+                    isDeleted: false
                 })
                 return resolve({
                     status: 'OK',
@@ -150,7 +154,7 @@ const getAllHotel = (headers) => {
                     data: checkHotel
                 })
             }
-            checkHotel = await Hotel.find()
+            checkHotel = await Hotel.find({ isDeleted: false })
             resolve({
                 status: 'OK',
                 message: 'Xem tất cả khách sạn thành công',
@@ -176,7 +180,7 @@ const searchHotel = (filter) => {
             // Bộ lọc
             const regex = new RegExp(filter.filter, 'i');
             //Khách sạn đã tìm kiếm
-            const hotels = await Hotel.find()
+            const hotels = await Hotel.find({ isDeleted: false })
                 .populate({
                     path: "locationId",
                     model: "Location",
@@ -313,11 +317,13 @@ const searchHotel = (filter) => {
             //console.log('availableHotelIds: ', availableHotelIds)
             //Tìm những hotel còn trống
             const availableHotels = await Hotel.find({
-                hotelId: { $in: availableHotelIds }
+                hotelId: { $in: availableHotelIds },
+                isDeleted: false
             }).lean()
             //Tìm những hotel hết phòng
             const noAvailableHotels = await Hotel.find({
-                hotelId: { $in: noAvailableHotelIds }
+                hotelId: { $in: noAvailableHotelIds },
+                isDeleted: false
             }).lean()
             availableHotels.forEach((hotel) => {
                 hotel.minPrice = minPriceOfHotels[hotel.hotelId] || null; // Lấy giá từ minPriceOfHotels hoặc để null nếu không có
@@ -425,6 +431,7 @@ const filterHotel = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
             const formatFilter = {}
+            formatFilter.isDeleted = false
             if (filter.hotelName) {
                 formatFilter.hotelName = filter.hotelName.replace(/\s+/g, ' ').trim()
                 formatFilter.hotelName = { $regex: new RegExp(formatFilter.hotelName, 'i') } // Không phân biệt hoa thường
@@ -486,7 +493,7 @@ const suggestedHotel = (filter) => {
             // Bộ lọc
             const regex = new RegExp(filter.filter, 'i');
             //Khách sạn đã tìm kiếm
-            const hotels = await Hotel.find()
+            const hotels = await Hotel.find({ isDeleted: false })
                 .populate({
                     path: "locationId",
                     model: "Location",

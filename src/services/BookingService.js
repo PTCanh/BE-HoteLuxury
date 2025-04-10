@@ -588,7 +588,8 @@ const getAllBookingByHotelManager = (headers, filter) => {
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             if (decoded.roleId === "R2") {
                 const checkHotel = await Hotel.find({
-                    userId: decoded.userId
+                    userId: decoded.userId,
+                    isDeleted: false
                 })
                 let checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
                 if (filter.hotelId) {

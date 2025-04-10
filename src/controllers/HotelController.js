@@ -20,9 +20,6 @@ const createHotel = async (req, res) => {
 const updateHotel = async (req, res) => {
     try {
         const id = req.params.id
-        const checkHotel = await Hotel.findOne({
-            hotelId: id
-        })
         const hotelData = req.body
         // Conditionally update hotelImage if it exists
         if (req.thumbnailUrl) {

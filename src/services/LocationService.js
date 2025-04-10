@@ -70,7 +70,8 @@ const deleteLocation = (id) => {
                 })
             }
             const checkHotel = await Hotel.findOne({
-                locationId: id
+                locationId: id,
+                isDeleted: false
             })
             if (checkHotel !== null) {
                 return resolve({

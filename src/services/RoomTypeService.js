@@ -243,7 +243,8 @@ const getAllRoomType = (headers) => {
                 })
             }
             const checkHotel = await Hotel.find({
-                userId: decoded.userId
+                userId: decoded.userId,
+                isDeleted: false
             })
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
             const checkRoomType = await RoomType.find({
@@ -296,7 +297,8 @@ const filterRoomType = (headers, filter) => {
             let filterRoomType = {}
             if (decoded.roleId === "R2") {
                 const checkHotel = await Hotel.find({
-                    userId: decoded.userId
+                    userId: decoded.userId,
+                    isDeleted: false
                 })
                 const checkHotelIds = checkHotel.map(hotel => hotel.hotelId).filter(hotelId => !filter.hotelId || hotelId === Number(filter.hotelId))
                 formatFilter.hotelId = { $in: checkHotelIds }

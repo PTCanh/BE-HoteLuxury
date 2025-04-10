@@ -12,7 +12,7 @@ const createRating = async (headers, rating, bookingId) => {
             rating.userId = decoded.userId
             // Tạo đánh giá mới
             const newRating = await Rating.create(rating)
-            const checkHotel = await Hotel.findOne({hotelId: newRating.hotelId})
+            const checkHotel = await Hotel.findOne({hotelId: newRating.hotelId, isDeleted: false})
             // Lấy tất cả đánh giá của khách sạn
             const allRatings = await Rating.find({ hotelId: newRating.hotelId });
 
@@ -22,7 +22,7 @@ const createRating = async (headers, rating, bookingId) => {
             // Tính ratingAverage chính xác
             const newRatingAverage = parseFloat((totalStars / ratingQuantity).toFixed(1));
 
-            const updateHotel = await Hotel.findOneAndUpdate({hotelId: newRating.hotelId},
+            const updateHotel = await Hotel.findOneAndUpdate({hotelId: newRating.hotelId, isDeleted: false},
                 {
                     ratingQuantity: ratingQuantity,
                     ratingAverage: newRatingAverage

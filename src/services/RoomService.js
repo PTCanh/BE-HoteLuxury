@@ -247,7 +247,8 @@ const filterRoom = (headers, filter) => {
             let filterRoom = {}
             if (decoded.roleId === "R2") {
                 const checkHotel = await Hotel.find({
-                    userId: decoded.userId
+                    userId: decoded.userId,
+                    isDeleted: false
                 })
                 const checkHotelIds = checkHotel.map(hotel => hotel.hotelId).filter(hotelId => !filter.hotelId || hotelId === Number(filter.hotelId))
                 const checkRoomType = await RoomType.find({
