@@ -289,7 +289,7 @@ const searchHotel = (filter) => {
             const filterResultIds = filterResult.map(roomtype => roomtype.roomTypeId)
             //Tìm những roomType của các phòng trống
             const availableRoomTypes = await RoomType.find({
-                roomTypeId: { $in: availableRoomTypeIds }
+                roomTypeId: { $in: filterResultIds }
             })
             //Tính giá nhỏ nhất của từng khách sạn
             let minPriceOfHotels = {}
