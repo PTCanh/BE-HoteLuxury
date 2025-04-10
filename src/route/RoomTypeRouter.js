@@ -11,11 +11,11 @@ router.get('/find-by-hotelId/:hotelId', roomTypeController.getRoomTypeByHotelId)
 router.get('/filter', roomTypeController.filterRoomType)
 router.post('/', authHotelManagerMiddleware, upload.fields([
     { name: "roomTypeImage", maxCount: 1 }, // Single file for thumbnail
-    { name: "roomTypeImages", maxCount: 10 } // Multiple files for gallery
+    { name: "roomTypeImages", maxCount: 20 } // Multiple files for gallery
   ]), uploadRoomTypeImagesToCloudinary, roomTypeController.createRoomType)
 router.put('/:id', authHotelManagerMiddleware, upload.fields([
     { name: "roomTypeImage", maxCount: 1 }, // Single file for thumbnail
-    { name: "roomTypeImages", maxCount: 10 } // Multiple files for gallery
+    { name: "roomTypeImages", maxCount: 20 } // Multiple files for gallery
   ]), uploadRoomTypeImagesToCloudinary, roomTypeController.updateRoomType)
 router.delete('/:id', authHotelManagerMiddleware, roomTypeController.deleteRoomType)
 router.get('/:id', roomTypeController.getDetailRoomType)

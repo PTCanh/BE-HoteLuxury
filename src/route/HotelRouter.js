@@ -11,11 +11,11 @@ router.get('/filter', hotelController.filterHotel)
 router.get('/search', hotelController.searchHotel)
 router.post('/', authHotelManagerMiddleware, upload.fields([
     { name: "hotelImage", maxCount: 1 }, // Single file for thumbnail
-    { name: "hotelImages", maxCount: 10 } // Multiple files for gallery
+    { name: "hotelImages", maxCount: 20 } // Multiple files for gallery
   ]), uploadHotelImagesToCloudinary, hotelController.createHotel)
 router.put('/:id', authHotelManagerMiddleware, upload.fields([
     { name: "hotelImage", maxCount: 1 }, // Single file for thumbnail
-    { name: "hotelImages", maxCount: 10 } // Multiple files for gallery
+    { name: "hotelImages", maxCount: 20 } // Multiple files for gallery
   ]), uploadHotelImagesToCloudinary, hotelController.updateHotel)
 router.delete('/:id', authHotelManagerMiddleware, hotelController.deleteHotel)
 router.get('/:id', hotelController.getDetailHotel)

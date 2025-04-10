@@ -186,8 +186,8 @@ const searchHotel = (filter) => {
                 }).lean()
             const formatHotels = hotels.map(hotel => ({
                 ...hotel,
-                locationId: hotel.locationId.locationId,
-                locationName: hotel.locationId.locationName
+                locationId: hotel.locationId?.locationId || null,
+                locationName: hotel.locationId?.locationName || null
             }))
             //Tìm các địa điểm khớp dữ liệu nhập vào
             // const locations = await Location.find(formatFilter)
@@ -218,10 +218,12 @@ const searchHotel = (filter) => {
                 return resolve({
                     status: 'ERR',
                     message: `Không tìm thấy khách sạn nào`,
-                    hotels: checkHotel,
+                    data: checkHotel,
+                    outOfRoom: checkHotel,
                     statusCode: 404
                 })
             }
+            // Id của tất cả khách sạn tìm được
             const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
             //Tìm tất cả roomType của khách sạn
             const roomTypes = await RoomType.find({
@@ -277,11 +279,17 @@ const searchHotel = (filter) => {
             //console.log('availableRoomTypes: ', availableRoomTypes)
             //Tìm id của hotel của các phòng trống
             const availableHotelIds = availableRoomTypes.map(roomType => roomType.hotelId)
+            //Tìm id của hotel hết phòng
+            const noAvailableHotelIds = checkHotelIds.filter(hotelId => !availableHotelIds.includes(hotelId));
             //console.log('availableHotelIds: ', availableHotelIds.length)
             //console.log('availableHotelIds: ', availableHotelIds)
             //Tìm những hotel còn trống
             const availableHotels = await Hotel.find({
                 hotelId: { $in: availableHotelIds }
+            }).lean()
+            //Tìm những hotel hết phòng
+            const noAvailableHotels = await Hotel.find({
+                hotelId: { $in: noAvailableHotelIds }
             }).lean()
             availableHotels.forEach((hotel) => {
                 hotel.minPrice = minPriceOfHotels[hotel.hotelId] || null; // Lấy giá từ minPriceOfHotels hoặc để null nếu không có
@@ -290,7 +298,8 @@ const searchHotel = (filter) => {
             resolve({
                 status: 'OK',
                 message: 'Tìm khách sạn thành công',
-                hotels: availableHotels,
+                data: availableHotels,
+                outOfRoom: noAvailableHotels,
                 statusCode: 200
                 //roomTypes: availableRoomTypes
             })

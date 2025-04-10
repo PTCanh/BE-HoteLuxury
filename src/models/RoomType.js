@@ -36,7 +36,11 @@ const roomTypeSchema = new Schema({
         type: [String],
         required: true
     },
-    maxPeople: {
+    adultQuantity: {
+        type: Number,
+        required: true
+    },
+    childQuantity: {
         type: Number,
         required: true
     },
