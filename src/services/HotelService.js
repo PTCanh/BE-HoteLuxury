@@ -349,7 +349,7 @@ const userFilterHotel = (filter) => {
         try {
             //Khách sạn đã tìm kiếm
             const searchedHotel = await searchHotel(filter)
-            const searchedHotels = searchedHotel.hotels
+            const searchedHotels = searchedHotel.data
             // if (!searchedHotels.hotels || searchedHotels.hotels.length === 0) {
             //     return resolve({
             //         status: 'ERR',
