@@ -177,6 +177,13 @@ const searchHotel = (filter) => {
                     statusCode: 404
                 })
             }
+            function normalizeVietnamese(str) {
+                return str
+                    .normalize("NFD")                     // Tách chữ + dấu
+                    .replace(/[\u0300-\u036f]/g, "")     // Xoá dấu
+                    .replace(/đ/g, "d")                  // đ → d
+                    .replace(/Đ/g, "D");                 // Đ → D
+            }
             // Bộ lọc
             const regex = new RegExp(filter.filter, 'i');
             //Khách sạn đã tìm kiếm
@@ -211,11 +218,11 @@ const searchHotel = (filter) => {
             //Tìm các hotel theo địa chỉ hotel
             const checkHotel = formatHotels.filter((hotel) => {
                 return (
-                    regex.test(hotel.locationName) ||
-                    regex.test(hotel.hotelName) ||
-                    regex.test(hotel.hotelAddress)
+                    regex.test(normalizeVietnamese(hotel.locationName || '').toLowerCase()) ||
+                    regex.test(normalizeVietnamese(hotel.hotelName || '').toLowerCase()) ||
+                    regex.test(normalizeVietnamese(hotel.hotelAddress || '').toLowerCase())
                 );
-            })
+            });
 
             //const checkHotel = await Hotel.find(formatFilter);
             if (checkHotel.length === 0) {
