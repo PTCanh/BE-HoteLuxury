@@ -375,7 +375,7 @@ const userFilterHotel = (filter) => {
                 hotelName: filter.hotelName ? filter.hotelName.replace(/\s+/g, ' ').trim().toLowerCase() : null,
                 hotelType: filter.hotelType ? filter.hotelType.split(',') : null,
                 hotelStar: filter.hotelStar ? filter.hotelStar.split(',') : null,
-                minPrice: filter.minPrice ? filter.minPrice.split(',') : null,
+                minPrice: filter.minPrice ? filter.minPrice.split('-') : null,
             };
             //console.log(formatFilter, parseFloat(formatFilter.minPrice[0]))
             // const filteredHotels = searchedHotels.filter((hotel) => {
