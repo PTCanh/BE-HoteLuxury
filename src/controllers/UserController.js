@@ -371,8 +371,8 @@ export const updatePasswordController = async (req, res) => {
     try {
         const { userId, oldPassword, newPassword, confirmPassword } = req.body;
 
-        const result = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
-        return res.status(response.statusCode).json(result);
+        const response = await updatePassword(userId, oldPassword, newPassword, confirmPassword);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({
             message: e

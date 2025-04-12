@@ -430,6 +430,7 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
             resolve({
                 status: "OK",
                 message: "Cập nhật mật khẩu thành công",
+                statusCode: 200
             });
         } catch (e) {
             reject({
