@@ -238,7 +238,7 @@ const searchHotel = (filter) => {
                         {
                             $gte: [
                                 { $add: ["$adultQuantity", "$childQuantity"] },
-                                filter.adultQuantity + filter.childQuantity
+                                parseInt(filter.adultQuantity) + parseInt(filter.childQuantity)
                             ]
                         }
                     ]
