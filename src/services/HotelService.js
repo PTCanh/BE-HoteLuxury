@@ -185,7 +185,8 @@ const searchHotel = (filter) => {
                     .replace(/Đ/g, "D");                 // Đ → D
             }
             // Bộ lọc
-            const regex = new RegExp(filter.filter, 'i');
+            const formatFilter = normalizeVietnamese(filter.filter || '').toLowerCase()
+            const regex = new RegExp(formatFilter, 'i');
             //Khách sạn đã tìm kiếm
             const hotels = await Hotel.find({ isDeleted: false })
                 .populate({
