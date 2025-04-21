@@ -167,6 +167,14 @@ const getAllHotel = (headers) => {
     })
 }
 
+function normalizeVietnamese(str) {
+    return str
+        .normalize("NFD")                     // Tách chữ + dấu
+        .replace(/[\u0300-\u036f]/g, "")     // Xoá dấu
+        .replace(/đ/g, "d")                  // đ → d
+        .replace(/Đ/g, "D");                 // Đ → D
+}
+
 const searchHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -177,15 +185,9 @@ const searchHotel = (filter) => {
                     statusCode: 404
                 })
             }
-            function normalizeVietnamese(str) {
-                return str
-                    .normalize("NFD")                     // Tách chữ + dấu
-                    .replace(/[\u0300-\u036f]/g, "")     // Xoá dấu
-                    .replace(/đ/g, "d")                  // đ → d
-                    .replace(/Đ/g, "D");                 // Đ → D
-            }
+            
             // Bộ lọc
-            const formatFilter = normalizeVietnamese(filter.filter || '').toLowerCase()
+            const formatFilter = normalizeVietnamese(filter.filter || '').toLowerCase().trim()
             const regex = new RegExp(formatFilter, 'i');
             //Khách sạn đã tìm kiếm
             const hotels = await Hotel.find({ isDeleted: false })
@@ -380,7 +382,7 @@ const userFilterHotel = (filter) => {
             //     formatFilter.hotelStar = { $in: hotelStars }
             // }
             const formatFilter = {
-                hotelName: filter.hotelName ? filter.hotelName.replace(/\s+/g, ' ').trim().toLowerCase() : null,
+                hotelName: filter.hotelName ? normalizeVietnamese(filter.hotelName).toLowerCase().trim() : '',
                 hotelType: filter.hotelType ? filter.hotelType.split(',') : null,
                 hotelStar: filter.hotelStar ? filter.hotelStar.split(',') : null,
                 minPrice: filter.minPrice ? filter.minPrice.split('-') : null,
@@ -396,7 +398,7 @@ const userFilterHotel = (filter) => {
             //console.log(searchedHotels)
             const filteredHotels = searchedHotels.filter((hotel) => {
                 return (
-                    (!formatFilter.hotelName || (hotel.hotelName && hotel.hotelName.toLowerCase().includes(formatFilter.hotelName))) &&
+                    (!formatFilter.hotelName || (hotel.hotelName && normalizeVietnamese(hotel.hotelName).toLowerCase().includes(formatFilter.hotelName))) &&
                     (!formatFilter.hotelType || (Array.isArray(formatFilter.hotelType) && formatFilter.hotelType.includes(hotel.hotelType))) &&
                     (!formatFilter.hotelStar || (Array.isArray(formatFilter.hotelStar) && formatFilter.hotelStar.includes(String(hotel.hotelStar)))) &&
                     (!formatFilter.minPrice || (

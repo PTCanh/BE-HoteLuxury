@@ -1,5 +1,6 @@
 import Rating from '../models/Rating.js'
 import Hotel from '../models/Hotel.js'
+import User from '../models/User.js'
 import Booking from '../models/Booking.js'
 import jwt from 'jsonwebtoken'
 
@@ -52,7 +53,13 @@ const getAllRatingByHotelId = async (hotelId) => {
         try {
             const allRatings = await Rating.find({
                 hotelId: hotelId
-            })
+            }).populate({
+                path: "userId",
+                model: "Users",
+                localField: "userId",
+                foreignField: "userId",
+                select: "fullname image",
+            }).lean()
             resolve({
                 status: "OK",
                 message: "Xem tất cả đánh giá thành công",
@@ -60,6 +67,7 @@ const getAllRatingByHotelId = async (hotelId) => {
             })
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     });
 };
