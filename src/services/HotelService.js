@@ -116,6 +116,12 @@ const getDetailHotel = (id) => {
             const checkHotel = await Hotel.findOne({
                 hotelId: id,
                 isDeleted: false
+            }).populate({
+                path: "locationId",
+                model: "Location",
+                localField: "locationId",
+                foreignField: "locationId",
+                select: "locationName",
             }).lean()
             if (checkHotel === null) {
                 return resolve({
@@ -124,6 +130,8 @@ const getDetailHotel = (id) => {
                     statusCode: 404
                 })
             }
+            checkHotel.locationName = checkHotel.locationId?.locationName || ''
+            checkHotel.locationId = checkHotel.locationId?.locationId || ''
             resolve({
                 status: 'OK',
                 message: 'Xem chi tiết khách sạn thành công',
