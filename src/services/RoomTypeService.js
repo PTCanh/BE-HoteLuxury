@@ -292,8 +292,11 @@ const filterRoomType = (headers, filter) => {
             if (filter.maxPeople) {
                 formatFilter.maxPeople = filter.maxPeople
             }
-            const token = headers.authorization.split(' ')[1]
-            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let decoded = {}
+            if (headers.authorization) {
+                const token = headers.authorization.split(' ')[1]
+                decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            }
             let filterRoomType = {}
             if (decoded.roleId === "R2") {
                 const checkHotel = await Hotel.find({
@@ -310,19 +313,95 @@ const filterRoomType = (headers, filter) => {
                     statusCode: 200
                 })
             }
-            filterRoomType = await RoomType.find(formatFilter);
-            if (filterRoomType.length === 0) {
-                return resolve({
-                    status: 'ERR',
-                    message: `Không tìm thấy loại phòng nào`,
-                    statusCode: 404
-                })
+            //filterRoomType = await RoomType.find(formatFilter);
+            //Tìm tất cả roomType của khách sạn
+            const roomTypes = await RoomType.find({
+                hotelId: filter.hotelId,
+                $expr: {
+                    $and: [
+                        { $gte: ["$adultQuantity", filter.adultQuantity] },
+                        {
+                            $gte: [
+                                { $add: ["$adultQuantity", "$childQuantity"] },
+                                parseInt(filter.adultQuantity) + parseInt(filter.childQuantity)
+                            ]
+                        }
+                    ]
+                }
+            });
+            //console.log('RoomType: ', roomTypes.length)
+            //Chuyển thành mảng roomTypeId
+            const roomTypeIds = roomTypes.map(roomType => roomType.roomTypeId)
+            // Find all Rooms associated with all the RoomType
+            const rooms = await Room.find({ roomTypeId: { $in: roomTypeIds }, isActive: true });
+            //console.log('Room: ', rooms.length)
+            //Chuyển thành mảng roomId
+            const roomIds = rooms.map(room => room.roomId)
+            //Tìm tất cả phòng đã được đặt
+            const bookedRoomIds = await Schedule.find({
+                roomId: { $in: roomIds },
+                $or: [
+                    { dayStart: { $gte: filter.dayStart, $lte: filter.dayEnd } },
+                    { dayEnd: { $gte: filter.dayStart, $lte: filter.dayEnd } }
+                ]
+            }).distinct("roomId");
+            //console.log('BookedRoom: ', bookedRoomIds.length)
+            //Tìm những phòng còn trống
+            const availableRooms = await Room.find({
+                roomId: { $in: roomIds, $nin: bookedRoomIds },
+                isActive: true
+            });
+            //console.log('AvailableRoom: ', availableRooms)
+            //Tìm id của roomType của các phòng trống
+            const availableRoomTypeIds = availableRooms.map(room => room.roomTypeId)
+            //console.log('availableRoomTypeIds: ', availableRoomTypeIds)
+            //Gộp roomTypeId và currentRooms thành Object
+            const result = Object.values(
+                availableRoomTypeIds.reduce((acc, roomTypeId) => {
+                    if (!acc[roomTypeId]) {
+                        acc[roomTypeId] = { roomTypeId, currentRooms: 1 };
+                    } else {
+                        acc[roomTypeId].currentRooms += 1;
+                    }
+                    return acc;
+                }, {})
+            );
+            //Tìm object có roomTypeId còn đủ phòng
+            const filterResult = result.filter((roomtype) => {
+                return roomtype.currentRooms >= filter.currentRooms;
+            });
+            //Map thành mảng roomTypeId
+            const filterResultIds = filterResult.map(roomtype => roomtype.roomTypeId)
+            //Tìm những roomType của các phòng trống
+            const availableRoomTypes = await RoomType.find({
+                roomTypeId: { $in: filterResultIds }
+            })
+            //Tính giá nhỏ nhất của khách sạn
+            let minPriceOfHotel = 0
+            if(availableRoomTypes.length > 0){
+                minPriceOfHotel = Math.min(...availableRoomTypes.map(rt => rt.roomTypePrice))
             }
+            //Tính giá loại phòng theo ngày
+            const dayStart = new Date(filter.dayStart)
+            const dayEnd = new Date(filter.dayEnd)
+            const diffInMs = dayEnd - dayStart // Difference in milliseconds
+            const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
+            availableRoomTypes.forEach((roomtype) => {
+                roomtype.roomTypePrice = roomtype.roomTypePrice * diffInDays
+            })
+            // if (filterRoomType.length === 0) {
+            //     return resolve({
+            //         status: 'ERR',
+            //         message: `Không tìm thấy loại phòng nào`,
+            //         statusCode: 404
+            //     })
+            // }
             resolve({
                 status: 'OK',
                 message: 'Lọc loại phòng thành công',
-                data: filterRoomType,
-                statusCode: 200
+                data: availableRoomTypes,
+                statusCode: 200,
+                minPrice: minPriceOfHotel
             })
         } catch (e) {
             reject(e)
