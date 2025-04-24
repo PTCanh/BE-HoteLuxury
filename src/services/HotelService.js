@@ -180,7 +180,11 @@ function normalizeVietnamese(str) {
         .normalize("NFD")                     // Tách chữ + dấu
         .replace(/[\u0300-\u036f]/g, "")     // Xoá dấu
         .replace(/đ/g, "d")                  // đ → d
-        .replace(/Đ/g, "D");                 // Đ → D
+        .replace(/Đ/g, "D")                  // Đ → D
+        .replace(/[^a-zA-Z0-9\s]/g, "")      // Loại bỏ ký tự đặc biệt (ngoại trừ chữ, số và khoảng trắng)
+        .replace(/\s+/g, " ")                // Thay nhiều khoảng trắng bằng dấu gạch ngang
+        .toLowerCase()                       // Viết thường hết
+        .trim();                             // Bỏ khoảng trắng đầu/cuối (tránh dấu `-` thừa)
 }
 
 const searchHotel = (filter) => {
