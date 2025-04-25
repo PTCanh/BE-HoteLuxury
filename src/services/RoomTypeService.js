@@ -387,7 +387,7 @@ const filterRoomType = (headers, filter) => {
             const diffInMs = dayEnd - dayStart // Difference in milliseconds
             const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
             availableRoomTypes.forEach((roomtype) => {
-                roomtype.roomTypePrice = roomtype.roomTypePrice * diffInDays
+                roomtype.roomTypePrice = roomtype.roomTypePrice * diffInDays * filter.currentRooms
             })
             // if (filterRoomType.length === 0) {
             //     return resolve({
