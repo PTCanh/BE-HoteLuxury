@@ -66,6 +66,11 @@ const bookingSchema = new Schema({
     dayEnd: {
         type: Date,
         required: true
+    },
+    title: {
+        type: String,
+        enum: ['Anh', 'Chị'],
+        required: true
     }
 },
 {
