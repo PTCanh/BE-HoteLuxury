@@ -98,7 +98,7 @@ const updateBooking = (booking, id) => {
             const updatedBooking = await Booking.findOneAndUpdate({ bookingId: id },
                 booking,
                 { new: true })
-            if (booking.isConfirmed === true && searchedBooking.isConfirmed === false && (updatedBooking.status === "Chưa thanh toán" || updatedBooking.status === "Đã thanh toán")) {
+            if ((booking.isConfirmed === "true" || booking.isConfirmed === true) && searchedBooking.isConfirmed === false && (updatedBooking.status === "Chưa thanh toán" || updatedBooking.status === "Đã thanh toán")) {
                 // Find all Rooms associated with the RoomType
                 const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId, isActive: true });
 

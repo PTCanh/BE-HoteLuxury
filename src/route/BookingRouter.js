@@ -9,7 +9,7 @@ router.get('/confirm/:id', authHotelManagerMiddleware, bookingController.confirm
 router.get("/momo_return", bookingController.handlePaymentReturn); // Định nghĩa tuyến đường để xử lý phản hồi từ MoMo
 router.get('/search', bookingController.searchBooking)
 router.post('/', authUserMiddleware, bookingController.createBooking)
-router.put('/:id', authUserMiddleware, bookingController.updateBooking)
+router.put('/:id',  bookingController.updateBooking)
 router.delete('/:id', bookingController.deleteBooking)
 router.get('/:id', authUserMiddleware, bookingController.getDetailBooking)
 router.get('/', authUserMiddleware, bookingController.getAllBooking)
