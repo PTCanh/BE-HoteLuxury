@@ -8,6 +8,12 @@ import jwt from 'jsonwebtoken'
 const createBooking = (booking) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if(booking.dayStart){
+                booking.dayStart = booking.dayStart.split('T')[0]
+            }
+            if(booking.dayEnd){
+                booking.dayEnd = booking.dayEnd.split('T')[0]
+            }
             // Find all Rooms associated with the RoomType
             const rooms = await Room.find({
                 roomTypeId: booking.roomTypeId,

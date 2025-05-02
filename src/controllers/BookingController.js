@@ -5,14 +5,14 @@ const createBooking = async (req, res) => {
     try {
         const response = await bookingService.createBooking(req.body);
         //console.log(response)
-        if (response.status === "OK" && response.data.paymentMethod === "Chuyển khoản") {
+        if (response.status === "OK" && response.data.paymentMethod === "Online") {
             const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
             return res.status(200).json({
                 status: "OK2",
                 message: "Booking created successfully",
                 data: paymentUrl
             });
-        } else if (response.status === "OK" && response.data.paymentMethod === "Tiền mặt") {
+        } else if (response.status === "OK" && response.data.paymentMethod === "Trực tiếp") {
             return res.status(response.statusCode).json(response);
         }
         else {
