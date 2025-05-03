@@ -73,7 +73,7 @@ const handlePaymentReturn = async (req, res) => {
             // Thanh toán thành công
             await bookingService.updateBooking({ status: "Đã thanh toán", isConfirmed: true }, bookingId);
 
-            return res.redirect('http://localhost:3000/dashboard/trips');
+            return res.redirect('http://localhost:3000/dashboard/trips?type=1');
             //return res.redirect('https://hoteluxury.vercel.app/dashboard/trips');
             // return res.status(200).json({
             //   status: "OK",
@@ -82,9 +82,12 @@ const handlePaymentReturn = async (req, res) => {
         } else {
             // Thanh toán thất bại
             //await bookingService.updateBookingStatus(bookingId, "S3");
-            await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã hủy", isConfirmed: true }, { new: true })
+            //await Booking.findOneAndUpdate({ bookingId: bookingId }, { status: "Đã hủy", isConfirmed: true }, { new: true })
 
-            return res.redirect('http://localhost:3000/dashboard/trips');
+            //Xóa luôn booking
+            await Booking.findOneAndDelete({ bookingId: bookingId })
+
+            return res.redirect('http://localhost:3000');
             //return res.redirect('https://hoteluxury.vercel.app/dashboard/trips');
             // return res.status(400).json({
             //     status: "ERR",

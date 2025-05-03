@@ -345,7 +345,14 @@ const getAllBooking = (headers, filter) => {
                         model: 'Hotel',
                         localField: 'hotelId',
                         foreignField: 'hotelId',
-                        select: 'hotelName'
+                        select: 'hotelName locationId',
+                        populate: {
+                            path: 'locationId',
+                            model: 'Location',
+                            localField: 'locationId',
+                            foreignField: 'locationId',
+                            select: 'locationName'
+                        }
                     }
                 },
                 {
@@ -388,6 +395,7 @@ const getAllBooking = (headers, filter) => {
                     ...booking,
                     hotelId: booking.roomTypeId?.hotelId?.hotelId || null,
                     hotelName: booking.roomTypeId?.hotelId?.hotelName || null,
+                    locationName: booking.roomTypeId?.hotelId?.locationId?.locationName || null,
                     roomTypeName: booking.roomTypeId?.roomTypeName || null,
                     roomTypeImage: booking.roomTypeId?.roomTypeImage || null,
                     roomNumber: roomNumbers, // Mảng roomNumber
