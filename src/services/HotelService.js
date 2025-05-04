@@ -319,7 +319,7 @@ const searchHotel = (filter) => {
                 if (!minPriceOfHotels[roomType.hotelId]) {
                     minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
                 } else {
-                    if (minPriceOfHotels[roomType.hotelId] > roomType.roomTypePrice) {
+                    if (Number(minPriceOfHotels[roomType.hotelId]) > Number(roomType.roomTypePrice)) {
                         minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
                     }
                 }
