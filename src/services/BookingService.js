@@ -317,6 +317,21 @@ const getAllBooking = (headers, filter) => {
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
 
+            const needDeleteBooking = await Booking.find({
+                userId: decoded.userId,
+                paymentMethod: "Online",
+                isConfirmed: false,
+                status: "Chưa thanh toán"
+            })
+            if(needDeleteBooking.length > 0){
+                const result = await Booking.deleteMany({
+                    userId: decoded.userId,
+                    paymentMethod: "Online",
+                    isConfirmed: false,
+                    status: "Chưa thanh toán"
+                })
+                //console.log(`${result.deletedCount} booking đã bị xóa.`);
+            }
 
             // const checkHotel = await Hotel.find({
             //     userId: decoded.userId

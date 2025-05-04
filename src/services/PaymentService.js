@@ -21,7 +21,7 @@ const createPaymentUrl = async (bookingId, amount, orderInfo) => {
         + "&orderId=" + orderId + "&orderInfo=" + orderInfo + "&partnerCode=" + momoConfig.partnerCode + "&redirectUrl=" + redirectUrl
         + "&requestId=" + requestId + "&requestType=" + requestType;
 
-    console.log(rawSignature)
+    //console.log(rawSignature)
 
     var signature = crypto.createHmac('sha256', momoConfig.secretKey)
         .update(rawSignature)
@@ -52,7 +52,7 @@ const createPaymentUrl = async (bookingId, amount, orderInfo) => {
                 'Content-Type': 'application/json'
             }
         });
-        console.log('Payment URL:', response);
+        //console.log('Payment URL:', response);
         // const bookingId = response.data.requestId.split('_')[0];
         // await bookingService.updateBookingStatus(bookingId, "S2");
         const bookingIdFromRequestId = response.data.requestId.split('_')[0];
