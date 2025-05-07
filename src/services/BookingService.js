@@ -221,30 +221,33 @@ const getDetailBooking = (id) => {
                 localField: 'bookingId',
                 foreignField: 'bookingId',
                 select: 'roomId',
-                populate: {
-                    path: 'roomId', // Từ Schedule, populate tiếp sang Room
-                    model: 'Room',
-                    localField: 'roomId',
-                    foreignField: 'roomId',
-                    select: 'roomNumber', // Chỉ lấy trường roomNumber
-                },
+                // populate: {
+                //     path: 'roomId', // Từ Schedule, populate tiếp sang Room
+                //     model: 'Room',
+                //     localField: 'roomId',
+                //     foreignField: 'roomId',
+                //     select: 'roomNumber', // Chỉ lấy trường roomNumber
+                // },
             }).lean()
             const checkSchedule = await Schedule.find({
                 bookingId: id
-            }).populate({
-                path: 'roomId',
-                model: 'Room',
-                localField: 'roomId',
-                foreignField: 'roomId',
-                select: 'roomNumber'
-            }).lean()
-            const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
+            })
+            // .populate({
+            //     path: 'roomId',
+            //     model: 'Room',
+            //     localField: 'roomId',
+            //     foreignField: 'roomId',
+            //     select: 'roomNumber'
+            // })
+            .lean()
+            //const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
             const formatedBooking = {
                 ...checkBooking[0],
                 hotelName: checkBooking[0].roomTypeId?.hotelId.hotelName || null,
                 roomTypeName: checkBooking[0].roomTypeId?.roomTypeName || null,
                 roomTypeImage: checkBooking[0].roomTypeId?.roomTypeImage || null,
-                roomNumber: roomNumber,
+                //roomNumber: roomNumber,
+                roomId: checkBooking[0].bookingId?.roomId || null,
                 roomTypeId: checkBooking[0].roomTypeId?.roomTypeId || null,
                 bookingId: checkBooking[0].bookingId?.bookingId || null,
             }

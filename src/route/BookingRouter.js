@@ -11,7 +11,7 @@ router.get('/search', bookingController.searchBooking)
 router.post('/', authUserMiddleware, bookingController.createBooking)
 router.put('/:id', authUserMiddleware, bookingController.updateBooking)
 router.delete('/:id', bookingController.deleteBooking)
-router.get('/:id', authUserMiddleware, bookingController.getDetailBooking)
+router.get('/:id',  bookingController.getDetailBooking)
 router.get('/', authUserMiddleware, bookingController.getAllBooking)
 
 
