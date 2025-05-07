@@ -116,6 +116,24 @@ export const loginUserService = (userLogin) => {
                 { new: true }
             )
 
+            if(checkUser.roleId === 'R2'){
+                const checkHotel = await Hotel.findOne({ userId: checkUser.userId})
+
+                return resolve({
+                    status: 'OK',
+                    message: 'SUCCESS',
+                    access_token,
+                    refresh_token,
+                    roleId: checkUser.roleId,
+                    userId: checkUser.userId,
+                    fullname: checkUser.fullname,
+                    avatar: checkUser.image,
+                    email: checkUser.email,
+                    hotelId: checkHotel.hotelId,
+                    statusCode: 200
+                })
+            }
+
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
