@@ -28,6 +28,10 @@ const ratingSchema = new Schema({
     hotelId: {
         type: Number,
         required: true
+    },
+    ratingImages: {
+        type: [String], // Array of strings to store multiple image URLs
+        required: true
     }
 },
 {

@@ -60,10 +60,15 @@ const getAllRatingByHotelId = async (hotelId) => {
                 foreignField: "userId",
                 select: "fullname image",
             }).lean()
+            const allRatingImages = allRatings.map(rating => rating.ratingImages || [])
+
+            const allRatingImagesArray = allRatingImages.flat().filter(image => image !== null && image !== undefined)
+
             resolve({
                 status: "OK",
                 message: "Xem tất cả đánh giá thành công",
-                data: allRatings
+                data: allRatings,
+                allRatingImagesArray: allRatingImagesArray
             })
         } catch (e) {
             reject(e)
