@@ -71,6 +71,10 @@ const bookingSchema = new Schema({
         type: String,
         enum: ['Anh', 'Chị'],
         required: true
+    },
+    bookingCode: {
+        type: String,
+        required: true
     }
 },
 {

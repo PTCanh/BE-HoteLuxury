@@ -5,15 +5,32 @@ import Schedule from '../models/Schedule.js'
 import Room from '../models/Room.js'
 import jwt from 'jsonwebtoken'
 
+const generateBookingCode = () => {
+    const prefix = 'BK'; // Định danh cố định, ví dụ 'BK' = Booking
+
+    const now = new Date(); // Lấy thời gian hiện tại
+
+    const timePart = now.getFullYear().toString().slice(-2)       // Lấy 2 số cuối năm, ví dụ: 2025 → "25"
+        + String(now.getMonth() + 1).padStart(2, '0')               // Tháng (0-11) → cộng 1 → luôn có 2 chữ số
+        + String(now.getDate()).padStart(2, '0')                    // Ngày, luôn 2 chữ số
+        + String(now.getHours()).padStart(2, '0')                   // Giờ (24h), luôn 2 chữ số
+        + String(now.getMinutes()).padStart(2, '0');                // Phút, luôn 2 chữ số
+
+    const randomPart = Math.floor(1000 + Math.random() * 9000);   // Số ngẫu nhiên từ 1000 → 9999
+
+    return `${prefix}${timePart}${randomPart}`; // Gộp tất cả thành mã hoàn chỉnh
+};
+
 const createBooking = (booking) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if(booking.dayStart){
+            if (booking.dayStart) {
                 booking.dayStart = booking.dayStart.split('T')[0]
             }
-            if(booking.dayEnd){
+            if (booking.dayEnd) {
                 booking.dayEnd = booking.dayEnd.split('T')[0]
             }
+            booking.bookingCode = generateBookingCode()
             // Find all Rooms associated with the RoomType
             const rooms = await Room.find({
                 roomTypeId: booking.roomTypeId,
@@ -232,14 +249,14 @@ const getDetailBooking = (id) => {
             const checkSchedule = await Schedule.find({
                 bookingId: id
             })
-            // .populate({
-            //     path: 'roomId',
-            //     model: 'Room',
-            //     localField: 'roomId',
-            //     foreignField: 'roomId',
-            //     select: 'roomNumber'
-            // })
-            .lean()
+                // .populate({
+                //     path: 'roomId',
+                //     model: 'Room',
+                //     localField: 'roomId',
+                //     foreignField: 'roomId',
+                //     select: 'roomNumber'
+                // })
+                .lean()
             //const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
             const formatedBooking = {
                 ...checkBooking[0],
@@ -317,6 +334,10 @@ const getAllBooking = (headers, filter) => {
                 formatFilter.dayEnd = new Date(filter.dayEnd)
                 //formatFilter.dayEnd = { $regex: new RegExp(formatFilter.dayEnd, 'i') } // Không phân biệt hoa thường
             }
+            if (filter.bookingCode) {
+                formatFilter.bookingCode = filter.bookingCode.replace(/\s+/g, ' ').trim()
+                formatFilter.bookingCode = { $regex: new RegExp(formatFilter.bookingCode, 'i') } // Không phân biệt hoa thường
+            }
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
 
@@ -326,7 +347,7 @@ const getAllBooking = (headers, filter) => {
                 isConfirmed: false,
                 status: "Chưa thanh toán"
             })
-            if(needDeleteBooking.length > 0){
+            if (needDeleteBooking.length > 0) {
                 const result = await Booking.deleteMany({
                     userId: decoded.userId,
                     paymentMethod: "Online",
@@ -379,23 +400,24 @@ const getAllBooking = (headers, filter) => {
                     localField: 'bookingId',
                     foreignField: 'bookingId',
                     select: 'roomId',
-                    populate: {
-                        path: 'roomId', // Từ Schedule, populate tiếp sang Room
-                        model: 'Room',
-                        localField: 'roomId',
-                        foreignField: 'roomId',
-                        select: 'roomNumber', // Chỉ lấy trường roomNumber
-                    },
+                    // populate: {
+                    //     path: 'roomId', // Từ Schedule, populate tiếp sang Room
+                    //     model: 'Room',
+                    //     localField: 'roomId',
+                    //     foreignField: 'roomId',
+                    //     select: 'roomNumber', // Chỉ lấy trường roomNumber
+                    // },
                 },
             ])
             const allSchedule = await Schedule.find()
-                .populate({
-                    path: 'roomId',
-                    model: 'Room',
-                    localField: 'roomId',
-                    foreignField: 'roomId',
-                    select: 'roomNumber'
-                }).lean()
+            // .populate({
+            //     path: 'roomId',
+            //     model: 'Room',
+            //     localField: 'roomId',
+            //     foreignField: 'roomId',
+            //     select: 'roomNumber'
+            // })
+            //.lean()
             let formatedAllBookingOfUser = populatedBookings.map((booking) => {
                 // Lấy roomNumber từ booking.bookingId.roomId (nếu có)
                 // let roomNumbers = [];
@@ -407,7 +429,8 @@ const getAllBooking = (headers, filter) => {
                 //     roomNumbers.push(booking.bookingId.roomId.roomNumber);
                 // }
                 const checkSchedule = allSchedule.filter(schedule => (schedule.bookingId === booking.originalBookingId))
-                const roomNumbers = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
+                const roomIds = checkSchedule.filter(schedule => schedule.roomId).map(schedule => schedule.roomId);
+                //const roomNumbers = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
 
                 return {
                     ...booking,
@@ -416,14 +439,12 @@ const getAllBooking = (headers, filter) => {
                     locationName: booking.roomTypeId?.hotelId?.locationId?.locationName || null,
                     roomTypeName: booking.roomTypeId?.roomTypeName || null,
                     roomTypeImage: booking.roomTypeId?.roomTypeImage || null,
-                    roomNumber: roomNumbers, // Mảng roomNumber
+                    roomId: roomIds, // Mảng roomId
                     roomTypeId: booking.roomTypeId?.roomTypeId || null,
                     bookingId: booking.originalBookingId, // Giữ bookingId dù không populate được
                 };
             }).sort((a, b) => {
-                const dateA = new Date(a.dayStart);
-                const dateB = new Date(b.dayStart);
-                return dateA - dateB;
+                return b.createdAt - a.createdAt;
             });
             const currentDate = new Date();
             const today = currentDate.toISOString().split('T')[0]
@@ -616,6 +637,10 @@ const getAllBookingByHotelManager = (headers, filter) => {
                 formatFilter.dayEnd = new Date(filter.dayEnd)
                 //formatFilter.dayEnd = { $regex: new RegExp(formatFilter.dayEnd, 'i') } // Không phân biệt hoa thường
             }
+            if (filter.bookingCode) {
+                formatFilter.bookingCode = filter.bookingCode.replace(/\s+/g, ' ').trim()
+                formatFilter.bookingCode = { $regex: new RegExp(formatFilter.bookingCode, 'i') } // Không phân biệt hoa thường
+            }
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             if (decoded.roleId === "R2") {
@@ -645,12 +670,14 @@ const getAllBookingByHotelManager = (headers, filter) => {
                         ...booking,
                         hotelId: booking.roomTypeId?.hotelId || null,
                         roomTypeId: booking.roomTypeId?.roomTypeId || null,
+                        createdDay: booking.createdAt.toISOString().split('T')[0]
                     };
                 }).sort((a, b) => {
-                    const dateA = new Date(a.dayStart);
-                    const dateB = new Date(b.dayStart);
-                    return dateA - dateB;
+                    return b.createdAt - a.createdAt;
                 })
+                if (filter.filterStart && filter.filterEnd) {
+                    allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.createdDay >= filter.filterStart && booking.createdDay <= filter.filterEnd))
+                }
                 return resolve({
                     status: 'OK',
                     message: 'Xem tất cả đơn đặt phòng thành công',
