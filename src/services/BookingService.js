@@ -3,6 +3,8 @@ import RoomType from '../models/RoomType.js'
 import Hotel from '../models/Hotel.js'
 import Schedule from '../models/Schedule.js'
 import Room from '../models/Room.js'
+import User from '../models/User.js'
+import sendMail from '../utils/SendMail.js'
 import jwt from 'jsonwebtoken'
 
 const generateBookingCode = () => {
@@ -98,7 +100,7 @@ const createBooking = (booking) => {
     })
 }
 
-const updateBooking = (booking, id) => {
+const updateBooking = (booking, id, headers) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkBooking = await Booking.findOne({
@@ -115,7 +117,27 @@ const updateBooking = (booking, id) => {
             const updatedBooking = await Booking.findOneAndUpdate({ bookingId: id },
                 booking,
                 { new: true })
-            if ((booking.isConfirmed === "true" || booking.isConfirmed === true) && searchedBooking.isConfirmed === false && (updatedBooking.status === "Chưa thanh toán" || updatedBooking.status === "Đã thanh toán")) {
+
+            if (searchedBooking.isConfirmed === false && updatedBooking.isConfirmed === true) {
+                const checkUser = await User.findOne({ userId: searchedBooking.userId })
+                const text = `Đơn đặt phòng của quý khách đã được xác nhận. Xin chân thành cảm ơn quý khách đã đặt phòng. Lưu ý: Quý khách sẽ không thể hủy đơn đặt phòng ${updatedBooking.bookingCode} được nữa.`
+                const subject = 'Xác nhận đơn đặt phòng'
+                sendMail(checkUser.email, text, subject)
+            }
+
+            if (headers && headers.authorization) {
+                const token = headers.authorization.split(' ')[1]
+                const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+                if (decoded.roleId === "R2" && searchedBooking.status === "Đã thanh toán") {
+                    return resolve({
+                        status: 'OK',
+                        message: 'Cập nhật đơn đặt phòng thành công',
+                        statusCode: 200
+                    })
+                }
+            }
+
+            if ((searchedBooking.isConfirmed === false && searchedBooking.status === "Chưa thanh toán" && updatedBooking.status === "Đã thanh toán") || ((booking.isConfirmed === "true" || booking.isConfirmed === true) && searchedBooking.isConfirmed === false && updatedBooking.status === "Chưa thanh toán")) {
                 // Find all Rooms associated with the RoomType
                 const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId, isActive: true });
 
