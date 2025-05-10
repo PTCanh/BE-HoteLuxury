@@ -693,7 +693,8 @@ const getAllBookingByHotelManager = (headers, filter) => {
                         hotelId: booking.roomTypeId?.hotelId || null,
                         roomTypeId: booking.roomTypeId?.roomTypeId || null,
                         createdDay: new Date(booking.createdAt.getTime() + 7 * 60 * 60 * 1000).toISOString().split('T')[0],
-                        dayStartFilter: booking.dayStart.toISOString().split('T')[0]
+                        dayStartFilter: booking.dayStart.toISOString().split('T')[0],
+                        dayEndFilter: booking.dayEnd.toISOString().split('T')[0]
                     };
                 }).sort((a, b) => {
                     return b.createdAt - a.createdAt;
@@ -703,6 +704,9 @@ const getAllBookingByHotelManager = (headers, filter) => {
                 }
                 if (filter.checkInStart && filter.checkInEnd) {
                     allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayStartFilter >= filter.checkInStart && booking.dayStartFilter <= filter.checkInEnd))
+                }
+                if (filter.checkOutStart && filter.checkOutEnd) {
+                    allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayEndFilter >= filter.checkOutStart && booking.dayEndFilter <= filter.checkOutEnd))
                 }
                 return resolve({
                     status: 'OK',
