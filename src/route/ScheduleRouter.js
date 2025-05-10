@@ -1,15 +1,15 @@
 import express from "express";
 import scheduleController from "../controllers/ScheduleController.js"
-import { authMiddleware } from "../middlewares/authMiddleware.js";
+import { authMiddleware, authHotelManagerMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get('/search', scheduleController.searchSchedule)
-router.post('/', scheduleController.createSchedule)
-router.put('/:id', scheduleController.updateSchedule)
-router.delete('/:id', scheduleController.deleteSchedule)
-router.get('/:id', scheduleController.getDetailSchedule)
-router.get('/', scheduleController.getAllSchedule)
+router.get('/search', authHotelManagerMiddleware, scheduleController.searchSchedule)
+router.post('/', authHotelManagerMiddleware, scheduleController.createSchedule)
+router.put('/:id', authHotelManagerMiddleware, scheduleController.updateSchedule)
+router.delete('/:id', authHotelManagerMiddleware, scheduleController.deleteSchedule)
+router.get('/:id', authHotelManagerMiddleware, scheduleController.getDetailSchedule)
+router.get('/', authHotelManagerMiddleware, scheduleController.getAllSchedule)
 
 
 export default router

@@ -692,13 +692,17 @@ const getAllBookingByHotelManager = (headers, filter) => {
                         ...booking,
                         hotelId: booking.roomTypeId?.hotelId || null,
                         roomTypeId: booking.roomTypeId?.roomTypeId || null,
-                        createdDay: booking.createdAt.toISOString().split('T')[0]
+                        createdDay: new Date(booking.createdAt.getTime() + 7 * 60 * 60 * 1000).toISOString().split('T')[0],
+                        dayStartFilter: booking.dayStart.toISOString().split('T')[0]
                     };
                 }).sort((a, b) => {
                     return b.createdAt - a.createdAt;
                 })
                 if (filter.filterStart && filter.filterEnd) {
                     allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.createdDay >= filter.filterStart && booking.createdDay <= filter.filterEnd))
+                }
+                if (filter.checkInStart && filter.checkInEnd) {
+                    allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayStartFilter >= filter.checkInStart && booking.dayStartFilter <= filter.checkInEnd))
                 }
                 return resolve({
                     status: 'OK',

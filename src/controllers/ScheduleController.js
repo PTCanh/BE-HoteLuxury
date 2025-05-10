@@ -3,9 +3,9 @@ import scheduleService from "../services/ScheduleService.js";
 const createSchedule = async (req, res) => {
     try {
         const response = await scheduleService.createSchedule(req.body);
-        return res.status(200).json(response);
+        return res.status(response.statusCode).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
@@ -17,7 +17,7 @@ const updateSchedule = async (req, res) => {
         const response = await scheduleService.updateSchedule(req.body, id);
         return res.status(response.statusCode).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
@@ -29,7 +29,7 @@ const deleteSchedule = async (req, res) => {
         const response = await scheduleService.deleteSchedule(id);
         return res.status(response.statusCode).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
@@ -41,7 +41,7 @@ const getDetailSchedule = async (req, res) => {
         const response = await scheduleService.getDetailSchedule(id);
         return res.status(response.statusCode).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
@@ -49,10 +49,10 @@ const getDetailSchedule = async (req, res) => {
 
 const getAllSchedule = async (req, res) => {
     try {
-        const response = await scheduleService.getAllSchedule();
+        const response = await scheduleService.getAllSchedule(req.headers);
         return res.status(response.statusCode).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
@@ -63,7 +63,7 @@ const searchSchedule = async (req, res) => {
         const response = await scheduleService.searchSchedule(req.query);
         return res.status(200).json(response);
     } catch (e) {
-        return res.status(404).json({
+        return res.status(500).json({
             message: e,
         });
     }
