@@ -27,10 +27,10 @@ Website có các tính năng sau:
 + Đơn đặt phòng loại này không thể hủy
 + Lưu ý, chúng tôi không hoàn trả tiền nên người dùng cần cân nhắc trước khi chọn phương thức thanh toán này
 - Nếu chọn hình thức "Trực tiếp" và chọn nút "Đặt", người dùng sẽ được chuyển qua trang đơn đặt phòng "Chờ xác nhận" của bạn
-+ Nếu đơn đặt phòng chưa được xác nhận thì người dùng có thể hủy đơn ấy tại đơn đặt phòng "Chờ xác nhận"
++ Nếu đơn đặt phòng chưa được xác nhận thì người dùng có thể hủy đơn ấy tại đơn đặt phòng "Chờ xác nhận", chỉ đơn đặt phòng có phương thức thanh toán là "Trực tiếp" mới có thể hủy được
 + Nếu đơn đặt phòng đã được xác nhận thì người dùng không thể hủy đơn này nữa
 - Người dùng có thể đánh giá khách sạn ở trong đơn đặt phòng "Đã hoàn thành", mỗi đơn đặt phòng sau khi kết thúc sẽ được chuyển qua "Đã hoàn thành" và chỉ có thể đánh giá một lần
-Nếu người dùng hỏi về khách sạn rẻ nhất hoặc thông tin động, bạn sẽ dùng dữ liệu từ backend.
+Nếu người dùng hỏi về khách sạn rẻ nhất, bạn sẽ dùng dữ liệu từ backend. Còn những câu hỏi động khác thì trả về "Xin lỗi, tôi không thể tìm kiếm thông tin này"
 `
 };
 
