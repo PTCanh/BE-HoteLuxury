@@ -190,6 +190,21 @@ function normalizeVietnamese(str) {
 const searchHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if(!filter.dayStart){
+                filter.dayStart = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().split('T')[0];
+            }
+            if(!filter.dayEnd){
+                filter.dayEnd = new Date(Date.now() + (24 + 7) * 60 * 60 * 1000).toISOString().split('T')[0];
+            }
+            if(!filter.adultQuantity){
+                filter.adultQuantity = 1
+            }
+            if(!filter.childQuantity){
+                filter.childQuantity = 0
+            }
+            if(!filter.currentRooms){
+                filter.currentRooms = 1
+            }
             if (!filter.dayStart || !filter.dayEnd) {
                 return resolve({
                     status: 'ERR',

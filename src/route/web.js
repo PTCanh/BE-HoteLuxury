@@ -5,7 +5,8 @@ import { createUserController,loginUserController,updateUserController, deleteUs
     createAndSendOTPController, filterUserController, getAllHotelManagerController, updatePasswordController,
     hotelManagerDashboardController, googleLoginUserController} from "../controllers/UserController.js";
 import { authMiddleware, authHotelManagerMiddleware, authUserMiddleware, verifyToken } from "../middlewares/authMiddleware.js";
-import { upload, uploadToCloudinary } from "../utils/UploadFile.js";
+import { upload, uploadToCloudinary} from "../utils/UploadFile.js";
+import { chatbotController } from "../utils/ChatBot.js";
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.post('/forgot-password/:token', handleResetPasswordTokenController)
 router.post('/reset-password/:token', handleResetPasswordController)
 //authentication
 router.post('/refresh-token',refreshToken)
+//chatbot
+router.post('/chatbot', chatbotController)
 
 export default router
