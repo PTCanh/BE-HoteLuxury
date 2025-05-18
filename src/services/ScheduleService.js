@@ -174,10 +174,10 @@ const getDetailSchedule = (id) => {
     })
 }
 
-const getAllSchedule = (headers) => {
+const getAllSchedule = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const token = headers.authorization.split(' ')[1]
+            const token = filter.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
             const checkRoomType = await RoomType.find({ hotelId: checkHotel.hotelId })
@@ -212,10 +212,10 @@ const getAllSchedule = (headers) => {
                 return b.createdAt - a.createdAt;
             }));
             if (filter.checkInStart && filter.checkInEnd) {
-                allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayStartFilter >= filter.checkInStart && booking.dayStartFilter <= filter.checkInEnd))
+                checkSchedule = checkSchedule.filter(schedule => (schedule.dayStartFilter >= filter.checkInStart && schedule.dayStartFilter <= filter.checkInEnd))
             }
             if (filter.checkOutStart && filter.checkOutEnd) {
-                allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayEndFilter >= filter.checkOutStart && booking.dayEndFilter <= filter.checkOutEnd))
+                checkSchedule = checkSchedule.filter(schedule => (schedule.dayEndFilter >= filter.checkOutStart && schedule.dayEndFilter <= filter.checkOutEnd))
             }
             resolve({
                 status: 'OK',
