@@ -208,9 +208,9 @@ const getAllSchedule = (filter) => {
                 bookingId: schedule.bookingId?.bookingId,
                 dayStartFilter: schedule.dayStart.toISOString().split('T')[0],
                 dayEndFilter: schedule.dayEnd.toISOString().split('T')[0]
-            }).sort((a, b) => {
+            })).sort((a, b) => {
                 return b.createdAt - a.createdAt;
-            }));
+            });
             if (filter.checkInStart && filter.checkInEnd) {
                 checkSchedule = checkSchedule.filter(schedule => (schedule.dayStartFilter >= filter.checkInStart && schedule.dayStartFilter <= filter.checkInEnd))
             }
