@@ -191,7 +191,7 @@ const getAllSchedule = (headers) => {
                 model: 'Booking',
                 localField: 'bookingId',
                 foreignField: 'bookingId',
-                select: 'bookingCode roomTypeId',
+                select: 'bookingCode customerName roomTypeId',
                 populate: {
                     path: 'roomTypeId',
                     model: 'RoomType',
@@ -203,6 +203,7 @@ const getAllSchedule = (headers) => {
             checkSchedule = checkSchedule.map(schedule => ({
                 ...schedule,
                 bookingCode: schedule.bookingId?.bookingCode,
+                customerName: schedule.bookingId?.customerName,
                 roomTypeName: schedule.bookingId?.roomTypeId?.roomTypeName,
                 bookingId: schedule.bookingId?.bookingId,
             }));
