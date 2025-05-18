@@ -206,7 +206,17 @@ const getAllSchedule = (headers) => {
                 customerName: schedule.bookingId?.customerName,
                 roomTypeName: schedule.bookingId?.roomTypeId?.roomTypeName,
                 bookingId: schedule.bookingId?.bookingId,
+                dayStartFilter: schedule.dayStart.toISOString().split('T')[0],
+                dayEndFilter: schedule.dayEnd.toISOString().split('T')[0]
+            }).sort((a, b) => {
+                return b.createdAt - a.createdAt;
             }));
+            if (filter.checkInStart && filter.checkInEnd) {
+                allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayStartFilter >= filter.checkInStart && booking.dayStartFilter <= filter.checkInEnd))
+            }
+            if (filter.checkOutStart && filter.checkOutEnd) {
+                allBookingOfHotel = allBookingOfHotel.filter(booking => (booking.dayEndFilter >= filter.checkOutStart && booking.dayEndFilter <= filter.checkOutEnd))
+            }
             resolve({
                 status: 'OK',
                 message: 'Xem tất cả lịch đặt phòng thành công',
