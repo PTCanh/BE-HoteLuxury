@@ -191,11 +191,19 @@ const getAllSchedule = (headers) => {
                 model: 'Booking',
                 localField: 'bookingId',
                 foreignField: 'bookingId',
-                select: 'bookingCode'
+                select: 'bookingCode roomTypeId',
+                populate: {
+                    path: 'roomTypeId',
+                    model: 'RoomType',
+                    localField: 'roomTypeId',
+                    foreignField: 'roomTypeId',
+                    select: 'roomTypeName'
+                }
             }).lean()
             checkSchedule = checkSchedule.map(schedule => ({
                 ...schedule,
                 bookingCode: schedule.bookingId?.bookingCode,
+                roomTypeName: schedule.bookingId?.roomTypeId?.roomTypeName,
                 bookingId: schedule.bookingId?.bookingId,
             }));
             resolve({
