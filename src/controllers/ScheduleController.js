@@ -49,7 +49,7 @@ const getDetailSchedule = async (req, res) => {
 
 const getAllSchedule = async (req, res) => {
     try {
-        const response = await scheduleService.getAllSchedule(req.headers);
+        const response = await scheduleService.getAllSchedule(req.headers, req.query);
         return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(500).json({

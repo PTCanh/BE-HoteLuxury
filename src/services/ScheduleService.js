@@ -174,10 +174,10 @@ const getDetailSchedule = (id) => {
     })
 }
 
-const getAllSchedule = (filter) => {
+const getAllSchedule = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const token = filter.authorization.split(' ')[1]
+            const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
             const checkRoomType = await RoomType.find({ hotelId: checkHotel.hotelId })
@@ -191,7 +191,7 @@ const getAllSchedule = (filter) => {
                 model: 'Booking',
                 localField: 'bookingId',
                 foreignField: 'bookingId',
-                select: 'bookingCode customerName roomTypeId',
+                select: 'bookingCode customerName customerPhone roomTypeId',
                 populate: {
                     path: 'roomTypeId',
                     model: 'RoomType',
@@ -204,12 +204,13 @@ const getAllSchedule = (filter) => {
                 ...schedule,
                 bookingCode: schedule.bookingId?.bookingCode,
                 customerName: schedule.bookingId?.customerName,
+                customerPhone: schedule.bookingId?.customerPhone,
                 roomTypeName: schedule.bookingId?.roomTypeId?.roomTypeName,
                 bookingId: schedule.bookingId?.bookingId,
                 dayStartFilter: schedule.dayStart.toISOString().split('T')[0],
                 dayEndFilter: schedule.dayEnd.toISOString().split('T')[0]
             })).sort((a, b) => {
-                return b.createdAt - a.createdAt;
+                return b.dayStart - a.dayStart;
             });
             if (filter.checkInStart && filter.checkInEnd) {
                 checkSchedule = checkSchedule.filter(schedule => (schedule.dayStartFilter >= filter.checkInStart && schedule.dayStartFilter <= filter.checkInEnd))
