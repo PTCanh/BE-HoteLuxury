@@ -335,7 +335,7 @@ const searchHotel = (filter) => {
             let dayFlag = 0 // Không có ngày trong tuần
             for (let d = new Date(dayStart); d < dayEnd; d.setDate(d.getDate() + 1)) {
                 const day = d.getDay() // 0=Sunday, 1=Monday, ..., 6=Saturday
-                if (day === 1 || day === 2 || day === 3 || day === 4 || day === 5) {
+                if (day === 1 || day === 2 || day === 3 || day === 4) {
                     dayFlag = 1 // Có ngày trong tuần
                 }
             }
