@@ -19,6 +19,9 @@ Bạn là một trợ lý chatbot cho website đặt phòng khách sạn.
 Bạn trả lời bằng tiếng Việt. 
 Website có các tính năng sau:
 - Người dùng có thể tìm kiếm khách sạn theo địa điểm, địa chỉ khách sạn hoặc tên khách sạn (ví dụ: Đà Nẵng)
+- Nếu người dùng tìm theo địa điểm, địa chỉ khách sạn thì sẽ chuyển đến trang lọc khách sạn, ở trang này người dùng có thể lọc theo các tiêu chí 
+của trang web như thời gian, địa điểm, số người, số phòng, và lọc theo một số thông tin về khách sạn như tên, loại hình, số sao, giá tiền.
+Còn nếu người dùng tìm theo tên khách sạn thì sẽ vào trực tiếp trang thông tin khách sạn
 - Người dùng cần đăng nhập để đặt phòng
 - Để đặt phòng, cần vào trang thông tin khách sạn và ấn "đặt" ở loại phòng mong muốn
 - Khi ấn "đặt", nếu người dùng chưa đăng nhập thì sẽ chuyển qua trang đăng nhập để đăng nhập vào tài khoản của mình, sau khi đăng nhập 
@@ -44,12 +47,33 @@ function detectIntent(question) {
     return 'static';
 }
 
-export async function handleChat(question) {
-    const intent = detectIntent(question);
+// memory store (in-memory per session)
+const chatSessions = {}; // key: userId or sessionId
 
-    let messages = [systemPrompt];
+export async function handleChat(sessionId, question) {
+    if (!chatSessions[sessionId]) {
+        chatSessions[sessionId] = {
+            messages: [systemPrompt],
+            previousIntent: null,
+            previousQuestion: null
+        };
+    }
+
+    const session = chatSessions[sessionId];
+    let intent = detectIntent(question);
+
+    if (intent === 'static' && session.previousIntent === 'cheapest_hotel') {
+        question = session.previousQuestion + " " + question;
+        intent = 'cheapest_hotel';
+    }
+    // add user's message
+    session.messages.push({ role: "user", content: question });
+    session.previousQuestion = question;
+    session.previousIntent = intent;
 
     if (intent === 'cheapest_hotel') {
+        session.previousIntent = 'cheapest_hotel';
+        session.previousQuestion = question;
         const locationResponse = await locationService.getAllLocation();
         const locations = locationResponse.data;
         const locationName = locations.map(location => location.locationName);
@@ -60,10 +84,12 @@ export async function handleChat(question) {
         );
 
         if (!questionLocationName) {
-            messages.push({
+            const reply = 'Xin lỗi, tôi không nhận diện được địa điểm bạn muốn tìm khách sạn. Bạn có thể nói rõ hơn không?';
+            session.messages.push({
                 role: 'assistant',
-                content: 'Xin lỗi, tôi không nhận diện được địa điểm bạn muốn tìm khách sạn. Bạn có thể nói rõ hơn không?'
+                content: reply
             });
+            return reply;
         } else {
             let filter = {}
             filter.filter = questionLocationName
@@ -71,28 +97,40 @@ export async function handleChat(question) {
             const hotelWithMinPrice = response.data.reduce((minHotel, currentHotel) => {
                 return Number(currentHotel.minPrice) < Number(minHotel.minPrice) ? currentHotel : minHotel;
             });
-            messages.push({
+            const formattedPrice = Number(hotelWithMinPrice.minPrice).toLocaleString('vi-VN') + ' VND';
+            const reply = `Khách sạn rẻ nhất ở ${questionLocationName} trong hôm nay khi ở 1 người lớn và 1 phòng là ${hotelWithMinPrice.hotelName} với giá ${formattedPrice}.`;
+            session.previousIntent = 'static';
+            session.messages.push({
                 role: 'assistant',
-                content: `Khách sạn rẻ nhất ở ${questionLocationName} trong hôm nay khi ở 1 người lớn và 1 phòng là ${hotelWithMinPrice.hotelName} với giá ${hotelWithMinPrice.minPrice}.`
+                content: reply
             });
+            return reply;
         }
     }
 
-    messages.push({ role: 'user', content: question });
-
+    // send to OpenAI
     const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo', // or 'gpt-4'
-        messages
+        messages: session.messages
     });
     //console.log(response.choices[0].message.content)
-    return response.choices[0].message.content;
+
+
+    // add assistant reply to history
+    const assistantReply = response.choices[0].message.content;
+    session.messages.push({ role: "assistant", content: assistantReply });
+
+    // console.log(session.messages)
+    // console.log(response.choices[0].message.content)
+    // console.log(assistantReply)
+    return assistantReply;
 }
 
 export const chatbotController = async (req, res) => {
-    const { question } = req.body;
+    const { sessionId, question } = req.body;
 
     try {
-        const reply = await handleChat(question);
+        const reply = await handleChat(sessionId, question);
         res.json({ answer: reply });
     } catch (err) {
         console.error(err);
