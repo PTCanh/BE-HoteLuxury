@@ -289,6 +289,10 @@ const filterRoomType = (headers, filter) => {
                 formatFilter.roomTypePrice = filter.roomTypePrice.replace(/\s+/g, ' ').trim()
                 formatFilter.roomTypePrice = { $regex: new RegExp(formatFilter.roomTypePrice) }
             }
+            if (filter.roomTypeWeekendPrice) {
+                formatFilter.roomTypeWeekendPrice = filter.roomTypeWeekendPrice.replace(/\s+/g, ' ').trim()
+                formatFilter.roomTypeWeekendPrice = { $regex: new RegExp(formatFilter.roomTypeWeekendPrice) }
+            }
             if (filter.maxPeople) {
                 formatFilter.maxPeople = filter.maxPeople
             }
@@ -368,26 +372,51 @@ const filterRoomType = (headers, filter) => {
             );
             //Tìm object có roomTypeId còn đủ phòng
             const filterResult = result.filter((roomtype) => {
-                return roomtype.currentRooms >= filter.currentRooms;
+                return roomtype.currentRooms >= Number(filter.currentRooms);
             });
             //Map thành mảng roomTypeId
             const filterResultIds = filterResult.map(roomtype => roomtype.roomTypeId)
             //Tìm những roomType của các phòng trống
-            const availableRoomTypes = await RoomType.find({
+            let availableRoomTypes = await RoomType.find({
                 roomTypeId: { $in: filterResultIds }
-            })
+            }).lean()
             //Tính giá nhỏ nhất của khách sạn
-            let minPriceOfHotel = 0
-            if(availableRoomTypes.length > 0){
-                minPriceOfHotel = Math.min(...availableRoomTypes.map(rt => rt.roomTypePrice))
-            }
-            //Tính giá loại phòng theo ngày
             const dayStart = new Date(filter.dayStart)
             const dayEnd = new Date(filter.dayEnd)
-            const diffInMs = dayEnd - dayStart // Difference in milliseconds
-            const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
-            availableRoomTypes.forEach((roomtype) => {
-                roomtype.roomTypePrice = roomtype.roomTypePrice * diffInDays * filter.currentRooms
+            let minPriceOfHotel = 0
+            let dayFlag = 0 // Không có ngày trong tuần
+            for (let d = new Date(dayStart); d < dayEnd; d.setDate(d.getDate() + 1)) {
+                const day = d.getDay() // 0=Sunday, 1=Monday, ..., 6=Saturday
+                if (day === 1 || day === 2 || day === 3 || day === 4 || day === 5) {
+                    dayFlag = 1 // Có ngày trong tuần
+                }
+            }
+            if (availableRoomTypes.length > 0) {
+                if (dayFlag === 1) {
+                    minPriceOfHotel = Math.min(...availableRoomTypes.map(rt => rt.roomTypePrice))
+                } else {
+                    minPriceOfHotel = Math.min(...availableRoomTypes.map(rt => rt.roomTypeWeekendPrice))
+                }
+            }
+            //Tính giá loại phòng theo ngày
+            // const diffInMs = dayEnd - dayStart // Difference in milliseconds
+            // const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24))
+
+            availableRoomTypes = availableRoomTypes.map((roomtype) => {
+                let totalPrice = 0
+                for (let d = new Date(dayStart); d < dayEnd; d.setDate(d.getDate() + 1)) {
+                    const day = d.getDay() // 0=Sunday, 1=Monday, ..., 6=Saturday
+                    if (day === 0 || day === 6) { // Weekend
+                        totalPrice += Number(roomtype.roomTypeWeekendPrice ?? 0)
+                    } else { // Weekday
+                        totalPrice += Number(roomtype.roomTypePrice ?? 0)
+                    }
+                }
+                totalPrice = totalPrice * Number(filter.currentRooms)
+                return {
+                    ...roomtype,
+                    totalPrice: totalPrice.toString()
+                };
             })
             // if (filterRoomType.length === 0) {
             //     return resolve({

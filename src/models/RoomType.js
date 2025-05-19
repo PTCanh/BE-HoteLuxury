@@ -47,6 +47,10 @@ const roomTypeSchema = new Schema({
     roomTypeDescription: {
         type: String,
         required: true
+    },
+    roomTypeWeekendPrice: {
+        type: String,
+        required: true
     }
 });
 

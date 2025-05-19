@@ -190,19 +190,19 @@ function normalizeVietnamese(str) {
 const searchHotel = (filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if(!filter.dayStart){
+            if (!filter.dayStart) {
                 filter.dayStart = new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().split('T')[0];
             }
-            if(!filter.dayEnd){
+            if (!filter.dayEnd) {
                 filter.dayEnd = new Date(Date.now() + (24 + 7) * 60 * 60 * 1000).toISOString().split('T')[0];
             }
-            if(!filter.adultQuantity){
+            if (!filter.adultQuantity) {
                 filter.adultQuantity = 1
             }
-            if(!filter.childQuantity){
+            if (!filter.childQuantity) {
                 filter.childQuantity = 0
             }
-            if(!filter.currentRooms){
+            if (!filter.currentRooms) {
                 filter.currentRooms = 1
             }
             if (!filter.dayStart || !filter.dayEnd) {
@@ -212,7 +212,7 @@ const searchHotel = (filter) => {
                     statusCode: 404
                 })
             }
-            
+
             // Bộ lọc
             const formatFilter = normalizeVietnamese(filter.filter || '').toLowerCase().trim()
             const regex = new RegExp(formatFilter, 'i');
@@ -329,16 +329,38 @@ const searchHotel = (filter) => {
                 roomTypeId: { $in: filterResultIds }
             })
             //Tính giá nhỏ nhất của từng khách sạn
+            const dayStart = new Date(filter.dayStart)
+            const dayEnd = new Date(filter.dayEnd)
             let minPriceOfHotels = {}
-            availableRoomTypes.forEach((roomType) => {
-                if (!minPriceOfHotels[roomType.hotelId]) {
-                    minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
-                } else {
-                    if (Number(minPriceOfHotels[roomType.hotelId]) > Number(roomType.roomTypePrice)) {
-                        minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
-                    }
+            let dayFlag = 0 // Không có ngày trong tuần
+            for (let d = new Date(dayStart); d < dayEnd; d.setDate(d.getDate() + 1)) {
+                const day = d.getDay() // 0=Sunday, 1=Monday, ..., 6=Saturday
+                if (day === 1 || day === 2 || day === 3 || day === 4 || day === 5) {
+                    dayFlag = 1 // Có ngày trong tuần
                 }
-            })
+            }
+            if (dayFlag === 1) {
+                availableRoomTypes.forEach((roomType) => {
+                    if (!minPriceOfHotels[roomType.hotelId]) {
+                        minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
+                    } else {
+                        if (Number(minPriceOfHotels[roomType.hotelId]) > Number(roomType.roomTypePrice)) {
+                            minPriceOfHotels[roomType.hotelId] = roomType.roomTypePrice
+                        }
+                    }
+                })
+            } else {
+                availableRoomTypes.forEach((roomType) => {
+                    if (!minPriceOfHotels[roomType.hotelId]) {
+                        minPriceOfHotels[roomType.hotelId] = roomType.roomTypeWeekendPrice
+                    } else {
+                        if (Number(minPriceOfHotels[roomType.hotelId]) > Number(roomType.roomTypeWeekendPrice)) {
+                            minPriceOfHotels[roomType.hotelId] = roomType.roomTypeWeekendPrice
+                        }
+                    }
+                })
+            }
+
             // let minPriceArray = Object.entries(minPriceOfHotels).map(([hotelId, minPrice]) => ({
             //     hotelId,
             //     minPrice,
