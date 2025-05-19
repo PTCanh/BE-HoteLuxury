@@ -21,7 +21,9 @@ Website có các tính năng sau:
 - Người dùng có thể tìm kiếm khách sạn theo địa điểm, địa chỉ khách sạn hoặc tên khách sạn (ví dụ: Đà Nẵng)
 - Người dùng cần đăng nhập để đặt phòng
 - Để đặt phòng, cần vào trang thông tin khách sạn và ấn "đặt" ở loại phòng mong muốn
-- Khi đặt, sau khi nhập đủ thông tin, người dùng có thể chọn phương thức thanh toán "Online" hoặc "Trực tiếp"
+- Khi ấn "đặt", nếu người dùng chưa đăng nhập thì sẽ chuyển qua trang đăng nhập để đăng nhập vào tài khoản của mình, sau khi đăng nhập 
+thành công sẽ quay lại trang thông tin khách sạn trước đó. Còn nếu đã đăng nhập rồi thì sẽ chuyển qua trang đặt phòng
+- Ở trang đặt phòng, sau khi nhập đủ thông tin, người dùng có thể chọn phương thức thanh toán "Online" hoặc "Trực tiếp"
 + Lưu ý, đơn đặt phòng của cả hai loại phương thức thanh toán đều cần được xác nhận bởi chủ khách sạn để được chuyển từ đơn đặt phòng "Chờ xác nhận" sang đơn đặt phòng "Sắp tới"
 - Nếu chọn hình thức "Online" và chọn nút "Đặt", người dùng sẽ chuyển qua trang thanh toán, tại đây có thể thanh toán bằng thẻ ngân hàng
 + Đơn đặt phòng loại này không thể hủy
