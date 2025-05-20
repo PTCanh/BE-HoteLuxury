@@ -9,6 +9,7 @@ import bookingRouter from "./BookingRouter.js"
 import cartRouter from "./CartRouter.js"
 import scheduleRouter from "./ScheduleRouter.js"
 import ratingRouter from "./RatingRouter.js"
+import notificationRouter from "./NotificationRouter.js"
 
 const routes = (app) => {
     app.use('/auth', homePageRouter)
@@ -22,6 +23,7 @@ const routes = (app) => {
     app.use('/cart',cartRouter)
     app.use('/schedule',scheduleRouter)
     app.use('/rating',ratingRouter)
+    app.use('/notification',notificationRouter)
 }
 
 export default routes

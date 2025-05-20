@@ -4,7 +4,7 @@ import momoConfig from '../config/momoConfig.js';
 import bookingService from '../services/BookingService.js';
 import Schedule from "../models/Schedule.js";
 import Booking from "../models/Booking.js";
-
+import notificationService from "../services/NotificationService.js";
 
 const createPaymentUrl = async (bookingId, amount, orderInfo) => {
     const requestId = bookingId + '_' + new Date().getTime();
@@ -71,7 +71,26 @@ const handlePaymentReturn = async (req, res) => {
 
         if (resultCode === '0') {
             // Thanh toán thành công
-            const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán"}, bookingId);
+            const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
+            const createdAtUTC = new Date(response.data.createdAt);
+
+            const padZero = (num) => num.toString().padStart(2, '0');
+
+            const hours = padZero(createdAtUTC.getHours());
+            const minutes = padZero(createdAtUTC.getMinutes());
+            const seconds = padZero(createdAtUTC.getSeconds());
+
+            const day = padZero(createdAtUTC.getDate());
+            const month = padZero(createdAtUTC.getMonth() + 1); // tháng bắt đầu từ 0
+            const year = createdAtUTC.getFullYear();
+
+            const formatted = `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+            await notificationService.createNotification({
+                userId: newBooking.partnerId,
+                type: "booking",
+                title: "Có đơn đặt phòng mới",
+                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng vào lúc ${formatted}`
+            })
 
             const io = req.app.get("io");
             const partners = req.app.get("connectedPartners");

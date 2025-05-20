@@ -1,5 +1,6 @@
 import bookingService from "../services/BookingService.js";
 import paymentService from '../services/PaymentService.js';
+import notificationService from "../services/NotificationService.js";
 
 const createBooking = async (req, res) => {
     try {
@@ -13,6 +14,25 @@ const createBooking = async (req, res) => {
                 data: paymentUrl
             });
         } else if (response.status === "OK" && response.data.paymentMethod === "Trực tiếp") {
+            const createdAtUTC = new Date(response.data.createdAt);
+
+            const padZero = (num) => num.toString().padStart(2, '0');
+
+            const hours = padZero(createdAtUTC.getHours());
+            const minutes = padZero(createdAtUTC.getMinutes());
+            const seconds = padZero(createdAtUTC.getSeconds());
+
+            const day = padZero(createdAtUTC.getDate());
+            const month = padZero(createdAtUTC.getMonth() + 1); // tháng bắt đầu từ 0
+            const year = createdAtUTC.getFullYear();
+
+            const formatted = `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+            await notificationService.createNotification({
+                userId: response.partnerId,
+                type: "booking",
+                title: "Có đơn đặt phòng mới",
+                content: `Khách hàng ${response.data.customerName} vừa đặt ${response.data.roomQuantity} phòng vào lúc ${formatted}`
+            })
             const io = req.app.get("io");
             const partners = req.app.get("connectedPartners");
             const partnerId = response.partnerId;
@@ -27,6 +47,7 @@ const createBooking = async (req, res) => {
             return res.status(404).json(response);
         }
     } catch (e) {
+        console.log(e)
         return res.status(404).json({
             message: e,
         });
