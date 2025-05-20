@@ -71,7 +71,16 @@ const handlePaymentReturn = async (req, res) => {
 
         if (resultCode === '0') {
             // Thanh toán thành công
-            await bookingService.updateBooking({ status: "Đã thanh toán"}, bookingId);
+            const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán"}, bookingId);
+
+            const io = req.app.get("io");
+            const partners = req.app.get("connectedPartners");
+            const partnerId = newBooking.partnerId;
+            const socketId = partners.get(partnerId);
+
+            if (socketId) {
+                io.to(socketId).emit("new-booking", newBooking.data);
+            }
 
             return res.redirect('http://localhost:3000/dashboard/trips?type=1');
             //return res.redirect('https://hoteluxury.vercel.app/dashboard/trips');

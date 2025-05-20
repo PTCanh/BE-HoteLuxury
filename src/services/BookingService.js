@@ -79,6 +79,10 @@ const createBooking = (booking) => {
             // booking.price = (roomTypePrice * roomQuantity).toString();
 
             const newBooking = await Booking.create(booking)
+            const checkHotel = await Hotel.findOne({
+                hotelId: checkRoomType.hotelId,
+                isDeleted: false
+            })
             // const newSchedule = {
             //     roomId: availableRooms[0].roomId,
             //     bookingId: newBooking.bookingId,
@@ -90,6 +94,7 @@ const createBooking = (booking) => {
                 status: 'OK',
                 message: 'Tạo đơn đặt phòng thành công',
                 data: newBooking,
+                partnerId: checkHotel.userId,
                 statusCode: 200
             })
 
@@ -194,9 +199,18 @@ const updateBooking = (booking, id, headers) => {
                 // Thêm các schedule vào cơ sở dữ liệu
                 //await Schedule.insertMany(newSchedules); // lỗi autoIncrement
             }
+            const checkRoomType = await RoomType.findOne({
+                roomTypeId: searchedBooking.roomTypeId
+            })
+            const checkHotel = await Hotel.findOne({
+                hotelId: checkRoomType.hotelId,
+                isDeleted: false
+            })
             resolve({
                 status: 'OK',
                 message: 'Cập nhật đơn đặt phòng thành công',
+                data: updatedBooking,
+                partnerId: checkHotel.userId,
                 statusCode: 200
             })
 

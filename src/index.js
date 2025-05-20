@@ -2,14 +2,22 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import http from "http";
 import routers from './route/index.js';
 import connectDB from './config/connectDB.js';
+import { setupSocket } from "./config/socket.js";
 import path from 'path';
 
 import dotenv from 'dotenv';
 dotenv.config();
 
 let app = express();
+const server = http.createServer(app);
+const { io, connectedPartners } = setupSocket(server);
+
+// Make io & connectedPartners accessible in routes
+app.set("io", io);
+app.set("connectedPartners", connectedPartners);
 
 app.use(cors({
     //origin: "https://hoteluxury.vercel.app", // Frontend URL

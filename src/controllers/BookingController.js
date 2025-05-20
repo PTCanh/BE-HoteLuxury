@@ -13,6 +13,14 @@ const createBooking = async (req, res) => {
                 data: paymentUrl
             });
         } else if (response.status === "OK" && response.data.paymentMethod === "Trực tiếp") {
+            const io = req.app.get("io");
+            const partners = req.app.get("connectedPartners");
+            const partnerId = response.partnerId;
+            const socketId = partners.get(partnerId);
+
+            if (socketId) {
+                io.to(socketId).emit("new-booking", response.data);
+            }
             return res.status(response.statusCode).json(response);
         }
         else {
