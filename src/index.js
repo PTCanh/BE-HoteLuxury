@@ -38,7 +38,7 @@ connectDB();
 
 let port = process.env.PORT || 9000;
 
-app.listen(port, () => {
+server.listen(port, () => {
     // callback
     console.log("Backend Nodejs is running on the port: " + port);
 })
