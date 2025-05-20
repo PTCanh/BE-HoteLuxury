@@ -382,7 +382,7 @@ export const updatePasswordController = async (req, res) => {
 
 export const hotelManagerDashboardController = async (req, res) => {
     try {
-        const response = await hotelManagerDashboardService(req.query.hotelId, req.query)
+        const response = await hotelManagerDashboardService(req.headers, req.query)
         return res.status(200).json(response)
     } catch (e) {
         return res.status(404).json({

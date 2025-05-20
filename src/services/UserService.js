@@ -460,15 +460,13 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
     });
 };
 
-export const hotelManagerDashboardService = (hotelId, filter) => {
+export const hotelManagerDashboardService = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
-            // const token = headers.authorization.split(' ')[1]
-            // const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            // const checkHotel = await Hotel.find({userId:decoded.userId})
-            // const checkHotelIds = checkHotel.map(hotel => hotel.hotelId)
-            const checkHotel = await Hotel.findOne({ hotelId: hotelId, isDeleted: false })
-            const checkRoomType = await RoomType.find({ hotelId: hotelId })
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
+            const checkRoomType = await RoomType.find({ hotelId: checkHotel.hotelId })
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
             const totalCancelledBookingOfHotel = await Booking.find({
                 roomTypeId: { $in: checkRoomTypeIds },

@@ -17,7 +17,7 @@ const router = express.Router();
 // router.post('/reset-password', resetUserPasswordController)
 // router.get('/reset-password/:token', handleResetPasswordTokenController)
 //CRUD User
-router.get('/hotel-manager/dashboard', authHotelManagerMiddleware, hotelManagerDashboardController)
+router.get('/partner/dashboard', authHotelManagerMiddleware, hotelManagerDashboardController)
 router.get('/filter', filterUserController)
 router.post('/', authMiddleware, upload.single("image"), uploadToCloudinary, createUserController)
 router.put('/:id', verifyToken, upload.single("image"), uploadToCloudinary, updateUserController)
