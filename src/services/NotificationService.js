@@ -89,9 +89,47 @@ const getAllNotification = (headers) => {
     })
 }
 
+const readAllNotification = (headers) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            await Notification.updateMany({ userId: decoded.userId }, {isRead: true})
+            resolve({
+                status: 'OK',
+                message: 'Đọc tất cả thông báo thành công',
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+const deleteAllNotification = (headers) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            await Notification.deleteMany({ userId: decoded.userId })
+            resolve({
+                status: 'OK',
+                message: 'Xóa tất cả thông báo thành công',
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createNotification,
     updateNotification,
     deleteNotification,
     getAllNotification,
+    readAllNotification,
+    deleteAllNotification
 }

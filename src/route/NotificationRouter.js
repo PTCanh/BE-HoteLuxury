@@ -8,6 +8,7 @@ router.post('/', authHotelManagerMiddleware, NotificationController.createNotifi
 router.put('/:id',authHotelManagerMiddleware,  NotificationController.updateNotification)
 router.delete('/:id',authHotelManagerMiddleware,  NotificationController.deleteNotification)
 router.get('/', authHotelManagerMiddleware, NotificationController.getAllNotification)
-
+router.put('/',authHotelManagerMiddleware,  NotificationController.readAllNotification)
+router.delete('/',authHotelManagerMiddleware,  NotificationController.deleteAllNotification)
 
 export default router

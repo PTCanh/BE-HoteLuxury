@@ -46,9 +46,33 @@ const getAllNotification = async (req, res) => {
     }
 };
 
+const readAllNotification = async (req, res) => {
+    try {
+        const response = await notificationService.readAllNotification(req.headers);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
+const deleteAllNotification = async (req, res) => {
+    try {
+        const response = await notificationService.deleteAllNotification(req.headers);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createNotification,
     updateNotification,
     deleteNotification,
     getAllNotification,
+    readAllNotification,
+    deleteAllNotification
 }
