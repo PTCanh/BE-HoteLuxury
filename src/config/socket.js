@@ -30,7 +30,7 @@ export function setupSocket(server) {
     }
   });
 
-  io.on("connection", (socket) => {
+  io.on("connect", (socket) => {
     const partnerId = socket.user.userId; // from token
     connectedPartners.set(partnerId, socket.id);
 
