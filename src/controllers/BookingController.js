@@ -58,6 +58,22 @@ const updateBooking = async (req, res) => {
     const id = req.params.id
     try {
         const response = await bookingService.updateBooking(req.body, id, req.headers);
+        if(response.cancelBookingFlag){
+            await notificationService.createNotification({
+                userId: response.partnerId,
+                type: "booking",
+                title: "Có đơn đặt phòng bị hủy",
+                content: `Khách hàng ${response.data.customerName} vừa hủy đơn đặt phòng ${response.data.bookingCode}`
+            })
+            const io = req.app.get("io");
+            const partners = req.app.get("connectedPartners");
+            const partnerId = response.partnerId;
+            const socketId = partners.get(partnerId);
+
+            if (socketId) {
+                io.to(socketId).emit("cancel-booking", response.data);
+            }
+        }
         return res.status(response.statusCode).json(response);
     } catch (e) {
         return res.status(404).json({

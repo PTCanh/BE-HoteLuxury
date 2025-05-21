@@ -207,12 +207,23 @@ const updateBooking = (booking, id, headers) => {
                 hotelId: checkRoomType.hotelId,
                 isDeleted: false
             })
+            if (searchedBooking.status !== "Đã hết phòng" && updatedBooking.status === "Đã hết phòng") {
+                const checkUser = await User.findOne({ userId: searchedBooking.userId })
+                const text = `Xin lỗi quý khách vì số lượng phòng còn trống của loại phòng ${checkRoomType.roomTypeName} không đủ với yêu cầu của quý khách nên đơn đặt phòng ${updatedBooking.bookingCode} của quý khách đã bị hủy. Chúng tôi vô cùng xin lỗi vì sự việc này. Mong quý khách có thể thông cảm và bỏ qua. Khách sạn chúng tôi vẫn còn nhiều loại phòng khác có thể sẽ đáp ứng được yêu cầu của quý khách.`
+                const subject = 'Đơn đặt phòng bị hủy'
+                sendMail(checkUser.email, text, subject)
+            }
+            let cancelBookingFlag = false
+            if(searchedBooking.status !== "Đã hủy" && updatedBooking.status === "Đã hủy"){
+                cancelBookingFlag = true
+            }
             resolve({
                 status: 'OK',
                 message: 'Cập nhật đơn đặt phòng thành công',
                 data: updatedBooking,
                 partnerId: checkHotel.userId,
                 roomTypeName: checkRoomType.roomTypeName,
+                cancelBookingFlag: cancelBookingFlag,
                 statusCode: 200
             })
 
