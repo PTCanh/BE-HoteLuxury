@@ -84,12 +84,12 @@ const handlePaymentReturn = async (req, res) => {
             const month = padZero(createdAtUTC.getMonth() + 1); // tháng bắt đầu từ 0
             const year = createdAtUTC.getFullYear();
 
-            const formatted = `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
+            const formatted = `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`; // vào lúc ${formatted}
             await notificationService.createNotification({
                 userId: newBooking.partnerId,
                 type: "booking",
                 title: "Có đơn đặt phòng mới",
-                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng ${newBooking.roomTypeName} vào lúc ${formatted}`
+                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng ${newBooking.roomTypeName}`
             })
 
             const io = req.app.get("io");
