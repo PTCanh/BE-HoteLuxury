@@ -144,6 +144,7 @@ const adminHomePage = async (query) => {
         {
           $match: {
             isConfirmed: true,
+            status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
             createdAt: { $gte: startDate, $lt: endDate }
           }
         },
