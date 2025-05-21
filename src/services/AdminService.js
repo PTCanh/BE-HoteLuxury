@@ -3,137 +3,137 @@ import Hotel from "../models/Hotel.js";
 import Booking from "../models/Booking.js";
 import jwt from 'jsonwebtoken'
 
-const adminHomePage = async () => {
+const adminHomePage = async (query) => {
   return new Promise(async (resolve, reject) => {
-    const today = new Date();
-
-    const currentYear = today.getFullYear(); // Lấy năm hiện tại
-    const currentMonth = today.getMonth(); // Lấy tháng hiện tại (0-11)
-
     // Ngày đầu tiên của tháng hiện tại
-    const startOfMonth = new Date(currentYear, currentMonth, 1);
+    const startDate = new Date(query.year, query.month - 1, 1);
 
     // Ngày đầu tiên của tháng tiếp theo (để xác định khoảng thời gian của tháng hiện tại)
-    const startOfNextMonth = new Date(currentYear, currentMonth + 1, 1);
+    const endDate = new Date(query.year, query.month, 1);
 
     try {
-      // đếm tổng số người dùng mới
-      const countOfNewUserThisMonth = await User.countDocuments({
-        isVerified: true,  // Điều kiện isVerified = true
-        createdAt: {        // Điều kiện createdAt nằm trong tháng hiện tại
-          $gte: startOfMonth,  // Lớn hơn hoặc bằng ngày đầu tiên của tháng
-          $lt: startOfNextMonth // Nhỏ hơn ngày đầu tiên của tháng tiếp theo
-        }
-      });
-
-      // Đếm tổng số khách sạn
-      const totalHotels = await Hotel.countDocuments();
-
-      // Đếm tổng số lượt đặt khám bệnh trong tháng
-      const totalBookingThisMonth = await Booking.countDocuments({
-        dayStart: {        // Điều kiện createdAt nằm trong tháng hiện tại
-          $gte: startOfMonth,  // Lớn hơn hoặc bằng ngày đầu tiên của tháng
-          $lt: startOfNextMonth // Nhỏ hơn ngày đầu tiên của tháng tiếp theo
-        }
-      });
-
-      // Tính tổng doanh thu tháng hiện tại
-      const revenueThisMonth = await Booking.aggregate([
+      const getHotelStatsByMonth = await Booking.aggregate([
         {
-          // Lọc các booking có dayStart trong tháng hiện tại
           $match: {
-            dayStart: {
-              $gte: startOfMonth,  // Ngày lớn hơn hoặc bằng ngày đầu tháng
-              $lt: startOfNextMonth // Ngày nhỏ hơn ngày đầu tháng tiếp theo
-            }
+            status: 'Đã thanh toán',
+            dayEnd: { $gte: startDate, $lt: endDate }
           }
         },
         {
-          // Nối với collection RoomType dựa trên roomTypeId
           $lookup: {
-            from: "RoomType",          // Tên collection RoomType
-            localField: "roomTypeId",  // Trường liên kết từ Booking
-            foreignField: "roomTypeId",       // Trường liên kết từ RoomType
-            as: "roomTypeInfo"         // Tên trường để lưu thông tin RoomType
+            from: 'roomtypes',
+            let: { roomTypeId: '$roomTypeId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$roomTypeId', '$$roomTypeId'] } } }
+            ],
+            as: 'roomType'
+          }
+        },
+        { $unwind: '$roomType' },
+        {
+          $lookup: {
+            from: 'hotels',
+            let: { hotelId: '$roomType.hotelId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$hotelId', '$$hotelId'] } } }
+            ],
+            as: 'hotel'
+          }
+        },
+        { $unwind: '$hotel' },
+        {
+          $group: {
+            _id: '$roomType.hotelId',
+            hotelId: { $first: '$roomType.hotelId' },
+            hotelName: { $first: '$hotel.hotelName' },
+            totalBooking: { $sum: 1 },
+            totalPrice: { $sum: { $toDouble: '$price' } }
           }
         },
         {
-          // Tính toán tổng giá tiền của từng booking
-          $project: {
-            roomQuantity: 1,  // Số lượng phòng
-            roomTypeInfo: { $arrayElemAt: ["$roomTypeInfo", 0] }, // Lấy phần tử đầu tiên của roomTypeInfo
-            totalBookingRevenue: {
-              $multiply: [
-                { $toDouble: "$roomQuantity" },          // Chuyển số lượng phòng sang số
-                { $toDouble: "$roomTypeInfo.roomTypePrice" } // Chuyển giá tiền phòng sang số
+          $addFields: {
+            commission: {
+              $cond: [
+                { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                { $multiply: ['$totalPrice', 0.06] },
+                {
+                  $cond: [
+                    { $gte: ['$totalBooking', 5] },
+                    { $multiply: ['$totalPrice', 0.04] },
+                    { $multiply: ['$totalPrice', 0.02] }
+                  ]
+                }
               ]
             }
           }
         },
         {
-          // Tổng hợp tất cả doanh thu từ các booking
-          $group: {
-            _id: null,
-            totalRevenue: { $sum: "$totalBookingRevenue" } // Tổng doanh thu
+          $project: {
+            _id: 0,
+            hotelId: 1,
+            hotelName: 1,
+            totalBooking: 1,
+            totalPrice: 1,
+            commission: { $round: ['$commission', 0] }
           }
+        },
+        {
+          $sort: { totalBooking: -1 }
         }
       ]);
 
-      // Tính tổng doanh thu từng tháng trong năm
-      const revenueEachMonth = await Booking.aggregate([
+      const getUserStatsByMonth = await Booking.aggregate([
         {
-          // Lọc các booking trong năm hiện tại
           $match: {
-            dayStart: {
-              $gte: new Date(currentYear, 0, 1),  // Ngày đầu tiên của năm (1/1)
-              $lt: new Date(currentYear + 1, 0, 1) // Ngày đầu tiên của năm tiếp theo
-            }
+            isConfirmed: true,
+            createdAt: { $gte: startDate, $lt: endDate }
           }
         },
         {
-          // Nối với collection RoomType dựa trên roomTypeId
           $lookup: {
-            from: "RoomType",          // Tên collection RoomType
-            localField: "roomTypeId",  // Trường liên kết từ Booking
-            foreignField: "_id",       // Trường liên kết từ RoomType
-            as: "roomTypeInfo"         // Tên trường để lưu thông tin RoomType
+            from: 'users',
+            let: { userId: '$userId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$userId', '$$userId'] } } }
+            ],
+            as: 'user'
           }
         },
+        { $unwind: '$user' },
         {
-          // Tính toán tổng giá tiền của từng booking
-          $project: {
-            month: { $month: "$dayStart" }, // Lấy tháng từ trường dayStart
-            roomQuantity: 1,                // Số lượng phòng
-            roomTypeInfo: { $arrayElemAt: ["$roomTypeInfo", 0] }, // Lấy phần tử đầu tiên của roomTypeInfo
-            totalBookingRevenue: {
-              $multiply: [
-                { $toDouble: "$roomQuantity" },            // Chuyển số lượng phòng sang số
-                { $toDouble: "$roomTypeInfo.roomTypePrice" } // Chuyển giá tiền phòng sang số
-              ]
-            }
-          }
-        },
-        {
-          // Nhóm các booking theo tháng và tính tổng doanh thu cho từng tháng
           $group: {
-            _id: "$month",                           // Nhóm theo tháng
-            totalRevenue: { $sum: "$totalBookingRevenue" } // Tổng doanh thu của từng tháng
+            _id: '$userId',
+            userId: { $first: '$userId' },
+            userName: { $first: '$user.fullname' },
+            totalBooking: { $sum: 1 },
+            totalPrice: { $sum: { $toDouble: '$price' } }
           }
         },
         {
-          // Sắp xếp kết quả theo thứ tự tháng
-          $sort: { "_id": 1 } // Sắp xếp tháng theo thứ tự từ 1 đến 12
+          $match: {
+            totalBooking: { $gt: 0 },
+            totalPrice: { $gt: 0 }
+          }
+        },
+        {
+          $project: {
+            _id: 0, // Ẩn đi _id
+            userId: 1,
+            userName: 1,
+            totalBooking: 1,
+            totalPrice: 1
+          }
+        },
+        {
+          $sort: { totalBooking: -1 }
         }
       ]);
 
       resolve({
         status: "OK",
         message: "Success",
-        countOfNewUserThisMonth: countOfNewUserThisMonth,
-        totalHotels: totalHotels,
-        totalBookingThisMonth: totalBookingThisMonth,
-        revenueThisMonth: revenueThisMonth.length ? revenueThisMonth[0].totalRevenue : 0,
-        revenueEachMonth: revenueEachMonth,
+        hotel: getHotelStatsByMonth,
+        user: getUserStatsByMonth,
         statusCode: 200
       });
     } catch (e) {
