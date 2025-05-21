@@ -12,6 +12,63 @@ const adminHomePage = async (query) => {
     const endDate = new Date(query.year, query.month, 1);
 
     try {
+      const totalCommissionResult = await Booking.aggregate([
+        {
+          $match: {
+            status: 'Đã thanh toán',
+            dayEnd: { $gte: startDate, $lt: endDate }
+          }
+        },
+        {
+          $lookup: {
+            from: 'roomtypes',
+            let: { roomTypeId: '$roomTypeId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$roomTypeId', '$$roomTypeId'] } } }
+            ],
+            as: 'roomType'
+          }
+        },
+        { $unwind: '$roomType' },
+        {
+          $group: {
+            _id: '$roomType.hotelId',
+            totalBooking: { $sum: 1 },
+            totalPrice: { $sum: { $toDouble: '$price' } }
+          }
+        },
+        {
+          $addFields: {
+            commission: {
+              $cond: [
+                { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                { $multiply: ['$totalPrice', 0.06] },
+                {
+                  $cond: [
+                    { $gte: ['$totalBooking', 5] },
+                    { $multiply: ['$totalPrice', 0.04] },
+                    { $multiply: ['$totalPrice', 0.02] }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            totalCommission: { $sum: '$commission' }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalCommission: { $round: ['$totalCommission', 0] }
+          }
+        }
+      ])
+
+
       const getHotelStatsByMonth = await Booking.aggregate([
         {
           $match: {
@@ -79,7 +136,8 @@ const adminHomePage = async (query) => {
         },
         {
           $sort: { totalBooking: -1 }
-        }
+        },
+        { $limit: 10 }
       ]);
 
       const getUserStatsByMonth = await Booking.aggregate([
@@ -126,12 +184,14 @@ const adminHomePage = async (query) => {
         },
         {
           $sort: { totalBooking: -1 }
-        }
+        },
+        { $limit: 10 }
       ]);
 
       resolve({
         status: "OK",
         message: "Success",
+        totalCommission: totalCommissionResult[0]?.totalCommission || 0,
         hotel: getHotelStatsByMonth,
         user: getUserStatsByMonth,
         statusCode: 200
