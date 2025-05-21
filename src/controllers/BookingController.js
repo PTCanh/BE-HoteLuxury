@@ -31,7 +31,7 @@ const createBooking = async (req, res) => {
                 userId: response.partnerId,
                 type: "booking",
                 title: "Có đơn đặt phòng mới",
-                content: `Khách hàng ${response.data.customerName} vừa đặt ${response.data.roomQuantity} phòng vào lúc ${formatted}`
+                content: `Khách hàng ${response.data.customerName} vừa đặt ${response.data.roomQuantity} phòng ${response.roomTypeName} vào lúc ${formatted}`
             })
             const io = req.app.get("io");
             const partners = req.app.get("connectedPartners");

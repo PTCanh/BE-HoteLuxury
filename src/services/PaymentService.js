@@ -89,7 +89,7 @@ const handlePaymentReturn = async (req, res) => {
                 userId: newBooking.partnerId,
                 type: "booking",
                 title: "Có đơn đặt phòng mới",
-                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng vào lúc ${formatted}`
+                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng ${newBooking.roomTypeName} vào lúc ${formatted}`
             })
 
             const io = req.app.get("io");

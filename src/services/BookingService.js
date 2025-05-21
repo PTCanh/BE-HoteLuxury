@@ -95,6 +95,7 @@ const createBooking = (booking) => {
                 message: 'Tạo đơn đặt phòng thành công',
                 data: newBooking,
                 partnerId: checkHotel.userId,
+                roomTypeName: checkRoomType.roomTypeName,
                 statusCode: 200
             })
 
@@ -211,6 +212,7 @@ const updateBooking = (booking, id, headers) => {
                 message: 'Cập nhật đơn đặt phòng thành công',
                 data: updatedBooking,
                 partnerId: checkHotel.userId,
+                roomTypeName: checkRoomType.roomTypeName,
                 statusCode: 200
             })
 
