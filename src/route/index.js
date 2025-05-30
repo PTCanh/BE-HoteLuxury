@@ -11,6 +11,7 @@ import scheduleRouter from "./ScheduleRouter.js"
 import ratingRouter from "./RatingRouter.js"
 import notificationRouter from "./NotificationRouter.js"
 import pointHistoryRouter from "./PointHistoryRouter.js"
+import voucherRouter from "./VoucherRouter.js"
 
 const routes = (app) => {
     app.use('/auth', homePageRouter)
@@ -26,6 +27,7 @@ const routes = (app) => {
     app.use('/rating',ratingRouter)
     app.use('/notification',notificationRouter)
     app.use('/point-history',pointHistoryRouter)
+    app.use('/voucher',voucherRouter)
 }
 
 export default routes
