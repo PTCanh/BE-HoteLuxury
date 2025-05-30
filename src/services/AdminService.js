@@ -42,12 +42,12 @@ const adminHomePage = async (query) => {
             commission: {
               $cond: [
                 { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
-                { $multiply: ['$totalPrice', 0.06] },
+                { $multiply: ['$totalPrice', 0.08] },
                 {
                   $cond: [
                     { $gte: ['$totalBooking', 5] },
-                    { $multiply: ['$totalPrice', 0.04] },
-                    { $multiply: ['$totalPrice', 0.02] }
+                    { $multiply: ['$totalPrice', 0.06] },
+                    { $multiply: ['$totalPrice', 0.04] }
                   ]
                 }
               ]
