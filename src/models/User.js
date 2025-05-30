@@ -57,6 +57,10 @@ const userSchema = new Schema({
     },
     refreshToken: {
         type: String
+    },
+    point: {
+        type: Number,
+        default: 0
     }
 },
 {

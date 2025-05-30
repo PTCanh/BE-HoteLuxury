@@ -75,6 +75,17 @@ const bookingSchema = new Schema({
     bookingCode: {
         type: String,
         required: true
+    },
+    finalPrice: {
+        type: String,
+        required: true
+    },
+    voucherCode: {
+        type: String
+    },
+    point: {
+        type: Number,
+        default: 0
     }
 },
 {
