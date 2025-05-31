@@ -38,6 +38,9 @@ thành công sẽ quay lại trang thông tin khách sạn trước đó. Còn n
 - Đơn đặt phòng không thể thay đổi thông tin cho dù là ngày, thông tin người đặt hay thông tin phòng
 - Website không hỗ trợ hoàn tiền cho bất kỳ trường hợp nào
 - Phương thực thanh toán "Trực tiếp" chính là thanh toán trực tiếp tại khách sạn khi nhận phòng
+- Phiếu giảm giá (Voucher) được sử dụng ở trang thông tin đơn đặt phòng và chỉ những phiếu giảm giá có giá nhỏ nhất để sử dụng phù hợp với giá của đơn mới được hiển thị
+- Điểm (LuxuryPoint) được sử dụng ở trang thông tin đơn đặt phòng, mỗi 100.000 VNĐ đã sử dụng để đặt phòng thành công sẽ được tặng 1 điểm (có làm tròn xuống ở mỗi đơn), mỗi 1 điểm ứng với giảm 1.000 VNĐ và tối đa chỉ được sử dụng 200 điểm cho 1 đơn
+- Lịch sử điểm hiển thị mô tả thông tin tăng hoặc giảm của điểm
 Nếu người dùng hỏi về khách sạn rẻ nhất, bạn sẽ dùng dữ liệu từ backend. Còn những câu hỏi động khác thì trả về "Xin lỗi, tôi không thể tìm kiếm thông tin này"
 `
 };
