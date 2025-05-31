@@ -4,6 +4,8 @@ import Hotel from '../models/Hotel.js'
 import Schedule from '../models/Schedule.js'
 import Room from '../models/Room.js'
 import User from '../models/User.js'
+import Voucher from '../models/Voucher.js'
+import PointHistory from '../models/PointHistory.js'
 import sendMail from '../utils/SendMail.js'
 import jwt from 'jsonwebtoken'
 
@@ -79,6 +81,18 @@ const createBooking = (booking) => {
             // booking.price = (roomTypePrice * roomQuantity).toString();
 
             const newBooking = await Booking.create(booking)
+            if (newBooking.paymentMethod === "Trực tiếp") {
+                if (newBooking.voucherCode) {
+                    const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
+                    const newQuantity = checkVoucher.quantity - 1
+                    await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+                }
+                if (newBooking.point > 0) {
+                    const checkUser = await User.findOne({ userId: newBooking.userId })
+                    const newPoint = checkUser.point - newBooking.point
+                    await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint }, { new: true })
+                }
+            }
             const checkHotel = await Hotel.findOne({
                 hotelId: checkRoomType.hotelId,
                 isDeleted: false
@@ -129,6 +143,22 @@ const updateBooking = (booking, id, headers) => {
                 const text = `Đơn đặt phòng của quý khách đã được xác nhận. Xin chân thành cảm ơn quý khách đã đặt phòng. Lưu ý: Quý khách sẽ không thể hủy đơn đặt phòng ${updatedBooking.bookingCode} được nữa.`
                 const subject = 'Xác nhận đơn đặt phòng'
                 sendMail(checkUser.email, text, subject)
+                if (updatedBooking.paymentMethod === "Trực tiếp") {
+                    const point = Math.floor(Number(updatedBooking.finalPrice) / 100000);
+                    await PointHistory.create({
+                        userId: updatedBooking.userId,
+                        point: point,
+                        description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${updatedBooking.bookingCode}`
+                    })
+                    if (updatedBooking.point > 0) {
+                        await PointHistory.create({
+                            userId: updatedBooking.userId,
+                            point: updatedBooking.point,
+                            description: `Bạn đã bị trừ ${updatedBooking.point} điểm vì đã sử dụng khi đặt đơn ${updatedBooking.bookingCode}`,
+                            isPlus: false
+                        })
+                    }
+                }
             }
 
             if (headers && headers.authorization) {
@@ -214,8 +244,20 @@ const updateBooking = (booking, id, headers) => {
                 sendMail(checkUser.email, text, subject)
             }
             let cancelBookingFlag = false
-            if(searchedBooking.status !== "Đã hủy" && updatedBooking.status === "Đã hủy"){
+            if (searchedBooking.status !== "Đã hủy" && updatedBooking.status === "Đã hủy") {
                 cancelBookingFlag = true
+            }
+            if (searchedBooking.status === "Chưa thanh toán" && (updatedBooking.status === "Đã hủy" || updatedBooking.status === "Đã hết phòng")) {
+                if (updatedBooking.voucherCode) {
+                    const checkVoucher = await Voucher.findOne({ code: updatedBooking.voucherCode })
+                    const newQuantity = checkVoucher.quantity + 1
+                    await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+                }
+                if (updatedBooking.point > 0) {
+                    const checkUser = await User.findOne({ userId: updatedBooking.userId })
+                    const newPoint = checkUser.point + updatedBooking.point
+                    await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint }, { new: true })
+                }
             }
             resolve({
                 status: 'OK',
@@ -762,6 +804,58 @@ const getAllBookingByHotelManager = (headers, filter) => {
     })
 }
 
+const calculateFinalPrice = (booking) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let finalPrice = Number(booking.price)
+            if (booking.voucherCode) {
+                const checkVoucher = await Voucher.findOne({ code: booking.voucherCode })
+                if (checkVoucher === null) {
+                    return resolve({
+                        status: 'ERR2',
+                        message: 'Voucher không tồn tại',
+                        statusCode: 404
+                    })
+                }
+                if (checkVoucher.quantity <= 0) {
+                    return resolve({
+                        status: 'ERR3',
+                        message: 'Voucher đã hết lượt sử dụng',
+                        statusCode: 400
+                    });
+                }
+                if (checkVoucher.discountType === "fixed") {
+                    finalPrice = finalPrice - checkVoucher.discountValue
+                } else if (checkVoucher.discountType === "percentage") {
+                    finalPrice = finalPrice - (checkVoucher.discountValue * finalPrice) / 100
+                }
+            }
+            const checkUser = await User.findOne({ userId: booking.userId })
+            if (booking.point && Number(booking.point) > 0) {
+                if (Number(booking.point) > checkUser.point) {
+                    return resolve({
+                        status: 'ERR4',
+                        message: 'Tài khoản của bạn không đủ điểm',
+                        statusCode: 400
+                    });
+                }
+                finalPrice = finalPrice - Number(booking.point) * 1000
+            }
+            if (finalPrice < 0) finalPrice = 0;
+
+            resolve({
+                status: 'OK',
+                message: 'Tính finalPrice thành công',
+                data: finalPrice,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createBooking,
     updateBooking,
@@ -771,5 +865,6 @@ export default {
     searchBooking,
     updateBookingPaymentUrl,
     confirmBooking,
-    getAllBookingByHotelManager
+    getAllBookingByHotelManager,
+    calculateFinalPrice
 }

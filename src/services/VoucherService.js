@@ -89,9 +89,37 @@ const getAllVoucher = (headers) => {
     })
 }
 
+const getSuitableVoucher = (headers, query) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const price = Number(query.price)
+            const now = new Date();
+            const token = headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
+            let checkVoucher = await Voucher.find({
+                userId: decoded.userId,
+                minOrderValue: {$lte: price},
+                quantity: { $gte: 1 },
+                expiredAt: { $gt: now }
+            }).sort({ createdAt: -1 });
+
+            resolve({
+                status: 'OK',
+                message: 'Xem Voucher phù hợp thành công',
+                data: checkVoucher,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
     getAllVoucher,
+    getSuitableVoucher
 }

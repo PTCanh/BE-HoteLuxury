@@ -4,6 +4,8 @@ import momoConfig from '../config/momoConfig.js';
 import bookingService from '../services/BookingService.js';
 import Schedule from "../models/Schedule.js";
 import Booking from "../models/Booking.js";
+import User from '../models/User.js'
+import Voucher from '../models/Voucher.js'
 import notificationService from "../services/NotificationService.js";
 
 const createPaymentUrl = async (bookingId, amount, orderInfo) => {
@@ -72,6 +74,30 @@ const handlePaymentReturn = async (req, res) => {
         if (resultCode === '0') {
             // Thanh toán thành công
             const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
+            if (newBooking.voucherCode) {
+                const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
+                const newQuantity = checkVoucher.quantity - 1
+                await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+            }
+            if (newBooking.point > 0) {
+                const checkUser = await User.findOne({ userId: newBooking.userId })
+                const newPoint = checkUser.point - newBooking.point
+                await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint }, { new: true })
+            }
+            const point = Math.floor(Number(newBooking.finalPrice) / 100000);
+            await PointHistory.create({
+                userId: newBooking.userId,
+                point: point,
+                description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${newBooking.bookingCode}`
+            })
+            if (newBooking.point > 0) {
+                await PointHistory.create({
+                    userId: newBooking.userId,
+                    point: newBooking.point,
+                    description: `Bạn đã bị trừ ${newBooking.point} điểm vì đã sử dụng khi đặt đơn ${newBooking.bookingCode}`,
+                    isPlus: false
+                })
+            }
             const createdAtUTC = new Date(response.data.createdAt);
 
             const padZero = (num) => num.toString().padStart(2, '0');

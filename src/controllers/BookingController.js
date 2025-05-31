@@ -7,7 +7,7 @@ const createBooking = async (req, res) => {
         const response = await bookingService.createBooking(req.body);
         //console.log(response)
         if (response.status === "OK" && response.data.paymentMethod === "Online") {
-            const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.price, 'Payment for booking');
+            const paymentUrl = await paymentService.createPaymentUrl(response.data.bookingId.toString(), response.data.finalPrice, 'Payment for booking');
             return res.status(200).json({
                 status: "OK2",
                 message: "Booking created successfully",
@@ -157,6 +157,17 @@ const getAllBookingByHotelManager = async (req, res) => {
     }
 };
 
+const calculateFinalPrice = async (req, res) => {
+    try {
+        const response = await bookingService.calculateFinalPrice(req.body);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createBooking,
     updateBooking,
@@ -166,5 +177,6 @@ export default {
     searchBooking,
     handlePaymentReturn,
     confirmBooking,
-    getAllBookingByHotelManager
+    getAllBookingByHotelManager,
+    calculateFinalPrice
 }

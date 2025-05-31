@@ -46,9 +46,21 @@ const getAllVoucher = async (req, res) => {
     }
 };
 
+const getSuitableVoucher = async (req, res) => {
+    try {
+        const response = await voucherService.getSuitableVoucher(req.headers, req.query);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
     getAllVoucher,
+    getSuitableVoucher
 }
