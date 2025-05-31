@@ -34,7 +34,7 @@ const voucherSchema = new Schema({
     },
     minOrderValue: {
         type: Number,
-        required: true
+        default: 1
     },
     expiredAt: {
         type: Date,

@@ -7,6 +7,7 @@ import routers from './route/index.js';
 import connectDB from './config/connectDB.js';
 import { setupSocket } from "./config/socket.js";
 import path from 'path';
+import './config/voucherScheduler.js'; // ✅ Import để chạy cron job
 
 import dotenv from 'dotenv';
 dotenv.config();
