@@ -16,6 +16,7 @@ const adminHomePage = async (query) => {
         {
           $match: {
             status: 'Đã thanh toán',
+            isConfirmed: true,
             dayEnd: { $gte: startDate, $lt: endDate }
           }
         },
