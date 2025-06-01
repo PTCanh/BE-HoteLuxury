@@ -116,8 +116,8 @@ export const loginUserService = (userLogin) => {
                 { new: true }
             )
 
-            if(checkUser.roleId === 'R2'){
-                const checkHotel = await Hotel.findOne({ userId: checkUser.userId})
+            if (checkUser.roleId === 'R2') {
+                const checkHotel = await Hotel.findOne({ userId: checkUser.userId })
 
                 return resolve({
                     status: 'OK',
@@ -463,6 +463,22 @@ export const updatePassword = async (userId, oldPassword, newPassword, confirmPa
 export const hotelManagerDashboardService = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if (!filter.filterStart || !filter.filterEnd) {
+                return resolve({
+                    status: 'ERR1',
+                    message: 'Không có filter',
+                    statusCode: 400
+                })
+            }
+            const filterStart = new Date(filter.filterStart)
+            const filterEnd = new Date(filter.filterEnd)
+            if (isNaN(filterStart) || isNaN(filterEnd)) {
+                return resolve({
+                    status: 'ERR2',
+                    message: 'filter không hợp lệ',
+                    statusCode: 400
+                })
+            }
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
@@ -470,11 +486,13 @@ export const hotelManagerDashboardService = (headers, filter) => {
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
             const totalCancelledBookingOfHotel = await Booking.find({
                 roomTypeId: { $in: checkRoomTypeIds },
-                status: { $in: ["Đã hủy", "Đã hết phòng"] }
+                status: { $in: ["Đã hủy", "Đã hết phòng"] },
+                createdAt: { $gte: filterStart, $lte: filterEnd }
             })
             const totalBookingOfHotel = await Booking.find({
                 roomTypeId: { $in: checkRoomTypeIds },
-                status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null }
+                status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null },
+                createdAt: { $gte: filterStart, $lte: filterEnd }
             })
             const totalBookingsByRoomType = await Booking.aggregate([
                 // Bước 1: Lọc các booking có status hợp lệ

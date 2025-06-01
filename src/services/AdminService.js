@@ -52,7 +52,8 @@ const adminHomePage = async (query) => {
           $group: {
             _id: '$roomType.hotelId',
             totalBooking: { $sum: 1 },
-            totalPrice: { $sum: { $toDouble: '$price' } }
+            totalPrice: { $sum: { $toDouble: '$price' } },
+            totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
           }
         },
         {
@@ -69,28 +70,54 @@ const adminHomePage = async (query) => {
                   ]
                 }
               ]
+            },
+            money: {
+              $subtract: [
+                {
+                  $cond: [
+                    { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                    { $multiply: ['$totalPrice', 0.08] },
+                    {
+                      $cond: [
+                        { $gte: ['$totalBooking', 5] },
+                        { $multiply: ['$totalPrice', 0.06] },
+                        { $multiply: ['$totalPrice', 0.04] }
+                      ]
+                    }
+                  ]
+                },
+                { $subtract: ['$totalPrice', '$totalFinalPrice'] }
+              ]
             }
           }
         },
         {
           $group: {
             _id: null,
-            totalCommission: { $sum: '$commission' }
+            totalCommission: { $sum: '$commission' },
+            totalMoney: { $sum: '$money' }
           }
         },
         {
           $project: {
             _id: 0,
-            totalCommission: { $round: ['$totalCommission', 0] }
+            totalCommission: { $round: ['$totalCommission', 0] },
+            totalMoney: 1
           }
         }
       ])
+
+      const year = new Date().getFullYear()
 
       const totalCommissionByMonth = await Booking.aggregate([
         {
           $match: {
             status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
             isConfirmed: true,
+            dayEnd: {
+              $gte: new Date(`${year}-01-01T00:00:00.000Z`),
+              $lte: new Date(`${year}-12-31T23:59:59.999Z`)
+            }
           }
         },
         {
@@ -294,19 +321,31 @@ const adminHomePage = async (query) => {
         { $limit: 10 }
       ]);
 
+      const fullYearCommission = [];
+      for (let i = 1; i <= 12; i++) {
+        const found = totalCommissionByMonth.find(c => c.month === i);
+        fullYearCommission.push({
+          month: i,
+          totalCommission: found ? found.totalCommission : 0
+        });
+      }
+
+
       resolve({
         status: "OK",
         message: "Success",
         totalHotel: totalHotel,
         totalNewUser: totalNewUser,
         totalCommission: totalCommissionResult[0]?.totalCommission || 0,
+        totalMoney: totalCommissionResult[0]?.totalMoney || 0,
         hotel: getHotelStatsByFilter,
         user: getUserStatsByFilter,
-        totalCommissionByMonth: totalCommissionByMonth,
+        totalCommissionByMonth: fullYearCommission,
         statusCode: 200
       });
     } catch (e) {
       reject(e);
+      console.log(e)
     }
   });
 }
