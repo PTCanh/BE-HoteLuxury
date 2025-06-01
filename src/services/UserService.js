@@ -479,27 +479,31 @@ export const hotelManagerDashboardService = (headers, filter) => {
                     statusCode: 400
                 })
             }
+            const year = new Date().getFullYear()
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
             const checkRoomType = await RoomType.find({ hotelId: checkHotel.hotelId })
             const checkRoomTypeIds = checkRoomType.map(roomType => roomType.roomTypeId)
-            const totalCancelledBookingOfHotel = await Booking.find({
+            const totalCancelledBookingOfHotel = await Booking.countDocuments({
                 roomTypeId: { $in: checkRoomTypeIds },
                 status: { $in: ["Đã hủy", "Đã hết phòng"] },
                 createdAt: { $gte: filterStart, $lte: filterEnd }
             })
-            const totalBookingOfHotel = await Booking.find({
+            const totalBookingOfHotel = await Booking.countDocuments({
                 roomTypeId: { $in: checkRoomTypeIds },
-                status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null },
+                status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                isConfirmed: true,
                 createdAt: { $gte: filterStart, $lte: filterEnd }
             })
             const totalBookingsByRoomType = await Booking.aggregate([
                 // Bước 1: Lọc các booking có status hợp lệ
                 {
                     $match: {
-                        status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null },
-                        roomTypeId: { $in: checkRoomTypeIds }  // Thêm điều kiện lọc roomTypeId
+                        status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                        roomTypeId: { $in: checkRoomTypeIds },  // Thêm điều kiện lọc roomTypeId
+                        isConfirmed: true,
+                        createdAt: { $gte: filterStart, $lte: filterEnd }
                     }
                 },
                 // Bước 2: Nhóm theo roomTypeId và đếm số lượng
@@ -535,20 +539,18 @@ export const hotelManagerDashboardService = (headers, filter) => {
                         _id: 0 // Loại bỏ _id gốc nếu không cần
                     }
                 },
-                // Bước 7: Lấy 2 phần tử đầu tiên trong danh sách (lớn nhất và nhỏ nhất)
-                {
-                    $facet: {
-                        maxBookings: [{ $limit: 1 }],  // Lấy phần tử có totalBookings lớn nhất
-                        minBookings: [{ $sort: { totalBookings: 1 } }, { $limit: 1 }]  // Lấy phần tử có totalBookings nhỏ nhất
-                    }
-                }
             ]);
             const totalBookingOfHotelByTime = await Booking.aggregate([
                 // Bước 1: Lọc các booking hợp lệ
                 {
                     $match: {
                         roomTypeId: { $in: checkRoomTypeIds },
-                        status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null }
+                        status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                        isConfirmed: true,
+                        createdAt: {
+                            $gte: new Date(`${year}-01-01T00:00:00.000Z`),
+                            $lte: new Date(`${year}-12-31T23:59:59.999Z`)
+                        }
                     }
                 },
                 // Bước 2: Nhóm theo ngày, tuần, tháng, năm
@@ -592,12 +594,26 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 }
             ]);
 
+            const fullYearToTalBooking = [];
+            for (let i = 1; i <= 12; i++) {
+                const found = totalBookingOfHotelByTime.find(c => c._id.month === i);
+                fullYearToTalBooking.push({
+                    _id: { month: i },
+                    totalBookings: found ? found.totalBookings : 0
+                });
+            }
+
             const totalRevenueOfHotelByTime = await Booking.aggregate([
                 // Bước 1: Lọc các booking hợp lệ
                 {
                     $match: {
                         roomTypeId: { $in: checkRoomTypeIds },
-                        status: "Đã thanh toán"
+                        status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                        isConfirmed: true,
+                        dayEnd: {
+                            $gte: new Date(`${year}-01-01T00:00:00.000Z`),
+                            $lte: new Date(`${year}-12-31T23:59:59.999Z`)
+                        }
                     }
                 },
                 // Bước 2: Nhóm theo ngày, tuần, tháng, năm
@@ -644,11 +660,21 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 }
             ]);
 
-            const theMostBookingUser = await Booking.aggregate([
+            const fullYearRevenue = [];
+            for (let i = 1; i <= 12; i++) {
+                const found = totalRevenueOfHotelByTime.find(c => c._id.month === i);
+                fullYearRevenue.push({
+                    _id: { month: i },
+                    totalRevenue: found ? found.totalRevenue : 0
+                });
+            }
+
+            const top10BookingUser = await Booking.aggregate([
                 // Bước 1: Lọc các booking có status hợp lệ
                 {
                     $match: {
-                        status: { $nin: ["Đã hủy", "Đã hết phòng"], $ne: null },
+                        status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                        isConfirmed: true,
                         roomTypeId: { $in: checkRoomTypeIds }  // Thêm điều kiện lọc roomTypeId
                     }
                 },
@@ -656,7 +682,8 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 {
                     $group: {
                         _id: "$userId", // Nhóm theo userId
-                        totalBookings: { $sum: 1 } // Đếm số lượng mỗi roomTypeId
+                        totalBookings: { $sum: 1 }, // Đếm số lượng mỗi roomTypeId
+                        totalPrice: { $sum: { $toDouble: '$price' } }
                     }
                 },
                 // Bước 3: Sắp xếp các user theo tổng số lượt đặt (từ cao xuống thấp)
@@ -681,6 +708,7 @@ export const hotelManagerDashboardService = (headers, filter) => {
                     $project: {
                         userId: "$_id",
                         totalBookings: 1,
+                        totalPrice: 1,
                         fullname: "$userInfo.fullname",
                         phoneNumber: "$userInfo.phoneNumber",
                         email: "$userInfo.email",
@@ -690,26 +718,88 @@ export const hotelManagerDashboardService = (headers, filter) => {
                         _id: 0 // Loại bỏ _id gốc nếu không cần
                     }
                 },
-                // Bước 7: Lấy 2 phần tử đầu tiên trong danh sách (lớn nhất và nhỏ nhất)
-                {
-                    $facet: {
-                        theMostBookingUser: [{ $limit: 1 }],  // Lấy phần tử có totalBookings lớn nhất
-                        //minBookings: [{ $sort: { totalBookings: 1 } }, { $limit: 1 }]  // Lấy phần tử có totalBookings nhỏ nhất
-                    }
-                }
+                { $limit: 10 }
             ]);
+
+            const totalMoneyFilterResult = await Booking.aggregate([
+                {
+                    $match: {
+                        status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
+                        isConfirmed: true,
+                        roomTypeId: { $in: checkRoomTypeIds },  // Thêm điều kiện lọc roomTypeId
+                        dayEnd: { $gte: filterStart, $lte: filterEnd }
+                    }
+                },
+                {
+                    $group: {
+                        _id: null,
+                        totalBooking: { $sum: 1 },
+                        totalPrice: { $sum: { $toDouble: '$price' } },
+                        totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
+                    }
+                },
+                {
+                    $addFields: {
+                        totalCommission: {
+                            $cond: [
+                                { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                                { $multiply: ['$totalPrice', 0.08] },
+                                {
+                                    $cond: [
+                                        { $gte: ['$totalBooking', 5] },
+                                        { $multiply: ['$totalPrice', 0.06] },
+                                        { $multiply: ['$totalPrice', 0.04] }
+                                    ]
+                                }
+                            ]
+                        },
+                        totalMoney: {
+                            $subtract: [
+                                {
+                                    $cond: [
+                                        { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                                        { $multiply: ['$totalPrice', 0.08] },
+                                        {
+                                            $cond: [
+                                                { $gte: ['$totalBooking', 5] },
+                                                { $multiply: ['$totalPrice', 0.06] },
+                                                { $multiply: ['$totalPrice', 0.04] }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                { $subtract: ['$totalPrice', '$totalFinalPrice'] }
+                            ]
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        totalBooking: 1,
+                        totalPrice: 1,
+                        totalFinalPrice: 1,
+                        totalCommission: { $round: ['$totalCommission', 0] },
+                        totalMoney: 1
+                    }
+                },
+                {
+                    $sort: { totalBookings: -1 }  // Sắp xếp theo totalBookings giảm dần
+                }
+            ])
 
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
+                totalMoneyFilterResult,
                 ratingQuantity: checkHotel.ratingQuantity,
                 ratingAverage: checkHotel.ratingAverage,
-                totalBookingOfHotel: totalBookingOfHotel.length,
-                totalCancelledBookingOfHotel: totalCancelledBookingOfHotel.length,
+                totalBookingOfHotel: totalBookingOfHotel,
+                totalCancelledBookingOfHotel: totalCancelledBookingOfHotel,
                 totalBookingsByRoomType: totalBookingsByRoomType,
-                totalBookingOfHotelByTime: totalBookingOfHotelByTime,
-                totalRevenueOfHotelByTime: totalRevenueOfHotelByTime,
-                theMostBookingUser: theMostBookingUser
+                totalBookingOfHotelByTime: fullYearToTalBooking,
+                totalRevenueOfHotelByTime: fullYearRevenue,
+                top10BookingUser: top10BookingUser
             })
 
         } catch (e) {
