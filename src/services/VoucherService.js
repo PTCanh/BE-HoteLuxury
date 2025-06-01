@@ -69,6 +69,7 @@ const deleteVoucher = (id) => {
 const getAllVoucher = (headers) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const now = new Date();
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             let checkVoucher = await Voucher.find({
@@ -89,6 +90,7 @@ const getAllVoucher = (headers) => {
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }

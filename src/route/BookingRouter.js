@@ -4,7 +4,7 @@ import { authHotelManagerMiddleware, authUserMiddleware } from "../middlewares/a
 
 const router = express.Router();
 
-router.get('/final-price', authUserMiddleware, bookingController.calculateFinalPrice)
+router.post('/final-price', authUserMiddleware, bookingController.calculateFinalPrice)
 router.get('/by-partner', authHotelManagerMiddleware, bookingController.getAllBookingByHotelManager)
 router.get('/confirm/:id', authHotelManagerMiddleware, bookingController.confirmBooking)
 router.get("/momo_return", bookingController.handlePaymentReturn); // Định nghĩa tuyến đường để xử lý phản hồi từ MoMo
