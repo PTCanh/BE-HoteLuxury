@@ -71,7 +71,11 @@ const getAllVoucher = (headers) => {
         try {
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
-            let checkVoucher = await Voucher.find({ userId: decoded.userId })
+            let checkVoucher = await Voucher.find({
+                userId: decoded.userId,
+                quantity: { $gte: 1 },
+                expiredAt: { $gt: now }
+            })
             checkVoucher = checkVoucher.sort((a, b) => {
                 return b.createdAt - a.createdAt;
             })
