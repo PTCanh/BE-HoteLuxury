@@ -5,19 +5,36 @@ import jwt from 'jsonwebtoken'
 
 const adminHomePage = async (query) => {
   return new Promise(async (resolve, reject) => {
-    // Ngày đầu tiên của tháng hiện tại
-    const startDate = new Date(query.year, query.month - 1, 1);
-
-    // Ngày đầu tiên của tháng tiếp theo (để xác định khoảng thời gian của tháng hiện tại)
-    const endDate = new Date(query.year, query.month, 1);
-
     try {
+      if (!query.filterStart || !query.filterEnd) {
+        return resolve({
+          status: 'ERR1',
+          message: 'Không có filter',
+          statusCode: 400
+        })
+      }
+      const filterStart = new Date(query.filterStart)
+      const filterEnd = new Date(query.filterEnd)
+      if (isNaN(filterStart) || isNaN(filterEnd)) {
+        return resolve({
+          status: 'ERR2',
+          message: 'filter không hợp lệ',
+          statusCode: 400
+        })
+      }
+
+      const totalHotel = await Hotel.countDocuments({ isDeleted: false })
+
+      const totalNewUser = await User.countDocuments({
+        createdAt: { $gte: filterStart, $lte: filterEnd }
+      })
+
       const totalCommissionResult = await Booking.aggregate([
         {
           $match: {
-            status: 'Đã thanh toán',
+            status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
             isConfirmed: true,
-            dayEnd: { $gte: startDate, $lt: endDate }
+            dayEnd: { $gte: filterStart, $lte: filterEnd }
           }
         },
         {
@@ -69,12 +86,78 @@ const adminHomePage = async (query) => {
         }
       ])
 
-
-      const getHotelStatsByMonth = await Booking.aggregate([
+      const totalCommissionByMonth = await Booking.aggregate([
         {
           $match: {
-            status: 'Đã thanh toán',
-            dayEnd: { $gte: startDate, $lt: endDate }
+            status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
+            isConfirmed: true,
+          }
+        },
+        {
+          $lookup: {
+            from: 'roomtypes',
+            let: { roomTypeId: '$roomTypeId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$roomTypeId', '$$roomTypeId'] } } }
+            ],
+            as: 'roomType'
+          }
+        },
+        { $unwind: '$roomType' },
+        {
+          $addFields: {
+            year: { $year: '$dayEnd' },
+            month: { $month: '$dayEnd' }
+          }
+        },
+        {
+          $group: {
+            _id: { year: '$year', month: '$month', hotelId: '$roomType.hotelId' },
+            totalBooking: { $sum: 1 },
+            totalPrice: { $sum: { $toDouble: '$price' } }
+          }
+        },
+        {
+          $addFields: {
+            commission: {
+              $cond: [
+                { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                { $multiply: ['$totalPrice', 0.08] },
+                {
+                  $cond: [
+                    { $gte: ['$totalBooking', 5] },
+                    { $multiply: ['$totalPrice', 0.06] },
+                    { $multiply: ['$totalPrice', 0.04] }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          $group: {
+            _id: { year: '$_id.year', month: '$_id.month' },
+            totalCommission: { $sum: '$commission' }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            year: '$_id.year',
+            month: '$_id.month',
+            totalCommission: { $round: ['$totalCommission', 0] }
+          }
+        },
+        { $sort: { year: 1, month: 1 } }
+      ])
+
+
+      const getHotelStatsByFilter = await Booking.aggregate([
+        {
+          $match: {
+            isConfirmed: true,
+            status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
+            dayEnd: { $gte: filterStart, $lte: filterEnd }
           }
         },
         {
@@ -105,7 +188,8 @@ const adminHomePage = async (query) => {
             hotelId: { $first: '$roomType.hotelId' },
             hotelName: { $first: '$hotel.hotelName' },
             totalBooking: { $sum: 1 },
-            totalPrice: { $sum: { $toDouble: '$price' } }
+            totalPrice: { $sum: { $toDouble: '$price' } },
+            totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
           }
         },
         {
@@ -113,14 +197,32 @@ const adminHomePage = async (query) => {
             commission: {
               $cond: [
                 { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
-                { $multiply: ['$totalPrice', 0.06] },
+                { $multiply: ['$totalPrice', 0.08] },
                 {
                   $cond: [
                     { $gte: ['$totalBooking', 5] },
-                    { $multiply: ['$totalPrice', 0.04] },
-                    { $multiply: ['$totalPrice', 0.02] }
+                    { $multiply: ['$totalPrice', 0.06] },
+                    { $multiply: ['$totalPrice', 0.04] }
                   ]
                 }
+              ]
+            },
+            totalMoney: {
+              $subtract: [
+                {
+                  $cond: [
+                    { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                    { $multiply: ['$totalPrice', 0.08] },
+                    {
+                      $cond: [
+                        { $gte: ['$totalBooking', 5] },
+                        { $multiply: ['$totalPrice', 0.06] },
+                        { $multiply: ['$totalPrice', 0.04] }
+                      ]
+                    }
+                  ]
+                },
+                { $subtract: ['$totalPrice', '$totalFinalPrice'] }
               ]
             }
           }
@@ -132,7 +234,9 @@ const adminHomePage = async (query) => {
             hotelName: 1,
             totalBooking: 1,
             totalPrice: 1,
-            commission: { $round: ['$commission', 0] }
+            totalFinalPrice: 1,
+            commission: { $round: ['$commission', 0] },
+            totalMoney: 1
           }
         },
         {
@@ -141,12 +245,12 @@ const adminHomePage = async (query) => {
         { $limit: 10 }
       ]);
 
-      const getUserStatsByMonth = await Booking.aggregate([
+      const getUserStatsByFilter = await Booking.aggregate([
         {
           $match: {
             isConfirmed: true,
             status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
-            createdAt: { $gte: startDate, $lt: endDate }
+            createdAt: { $gte: filterStart, $lte: filterEnd }
           }
         },
         {
@@ -193,9 +297,12 @@ const adminHomePage = async (query) => {
       resolve({
         status: "OK",
         message: "Success",
+        totalHotel: totalHotel,
+        totalNewUser: totalNewUser,
         totalCommission: totalCommissionResult[0]?.totalCommission || 0,
-        hotel: getHotelStatsByMonth,
-        user: getUserStatsByMonth,
+        hotel: getHotelStatsByFilter,
+        user: getUserStatsByFilter,
+        totalCommissionByMonth: totalCommissionByMonth,
         statusCode: 200
       });
     } catch (e) {
