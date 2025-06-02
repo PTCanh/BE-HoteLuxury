@@ -144,20 +144,24 @@ const updateBooking = (booking, id, headers) => {
                 const subject = 'Xác nhận đơn đặt phòng'
                 sendMail(checkUser.email, text, subject)
                 if (updatedBooking.paymentMethod === "Trực tiếp") {
-                    const point = Math.floor(Number(updatedBooking.finalPrice) / 100000);
-                    await PointHistory.create({
-                        userId: updatedBooking.userId,
-                        point: point,
-                        description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${updatedBooking.bookingCode}`
-                    })
                     if (updatedBooking.point > 0) {
                         await PointHistory.create({
                             userId: updatedBooking.userId,
                             point: updatedBooking.point,
                             description: `Bạn đã bị trừ ${updatedBooking.point} điểm vì đã sử dụng khi đặt đơn ${updatedBooking.bookingCode}`,
-                            isPlus: false
+                            isPlus: false,
+                            currentPoint: checkUser.point
                         })
                     }
+                    const point = Math.floor(Number(updatedBooking.finalPrice) / 100000);
+                    const newPoint = checkUser.point + point //Tại điểm này checkUser.point đã bị trừ rồi
+                    await PointHistory.create({
+                        userId: updatedBooking.userId,
+                        point: point,
+                        description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${updatedBooking.bookingCode}`,
+                        currentPoint: newPoint
+                    })
+                    await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint }, { new: true })
                 }
             }
 

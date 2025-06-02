@@ -74,30 +74,34 @@ const handlePaymentReturn = async (req, res) => {
         if (resultCode === '0') {
             // Thanh toán thành công
             const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
+            const checkUser = await User.findOne({ userId: newBooking.userId })
             if (newBooking.voucherCode) {
                 const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
                 const newQuantity = checkVoucher.quantity - 1
                 await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
             }
             if (newBooking.point > 0) {
-                const checkUser = await User.findOne({ userId: newBooking.userId })
                 const newPoint = checkUser.point - newBooking.point
                 await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint }, { new: true })
-            }
-            const point = Math.floor(Number(newBooking.finalPrice) / 100000);
-            await PointHistory.create({
-                userId: newBooking.userId,
-                point: point,
-                description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${newBooking.bookingCode}`
-            })
-            if (newBooking.point > 0) {
+
                 await PointHistory.create({
                     userId: newBooking.userId,
                     point: newBooking.point,
                     description: `Bạn đã bị trừ ${newBooking.point} điểm vì đã sử dụng khi đặt đơn ${newBooking.bookingCode}`,
-                    isPlus: false
+                    isPlus: false,
+                    currentPoint: newPoint
                 })
             }
+            const point = Math.floor(Number(newBooking.finalPrice) / 100000);
+            const newPoint2 = checkUser.point - newBooking.point + point //Tại điểm này checkUser.point chưa bị trừ
+            await PointHistory.create({
+                userId: newBooking.userId,
+                point: point,
+                description: `Bạn được cộng ${point} điểm vì đã đặt đơn ${newBooking.bookingCode}`,
+                currentPoint: newPoint2
+            })
+            await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint2 }, { new: true })
+
             const createdAtUTC = new Date(response.data.createdAt);
 
             const padZero = (num) => num.toString().padStart(2, '0');

@@ -24,7 +24,11 @@ const pointHistorySchema = new Schema({
     isPlus: {
         type: Boolean,
         default: true
-    }
+    },
+    currentPoint: {
+        type: Number,
+        required: true
+    },
 },
 {
     timestamps: true
