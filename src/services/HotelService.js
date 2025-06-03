@@ -626,12 +626,26 @@ const getSimilarHotel = (id) => {
                 locationId: checkHotel.locationId,
                 isDeleted: false,
                 hotelId: { $ne: id }
-            }).limit(4)
+            }).populate({
+                path: "locationId",
+                model: "Location",
+                localField: "locationId",
+                foreignField: "locationId",
+                select: "locationName",
+            }).lean().limit(4)
+
+            const newSimilarHotels = similarHotels.map(hotel => {
+                return {
+                    ...hotel,
+                    locationName: hotel.locationId?.locationName,
+                    locationId: hotel.locationId?.locationId
+                }
+            })
 
             resolve({
                 status: 'OK',
                 message: 'Lấy khách sạn tương tự thành công',
-                data: similarHotels,
+                data: newSimilarHotels,
                 statusCode: 200
             })
 
@@ -719,15 +733,14 @@ const getTop12MostBookingHotel = () => {
                 const hotelIds = top12MostBookingHotel.map(hotel => hotel.hotelId)
                 const others = 12 - top12MostBookingHotel.length
                 const otherHotels = await Hotel.find({
-                    hotelId: {$nin: hotelIds}
-                })
-                    .populate({
-                        path: "locationId",
-                        model: "Location",
-                        localField: "locationId",
-                        foreignField: "locationId",
-                        select: "locationName",
-                    }).lean().limit(others)
+                    hotelId: { $nin: hotelIds }
+                }).populate({
+                    path: "locationId",
+                    model: "Location",
+                    localField: "locationId",
+                    foreignField: "locationId",
+                    select: "locationName",
+                }).lean().limit(others)
                 const otherTopHotels = otherHotels.map(hotel => {
                     return {
                         hotelId: hotel.hotelId,
