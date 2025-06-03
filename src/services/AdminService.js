@@ -379,7 +379,139 @@ const adminAvatar = (headers) => {
   })
 }
 
+const getAllHotel = (query) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!query.filterStart || !query.filterEnd) {
+        return resolve({
+          status: 'ERR1',
+          message: 'Không có filter',
+          statusCode: 400
+        })
+      }
+      const filterStart = new Date(query.filterStart)
+      const filterEnd = new Date(query.filterEnd)
+      if (isNaN(filterStart) || isNaN(filterEnd)) {
+        return resolve({
+          status: 'ERR2',
+          message: 'filter không hợp lệ',
+          statusCode: 400
+        })
+      }
+      let getHotelStatsByFilter = await Booking.aggregate([
+        {
+          $match: {
+            isConfirmed: true,
+            status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
+            dayEnd: { $gte: filterStart, $lte: filterEnd }
+          }
+        },
+        {
+          $lookup: {
+            from: 'roomtypes',
+            let: { roomTypeId: '$roomTypeId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$roomTypeId', '$$roomTypeId'] } } }
+            ],
+            as: 'roomType'
+          }
+        },
+        { $unwind: '$roomType' },
+        {
+          $lookup: {
+            from: 'hotels',
+            let: { hotelId: '$roomType.hotelId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$hotelId', '$$hotelId'] } } }
+            ],
+            as: 'hotel'
+          }
+        },
+        { $unwind: '$hotel' },
+        {
+          $group: {
+            _id: '$roomType.hotelId',
+            hotelId: { $first: '$roomType.hotelId' },
+            hotelName: { $first: '$hotel.hotelName' },
+            totalBooking: { $sum: 1 },
+            totalPrice: { $sum: { $toDouble: '$price' } },
+            totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
+          }
+        },
+        {
+          $addFields: {
+            commission: {
+              $cond: [
+                { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                { $multiply: ['$totalPrice', 0.08] },
+                {
+                  $cond: [
+                    { $gte: ['$totalBooking', 5] },
+                    { $multiply: ['$totalPrice', 0.06] },
+                    { $multiply: ['$totalPrice', 0.04] }
+                  ]
+                }
+              ]
+            },
+            totalMoney: {
+              $subtract: [
+                {
+                  $cond: [
+                    { $and: [{ $gte: ['$totalBooking', 5] }, { $gte: ['$totalPrice', 20000000] }] },
+                    { $multiply: ['$totalPrice', 0.08] },
+                    {
+                      $cond: [
+                        { $gte: ['$totalBooking', 5] },
+                        { $multiply: ['$totalPrice', 0.06] },
+                        { $multiply: ['$totalPrice', 0.04] }
+                      ]
+                    }
+                  ]
+                },
+                { $subtract: ['$totalPrice', '$totalFinalPrice'] }
+              ]
+            }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            hotelId: 1,
+            hotelName: 1,
+            totalBooking: 1,
+            totalPrice: 1,
+            totalFinalPrice: 1,
+            commission: { $round: ['$commission', 0] },
+            totalMoney: 1
+          }
+        },
+        {
+          $sort: { totalBooking: -1 }
+        }
+      ]);
+
+      const filterHotelName = query.hotelName?.toLowerCase().trim()
+
+      if (filterHotelName) {
+        getHotelStatsByFilter = getHotelStatsByFilter.filter(hotel => hotel.hotelName.toLowerCase().includes(filterHotelName));
+      }
+
+      resolve({
+        status: 'OK',
+        message: 'Xem danh sách khách sạn thành công',
+        data: getHotelStatsByFilter,
+        statusCode: 200
+      })
+
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
+
+
 export default {
   adminHomePage,
-  adminAvatar
+  adminAvatar,
+  getAllHotel
 }

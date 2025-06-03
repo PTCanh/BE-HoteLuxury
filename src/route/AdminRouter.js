@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/homepage', authMiddleware, adminController.adminHomePage)
 router.get('/avatar', authMiddleware, adminController.adminAvatar)
+router.get('/hotel', authMiddleware, adminController.getAllHotel)
 
 export default router
