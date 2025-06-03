@@ -312,7 +312,7 @@ const deleteBooking = (id) => {
 const getDetailBooking = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkBooking = await Booking.find({
+            const checkBooking = await Booking.findOne({
                 bookingId: id
             }).populate({
                 path: 'roomTypeId',
@@ -353,15 +353,28 @@ const getDetailBooking = (id) => {
                 // })
                 .lean()
             //const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
+            if(checkBooking.voucherCode){
+                const checkVoucher = await Voucher.findOne({
+                    code: checkBooking.voucherCode
+                })
+                if (checkVoucher.discountType === "fixed") {
+                    checkBooking.voucherDiscount = checkVoucher.discountValue
+                } else if (checkVoucher.discountType === "percentage") {
+                    checkBooking.voucherDiscount = (checkVoucher.discountValue * Number(checkBooking.finalPrice)) / 100
+                }
+            }
+            if(checkBooking.point > 0){
+                checkBooking.pointDiscount = checkBooking.point * 1000
+            }
             const formatedBooking = {
-                ...checkBooking[0],
-                hotelName: checkBooking[0].roomTypeId?.hotelId.hotelName || null,
-                roomTypeName: checkBooking[0].roomTypeId?.roomTypeName || null,
-                roomTypeImage: checkBooking[0].roomTypeId?.roomTypeImage || null,
+                ...checkBooking,
+                hotelName: checkBooking.roomTypeId?.hotelId.hotelName || null,
+                roomTypeName: checkBooking.roomTypeId?.roomTypeName || null,
+                roomTypeImage: checkBooking.roomTypeId?.roomTypeImage || null,
                 //roomNumber: roomNumber,
-                roomId: checkBooking[0].bookingId?.roomId || null,
-                roomTypeId: checkBooking[0].roomTypeId?.roomTypeId || null,
-                bookingId: checkBooking[0].bookingId?.bookingId || null,
+                roomId: checkBooking.bookingId?.roomId || null,
+                roomTypeId: checkBooking.roomTypeId?.roomTypeId || null,
+                bookingId: checkBooking.bookingId?.bookingId || null,
             }
             // if (checkBooking === null) {
             //     return resolve({
@@ -811,7 +824,9 @@ const getAllBookingByHotelManager = (headers, filter) => {
 const calculateFinalPrice = (booking) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const data = {}
             let finalPrice = Number(booking.price)
+            data.price = finalPrice
             if (booking.voucherCode) {
                 const checkVoucher = await Voucher.findOne({ code: booking.voucherCode })
                 if (checkVoucher === null) {
@@ -830,8 +845,10 @@ const calculateFinalPrice = (booking) => {
                 }
                 if (checkVoucher.discountType === "fixed") {
                     finalPrice = finalPrice - checkVoucher.discountValue
+                    data.voucherDiscount = checkVoucher.discountValue
                 } else if (checkVoucher.discountType === "percentage") {
                     finalPrice = finalPrice - (checkVoucher.discountValue * finalPrice) / 100
+                    data.voucherDiscount = (checkVoucher.discountValue * finalPrice) / 100
                 }
             }
             const checkUser = await User.findOne({ userId: booking.userId })
@@ -844,13 +861,15 @@ const calculateFinalPrice = (booking) => {
                     });
                 }
                 finalPrice = finalPrice - Number(booking.point) * 1000
+                data.pointDiscount = Number(booking.point) * 1000
             }
             if (finalPrice < 0) finalPrice = 0;
+            data.finalPrice = finalPrice
 
             resolve({
                 status: 'OK',
                 message: 'Tính finalPrice thành công',
-                data: finalPrice,
+                data: data,
                 statusCode: 200
             })
 
