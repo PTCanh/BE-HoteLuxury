@@ -5,6 +5,8 @@ import { upload, uploadToCloudinary, uploadMultipleToCloudinary, uploadHotelImag
 
 const router = express.Router();
 
+router.get('/most-booking', hotelController.getTop12MostBookingHotel)
+router.get('/similar-hotel/:id', hotelController.getSimilarHotel)
 router.get('/suggested-hotel', hotelController.suggestedHotel)
 router.get('/user-filter', hotelController.userFilterHotel)
 router.get('/filter', hotelController.filterHotel)

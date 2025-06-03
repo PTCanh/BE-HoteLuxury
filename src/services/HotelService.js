@@ -606,6 +606,113 @@ const suggestedHotel = (filter) => {
     })
 }
 
+const getSimilarHotel = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkHotel = await Hotel.findOne({
+                hotelId: id,
+                isDeleted: false
+            })
+            if (checkHotel === null) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'Khách sạn không tồn tại',
+                    statusCode: 404
+                })
+            }
+            const similarHotels = await Hotel.find({
+                hotelType: checkHotel.hotelType,
+                hotelStar: checkHotel.hotelStar,
+                locationId: checkHotel.locationId,
+                isDeleted: false,
+                hotelId: { $ne: id }
+            }).limit(4)
+
+            resolve({
+                status: 'OK',
+                message: 'Lấy khách sạn tương tự thành công',
+                data: similarHotels,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+const getTop12MostBookingHotel = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const now = new Date()
+            const filterStart = new Date(now.getFullYear(), now.getMonth() - 1, 1)
+            const filterEnd = new Date(now.getFullYear(), now.getMonth(), 0)
+
+            let top12MostBookingHotel = await Booking.aggregate([
+                {
+                    $match: {
+                        isConfirmed: true,
+                        status: { $in: ['Đã thanh toán', 'Chưa thanh toán'] },
+                        dayEnd: { $gte: filterStart, $lte: filterEnd }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'roomtypes',
+                        let: { roomTypeId: '$roomTypeId' },
+                        pipeline: [
+                            { $match: { $expr: { $eq: ['$roomTypeId', '$$roomTypeId'] } } }
+                        ],
+                        as: 'roomType'
+                    }
+                },
+                { $unwind: '$roomType' },
+                {
+                    $lookup: {
+                        from: 'hotels',
+                        let: { hotelId: '$roomType.hotelId' },
+                        pipeline: [
+                            { $match: { $expr: { $eq: ['$hotelId', '$$hotelId'] } } }
+                        ],
+                        as: 'hotel'
+                    }
+                },
+                { $unwind: '$hotel' },
+                {
+                    $group: {
+                        _id: '$roomType.hotelId',
+                        hotelId: { $first: '$roomType.hotelId' },
+                        hotelName: { $first: '$hotel.hotelName' },
+                        totalBooking: { $sum: 1 },
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        hotelId: 1,
+                        hotelName: 1,
+                        totalBooking: 1,
+                    }
+                },
+                {
+                    $sort: { totalBooking: -1 }
+                },
+                { $limit: 12 }
+            ]);
+
+            resolve({
+                status: 'OK',
+                message: 'Lấy 12 khách sạn đặt nhiều nhất thành công',
+                data: top12MostBookingHotel,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createHotel,
     updateHotel,
@@ -615,5 +722,7 @@ export default {
     searchHotel,
     userFilterHotel,
     filterHotel,
-    suggestedHotel
+    suggestedHotel,
+    getSimilarHotel,
+    getTop12MostBookingHotel
 }

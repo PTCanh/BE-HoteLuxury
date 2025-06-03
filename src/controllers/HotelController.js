@@ -117,6 +117,29 @@ const suggestedHotel = async (req, res) => {
     }
 };
 
+const getSimilarHotel = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await hotelService.getSimilarHotel(id);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
+const getTop12MostBookingHotel = async (req, res) => {
+    try {
+        const response = await hotelService.getTop12MostBookingHotel();
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createHotel,
     updateHotel,
@@ -126,5 +149,7 @@ export default {
     searchHotel,
     userFilterHotel,
     filterHotel,
-    suggestedHotel
+    suggestedHotel,
+    getSimilarHotel,
+    getTop12MostBookingHotel
 }
