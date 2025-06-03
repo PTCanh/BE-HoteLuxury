@@ -715,6 +715,39 @@ const getTop12MostBookingHotel = () => {
                 { $limit: 12 }
             ]);
 
+            if (top12MostBookingHotel.length < 12) {
+                const hotelIds = top12MostBookingHotel.map(hotel => hotel.hotelId)
+                const others = 12 - top12MostBookingHotel.length
+                const otherHotels = await Hotel.find({
+                    hotelId: {$nin: hotelIds}
+                })
+                    .populate({
+                        path: "locationId",
+                        model: "Location",
+                        localField: "locationId",
+                        foreignField: "locationId",
+                        select: "locationName",
+                    }).lean().limit(others)
+                const otherTopHotels = otherHotels.map(hotel => {
+                    return {
+                        hotelId: hotel.hotelId,
+                        hotelName: hotel.hotelName,
+                        hotelImage: hotel.hotelImage,
+                        locationName: hotel.locationId?.locationName || null,
+                        totalBooking: 0,
+                    }
+                })
+                const mergedArray = [...top12MostBookingHotel, ...otherTopHotels];
+
+                return resolve({
+                    status: 'OK',
+                    message: 'Lấy 12 khách sạn đặt nhiều nhất thành công',
+                    data: mergedArray,
+                    statusCode: 200
+                })
+
+            }
+
             resolve({
                 status: 'OK',
                 message: 'Lấy 12 khách sạn đặt nhiều nhất thành công',
