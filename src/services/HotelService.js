@@ -679,10 +679,23 @@ const getTop12MostBookingHotel = () => {
                 },
                 { $unwind: '$hotel' },
                 {
+                    $lookup: {
+                        from: 'locations',
+                        let: { locationId: '$hotel.locationId' },
+                        pipeline: [
+                            { $match: { $expr: { $eq: ['$locationId', '$$locationId'] } } }
+                        ],
+                        as: 'location'
+                    }
+                },
+                { $unwind: '$location' },
+                {
                     $group: {
                         _id: '$roomType.hotelId',
                         hotelId: { $first: '$roomType.hotelId' },
                         hotelName: { $first: '$hotel.hotelName' },
+                        hotelImage: { $first: '$hotel.hotelImage' },
+                        locationName: { $first: '$location.locationName' },
                         totalBooking: { $sum: 1 },
                     }
                 },
@@ -691,6 +704,8 @@ const getTop12MostBookingHotel = () => {
                         _id: 0,
                         hotelId: 1,
                         hotelName: 1,
+                        hotelImage: 1,
+                        locationName: 1,
                         totalBooking: 1,
                     }
                 },
@@ -709,6 +724,7 @@ const getTop12MostBookingHotel = () => {
 
         } catch (e) {
             reject(e)
+            console.log(e)
         }
     })
 }
