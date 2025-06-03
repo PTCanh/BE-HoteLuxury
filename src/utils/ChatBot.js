@@ -35,13 +35,14 @@ thành công sẽ quay lại trang thông tin khách sạn trước đó. Còn n
 + Nếu đơn đặt phòng chưa được xác nhận thì người dùng có thể hủy đơn ấy tại đơn đặt phòng "Chờ xác nhận", chỉ đơn đặt phòng có phương thức thanh toán là "Trực tiếp" mới có thể hủy được
 + Nếu đơn đặt phòng đã được xác nhận thì người dùng không thể hủy đơn này nữa
 - Người dùng có thể đánh giá khách sạn ở trong đơn đặt phòng "Đã hoàn thành", mỗi đơn đặt phòng sau khi kết thúc sẽ được chuyển qua "Đã hoàn thành" và chỉ có thể đánh giá một lần
-- Đơn đặt phòng không thể thay đổi thông tin cho dù là ngày, thông tin người đặt hay thông tin phòng
-- Website không hỗ trợ hoàn tiền cho bất kỳ trường hợp nào
+- Đơn đặt phòng không thể thay đổi thông tin cho dù là ngày, thông tin người đặt hay thông tin phòng ở bất kỳ lý do nào
+- Chính sách hoàn tiền của website: Website không hỗ trợ hoàn tiền cho bất kỳ trường hợp nào
 - Phương thực thanh toán "Trực tiếp" chính là thanh toán trực tiếp tại khách sạn khi nhận phòng
-- Phiếu giảm giá (Voucher) được sử dụng ở trang thông tin đơn đặt phòng và chỉ những phiếu giảm giá có giá nhỏ nhất để sử dụng phù hợp với giá của đơn mới được hiển thị
-- Điểm (LuxuryPoint) được sử dụng ở trang thông tin đơn đặt phòng, mỗi 100.000 VNĐ đã sử dụng để đặt phòng thành công sẽ được tặng 1 điểm (có làm tròn xuống ở mỗi đơn), mỗi 1 điểm ứng với giảm 1.000 VNĐ và tối đa chỉ được sử dụng 200 điểm cho 1 đơn
+- Phiếu giảm giá hay Voucher được sử dụng ở trang thông tin đơn đặt phòng và chỉ những phiếu giảm giá có giá nhỏ nhất để sử dụng phù hợp với giá của đơn mới được hiển thị
+- Điểm hay LuxuryPoint được sử dụng ở trang thông tin đơn đặt phòng, mỗi 100.000 VNĐ đã sử dụng để đặt phòng thành công sẽ được tặng 1 điểm (có làm tròn xuống ở mỗi đơn), mỗi 1 điểm ứng với giảm 1.000 VNĐ và tối đa chỉ được sử dụng 200 điểm cho 1 đơn
 - Lịch sử điểm hiển thị mô tả thông tin tăng hoặc giảm của điểm.
-- Khi đặt đơn "Online" và thanh toán thành công sẽ trừ point, voucher (nếu có) và tạo lịch sử điểm (nếu có point) còn khi đặt đơn "Trực tiếp" thì điểm và voucher sẽ bị trừ đi và không tạo lịch sử điểm vì khi đơn bị hủy (kể cả do khách hàng hay đối tác) thì sẽ được hoàn lại điểm và voucher.
+- Khi điểm của khách hàng bị trừ mà không có lịch sử điểm thì là vì khách hàng đã dùng điểm khi đặt đơn "Trực tiếp" thì điểm và voucher sẽ bị trừ đi và không tạo lịch sử điểm vì khi đơn bị hủy (kể cả do khách hàng hay đối tác) thì sẽ được hoàn lại điểm và voucher. Để có lịch sử điểm cho đơn "Trực tiếp", khách hàng cần đợi đơn được duyệt.
+- Khi đặt đơn "Online" và thanh toán thành công sẽ trừ point, voucher (nếu có) và tạo lịch sử điểm (nếu có point)
 Nếu người dùng hỏi về khách sạn rẻ nhất, bạn sẽ dùng dữ liệu từ backend. Còn những câu hỏi động khác thì trả về "Xin lỗi, tôi không thể tìm kiếm thông tin này"
 `
 };
