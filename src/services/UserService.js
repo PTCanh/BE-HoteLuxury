@@ -497,7 +497,6 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 createdAt: { $gte: filterStart, $lte: filterEnd }
             })
             const totalBookingsByRoomType = await Booking.aggregate([
-                // Bước 1: Lọc các booking có status hợp lệ
                 {
                     $match: {
                         status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
@@ -506,40 +505,69 @@ export const hotelManagerDashboardService = (headers, filter) => {
                         createdAt: { $gte: filterStart, $lte: filterEnd }
                     }
                 },
-                // Bước 2: Nhóm theo roomTypeId và đếm số lượng
                 {
-                    $group: {
-                        _id: "$roomTypeId", // Nhóm theo roomTypeId
-                        totalBookings: { $sum: 1 } // Đếm số lượng mỗi roomTypeId
+                    $addFields: {
+                        month: { $month: "$createdAt" }
                     }
                 },
-                // Bước 3: Sắp xếp các roomType theo tổng số lượt đặt (từ cao xuống thấp)
                 {
-                    $sort: { totalBookings: -1 }  // Sắp xếp theo totalBookings giảm dần
+                    $group: {
+                        _id: {
+                            roomTypeId: "$roomTypeId",
+                            month: "$month"
+                        },
+                        totalBookings: { $sum: 1 }
+                    }
                 },
-                // Bước 4: Nối qua RoomType để lấy thông tin roomTypeName
                 {
                     $lookup: {
                         from: "roomtypes", // Tên collection RoomType
-                        localField: "_id", // roomTypeId từ bước nhóm
+                        localField: "_id.roomTypeId", // roomTypeId từ bước nhóm
                         foreignField: "roomTypeId", // Khóa liên kết trong RoomType
                         as: "roomTypeInfo" // Kết quả gán vào trường này
                     }
                 },
-                // Bước 5: Giải nén roomTypeInfo (nếu cần, vì lookup trả về mảng)
                 {
                     $unwind: "$roomTypeInfo"
                 },
-                // Bước 6: Chọn các trường cần thiết
                 {
                     $project: {
-                        roomTypeId: "$_id",
-                        totalBookings: 1,
+                        roomTypeId: "$_id.roomTypeId",
                         roomTypeName: "$roomTypeInfo.roomTypeName",
+                        month: "$_id.month",
+                        totalBookings: 1,
                         _id: 0 // Loại bỏ _id gốc nếu không cần
                     }
                 },
+                {
+                    $sort: { roomTypeId: 1, month: 1 }
+                }
             ]);
+
+            const fullYearBookingByRoomType = [];
+
+            const roomTypeGroups = {};
+
+            for (const item of totalBookingsByRoomType) {
+                const key = item.roomTypeId;
+                if (!roomTypeGroups[key]) roomTypeGroups[key] = [];
+                roomTypeGroups[key].push(item);
+            }
+
+            for (const roomTypeId in roomTypeGroups) {
+                const monthlyData = roomTypeGroups[roomTypeId];
+
+                for (let i = 1; i <= 12; i++) {
+                    const found = monthlyData.find(c => c.month === i);
+                    fullYearBookingByRoomType.push({
+                        roomTypeId,
+                        roomTypeName: found ? found.roomTypeName : monthlyData[0].roomTypeName,
+                        month: i,
+                        totalBookings: found ? found.totalBookings : 0
+                    });
+                }
+            }
+
             const totalBookingOfHotelByTime = await Booking.aggregate([
                 // Bước 1: Lọc các booking hợp lệ
                 {
@@ -796,7 +824,7 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 ratingAverage: checkHotel.ratingAverage,
                 totalBookingOfHotel: totalBookingOfHotel,
                 totalCancelledBookingOfHotel: totalCancelledBookingOfHotel,
-                totalBookingsByRoomType: totalBookingsByRoomType,
+                totalBookingsByRoomType: fullYearBookingByRoomType,
                 totalBookingOfHotelByTime: fullYearToTalBooking,
                 totalRevenueOfHotelByTime: fullYearRevenue,
                 top10BookingUser: top10BookingUser
