@@ -570,6 +570,24 @@ export const hotelManagerDashboardService = (headers, filter) => {
                     });
                 }
             }
+            const roomTypeNames = [...new Set(fullYearBookingByRoomType.map(r => r.roomTypeName))];
+            const fullYearBookingByRoomTypeChart = [];
+
+            for (let i = 1; i <= 12; i++) {
+                const monthData = { month: i };
+
+                for (const name of roomTypeNames) {
+                    monthData[name] = 0; // default
+                }
+
+                fullYearBookingByRoomType.forEach(item => {
+                    if (item.month === i) {
+                        monthData[item.roomTypeName] = item.totalBookings;
+                    }
+                });
+
+                fullYearBookingByRoomTypeChart.push(monthData);
+            }
 
             const totalBookingOfHotelByTime = await Booking.aggregate([
                 // Bước 1: Lọc các booking hợp lệ
@@ -827,7 +845,7 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 ratingAverage: checkHotel.ratingAverage,
                 totalBookingOfHotel: totalBookingOfHotel,
                 totalCancelledBookingOfHotel: totalCancelledBookingOfHotel,
-                totalBookingsByRoomType: fullYearBookingByRoomType,
+                totalBookingsByRoomType: fullYearBookingByRoomTypeChart,
                 totalBookingOfHotelByTime: fullYearToTalBooking,
                 totalRevenueOfHotelByTime: fullYearRevenue,
                 top10BookingUser: top10BookingUser
