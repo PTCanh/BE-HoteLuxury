@@ -123,19 +123,62 @@ const getDetailLocation = (id) => {
 const getAllLocation = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkLocation = await Location.find()
-            if (checkLocation === null) {
-                return resolve({
-                    status: 'ERR',
-                    message: 'Địa điểm không tồn tại',
-                    statusCode: 404
-                })
-            }
+            let checkLocation = await Hotel.aggregate([
+                {
+                    $match: {
+                        isDeleted: false
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'locations',
+                        let: { locationId: '$locationId' },
+                        pipeline: [
+                            { $match: { $expr: { $eq: ['$locationId', '$$locationId'] } } }
+                        ],
+                        as: 'location'
+                    }
+                },
+                { $unwind: '$location' },
+                {
+                    $group: {
+                        _id: '$location.locationId',
+                        locationId: { $first: '$location.locationId' },
+                        locationImage: { $first: '$location.locationImage' },
+                        locationName: { $first: '$location.locationName' },
+                        totalHotel: { $sum: 1 },
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        locationId: 1,
+                        locationImage: 1,
+                        locationName: 1,
+                        totalHotel: 1,
+                    }
+                },
+                {
+                    $sort: { totalHotel: -1 }
+                },
+            ]);
+
+            const checkLocationIds = checkLocation.map(location => location.locationId)
+            let otherLocations = await Location.find({ locationId: { $nin: checkLocationIds } })
+            otherLocations = otherLocations.map(location => {
+                return {
+                    locationId: location.locationId,
+                    locationImage: location.locationImage,
+                    locationName: location.locationName,
+                    totalHotel: 0
+                }
+            })
+            const mergedArray = [...checkLocation, ...otherLocations];
 
             resolve({
                 status: 'OK',
                 message: 'Xem tất cả địa điểm thành công',
-                data: checkLocation,
+                data: mergedArray,
                 statusCode: 200
             })
 
