@@ -733,7 +733,8 @@ const getTop12MostBookingHotel = () => {
                 const hotelIds = top12MostBookingHotel.map(hotel => hotel.hotelId)
                 const others = 12 - top12MostBookingHotel.length
                 const otherHotels = await Hotel.find({
-                    hotelId: { $nin: hotelIds }
+                    hotelId: { $nin: hotelIds },
+                    isDeleted: false
                 }).populate({
                     path: "locationId",
                     model: "Location",

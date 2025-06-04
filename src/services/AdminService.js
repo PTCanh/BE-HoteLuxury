@@ -429,10 +429,22 @@ const getAllHotel = (query) => {
         },
         { $unwind: '$hotel' },
         {
+          $lookup: {
+            from: 'locations',
+            let: { locationId: '$hotel.locationId' },
+            pipeline: [
+              { $match: { $expr: { $eq: ['$locationId', '$$locationId'] } } }
+            ],
+            as: 'location'
+          }
+        },
+        { $unwind: '$location' },
+        {
           $group: {
             _id: '$roomType.hotelId',
             hotelId: { $first: '$roomType.hotelId' },
             hotelName: { $first: '$hotel.hotelName' },
+            locationName: { $first: '$location.locationName' },
             totalBooking: { $sum: 1 },
             totalPrice: { $sum: { $toDouble: '$price' } },
             totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
@@ -478,6 +490,7 @@ const getAllHotel = (query) => {
             _id: 0,
             hotelId: 1,
             hotelName: 1,
+            locationName: 1,
             totalBooking: 1,
             totalPrice: 1,
             totalFinalPrice: 1,
@@ -490,21 +503,51 @@ const getAllHotel = (query) => {
         }
       ]);
 
+      const hotelIds = getHotelStatsByFilter.map(hotel => hotel.hotelId)
+      let otherHotels = await Hotel.find({
+        hotelId: { $nin: hotelIds },
+        isDeleted: false
+      }).populate({
+        path: "locationId",
+        model: "Location",
+        localField: "locationId",
+        foreignField: "locationId",
+        select: "locationName",
+      }).lean()
+      otherHotels = otherHotels.map(hotel => {
+        return {
+          hotelId: hotel.hotelId,
+          hotelName: hotel.hotelName,
+          locationName: hotel.locationId?.locationName || null,
+          totalBooking: 0,
+          totalPrice: 0,
+          totalFinalPrice: 0,
+          commission: 0,
+          totalMoney: 0,
+        }
+      })
+      let mergedArray = [...getHotelStatsByFilter, ...otherHotels];
+
       const filterHotelName = query.hotelName?.toLowerCase().trim()
+      const filterLocationName = query.locationName?.toLowerCase().trim()
 
       if (filterHotelName) {
-        getHotelStatsByFilter = getHotelStatsByFilter.filter(hotel => hotel.hotelName.toLowerCase().includes(filterHotelName));
+        mergedArray = mergedArray.filter(hotel => hotel.hotelName.toLowerCase().includes(filterHotelName));
+      }
+      if (filterLocationName) {
+        mergedArray = mergedArray.filter(hotel => hotel.locationName.toLowerCase().includes(filterLocationName));
       }
 
       resolve({
         status: 'OK',
         message: 'Xem danh sách khách sạn thành công',
-        data: getHotelStatsByFilter,
+        data: mergedArray,
         statusCode: 200
       })
 
     } catch (e) {
       reject(e)
+      console.log(e)
     }
   })
 }
