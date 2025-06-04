@@ -361,6 +361,9 @@ const getDetailBooking = (id) => {
                     checkBooking.voucherDiscount = checkVoucher.discountValue
                 } else if (checkVoucher.discountType === "percentage") {
                     checkBooking.voucherDiscount = (checkVoucher.discountValue * Number(checkBooking.finalPrice)) / 100
+                    if(checkBooking.voucherDiscount > checkVoucher.maxPercentageDiscount){
+                        checkBooking.voucherDiscount = checkVoucher.maxPercentageDiscount
+                    }
                 }
             }
             if(checkBooking.point > 0){
@@ -847,8 +850,11 @@ const calculateFinalPrice = (booking) => {
                     finalPrice = finalPrice - checkVoucher.discountValue
                     data.voucherDiscount = checkVoucher.discountValue
                 } else if (checkVoucher.discountType === "percentage") {
-                    finalPrice = finalPrice - (checkVoucher.discountValue * finalPrice) / 100
                     data.voucherDiscount = (checkVoucher.discountValue * finalPrice) / 100
+                    if(data.voucherDiscount > checkVoucher.maxPercentageDiscount){
+                        data.voucherDiscount = checkVoucher.maxPercentageDiscount
+                    }
+                    finalPrice = finalPrice - data.voucherDiscount
                 }
             }
             const checkUser = await User.findOne({ userId: booking.userId })

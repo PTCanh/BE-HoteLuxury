@@ -36,6 +36,10 @@ const voucherSchema = new Schema({
         type: Number,
         default: 1
     },
+    maxPercentageDiscount: {
+        type: Number,
+        default: 200000
+    },
     expiredAt: {
         type: Date,
         required: true
