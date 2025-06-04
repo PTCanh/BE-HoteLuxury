@@ -502,7 +502,10 @@ export const hotelManagerDashboardService = (headers, filter) => {
                         status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
                         roomTypeId: { $in: checkRoomTypeIds },  // Thêm điều kiện lọc roomTypeId
                         isConfirmed: true,
-                        createdAt: { $gte: filterStart, $lte: filterEnd }
+                        createdAt: {
+                            $gte: new Date(`${year}-01-01T00:00:00.000Z`),
+                            $lte: new Date(`${year}-12-31T23:59:59.999Z`)
+                        }
                     }
                 },
                 {
