@@ -33,8 +33,20 @@ const getAllHotel = async (req, res) => {
   }
 };
 
+const getAllVoucher = async (req, res) => {
+  try {
+    const response = await adminService.getAllVoucher();
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(404).json({
+      message: e,
+    });
+  }
+};
+
 export default {
   adminHomePage,
   adminAvatar,
-  getAllHotel
+  getAllHotel,
+  getAllVoucher
 }

@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Hotel from "../models/Hotel.js";
 import Booking from "../models/Booking.js";
+import Voucher from "../models/Voucher.js";
 import jwt from 'jsonwebtoken'
 
 const adminHomePage = async (query) => {
@@ -296,6 +297,8 @@ const adminHomePage = async (query) => {
             _id: '$userId',
             userId: { $first: '$userId' },
             userName: { $first: '$user.fullname' },
+            email: { $first: '$user.email' },
+            phoneNumber: { $first: '$user.phoneNumber' },
             totalBooking: { $sum: 1 },
             totalPrice: { $sum: { $toDouble: '$price' } }
           }
@@ -311,6 +314,8 @@ const adminHomePage = async (query) => {
             _id: 0, // Ẩn đi _id
             userId: 1,
             userName: 1,
+            email: 1,
+            phoneNumber: 1,
             totalBooking: 1,
             totalPrice: 1
           }
@@ -547,14 +552,33 @@ const getAllHotel = (query) => {
 
     } catch (e) {
       reject(e)
-      console.log(e)
     }
   })
 }
 
+const getAllVoucher = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let checkVoucher = await Voucher.find({
+        userId: null
+      }).sort({ createdAt: -1 })
+
+      resolve({
+        status: 'OK',
+        message: 'Xem tất cả Voucher thành công',
+        data: checkVoucher,
+        statusCode: 200
+      })
+
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
 
 export default {
   adminHomePage,
   adminAvatar,
-  getAllHotel
+  getAllHotel,
+  getAllVoucher
 }
