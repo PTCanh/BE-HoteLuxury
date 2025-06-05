@@ -4,6 +4,23 @@ import jwt from 'jsonwebtoken'
 const createVoucher = (voucher) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if(voucher.discountType === "fixed"){
+                const valueString = voucher.discountValue.toLocaleString('vi-VN') + 'đ'
+                if(voucher.minOrderValue){
+                    const minOrderValueString = voucher.minOrderValue.toLocaleString('vi-VN') + 'đ'
+                    voucher.content = `Giảm ${valueString} cho đơn từ ${minOrderValueString}`
+                }else{
+                    voucher.content = `Giảm ${valueString} cho tất cả đơn`
+                }
+            }else if(voucher.discountType === "percentage"){
+                const maxPercentageDiscountString = voucher.maxPercentageDiscount.toLocaleString('vi-VN') + 'đ'
+                if(voucher.minOrderValue){
+                    const minOrderValueString = voucher.minOrderValue.toLocaleString('vi-VN') + 'đ'
+                    voucher.content = `Giảm ${voucher.discountValue}% cho đơn từ ${minOrderValueString} (tối đa ${maxPercentageDiscountString})`
+                }else{
+                    voucher.content = `Giảm ${voucher.discountValue}% cho tất cả đơn (tối đa ${maxPercentageDiscountString})`
+                }
+            }
             const newVoucher = await Voucher.create(voucher)
             resolve({
                 status: 'OK',

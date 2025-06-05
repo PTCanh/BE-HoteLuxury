@@ -63,9 +63,11 @@ cron.schedule('59 23 * * *', async () => {
                 const { name, value } = ranks[i];
                 const expiredAtUTC0 = new Date(today.getFullYear(), today.getMonth() + 1, 28)
                 const expiredAt = new Date(expiredAtUTC0.getTime() + 7 * 60 * 60 * 1000);
+                const valueString = value.toLocaleString('vi-VN') + 'đ'
                 await Voucher.create({
                     code: `${name}VIP${generateVoucherCode()}${user._id}`,
                     description: `Voucher dành cho khách hàng ${name} VIP tháng ${today.getMonth() + 1}/${today.getFullYear()}`,
+                    content:`Giảm ${valueString} cho tất cả đơn`,
                     userId: user._id,
                     discountType: "fixed",
                     discountValue: value,
