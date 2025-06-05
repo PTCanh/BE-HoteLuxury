@@ -13,7 +13,10 @@ const createVoucher = (voucher) => {
                     voucher.content = `Giảm ${valueString} cho tất cả đơn`
                 }
             }else if(voucher.discountType === "percentage"){
-                const maxPercentageDiscountString = voucher.maxPercentageDiscount.toLocaleString('vi-VN') + 'đ'
+                let maxPercentageDiscountString = "200.000đ"
+                if(voucher.maxPercentageDiscount){
+                    maxPercentageDiscountString = voucher.maxPercentageDiscount.toLocaleString('vi-VN') + 'đ'
+                }
                 if(voucher.minOrderValue){
                     const minOrderValueString = voucher.minOrderValue.toLocaleString('vi-VN') + 'đ'
                     voucher.content = `Giảm ${voucher.discountValue}% cho đơn từ ${minOrderValueString} (tối đa ${maxPercentageDiscountString})`
