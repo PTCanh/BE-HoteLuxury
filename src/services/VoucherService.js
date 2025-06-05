@@ -5,9 +5,9 @@ const createVoucher = (voucher) => {
     return new Promise(async (resolve, reject) => {
         try {
             if(voucher.discountType === "fixed"){
-                const valueString = voucher.discountValue.toLocaleString('vi-VN') + 'đ'
+                const valueString = Number(voucher.discountValue).toLocaleString('vi-VN') + 'đ'
                 if(voucher.minOrderValue){
-                    const minOrderValueString = voucher.minOrderValue.toLocaleString('vi-VN') + 'đ'
+                    const minOrderValueString = Number(voucher.minOrderValue).toLocaleString('vi-VN') + 'đ'
                     voucher.content = `Giảm ${valueString} cho đơn từ ${minOrderValueString}`
                 }else{
                     voucher.content = `Giảm ${valueString} cho tất cả đơn`
@@ -15,10 +15,10 @@ const createVoucher = (voucher) => {
             }else if(voucher.discountType === "percentage"){
                 let maxPercentageDiscountString = "200.000đ"
                 if(voucher.maxPercentageDiscount){
-                    maxPercentageDiscountString = voucher.maxPercentageDiscount.toLocaleString('vi-VN') + 'đ'
+                    maxPercentageDiscountString = Number(voucher.maxPercentageDiscount).toLocaleString('vi-VN') + 'đ'
                 }
                 if(voucher.minOrderValue){
-                    const minOrderValueString = voucher.minOrderValue.toLocaleString('vi-VN') + 'đ'
+                    const minOrderValueString = Number(voucher.minOrderValue).toLocaleString('vi-VN') + 'đ'
                     voucher.content = `Giảm ${voucher.discountValue}% cho đơn từ ${minOrderValueString} (tối đa ${maxPercentageDiscountString})`
                 }else{
                     voucher.content = `Giảm ${voucher.discountValue}% cho tất cả đơn (tối đa ${maxPercentageDiscountString})`
