@@ -34,6 +34,18 @@ const deleteVoucher = async (req, res) => {
     }
 };
 
+const getDetailVoucher = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await voucherService.getDetailVoucher(id);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 
 const getAllVoucher = async (req, res) => {
     try {
@@ -61,6 +73,7 @@ export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
+    getDetailVoucher,
     getAllVoucher,
     getSuitableVoucher
 }

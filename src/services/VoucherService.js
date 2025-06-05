@@ -86,6 +86,30 @@ const deleteVoucher = (id) => {
     })
 }
 
+const getDetailVoucher = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkVoucher = await Voucher.findOne({ voucherId: id })
+            if (!checkVoucher) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'Không tìm thấy Voucher',
+                    statusCode: 404
+                })
+            }
+            resolve({
+                status: 'OK',
+                message: 'Lấy chi tiết Voucher thành công',
+                data: checkVoucher,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 const getAllVoucher = (headers) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -146,6 +170,7 @@ export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
+    getDetailVoucher,
     getAllVoucher,
     getSuitableVoucher
 }
