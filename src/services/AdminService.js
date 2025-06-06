@@ -268,7 +268,7 @@ const adminHomePage = async (query) => {
           }
         },
         {
-          $sort: { totalBooking: -1 }
+          $sort: { totalBooking: -1, totalPrice: -1 }
         },
         { $limit: 10 }
       ]);
@@ -321,7 +321,7 @@ const adminHomePage = async (query) => {
           }
         },
         {
-          $sort: { totalBooking: -1 }
+          $sort: { totalBooking: -1, totalPrice: -1 }
         },
         { $limit: 10 }
       ]);
@@ -504,7 +504,7 @@ const getAllHotel = (query) => {
           }
         },
         {
-          $sort: { totalBooking: -1 }
+          $sort: { totalBooking: -1, totalPrice: -1 }
         }
       ]);
 

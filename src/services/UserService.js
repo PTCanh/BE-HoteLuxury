@@ -737,7 +737,7 @@ export const hotelManagerDashboardService = (headers, filter) => {
                 },
                 // Bước 3: Sắp xếp các user theo tổng số lượt đặt (từ cao xuống thấp)
                 {
-                    $sort: { totalBookings: -1 }  // Sắp xếp theo totalBookings giảm dần
+                    $sort: { totalBookings: -1, totalPrice: -1 }  // Sắp xếp theo totalBookings giảm dần
                 },
                 // Bước 4: Nối qua User để lấy thông tin fullname
                 {
@@ -832,9 +832,6 @@ export const hotelManagerDashboardService = (headers, filter) => {
                         totalMoney: 1
                     }
                 },
-                {
-                    $sort: { totalBookings: -1 }  // Sắp xếp theo totalBookings giảm dần
-                }
             ])
 
             resolve({
