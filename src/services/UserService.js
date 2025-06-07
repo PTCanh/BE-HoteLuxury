@@ -129,7 +129,7 @@ export const loginUserService = (userLogin) => {
                     fullname: checkUser.fullname,
                     avatar: checkUser.image,
                     email: checkUser.email,
-                    hotelId: checkHotel.hotelId,
+                    hotelId: checkHotel?.hotelId || null,
                     statusCode: 200
                 })
             }
