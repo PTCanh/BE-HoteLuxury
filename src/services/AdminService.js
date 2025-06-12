@@ -452,7 +452,8 @@ const getAllHotel = (query) => {
             locationName: { $first: '$location.locationName' },
             totalBooking: { $sum: 1 },
             totalPrice: { $sum: { $toDouble: '$price' } },
-            totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } }
+            totalFinalPrice: { $sum: { $toDouble: '$finalPrice' } },
+            isDeleted: { $first: '$hotel.isDeleted' }
           }
         },
         {
@@ -500,7 +501,8 @@ const getAllHotel = (query) => {
             totalPrice: 1,
             totalFinalPrice: 1,
             commission: { $round: ['$commission', 0] },
-            totalMoney: 1
+            totalMoney: 1,
+            isDeleted: 1
           }
         },
         {
@@ -510,8 +512,7 @@ const getAllHotel = (query) => {
 
       const hotelIds = getHotelStatsByFilter.map(hotel => hotel.hotelId)
       let otherHotels = await Hotel.find({
-        hotelId: { $nin: hotelIds },
-        isDeleted: false
+        hotelId: { $nin: hotelIds }
       }).populate({
         path: "locationId",
         model: "Location",
@@ -529,6 +530,7 @@ const getAllHotel = (query) => {
           totalFinalPrice: 0,
           commission: 0,
           totalMoney: 0,
+          isDeleted: hotel.isDeleted
         }
       })
       let mergedArray = [...getHotelStatsByFilter, ...otherHotels];
