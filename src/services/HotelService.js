@@ -26,8 +26,7 @@ const updateHotel = (hotel, id) => {
     return new Promise(async (resolve, reject) => {
         try {
             const checkHotel = await Hotel.findOne({
-                hotelId: id,
-                isDeleted: false
+                hotelId: id
             })
             if (checkHotel === null) {
                 return resolve({
@@ -37,7 +36,7 @@ const updateHotel = (hotel, id) => {
                 })
             }
 
-            await Hotel.findOneAndUpdate({ hotelId: id, isDeleted: false },
+            await Hotel.findOneAndUpdate({ hotelId: id },
                 hotel,
                 { new: true })
             resolve({
@@ -728,6 +727,8 @@ const getTop12MostBookingHotel = () => {
                 },
                 { $limit: 12 }
             ]);
+
+            top12MostBookingHotel = top12MostBookingHotel.filter(hotel => hotel.isDeleted === false)
 
             if (top12MostBookingHotel.length < 12) {
                 const hotelIds = top12MostBookingHotel.map(hotel => hotel.hotelId)
