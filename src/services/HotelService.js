@@ -735,7 +735,8 @@ const getTop12MostBookingHotel = () => {
                 const others = 12 - top12MostBookingHotel.length
                 const otherHotels = await Hotel.find({
                     hotelId: { $nin: hotelIds },
-                    isDeleted: false
+                    isDeleted: false,
+                    active: true
                 }).populate({
                     path: "locationId",
                     model: "Location",
