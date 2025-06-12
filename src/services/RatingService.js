@@ -13,7 +13,7 @@ const createRating = async (headers, rating, bookingId) => {
             rating.userId = decoded.userId
             // Tạo đánh giá mới
             const newRating = await Rating.create(rating)
-            const checkHotel = await Hotel.findOne({hotelId: newRating.hotelId, isDeleted: false})
+            const checkHotel = await Hotel.findOne({ hotelId: newRating.hotelId, isDeleted: false })
             // Lấy tất cả đánh giá của khách sạn
             const allRatings = await Rating.find({ hotelId: newRating.hotelId });
 
@@ -23,18 +23,18 @@ const createRating = async (headers, rating, bookingId) => {
             // Tính ratingAverage chính xác
             const newRatingAverage = parseFloat((totalStars / ratingQuantity).toFixed(1));
 
-            const updateHotel = await Hotel.findOneAndUpdate({hotelId: newRating.hotelId, isDeleted: false},
+            const updateHotel = await Hotel.findOneAndUpdate({ hotelId: newRating.hotelId, isDeleted: false },
                 {
                     ratingQuantity: ratingQuantity,
                     ratingAverage: newRatingAverage
                 },
-                {new: true}
+                { new: true }
             )
-            const updateBooking = await Booking.findOneAndUpdate({bookingId: bookingId},
+            const updateBooking = await Booking.findOneAndUpdate({ bookingId: bookingId },
                 {
                     isRating: true
                 },
-                {new: true}
+                { new: true }
             )
             resolve({
                 status: "OK",
@@ -48,11 +48,11 @@ const createRating = async (headers, rating, bookingId) => {
     });
 };
 
-const getAllRatingByHotelId = async (hotelId) => {
+const getAllRatingByHotelId = async (query) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const allRatings = await Rating.find({
-                hotelId: hotelId
+            let allRatings = await Rating.find({
+                hotelId: query.hotelId
             }).populate({
                 path: "userId",
                 model: "Users",
@@ -63,6 +63,17 @@ const getAllRatingByHotelId = async (hotelId) => {
             const allRatingImages = allRatings.map(rating => rating.ratingImages || [])
 
             const allRatingImagesArray = allRatingImages.flat().filter(image => image !== null && image !== undefined)
+
+            if (query.fullname) {
+                const fullname = query.fullname.toLowerCase().trim()
+                allRatings = allRatings.filter(rating => rating.userId?.fullname?.toLowerCase().includes(fullname))
+            }
+            if (query.filterStart && query.filterEnd) {
+                allRatings = allRatings.filter(rating => {
+                    const createdDay = rating.createdAt.toISOString().split('T')[0]
+                    return (query.filterStart <= createdDay && createdDay <= query.filterEnd)
+                })
+            }
 
             resolve({
                 status: "OK",
