@@ -4,6 +4,7 @@ import { authMiddleware , authUserMiddleware} from "../middlewares/authMiddlewar
 
 const router = express.Router();
 
+router.get('/festival-voucher', voucherController.getFestivalVoucher)
 router.get('/suitable-voucher', authUserMiddleware, voucherController.getSuitableVoucher)
 router.post('/', authMiddleware, voucherController.createVoucher)
 router.put('/:id',authMiddleware,  voucherController.updateVoucher)

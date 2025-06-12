@@ -69,11 +69,23 @@ const getSuitableVoucher = async (req, res) => {
     }
 };
 
+const getFestivalVoucher = async (req, res) => {
+    try {
+        const response = await voucherService.getFestivalVoucher();
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(500).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
     getDetailVoucher,
     getAllVoucher,
-    getSuitableVoucher
+    getSuitableVoucher,
+    getFestivalVoucher
 }

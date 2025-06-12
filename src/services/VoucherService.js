@@ -134,7 +134,6 @@ const getAllVoucher = (headers) => {
 
         } catch (e) {
             reject(e)
-            console.log(e)
         }
     })
 }
@@ -166,11 +165,38 @@ const getSuitableVoucher = (headers, query) => {
     })
 }
 
+const getFestivalVoucher = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const now = new Date();
+            let checkVoucher = await Voucher.find({
+                userId: null,
+                quantity: { $gte: 1 },
+                expiredAt: { $gt: now }
+            })
+            checkVoucher = checkVoucher.sort((a, b) => {
+                return b.createdAt - a.createdAt;
+            })
+
+            resolve({
+                status: 'OK',
+                message: 'Xem Voucher mùa lễ hội thành công',
+                data: checkVoucher[0],
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createVoucher,
     updateVoucher,
     deleteVoucher,
     getDetailVoucher,
     getAllVoucher,
-    getSuitableVoucher
+    getSuitableVoucher,
+    getFestivalVoucher
 }
