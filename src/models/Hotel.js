@@ -59,6 +59,10 @@ const hotelSchema = new Schema({
     isDeleted: {
         type: Boolean,
         default: false
+    },
+    active: {
+        type: Boolean,
+        default: true
     }
 });
 

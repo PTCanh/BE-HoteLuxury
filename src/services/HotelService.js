@@ -777,6 +777,40 @@ const getTop12MostBookingHotel = () => {
     })
 }
 
+const getDetailHotelByAdminOrPartner = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkHotel = await Hotel.findOne({
+                hotelId: id
+            }).populate({
+                path: "locationId",
+                model: "Location",
+                localField: "locationId",
+                foreignField: "locationId",
+                select: "locationName",
+            }).lean()
+            if (checkHotel === null) {
+                return resolve({
+                    status: 'ERR',
+                    message: 'Khách sạn không tồn tại',
+                    statusCode: 404
+                })
+            }
+            checkHotel.locationName = checkHotel.locationId?.locationName || ''
+            checkHotel.locationId = checkHotel.locationId?.locationId || ''
+            resolve({
+                status: 'OK',
+                message: 'Xem chi tiết khách sạn thành công',
+                data: checkHotel,
+                statusCode: 200
+            })
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 export default {
     createHotel,
     updateHotel,
@@ -788,5 +822,6 @@ export default {
     filterHotel,
     suggestedHotel,
     getSimilarHotel,
-    getTop12MostBookingHotel
+    getTop12MostBookingHotel,
+    getDetailHotelByAdminOrPartner
 }

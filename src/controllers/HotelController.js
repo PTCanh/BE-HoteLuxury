@@ -140,6 +140,18 @@ const getTop12MostBookingHotel = async (req, res) => {
     }
 };
 
+const getDetailHotelByAdminOrPartner = async (req, res) => {
+    const id = req.params.id
+    try {
+        const response = await hotelService.getDetailHotelByAdminOrPartner(id);
+        return res.status(response.statusCode).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e,
+        });
+    }
+};
+
 export default {
     createHotel,
     updateHotel,
@@ -151,5 +163,6 @@ export default {
     filterHotel,
     suggestedHotel,
     getSimilarHotel,
-    getTop12MostBookingHotel
+    getTop12MostBookingHotel,
+    getDetailHotelByAdminOrPartner
 }
