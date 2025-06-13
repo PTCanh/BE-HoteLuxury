@@ -85,7 +85,7 @@ const createBooking = (booking) => {
                 if (newBooking.voucherCode) {
                     const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
                     const newQuantity = checkVoucher.quantity - 1
-                    await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+                    await Voucher.findOneAndUpdate({ voucherId: checkVoucher.voucherId }, { quantity: newQuantity }, { new: true })
                 }
                 if (newBooking.point > 0) {
                     const checkUser = await User.findOne({ userId: newBooking.userId })
@@ -138,7 +138,7 @@ const updateBooking = (booking, id, headers) => {
                 booking,
                 { new: true })
 
-            if (searchedBooking.isConfirmed === false && updatedBooking.isConfirmed === true) {
+            if (searchedBooking.isConfirmed === false && updatedBooking.isConfirmed === true && updatedBooking.status !== "Đã hủy" && updatedBooking.status !== "Đã hết phòng") {
                 const checkUser = await User.findOne({ userId: searchedBooking.userId })
                 const text = `Đơn đặt phòng của quý khách đã được xác nhận. Xin chân thành cảm ơn quý khách đã đặt phòng. Lưu ý: Quý khách sẽ không thể hủy đơn đặt phòng ${updatedBooking.bookingCode} được nữa.`
                 const subject = 'Xác nhận đơn đặt phòng'
@@ -255,7 +255,7 @@ const updateBooking = (booking, id, headers) => {
                 if (updatedBooking.voucherCode) {
                     const checkVoucher = await Voucher.findOne({ code: updatedBooking.voucherCode })
                     const newQuantity = checkVoucher.quantity + 1
-                    await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+                    await Voucher.findOneAndUpdate({ voucherId: checkVoucher.voucherId }, { quantity: newQuantity }, { new: true })
                 }
                 if (updatedBooking.point > 0) {
                     const checkUser = await User.findOne({ userId: updatedBooking.userId })
@@ -863,6 +863,13 @@ const calculateFinalPrice = (booking) => {
                     return resolve({
                         status: 'ERR4',
                         message: 'Tài khoản của bạn không đủ điểm',
+                        statusCode: 400
+                    });
+                }
+                if (Number(booking.point) > 200) {
+                    return resolve({
+                        status: 'ERR5',
+                        message: 'Chỉ được sử dụng tối đa 200 điểm',
                         statusCode: 400
                     });
                 }

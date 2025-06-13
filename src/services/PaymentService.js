@@ -6,6 +6,7 @@ import Schedule from "../models/Schedule.js";
 import Booking from "../models/Booking.js";
 import User from '../models/User.js'
 import Voucher from '../models/Voucher.js'
+import PointHistory from '../models/PointHistory.js'
 import notificationService from "../services/NotificationService.js";
 
 const createPaymentUrl = async (bookingId, amount, orderInfo) => {
@@ -73,12 +74,14 @@ const handlePaymentReturn = async (req, res) => {
 
         if (resultCode === '0') {
             // Thanh toán thành công
-            const newBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
+            const updatedBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
+            const newBooking = updatedBooking.data
             const checkUser = await User.findOne({ userId: newBooking.userId })
+            console.log(newBooking)
             if (newBooking.voucherCode) {
                 const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
                 const newQuantity = checkVoucher.quantity - 1
-                await Voucher.findOneAndUpdate({ voucerId: checkVoucher.voucerId }, { quantity: newQuantity }, { new: true })
+                await Voucher.findOneAndUpdate({ voucherId: checkVoucher.voucherId }, { quantity: newQuantity }, { new: true })
             }
             if (newBooking.point > 0) {
                 const newPoint = checkUser.point - newBooking.point
@@ -102,7 +105,7 @@ const handlePaymentReturn = async (req, res) => {
             })
             await User.findOneAndUpdate({ userId: checkUser.userId }, { point: newPoint2 }, { new: true })
 
-            const createdAtUTC = new Date(response.data.createdAt);
+            const createdAtUTC = new Date(updatedBooking.data.createdAt);
 
             const padZero = (num) => num.toString().padStart(2, '0');
 
@@ -116,22 +119,22 @@ const handlePaymentReturn = async (req, res) => {
 
             const formatted = `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`; // vào lúc ${formatted}
             await notificationService.createNotification({
-                userId: newBooking.partnerId,
+                userId: updatedBooking.partnerId,
                 type: "booking",
                 title: "Có đơn đặt phòng mới",
-                content: `Khách hàng ${newBooking.data.customerName} vừa đặt ${newBooking.data.roomQuantity} phòng ${newBooking.roomTypeName}`
+                content: `Khách hàng ${updatedBooking.data.customerName} vừa đặt ${updatedBooking.data.roomQuantity} phòng ${updatedBooking.roomTypeName}`
             })
 
             const io = req.app.get("io");
             const partners = req.app.get("connectedPartners");
-            const partnerId = newBooking.partnerId;
+            const partnerId = updatedBooking.partnerId;
             const socketId = partners.get(partnerId);
 
             if (socketId) {
-                io.to(socketId).emit("new-booking", newBooking.data);
+                io.to(socketId).emit("new-booking", updatedBooking.data);
             }
 
-            return res.redirect('http://localhost:3000/dashboard/trips?type=1');
+            return res.redirect('http://localhost:3000/dashboard/trips?type=0');
             //return res.redirect('https://hoteluxury.vercel.app/dashboard/trips');
             // return res.status(200).json({
             //   status: "OK",
