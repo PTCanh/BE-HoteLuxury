@@ -77,7 +77,6 @@ const handlePaymentReturn = async (req, res) => {
             const updatedBooking = await bookingService.updateBooking({ status: "Đã thanh toán" }, bookingId);
             const newBooking = updatedBooking.data
             const checkUser = await User.findOne({ userId: newBooking.userId })
-            console.log(newBooking)
             if (newBooking.voucherCode) {
                 const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
                 const newQuantity = checkVoucher.quantity - 1

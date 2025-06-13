@@ -472,6 +472,7 @@ export const hotelManagerDashboardService = (headers, filter) => {
             }
             const filterStart = new Date(filter.filterStart)
             const filterEnd = new Date(filter.filterEnd)
+            const filterEndTomorrow = new Date(filterEnd.getTime() + 24 * 60 * 60 * 1000)
             if (isNaN(filterStart) || isNaN(filterEnd)) {
                 return resolve({
                     status: 'ERR2',
@@ -488,13 +489,13 @@ export const hotelManagerDashboardService = (headers, filter) => {
             const totalCancelledBookingOfHotel = await Booking.countDocuments({
                 roomTypeId: { $in: checkRoomTypeIds },
                 status: { $in: ["Đã hủy", "Đã hết phòng"] },
-                createdAt: { $gte: filterStart, $lte: filterEnd }
+                createdAt: { $gte: filterStart, $lte: filterEndTomorrow }
             })
             const totalBookingOfHotel = await Booking.countDocuments({
                 roomTypeId: { $in: checkRoomTypeIds },
                 status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
                 isConfirmed: true,
-                createdAt: { $gte: filterStart, $lte: filterEnd }
+                createdAt: { $gte: filterStart, $lte: filterEndTomorrow }
             })
             const totalBookingsByRoomType = await Booking.aggregate([
                 {
