@@ -51,6 +51,9 @@ const voucherSchema = new Schema({
     quantity: {
         type: Number,
         default: 1
+    },
+    startedAt:{
+        type: Date
     }
 },
 {

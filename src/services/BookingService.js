@@ -353,7 +353,7 @@ const getDetailBooking = (id) => {
                 // })
                 .lean()
             //const roomNumber = checkSchedule.filter(schedule => schedule.roomId?.roomNumber).map(schedule => schedule.roomId.roomNumber);
-            if(checkBooking.voucherCode){
+            if (checkBooking.voucherCode) {
                 const checkVoucher = await Voucher.findOne({
                     code: checkBooking.voucherCode
                 })
@@ -361,12 +361,12 @@ const getDetailBooking = (id) => {
                     checkBooking.voucherDiscount = checkVoucher.discountValue
                 } else if (checkVoucher.discountType === "percentage") {
                     checkBooking.voucherDiscount = (checkVoucher.discountValue * Number(checkBooking.finalPrice)) / 100
-                    if(checkBooking.voucherDiscount > checkVoucher.maxPercentageDiscount){
+                    if (checkBooking.voucherDiscount > checkVoucher.maxPercentageDiscount) {
                         checkBooking.voucherDiscount = checkVoucher.maxPercentageDiscount
                     }
                 }
             }
-            if(checkBooking.point > 0){
+            if (checkBooking.point > 0) {
                 checkBooking.pointDiscount = checkBooking.point * 1000
             }
             const formatedBooking = {
@@ -827,11 +827,20 @@ const getAllBookingByHotelManager = (headers, filter) => {
 const calculateFinalPrice = (booking) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const now = Date.now()
             const data = {}
             let finalPrice = Number(booking.price)
             data.price = finalPrice
             if (booking.voucherCode) {
-                const checkVoucher = await Voucher.findOne({ code: booking.voucherCode })
+                const checkVoucher = await Voucher.findOne({
+                    code: booking.voucherCode,
+                    $or: [
+                        { startedAt: { $lte: now } },
+                        { startedAt: null }
+                    ],
+                    quantity: { $gte: 1 },
+                    expiredAt: { $gt: now }
+                })
                 if (checkVoucher === null) {
                     return resolve({
                         status: 'ERR2',
@@ -851,7 +860,7 @@ const calculateFinalPrice = (booking) => {
                     data.voucherDiscount = checkVoucher.discountValue
                 } else if (checkVoucher.discountType === "percentage") {
                     data.voucherDiscount = (checkVoucher.discountValue * finalPrice) / 100
-                    if(data.voucherDiscount > checkVoucher.maxPercentageDiscount){
+                    if (data.voucherDiscount > checkVoucher.maxPercentageDiscount) {
                         data.voucherDiscount = checkVoucher.maxPercentageDiscount
                     }
                     finalPrice = finalPrice - data.voucherDiscount
