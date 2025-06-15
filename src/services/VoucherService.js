@@ -4,23 +4,23 @@ import jwt from 'jsonwebtoken'
 const createVoucher = (voucher) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if(voucher.discountType === "fixed"){
+            if (voucher.discountType === "fixed") {
                 const valueString = Number(voucher.discountValue).toLocaleString('vi-VN') + 'đ'
-                if(voucher.minOrderValue){
+                if (voucher.minOrderValue) {
                     const minOrderValueString = Number(voucher.minOrderValue).toLocaleString('vi-VN') + 'đ'
                     voucher.content = `Giảm ${valueString} cho đơn từ ${minOrderValueString}`
-                }else{
+                } else {
                     voucher.content = `Giảm ${valueString} cho tất cả đơn`
                 }
-            }else if(voucher.discountType === "percentage"){
+            } else if (voucher.discountType === "percentage") {
                 let maxPercentageDiscountString = "200.000đ"
-                if(voucher.maxPercentageDiscount){
+                if (voucher.maxPercentageDiscount) {
                     maxPercentageDiscountString = Number(voucher.maxPercentageDiscount).toLocaleString('vi-VN') + 'đ'
                 }
-                if(voucher.minOrderValue){
+                if (voucher.minOrderValue) {
                     const minOrderValueString = Number(voucher.minOrderValue).toLocaleString('vi-VN') + 'đ'
                     voucher.content = `Giảm ${voucher.discountValue}% cho đơn từ ${minOrderValueString} (tối đa ${maxPercentageDiscountString})`
-                }else{
+                } else {
                     voucher.content = `Giảm ${voucher.discountValue}% cho tất cả đơn (tối đa ${maxPercentageDiscountString})`
                 }
             }
@@ -147,15 +147,20 @@ const getSuitableVoucher = (headers, query) => {
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             let checkVoucher = await Voucher.find({
                 userId: decoded.userId,
-                minOrderValue: {$lte: price},
+                minOrderValue: { $lte: price },
                 quantity: { $gte: 1 },
                 expiredAt: { $gt: now }
             }).sort({ createdAt: -1 });
 
+            const festivalVoucherData = await getFestivalVoucher()
+            const festivalVoucher = festivalVoucherData.data
+
+            const newArr = [festivalVoucher, ...checkVoucher].filter(Boolean)
+
             resolve({
                 status: 'OK',
                 message: 'Xem Voucher phù hợp thành công',
-                data: checkVoucher,
+                data: newArr,
                 statusCode: 200
             })
 
