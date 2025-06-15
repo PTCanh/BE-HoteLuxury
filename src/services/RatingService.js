@@ -21,7 +21,9 @@ const createRating = async (headers, rating, bookingId) => {
             const totalStars = allRatings.reduce((sum, r) => sum + r.ratingStar, 0);
             const ratingQuantity = allRatings.length;
             // Tính ratingAverage chính xác
-            const newRatingAverage = parseFloat((totalStars / ratingQuantity).toFixed(1));
+            const newRatingAverage = ratingQuantity
+                ? parseFloat((totalStars / ratingQuantity).toFixed(1))
+                : 0;
 
             const updateHotel = await Hotel.findOneAndUpdate({ hotelId: newRating.hotelId, isDeleted: false },
                 {
@@ -48,18 +50,43 @@ const createRating = async (headers, rating, bookingId) => {
     });
 };
 
-const getAllRatingByHotelId = async (query) => {
+const getAllRatingByHotelId = async (query, headers) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let allRatings = await Rating.find({
-                hotelId: query.hotelId
-            }).populate({
+            let allRatings = []
+
+            const populateOptions = {
                 path: "userId",
                 model: "Users",
                 localField: "userId",
                 foreignField: "userId",
                 select: "fullname image",
-            }).lean()
+            }
+
+            try {
+                const token = headers.authorization?.split(' ')[1]
+                const decoded = token && jwt.verify(token, process.env.ACCESS_TOKEN)
+
+                if (decoded?.roleId === "R2") {
+                    // Quản lý xem tất cả đánh giá (cả bị ẩn)
+                    allRatings = await Rating.find({
+                        hotelId: query.hotelId
+                    }).populate(populateOptions).lean()
+                } else {
+                    // Người dùng thường hoặc không phải R2 → chỉ thấy đánh giá công khai
+                    allRatings = await Rating.find({
+                        hotelId: query.hotelId,
+                        isHidden: false
+                    }).populate(populateOptions).lean()
+                }
+            } catch {
+                // Token không hợp lệ → chỉ trả về đánh giá công khai
+                allRatings = await Rating.find({
+                    hotelId: query.hotelId,
+                    isHidden: false
+                }).populate(populateOptions).lean()
+            }
+
             const allRatingImages = allRatings.map(rating => rating.ratingImages || [])
 
             const allRatingImagesArray = allRatingImages.flat().filter(image => image !== null && image !== undefined)

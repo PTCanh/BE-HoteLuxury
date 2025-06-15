@@ -32,6 +32,10 @@ const ratingSchema = new Schema({
     ratingImages: {
         type: [String], // Array of strings to store multiple image URLs
         required: true
+    },
+    isHidden:{
+        type: Boolean,
+        default: false
     }
 },
 {

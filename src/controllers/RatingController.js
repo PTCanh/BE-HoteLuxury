@@ -17,7 +17,7 @@ const createRating = async (req, res) => {
 
 const getAllRatingByHotelId = async (req, res) => {
     try {
-        const response = await ratingService.getAllRatingByHotelId(req.query);
+        const response = await ratingService.getAllRatingByHotelId(req.query, req.headers);
         return res.status(200).json(response);
     } catch (e) {
         return res.status(500).json({

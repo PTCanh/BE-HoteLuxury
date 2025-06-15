@@ -38,7 +38,39 @@ const getAllVoucher = async (req, res) => {
     const response = await adminService.getAllVoucher();
     return res.status(200).json(response);
   } catch (e) {
-    return res.status(404).json({
+    return res.status(500).json({
+      message: e,
+    });
+  }
+};
+
+const getAllRating = async (req, res) => {
+  try {
+    const response = await adminService.getAllRating(req.query);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      message: e,
+    });
+  }
+};
+
+const updateRating = async (req, res) => {
+  try {
+    const response = await adminService.updateRating(req.params.id, req.body);
+    return res.status(response.statusCode).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      message: e,
+    });
+  }
+};
+const deleteRating = async (req, res) => {
+  try {
+    const response = await adminService.deleteRating(req.params.id);
+    return res.status(response.statusCode).json(response);
+  } catch (e) {
+    return res.status(500).json({
       message: e,
     });
   }
@@ -48,5 +80,8 @@ export default {
   adminHomePage,
   adminAvatar,
   getAllHotel,
-  getAllVoucher
+  getAllVoucher,
+  getAllRating,
+  updateRating,
+  deleteRating
 }

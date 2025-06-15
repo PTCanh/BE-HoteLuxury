@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import Hotel from "../models/Hotel.js";
 import Booking from "../models/Booking.js";
 import Voucher from "../models/Voucher.js";
+import Rating from "../models/Rating.js";
 import jwt from 'jsonwebtoken'
 
 const adminHomePage = async (query) => {
@@ -578,9 +579,126 @@ const getAllVoucher = () => {
   })
 }
 
+const getAllRating = async (query) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let allRatings = await Rating.find({})
+        .populate({
+          path: "userId",
+          model: "Users",
+          localField: "userId",
+          foreignField: "userId",
+          select: "fullname image",
+        })
+        .populate({
+          path: "hotelId",
+          model: "Hotel",
+          localField: "hotelId",
+          foreignField: "hotelId",
+          select: "hotelName",
+        }).lean()
+
+      if (query.fullname) {
+        const fullname = query.fullname.toLowerCase().trim()
+        allRatings = allRatings.filter(rating => rating.userId?.fullname?.toLowerCase().includes(fullname))
+      }
+      if (query.hotelName) {
+        const hotelName = query.hotelName.toLowerCase().trim()
+        allRatings = allRatings.filter(rating => rating.hotelId?.hotelName?.toLowerCase().includes(hotelName))
+      }
+      if (query.ratingDescription) {
+        const ratingDescription = query.ratingDescription.toLowerCase().trim()
+        allRatings = allRatings.filter(rating => rating.ratingDescription.toLowerCase().includes(ratingDescription))
+      }
+      if (query.filterStart && query.filterEnd) {
+        allRatings = allRatings.filter(rating => {
+          const createdDay = rating.createdAt.toISOString().split('T')[0]
+          return (query.filterStart <= createdDay && createdDay <= query.filterEnd)
+        })
+      }
+
+      resolve({
+        status: "OK",
+        message: "Xem tất cả đánh giá thành công",
+        data: allRatings
+      })
+    } catch (e) {
+      reject(e)
+      console.log(e)
+    }
+  });
+};
+
+const updateRating = async (id, rating) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const checkRating = await Rating.findOne({ ratingId: id })
+      if (checkRating === null) {
+        return resolve({
+          status: "ERR1",
+          message: "Không tìm thấy đánh giá",
+          statusCode: 404
+        })
+      }
+      await Rating.findOneAndUpdate({ ratingId: id }, rating, { new: true })
+
+      resolve({
+        status: "OK",
+        message: "Cập nhật đánh giá thành công",
+        statusCode: 200
+      })
+    } catch (e) {
+      reject(e)
+      console.log(e)
+    }
+  });
+};
+
+const deleteRating = async (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const checkRating = await Rating.findOne({ ratingId: id })
+      if (checkRating === null) {
+        return resolve({
+          status: "ERR1",
+          message: "Không tìm thấy đánh giá",
+          statusCode: 404
+        })
+      }
+      await Rating.findOneAndDelete({ ratingId: id })
+      //Hồi lại điểm đánh giá cho khách sạn
+      const allRatings = await Rating.find({ hotelId: checkRating.hotelId });
+      const newRatingQuantity = allRatings.length
+      const totalStars = allRatings.reduce((sum, r) => sum + r.ratingStar, 0);
+      const newRatingAverage = newRatingQuantity
+        ? parseFloat((totalStars / newRatingQuantity).toFixed(1))
+        : 0;
+      await Hotel.findOneAndUpdate({ hotelId: checkRating.hotelId, isDeleted: false },
+        {
+          ratingQuantity: newRatingQuantity,
+          ratingAverage: newRatingAverage
+        },
+        { new: true }
+      )
+
+      resolve({
+        status: "OK",
+        message: "Xóa đánh giá thành công",
+        statusCode: 200
+      })
+    } catch (e) {
+      reject(e)
+      console.log(e)
+    }
+  });
+};
+
 export default {
   adminHomePage,
   adminAvatar,
   getAllHotel,
-  getAllVoucher
+  getAllVoucher,
+  getAllRating,
+  updateRating,
+  deleteRating
 }
