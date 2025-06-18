@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "683d68c3c20368757dd9426c"
+  },
+  "userId": 81,
+  "point": 27,
+  "description": "Bạn được cộng 27 điểm vì đã đặt đơn BK25060216025412",
+  "isPlus": true,
+  "currentPoint": 27,
+  "createdAt": {
+    "$date": "2025-06-02T09:02:59.988Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T09:02:59.988Z"
+  },
+  "pointHistoryId": 2,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d6aacc20368757dd9433c"
+  },
+  "userId": 81,
+  "point": 20,
+  "description": "Bạn được cộng 20 điểm vì đã đặt đơn BK25060216108626",
+  "isPlus": true,
+  "currentPoint": 47,
+  "createdAt": {
+    "$date": "2025-06-02T09:11:08.093Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T09:11:08.093Z"
+  },
+  "pointHistoryId": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e8b6224bada21de3292f4"
+  },
+  "userId": 81,
+  "point": 20,
+  "description": "Bạn đã bị trừ 20 điểm vì đã sử dụng khi đặt đơn BK25060312325338",
+  "isPlus": false,
+  "currentPoint": 27,
+  "createdAt": {
+    "$date": "2025-06-03T05:42:58.202Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T05:42:58.202Z"
+  },
+  "pointHistoryId": 4,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e8b6224bada21de3292f8"
+  },
+  "userId": 81,
+  "point": 24,
+  "description": "Bạn được cộng 24 điểm vì đã đặt đơn BK25060312325338",
+  "isPlus": true,
+  "currentPoint": 51,
+  "createdAt": {
+    "$date": "2025-06-03T05:42:58.224Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T05:42:58.224Z"
+  },
+  "pointHistoryId": 5,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec1c224bada21de3293ae"
+  },
+  "userId": 81,
+  "point": 11,
+  "description": "Bạn được cộng 11 điểm vì đã đặt đơn BK25060316341953",
+  "isPlus": true,
+  "currentPoint": 62,
+  "createdAt": {
+    "$date": "2025-06-03T09:34:58.270Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:34:58.270Z"
+  },
+  "pointHistoryId": 6,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec25c24bada21de329473"
+  },
+  "userId": 81,
+  "point": 20,
+  "description": "Bạn đã bị trừ 20 điểm vì đã sử dụng khi đặt đơn BK25060316378713",
+  "isPlus": false,
+  "currentPoint": 42,
+  "createdAt": {
+    "$date": "2025-06-03T09:37:32.714Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:37:32.714Z"
+  },
+  "pointHistoryId": 7,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec25c24bada21de329477"
+  },
+  "userId": 81,
+  "point": 20,
+  "description": "Bạn được cộng 20 điểm vì đã đặt đơn BK25060316378713",
+  "isPlus": true,
+  "currentPoint": 62,
+  "createdAt": {
+    "$date": "2025-06-03T09:37:32.721Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:37:32.721Z"
+  },
+  "pointHistoryId": 8,
+  "__v": 0
+}]

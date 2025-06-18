@@ -1,322 +1,1777 @@
 [{
   "_id": {
-    "$oid": "6723362e47eea3afa8ca064d"
+    "$oid": "67f44d7654891cb56f7df309"
   },
-  "hotelId": 1,
-  "roomTypeQuantity": 3,
-  "roomTypeName": "MerPele Bình Thường",
-  "roomTypePrice": "1500000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 1,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "6723369047eea3afa8ca0650"
-  },
-  "hotelId": 1,
-  "roomTypeQuantity": 4,
-  "roomTypeName": "MerPele Sang Trọng",
-  "roomTypePrice": "2500000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 2,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "672c6b243f675a9996d2fd53"
-  },
-  "hotelId": 2,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Sheraton Bình Thường",
-  "roomTypePrice": "1500000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 11,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "6743403388a621eed0533ec7"
-  },
-  "hotelId": 3,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Ana Mandara Villas Bình Thường",
-  "roomTypePrice": "1500000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 12,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "6744885d0031fa6e13c1c36e"
-  },
-  "hotelId": 8,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Colline Bình Thường",
-  "roomTypePrice": "1750000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>Hướng thành phố</p><p>24m²</p><p>Phòng không hút thuốc</p><p>1 Giường King (1m8x2m)</p><p>Vòi hoa sen</p><p>Cửa sổ</p><p>Máy lạnh</p>",
-  "roomTypeId": 13,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67469405a357967b67d0211d"
-  },
-  "hotelId": 8,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Colline Sang Trọng",
-  "roomTypePrice": "2750000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 14,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674695a6a357967b67d0230d"
-  },
-  "hotelId": 3,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Ân Mandara Villas  Sang trọng",
-  "roomTypePrice": "3990000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 15,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67469603a357967b67d023a3"
-  },
-  "hotelId": 10,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Wonder Bình Thường",
-  "roomTypePrice": "1990000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 16,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67469624a357967b67d023aa"
-  },
-  "hotelId": 10,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Wonder Sang Trọng",
-  "roomTypePrice": "4250000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 17,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67469666a357967b67d023f4"
-  },
-  "hotelId": 11,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Terracotta Bình Thường",
-  "roomTypePrice": "2850000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 18,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67469685a357967b67d023fe"
-  },
-  "hotelId": 11,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Terracotta Sang Trọng",
-  "roomTypePrice": "5490000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 19,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674696c3a357967b67d0245e"
-  },
-  "hotelId": 12,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Mường Thanh Bình Thường",
-  "roomTypePrice": "1990000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 2,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>2</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố</p><p>🏠 24m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 20,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674696e6a357967b67d02465"
-  },
-  "hotelId": 12,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Mường Thanh Sang Trọng",
-  "roomTypePrice": "3390000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412964/uploads/nwerepu3qlyzlz9zuhsv.webp",
-  "maxPeople": 2,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 21,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d328bc0e5dd8c2bc49ec4"
-  },
-  "hotelId": 13,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Maia Bình Thường",
-  "roomTypePrice": "2349000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 22,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d3358c0e5dd8c2bc49f27"
-  },
-  "hotelId": 14,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Imperial Bình Thường",
-  "roomTypePrice": "1990000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 23,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d3445c0e5dd8c2bc49f6c"
-  },
-  "hotelId": 15,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Movenpick Bình Thường",
-  "roomTypePrice": "2150000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 24,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d3506c0e5dd8c2bc49fcd"
-  },
-  "hotelId": 16,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "InterContinental Bình Thường",
-  "roomTypePrice": "1790000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 25,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d35c7c0e5dd8c2bc49ff9"
-  },
-  "hotelId": 17,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Metropole Bình Thường",
-  "roomTypePrice": "2750000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 26,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d3699c0e5dd8c2bc4a035"
-  },
-  "hotelId": 18,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Angsana Bình Thường",
-  "roomTypePrice": "990000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 27,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "674d37b4c0e5dd8c2bc4a066"
-  },
-  "hotelId": 19,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Wink Bình Thường",
+  "hotelId": 30,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Heritage/Residence Deluxe Twin",
   "roomTypePrice": "850000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744063860/roomtypes/thumbnails/cgd2ykzlxyfrovio9ygq.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744063861/roomtypes/gallery/v67warozfircl6gzxfca.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744063863/roomtypes/gallery/shtotofv9zshxkyrjnrg.webp"
+  ],
   "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 28,
+  "roomTypeDescription": "<p>Phòng tối đa 4 khách</p><p>Hướng hồ bơi | thành phố</p><p>37 m²</p><p>Phòng không hút thuốc</p><p>Vòi hoa sen / Bồn tắm nằm</p><p>2 Giường đơn</p>",
+  "roomTypeId": 46,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "950000"
+},
+{
+  "_id": {
+    "$oid": "67f44f0a54891cb56f7df324"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 4,
+  "roomTypeName": "Heritage/Deluxe King",
+  "roomTypePrice": "1000000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064263/roomtypes/thumbnails/g3ylmy9tqsyynxpdxcs2.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064264/roomtypes/gallery/fkzmejwshxlvasevpaa8.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064266/roomtypes/gallery/yvpcmfxjbch8a5ciwrlv.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa 4 khách</p><p>Hướng hồ bơi | thành phố</p><p>37 m²</p><p>Phòng không hút thuốc</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 47,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1100000"
+},
+{
+  "_id": {
+    "$oid": "67f44f6054891cb56f7df33b"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Heritage/Residence Grand Deluxe King",
+  "roomTypePrice": "1200000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064349/roomtypes/thumbnails/rfg9io13djqaerozzmwg.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064350/roomtypes/gallery/btldncapgqgxn5rm2fxp.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064352/roomtypes/gallery/cvvfrtrpm6qnhz3d4pg3.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744064353/roomtypes/gallery/pjgebgwu4fy93dkrttew.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa 4 khách</p><p>Hướng hồ bơi | thành phố</p><p>40-55 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen / Bồn tắm nằm</p><p>1 Giường King (1m8x2m)</p>",
+  "roomTypeId": 48,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1300000"
+},
+{
+  "_id": {
+    "$oid": "67f45ea954891cb56f7df37a"
+  },
+  "hotelId": 31,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Căn Hộ 1 Phòng Ngủ",
+  "roomTypePrice": "800000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068263/roomtypes/thumbnails/g1xvupwyolx5cg1bioit.jpg",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068264/roomtypes/gallery/ab8shbzd3m35glhl9jbu.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068266/roomtypes/gallery/ll2dno0cbw6l0prtvaof.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068266/roomtypes/gallery/dnxzzkbmq8lznfptszg0.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068266/roomtypes/gallery/jqw9rkosgczm3vmhfq1t.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068266/roomtypes/gallery/m8ddzac7ilkdnkiedb50.jpg"
+  ],
+  "maxPeople": 2,
+  "roomTypeDescription": "<p>Phòng tối đa 2 khách</p><p>Hướng City view</p><p>40 m²</p><p>Phòng không hút thuốc</p><p>Ấm nước điện</p><p>Áo choàng tắm</p><p>Sản phẩm vệ sinh</p><p>Máy sấy tóc</p><p>Gương</p><p>phòng tắm riêng</p><p>Vật dụng tắm rửa</p><p>Các loại khăn</p><p>Wi-Fi miễn phí trong tất cả các phòng!</p><p>Truyền hình cáp/vệ tinh</p><p>Điện thoại</p><p>Điều hòa</p><p>Máy lọc không khí</p><p>Đồng hồ báo thức</p><p>Rèm che ánh sáng</p><p>Nước rửa tay</p><p>Ít gây dị ứng</p><p>Vải trải giường</p><p>Lối đi riêng</p><p>Đồ dùng cho giấc ngủ thoải mái</p><p>Dép đi trong nhà</p><p>Cách âm</p><p>Dịch vụ báo thức</p><p>Bàn ăn</p><p>Nước đóng chai miễn phí</p><p>Bếp đầy đủ</p><p>Lò vi sóng</p><p>Tủ lạnh nhỏ trong phòng</p><p>Tủ lạnh</p><p>Dọn phòng hằng ngày</p><p>Thảm</p><p>Bàn làm việc</p><p>Khu vực tiếp khách</p><p>Khu vực ăn uống riêng</p><p>Ghế sofa</p><p>Thùng rác</p><p>Cửa sổ</p><p>Cửa sổ mở</p><p>Tủ quần áo</p><p>Giá treo quần áo</p><p>Phòng thay đồ</p><p>Bình chữa cháy</p><p>Điều hòa cá nhân</p><p>Két sắt trong phòng</p><p>Tủ có khoá</p><p>Tính năng an toàn/bảo mật</p><p>Đầu báo khói</p>",
+  "roomTypeId": 49,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "900000"
+},
+{
+  "_id": {
+    "$oid": "67f4600b54891cb56f7df395"
+  },
+  "hotelId": 31,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Căn Hộ 2 Phòng Ngủ",
+  "roomTypePrice": "1000000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068617/roomtypes/thumbnails/ihzaje5y9w1swwgxwuia.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068618/roomtypes/gallery/mzatfpowdwkxhcsk6ujp.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/i4dw0jvq1h31lewmxpk4.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/gh2rzejm5r21kmuifepi.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/jpqh5k4ncig9adxk75av.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/lcrgrec2dwacsurauyo2.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/sbaihpatiejpcjiu1a9b.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/jaqpb8wwclfbwqmh87te.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/abwd89at43jrs29pksbt.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/odywe8lr5q2mtxruaruy.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068619/roomtypes/gallery/aketebqzruuryi6zzmqw.jpg"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa 4 khách</p><p>Hướng Outdoor view</p><p>70 m²</p><p>Phòng không hút thuốc</p><p>Ấm nước điện</p><p>Áo choàng tắm</p><p>Sản phẩm vệ sinh</p><p>Máy sấy tóc</p><p>Gương</p><p>phòng tắm riêng</p><p>Vật dụng tắm rửa</p><p>Các loại khăn</p><p>Wi-Fi miễn phí trong tất cả các phòng!</p><p>Truyền hình cáp/vệ tinh</p><p>Điện thoại</p><p>Điều hòa</p><p>Máy lọc không khí</p><p>Đồng hồ báo thức</p><p>Rèm che ánh sáng</p><p>Nước rửa tay</p><p>Ít gây dị ứng</p><p>Vải trải giường</p><p>Lối đi riêng</p><p>Đồ dùng cho giấc ngủ thoải mái</p><p>Dép đi trong nhà</p><p>Cách âm</p><p>Dịch vụ báo thức</p><p>Bàn ăn</p><p>Nước đóng chai miễn phí</p><p>Bếp đầy đủ</p><p>Lò vi sóng</p><p>Tủ lạnh nhỏ trong phòng</p><p>Tủ lạnh</p><p>Dọn phòng hằng ngày</p><p>Thảm</p><p>Bàn làm việc</p><p>Khu vực tiếp khách</p><p>Khu vực ăn uống riêng</p><p>Ghế sofa</p><p>Thùng rác</p><p>Cửa sổ</p><p>Tủ quần áo</p><p>Giá treo quần áo</p><p>Phòng thay đồ</p><p>Bình chữa cháy</p><p>Điều hòa cá nhân</p><p>Két sắt trong phòng</p><p>Tủ có khoá</p><p>Tính năng an toàn/bảo mật</p><p>Đầu báo khói</p><p><u>Thu gọn tiện ích phòng</u></p>",
+  "roomTypeId": 50,
+  "__v": 0,
+  "adultQuantity": 4,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1100000"
+},
+{
+  "_id": {
+    "$oid": "67f4618354891cb56f7df3c0"
+  },
+  "hotelId": 31,
+  "roomTypeQuantity": 12,
+  "roomTypeName": "Căn hộ 3 phòng ngủ",
+  "roomTypePrice": "1200000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068992/roomtypes/thumbnails/ng24di0rjwnwegn8jmto.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068994/roomtypes/gallery/inatnzs2i9krnzawpzoq.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/yqxmlmqdej1q4nljbua3.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/i39iytjogktvsmnaardu.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/at7cvdxd9pvargtpewmj.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068995/roomtypes/gallery/ipzhk8bqdlbquzxq7una.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/pcnzh6knlrwkuzhw9zre.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/mkir5s1d3nutlkzn3qlo.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/pzphlgyecx1erobzsoqy.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/eedmzwewg1lc7xafp4bp.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744068996/roomtypes/gallery/gerynnmyckgu75rza7ii.jpg"
+  ],
+  "maxPeople": 6,
+  "roomTypeDescription": "<p>Phòng tối đa 6 khách</p><p>Hướng Outdoor view</p><p>100 m²</p><p>Phòng không hút thuốc</p><p>Ấm nước điện</p><p>Áo choàng tắm</p><p>Sản phẩm vệ sinh</p><p>Máy sấy tóc</p><p>Gương</p><p>phòng tắm riêng</p><p>Vật dụng tắm rửa</p><p>Các loại khăn</p><p>Wi-Fi miễn phí trong tất cả các phòng!</p><p>Truyền hình cáp/vệ tinh</p><p>Điện thoại</p><p>Điều hòa</p><p>Máy lọc không khí</p><p>Đồng hồ báo thức</p><p>Rèm che ánh sáng</p><p>Nước rửa tay</p><p>Ít gây dị ứng</p><p>Vải trải giường</p><p>Lối đi riêng</p><p>Đồ dùng cho giấc ngủ thoải mái</p><p>Dép đi trong nhà</p><p>Cách âm</p><p>Dịch vụ báo thức</p><p>Bàn ăn</p><p>Nước đóng chai miễn phí</p><p>Bếp đầy đủ</p><p>Lò vi sóng</p><p>Tủ lạnh nhỏ trong phòng</p><p>Tủ lạnh</p><p>Dọn phòng hằng ngày</p><p>Thảm</p><p>Bàn làm việc</p><p>Khu vực tiếp khách</p><p>Khu vực ăn uống riêng</p><p>Ghế sofa</p><p>Thùng rác</p><p>Cửa sổ</p><p>Tủ quần áo</p><p>Giá treo quần áo</p><p>Phòng thay đồ</p><p>Bình chữa cháy</p><p>Điều hòa cá nhân</p><p>Két sắt trong phòng</p><p>Tủ có khoá</p><p>Tính năng an toàn/bảo mật</p><p>Đầu báo khói</p>",
+  "roomTypeId": 51,
+  "__v": 0,
+  "adultQuantity": 5,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1300000"
+},
+{
+  "_id": {
+    "$oid": "67f4697854891cb56f7df425"
+  },
+  "hotelId": 32,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Deluxe Room",
+  "roomTypePrice": "3198000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744071031/roomtypes/thumbnails/pg5k3ulj6mxgdlnnti2u.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744076340/roomtypes/gallery/euijsn8smwtlhkz3omrb.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744076340/roomtypes/gallery/nrvo7eieoesdy3rc0gbe.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744076340/roomtypes/gallery/y4m2iwqtqq4jvsp0yufp.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng vườn</p><p>47 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeId": 52,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "3298000"
+},
+{
+  "_id": {
+    "$oid": "67f46a4254891cb56f7df479"
+  },
+  "hotelId": 32,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Premium Room Private Garden",
+  "roomTypePrice": "4477500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744071234/roomtypes/thumbnails/lnueirg8svcsnwnkv8rk.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744076824/roomtypes/gallery/ighfqvswq1xbzzm0ynvs.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng vườn</p><p>54 m²</p><p>Phòng không hút thuốc</p><p>Vòi hoa sen</p><p>x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeId": 54,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "4577500"
+},
+{
+  "_id": {
+    "$oid": "67f4779954891cb56f7df594"
+  },
+  "hotelId": 33,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Romantic",
+  "roomTypePrice": "1204500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744074649/roomtypes/thumbnails/kn66fcm1ve7hx7l4gbxs.jpg",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744074650/roomtypes/gallery/eriko7pnbgzwoioeymfp.jpg"
+  ],
+  "maxPeople": 2,
+  "roomTypeDescription": "<p>Phòng tối đa 2 khách</p>",
+  "roomTypeId": 58,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1304500"
+},
+{
+  "_id": {
+    "$oid": "67f477d054891cb56f7df5c3"
+  },
+  "hotelId": 33,
+  "roomTypeQuantity": 12,
+  "roomTypeName": "Family",
+  "roomTypePrice": "1445000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744074704/roomtypes/thumbnails/sx6zzrebz5gfl0rqvcr4.jpg",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744074705/roomtypes/gallery/di0wvivnhiimcyno4bg0.jpg"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa 4 khách</p>",
+  "roomTypeId": 59,
+  "__v": 0,
+  "adultQuantity": 4,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1545000"
+},
+{
+  "_id": {
+    "$oid": "67f48fcb54891cb56f7df8f2"
+  },
+  "hotelId": 32,
+  "roomTypeQuantity": 11,
+  "roomTypeName": "Junior Suite Ocean View",
+  "roomTypePrice": "9236000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744080840/roomtypes/thumbnails/qwwixkvf6f4mnvhsqpb2.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744080844/roomtypes/gallery/l7f2gr8nacgh21bk5spn.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744080843/roomtypes/gallery/weljq5f4fankqz4rovgy.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển | nội khu</p><p>66 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Ban công</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 69,
+  "__v": 0,
+  "adultQuantity": 4,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "9336000"
+},
+{
+  "_id": {
+    "$oid": "67f4921454891cb56f7df95b"
+  },
+  "hotelId": 32,
+  "roomTypeQuantity": 11,
+  "roomTypeName": "The Level 01- Bedroom Private Pool Villa",
+  "roomTypePrice": "9768000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081425/roomtypes/thumbnails/vbkks06bka0wypijpy7c.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081427/roomtypes/gallery/ugnfrsudjok8gl4kodbw.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081429/roomtypes/gallery/rohhs34ogmzaqoxljli5.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng vườn | hồ</p><p>120 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Ban công</p><p>Hồ bơi</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 70,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "9868000"
+},
+{
+  "_id": {
+    "$oid": "67f4927454891cb56f7df98f"
+  },
+  "hotelId": 32,
+  "roomTypeQuantity": 12,
+  "roomTypeName": "The Level 01- Bedroom Ocean Front Villa",
+  "roomTypePrice": "15116000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081520/roomtypes/thumbnails/aqimovsld4cpereki39w.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081521/roomtypes/gallery/bohy3xl8qskfx4ahcdua.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081525/roomtypes/gallery/y49f69mijo3u2wocf7z6.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081523/roomtypes/gallery/jfodeco6ntfgdrwe8oo0.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081523/roomtypes/gallery/ytdt97vszt73wjoxa87w.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng biển</p><p>195 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Ban công</p><p>Hồ bơi</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 71,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "15216000"
+},
+{
+  "_id": {
+    "$oid": "67f493bb54891cb56f7df9e1"
+  },
+  "hotelId": 34,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Khu đồi | Standard Queen",
+  "roomTypePrice": "1830500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081850/roomtypes/thumbnails/n7jm97nq6dsifg3n7wii.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081851/roomtypes/gallery/pfafjo5wiicdu7z9fqzk.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744081853/roomtypes/gallery/f3ga5lm1fhxwwjxgvbf7.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn | không cảnh quan</p><p>22-25 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>1 Giường Queen (1m6)</p>",
+  "roomTypeId": 72,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeWeekendPrice": "1930500"
+},
+{
+  "_id": {
+    "$oid": "67f494b554891cb56f7dfa00"
+  },
+  "hotelId": 34,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Khu đồi | Superior Twin",
+  "roomTypePrice": "3894500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082099/roomtypes/thumbnails/ron5x5m6lctqgq8zymoa.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082101/roomtypes/gallery/gdtwh99z9srsv4centsk.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082102/roomtypes/gallery/pobgoamu4ulonsxtway9.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn | không cảnh quan</p><p>25-30 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>2 Giường đơn (1mx2m)</p>",
+  "roomTypeId": 73,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeWeekendPrice": "3994500"
+},
+{
+  "_id": {
+    "$oid": "67f4963354891cb56f7dfa23"
+  },
+  "hotelId": 34,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Khu biển | Deluxe Twin",
+  "roomTypePrice": "4367000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082482/roomtypes/thumbnails/ipy9cc8dhqrbcbgorfvm.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082484/roomtypes/gallery/ya6gevgagp1gxodjaokz.webp"
+  ],
+  "maxPeople": 5,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn | biển | một phần biển</p><p>32-36 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>1 Giường King (1m8)</p>",
+  "roomTypeId": 74,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "4467000"
+},
+{
+  "_id": {
+    "$oid": "67f496dd54891cb56f7dfa4b"
+  },
+  "hotelId": 34,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Khu biển | Executive Deluxe Twin",
+  "roomTypePrice": "4800000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082653/roomtypes/thumbnails/co2cdbfn71sbwcp6j5fw.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744082654/roomtypes/gallery/byzrqrhgkcfojufn9cvn.webp"
+  ],
+  "maxPeople": 5,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn | biển | một phần biển</p><p>32-36 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>2 Giường đơn (1mx2m)</p>",
+  "roomTypeId": 75,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "4900000"
+},
+{
+  "_id": {
+    "$oid": "67f5299dfc008ff14e17537e"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Twin",
+  "roomTypePrice": "1962000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120220/roomtypes/thumbnails/apfdepeynxvijbyfxfwh.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120221/roomtypes/gallery/wz548evbjym15t7dmyty.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120222/roomtypes/gallery/fxkx2ufmxy0y8ppbcnte.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng thành phố | đồi thông</p><p>32 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>2 Giường đơn (1m4x2m)</p>",
+  "roomTypeId": 76,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2062000"
+},
+{
+  "_id": {
+    "$oid": "67f52a32fc008ff14e1753a1"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Excecutive Suite",
+  "roomTypePrice": "3281000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120367/roomtypes/thumbnails/w55hrpyo6bikvxfjdb7u.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120368/roomtypes/gallery/yykp4afk6icjvuqdsfxi.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120370/roomtypes/gallery/dqq0kamsvymmkmzzvsqh.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120371/roomtypes/gallery/f0de0ckmwyrsum24afox.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | đồi thông</p><p>65 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Giường King (2mx2m)</p>",
+  "roomTypeId": 77,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "3381000"
+},
+{
+  "_id": {
+    "$oid": "67f52a95fc008ff14e1753cc"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Luxury Grand Suite",
+  "roomTypePrice": "4452000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120467/roomtypes/thumbnails/qyvfcg1lwahba6bpuhnl.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120470/roomtypes/gallery/wpobssgj6x48lwobxs3j.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120470/roomtypes/gallery/gmm99jogeflhkrl0kiws.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120470/roomtypes/gallery/uikd8ebil0itsleemnlx.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | đồi thông</p><p>85 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Giường King (2mx2m)</p>",
+  "roomTypeId": 78,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "4552000"
+},
+{
+  "_id": {
+    "$oid": "67f52b0afc008ff14e1753f7"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Garden Grand Suite",
+  "roomTypePrice": "5079500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120583/roomtypes/thumbnails/ysi3dvu4d39dfpc5tjfv.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120584/roomtypes/gallery/tjv9hlf9ihq1eo8jvcih.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120587/roomtypes/gallery/qq4pwxsrddquh8npqzjz.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120587/roomtypes/gallery/ryktbrbvytqydhqcheou.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120587/roomtypes/gallery/wmui4lm62svgu9u5j3fn.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120586/roomtypes/gallery/ovrvvilminexmkgeuuqc.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố</p><p>121 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Giường King (2mx2m)</p><p>Ấm nước điện</p><p>Áo choàng tắm</p><p>Máy sấy tóc</p><p>Gương</p><p>phòng tắm riêng</p><p>Vật dụng tắm rửa</p><p>Các loại khăn</p><p>Phòng tắm đứng</p><p>Wi-Fi miễn phí trong tất cả các phòng!</p><p>Tiện nghi bể bơi</p><p>Truyền hình cáp/vệ tinh</p><p>Điện thoại</p><p>Điều hòa</p><p>Vải trải giường</p><p>Đồ dùng cho giấc ngủ thoải mái</p><p>Dép đi trong nhà</p><p>Ổ cắm điện gần giường</p><p>Dịch vụ báo thức</p><p>Nước đóng chai miễn phí</p><p>Tủ lạnh nhỏ trong phòng</p><p>Bàn làm việc</p><p>Ghế cao cho trẻ con ngồi ăn</p><p>Đồ gỗ ngoài trời</p><p>Khu vực tiếp khách</p><p>Ghế sofa</p><p>Thùng rác</p><p>Sàn gỗ/gỗ miếng</p><p>Tủ quần áo</p><p>Máy sấy quần áo</p><p>Giá treo quần áo</p><p>Đi lên bằng thang máy</p><p>Két sắt trong phòng</p><p>Tính năng an toàn/bảo mật</p><p>Đầu báo khói</p>",
+  "roomTypeId": 79,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "5179500"
+},
+{
+  "_id": {
+    "$oid": "67f52b9bfc008ff14e17541e"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Deluxe Family",
+  "roomTypePrice": "2561500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120729/roomtypes/thumbnails/qv2b6dwf8j4t2uyjb8wf.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120730/roomtypes/gallery/qm45pjpgyetysjb6hwfa.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120732/roomtypes/gallery/bkcg27o5cyqobpdchxnw.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120732/roomtypes/gallery/tqtgexggyhohnycj7y7c.webp"
+  ],
+  "maxPeople": 5,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | đồi thông</p><p>40 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Giường đôi &amp; 1 giường đơn (2mx2m &amp; 1m4x2m)</p>",
+  "roomTypeId": 80,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeWeekendPrice": "2661500"
+},
+{
+  "_id": {
+    "$oid": "67f52be5fc008ff14e17544d"
+  },
+  "hotelId": 35,
+  "roomTypeQuantity": 11,
+  "roomTypeName": "Deluxe Triple",
+  "roomTypePrice": "2714500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120803/roomtypes/thumbnails/p7jlnnoilaorlnqmiman.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120804/roomtypes/gallery/zhyhlmqmtbupfsg0do9b.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744120806/roomtypes/gallery/t8brdspiwreozbe6xxt8.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p>Hướng thành phố</p><p>48 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>3 Giường đơn (1m4x2m)</p>",
+  "roomTypeId": 81,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2814500"
+},
+{
+  "_id": {
+    "$oid": "67f549f8fc008ff14e1754a2"
+  },
+  "hotelId": 36,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Standard Room with Balcony",
+  "roomTypePrice": "3468000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128504/roomtypes/thumbnails/hkycp0c9cbspsxkopkjr.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128505/roomtypes/gallery/afjgtryupsuuhxchsl4y.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng nội khu</p><p>45 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeId": 82,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeWeekendPrice": "3568000"
+},
+{
+  "_id": {
+    "$oid": "67f54a6afc008ff14e1754c5"
+  },
+  "hotelId": 36,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Superior Suite One King Bed Balcony",
+  "roomTypePrice": "4634000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128618/roomtypes/thumbnails/l5bqsasnpppl4pgd19nz.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128619/roomtypes/gallery/fggk5c9ogmrozgzmbjnd.webp"
+  ],
+  "maxPeople": 5,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng hồ bơi | một phần biển | nội khu</p><p>57 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 83,
+  "__v": 0,
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeWeekendPrice": "4734000"
+},
+{
+  "_id": {
+    "$oid": "67f54b15fc008ff14e1754ec"
+  },
+  "hotelId": 36,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Superior Suite Two King Beds Balcony",
+  "roomTypePrice": "6383000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128787/roomtypes/thumbnails/xmq8k8jjacviqhqa1fif.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128789/roomtypes/gallery/hlfhmhkknyscxkypdxpt.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128790/roomtypes/gallery/tkpjwmdf4tbvyjwuysbe.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128791/roomtypes/gallery/fhpxtnemkhfehtxsxrkk.webp"
+  ],
+  "maxPeople": 6,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>5</strong> người lớn | <strong>4</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng hồ bơi | nội khu</p><p>80 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>2 Giường King</p>",
+  "roomTypeId": 84,
+  "__v": 0,
+  "adultQuantity": 5,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "6483000"
+},
+{
+  "_id": {
+    "$oid": "67f54be0fc008ff14e175517"
+  },
+  "hotelId": 36,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Family Room Executive",
+  "roomTypePrice": "7257000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128990/roomtypes/thumbnails/ke1im3fpetbmktt1vf7j.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128991/roomtypes/gallery/ebbdlfigpkxlxihxo15z.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128993/roomtypes/gallery/chm5384sxyer4xseop7f.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128993/roomtypes/gallery/bsdawmiwqw7ftjkt7lfm.webp"
+  ],
+  "maxPeople": 6,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>5</strong> người lớn | <strong>4</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng hồ bơi | một phần biển</p><p>107 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Ban công</p><p>Vòi hoa sen / Bồn tắm nằm</p><p>2 phòng ngủ</p><p>1 Giường King</p><p>2 Giường đơn</p>",
+  "roomTypeId": 85,
+  "__v": 0,
+  "adultQuantity": 5,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "7357000"
+},
+{
+  "_id": {
+    "$oid": "67f55575fc008ff14e17556e"
+  },
+  "hotelId": 37,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Garden View",
+  "roomTypePrice": "2356500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131443/roomtypes/thumbnails/rxme78eophuhbpnuyu0j.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131444/roomtypes/gallery/diukdxxbtymboirtvpak.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131446/roomtypes/gallery/dilme8cpmpeq0ntqrpd5.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131446/roomtypes/gallery/itoq7tbiyffifzlh7v0s.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131446/roomtypes/gallery/mv0bh22uhlh943vcz6xr.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131446/roomtypes/gallery/bv41ltqfke1nmtdadnda.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131446/roomtypes/gallery/dbxooyy7wccjrncxp5cg.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131445/roomtypes/gallery/stsulcahm0bnyatzpe2t.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng núi</p><p>42 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeId": 86,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2456500"
+},
+{
+  "_id": {
+    "$oid": "67f555c9fc008ff14e175593"
+  },
+  "hotelId": 37,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Deluxe Ocean View",
+  "roomTypePrice": "2771500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131527/roomtypes/thumbnails/ttdtzf6dtf70rcwmvzme.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131529/roomtypes/gallery/qjjvbisdyuvpxylvv7vw.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131530/roomtypes/gallery/kdt3ndn8p1qklufe7vra.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131530/roomtypes/gallery/q8jtxq45v7qjaaqbesnq.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131530/roomtypes/gallery/wod3spbchfhwvjmaajpa.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131530/roomtypes/gallery/mi2apfg3ws8zlb6e96jt.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131530/roomtypes/gallery/p3u5uq0zywcdewmrzwex.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>42 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeId": 87,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2871500"
+},
+{
+  "_id": {
+    "$oid": "67f55607fc008ff14e1755ba"
+  },
+  "hotelId": 37,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Executive Suite Garden View",
+  "roomTypePrice": "3599500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131588/roomtypes/thumbnails/edq04bkm92g5ckkyumee.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131589/roomtypes/gallery/j5hdya5hg8u1uuhqayyf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/d7gzkwp6ro9kaikqu8rn.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/ecrx338dn3bdabmcqmen.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131591/roomtypes/gallery/fuviwdceiixnr0gkum3o.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/pzfz0ogzbvn6fdxndtgy.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131591/roomtypes/gallery/hnu6bt4ss5qfiab0nb63.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/jqa7grskbkrreikyasry.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/x3f2e1wt4bcileiejcbu.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/lnlx20qqqksaa32el7a9.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131592/roomtypes/gallery/bfxkhluypwmi5mjthe22.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn | núi</p><p>84 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường King</p>",
+  "roomTypeId": 88,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "3699500"
+},
+{
+  "_id": {
+    "$oid": "67f5565efc008ff14e1755e5"
+  },
+  "hotelId": 37,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Executive Suite Ocean View",
+  "roomTypePrice": "3778000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131676/roomtypes/thumbnails/ecxnylyflybieszb85zi.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131677/roomtypes/gallery/gtrnorwnbzqy3nfrwa2j.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131679/roomtypes/gallery/sgjnrka5knmyt2m18rzm.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131679/roomtypes/gallery/xmupx1xthesd0vzsbwka.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131679/roomtypes/gallery/pk9ltvybg1z4fjzvc51v.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744131678/roomtypes/gallery/k92krfzxxalt0k6vn1me.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>84 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường King</p>",
+  "roomTypeId": 89,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "3878000"
+},
+{
+  "_id": {
+    "$oid": "67f55921fc008ff14e175625"
+  },
+  "hotelId": 38,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Room",
+  "roomTypePrice": "1955000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132383/roomtypes/thumbnails/lyjmg6pllyvjgrnp5rfr.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132384/roomtypes/gallery/zqgqfmomnif6ldn1z8md.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132386/roomtypes/gallery/egpc9hy3l2tb6kcv2sxu.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132386/roomtypes/gallery/gt4zutsqwkppwkzmqqwo.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132385/roomtypes/gallery/qrowx84i07uief0pdrdc.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132386/roomtypes/gallery/gyy8vxo5gtemre6p4asb.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132386/roomtypes/gallery/igphssbxvgt9uwwfjyrw.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố</p><p>41 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>x 1 phòng ngủ</p><p>2 Giường đơn1 Giường King</p>",
+  "roomTypeId": 90,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2055000"
+},
+{
+  "_id": {
+    "$oid": "67f55984fc008ff14e175648"
+  },
+  "hotelId": 38,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Room with Horizon View",
+  "roomTypePrice": "2127500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132482/roomtypes/thumbnails/ccc3iss3qlhtw0gcsmpd.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132484/roomtypes/gallery/udyccovopaxx6cge6yzc.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132485/roomtypes/gallery/itu9nrli9otx6sftjydx.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132485/roomtypes/gallery/zizikzxqu1erwgifgkjt.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132485/roomtypes/gallery/dz3g4vjpwlpbubvvxrnw.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | sông</p><p>41 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 91,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2227500"
+},
+{
+  "_id": {
+    "$oid": "67f55a72fc008ff14e17567d"
+  },
+  "hotelId": 38,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Grand Premium",
+  "roomTypePrice": "2242500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132720/roomtypes/thumbnails/ifd0bxsiux5unuyslccc.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132721/roomtypes/gallery/ri41wpjz0pfd2w7s64p2.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132724/roomtypes/gallery/o9gappuzdciswx8jv2tp.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132723/roomtypes/gallery/high9w2uo45asq3rgmy9.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132723/roomtypes/gallery/kdvfonpa1miafharwbjv.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | sông</p><p>41 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 92,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2342500"
+},
+{
+  "_id": {
+    "$oid": "67f55b1cfc008ff14e17569c"
+  },
+  "hotelId": 38,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Junior Suite",
+  "roomTypePrice": "2415000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132890/roomtypes/thumbnails/jpz4uppbadz4khgaoao8.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132891/roomtypes/gallery/wiknmxhqodnsoq0sufll.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132893/roomtypes/gallery/dya2bacci6w0xhjnj9mi.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132893/roomtypes/gallery/kd9kuuiiyf0ued1gr252.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132893/roomtypes/gallery/nd7jlwrhlb5xrikbvfod.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132893/roomtypes/gallery/xuwehmiwc5q2txaofhz3.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744132893/roomtypes/gallery/tqyfwx9etc9n2hd8jx2k.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố</p><p>60 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Ban công</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 93,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2515000"
+},
+{
+  "_id": {
+    "$oid": "67f55bbcfc008ff14e1756b7"
+  },
+  "hotelId": 38,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Suite Panoramic Riverview",
+  "roomTypePrice": "3277500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133050/roomtypes/thumbnails/aenlpoazzlpywfiyxv0q.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133051/roomtypes/gallery/lwx1gg6dkdwvlesqngz0.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133053/roomtypes/gallery/vrg6gj2oktrsua22xcrm.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133052/roomtypes/gallery/entjfyppfkznwxpbneob.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133053/roomtypes/gallery/kjhds3yfadmwd80ch27q.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng sông</p><p>53 m²</p><p>Phòng không hút thuốc</p><p>Phòng cửa sổ mở</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>1 Giường King</p>",
+  "roomTypeId": 94,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "3377500"
+},
+{
+  "_id": {
+    "$oid": "67f55d8dfc008ff14e1756ec"
+  },
+  "hotelId": 39,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Superior Room",
+  "roomTypePrice": "931000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133515/roomtypes/thumbnails/c0h4vaeyqyhue9ftyh8w.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133516/roomtypes/gallery/hjf7izoboq8d4deezcu7.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133518/roomtypes/gallery/qgy37yfenmg57hcikpjn.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133518/roomtypes/gallery/mlj7cymyv9n91grvpl89.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133518/roomtypes/gallery/ckq2jrsspzgc0fcqylug.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133518/roomtypes/gallery/y4etuawzrfoa3y6zicr5.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng không cảnh quan</p><p>28 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>1 Giường đôi</p>",
+  "roomTypeId": 95,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1031000"
+},
+{
+  "_id": {
+    "$oid": "67f55e9ffc008ff14e17570f"
+  },
+  "hotelId": 39,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Double Sea View",
+  "roomTypePrice": "1095000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133790/roomtypes/thumbnails/alrmh8bcrn5owirmw5ew.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133791/roomtypes/gallery/zv6jjsaj9zpxfy7s3ycj.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>32 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>1 Giường đôi</p>",
+  "roomTypeId": 96,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1195000"
+},
+{
+  "_id": {
+    "$oid": "67f55ee1fc008ff14e175732"
+  },
+  "hotelId": 39,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Deluxe Twin Sea View",
+  "roomTypePrice": "1095000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133855/roomtypes/thumbnails/yh6bicx5nylpmcgszrbn.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133856/roomtypes/gallery/sdvouf6kocveeo8bcwp2.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133858/roomtypes/gallery/d29hxdaoah9gkisw2zio.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>32 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>2 Giường đơn</p>",
+  "roomTypeId": 97,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1195000"
+},
+{
+  "_id": {
+    "$oid": "67f55f1efc008ff14e175754"
+  },
+  "hotelId": 39,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Premier Twin Sea View",
+  "roomTypePrice": "1204500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133915/roomtypes/thumbnails/hvul4zur9qce5u1m2mzw.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133917/roomtypes/gallery/omqeqz5j6kgqxdvnynxh.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744133919/roomtypes/gallery/a766xyrhd5wwejmlndo9.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển | đồi</p><p>32 m²</p><p>Phòng không hút thuốc</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>2 Giường đơn</p>",
+  "roomTypeId": 98,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1304500"
+},
+{
+  "_id": {
+    "$oid": "67f56341fc008ff14e17578d"
+  },
+  "hotelId": 40,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Deluxe Double City View",
+  "roomTypePrice": "1798000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744134977/roomtypes/thumbnails/zwk88zcd0re1jsgivyvc.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744134978/roomtypes/gallery/qwgznsdeaszkd65zhyzc.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố</p><p>30 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường Queen (1m8x2m)</p>",
+  "roomTypeId": 99,
+  "__v": 0,
+  "adultQuantity": 4,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "1898000"
+},
+{
+  "_id": {
+    "$oid": "67f5637efc008ff14e1757a8"
+  },
+  "hotelId": 40,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Deluxe Double Ocean View",
+  "roomTypePrice": "1853000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135037/roomtypes/thumbnails/qbqkarpnmj5ws4kkyafh.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135039/roomtypes/gallery/ep8zf4snuyoy71tko8er.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa 3 khách</p><p>Hướng biển</p><p>33 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường Queen (1m8x2m)</p><p><strong> Gồm ăn sáng</strong></p><p>Double Deluxe Ocean View</p><p>Bữa sáng</p><p>Bãi đậu xe</p><p>WiFi miễn phí</p><p>Phòng tập</p><p>Hóa đơn VAT sẽ được khách sạn cung cấp tại thời điểm trả phòng</p><p>Không hoàn hủy hoặc thay đổi</p><p>Giá 1 đêm cho 2 người lớn</p><p><strong>1.853.000 VND</strong></p><p>Giá đã bao gồm:Sales tax (142.056đ)Service charge (taxable) (76.890đ)</p><p>Tích lũy thêm 18 điểm khi đặt phòng này</p><p>Giá đặt online</p><p><strong>Đặt</strong></p><p>1 phòng</p><p>Xác nhận ngay</p><p><strong> Không bao gồm ăn sáng</strong></p><p>Double Deluxe Ocean View</p><p>Bãi đậu xe</p><p>WiFi miễn phí</p><p>Phòng tập</p><p>Hóa đơn VAT sẽ được khách sạn cung cấp tại thời điểm trả phòng</p>",
+  "roomTypeId": 100,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1953000"
+},
+{
+  "_id": {
+    "$oid": "67f563b5fc008ff14e1757c7"
+  },
+  "hotelId": 40,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Twin Ocean View",
+  "roomTypePrice": "1853000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135091/roomtypes/thumbnails/n7hpcamyorryghdz4nfo.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135092/roomtypes/gallery/cos59termbh9k6p8dpli.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135095/roomtypes/gallery/oqs8r4cxecfrrwj5shsu.webp"
+  ],
+  "maxPeople": 3,
+  "roomTypeDescription": "<p>Phòng tối đa 3 khách</p><p>Hướng biển</p><p>33 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>2 Giường đơn (1m1x2m)</p>",
+  "roomTypeId": 101,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeWeekendPrice": "1953000"
+},
+{
+  "_id": {
+    "$oid": "67f563fdfc008ff14e1757ea"
+  },
+  "hotelId": 40,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Grand Deluxe Ocean View King",
+  "roomTypePrice": "2484000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135165/roomtypes/thumbnails/nzw84imuxqoosdkgqljv.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135166/roomtypes/gallery/bibeghp9xwpixnsrmnzk.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>35 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Cửa sổ</p><p>Vòi hoa sen / Bồn tắm nằm</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường Queen (1m8x2m)</p>",
+  "roomTypeId": 102,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "2584000"
+},
+{
+  "_id": {
+    "$oid": "67f5642dfc008ff14e175811"
+  },
+  "hotelId": 40,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Executive Suite Ocean View King",
+  "roomTypePrice": "3024000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135211/roomtypes/thumbnails/tlh2jeckeoapgje2sklv.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135213/roomtypes/gallery/ir1r7m4f7h4emhroxgvo.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135215/roomtypes/gallery/kwruilvv4cephveruz67.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135214/roomtypes/gallery/fofn2bfk4atjycrqrwlf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135214/roomtypes/gallery/oyel2othhxl5hr4rknbk.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135214/roomtypes/gallery/jwxnpe9tf0gtatyzetbx.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135215/roomtypes/gallery/s5w0z0xnt7psow7vguza.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1744135214/roomtypes/gallery/kdxuapmuy7dfa6hnzqwv.webp"
+  ],
+  "maxPeople": 4,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng biển</p><p>68 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Cửa sổ</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường Queen (1m8x2m)</p>",
+  "roomTypeId": 103,
+  "__v": 0,
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeWeekendPrice": "3124000"
+},
+{
+  "_id": {
+    "$oid": "68524c93591310ca9712efb9"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Heritage/Residence Deluxe King Seaview",
+  "roomTypePrice": "2644500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750224015/roomtypes/thumbnails/tfheyevzsu3l1elrihzf.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750224016/roomtypes/gallery/i7mh2gyvo8pfioo48rfv.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750224018/roomtypes/gallery/o8pffndrrjolcobou3f5.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>&lt;p&gt; Phòng tối đa &lt;strong&gt;3&lt;/strong&gt; người lớn | &lt;strong&gt;2&lt;/strong&gt; người lớn &amp;amp; &lt;strong&gt;2&lt;/strong&gt; trẻ em&lt;/p&gt;&lt;p&gt; Hướng biển&lt;/p&gt;&lt;p&gt; 37-50 m²&lt;/p&gt;&lt;p&gt; Phòng không hút thuốc&lt;/p&gt;&lt;p&gt; Ban công&lt;/p&gt;&lt;p&gt; Bồn tắm&lt;/p&gt;&lt;p&gt; Vòi hoa sen&lt;/p&gt;&lt;p&gt; 1 Giường King&lt;/p&gt;</p>",
+  "roomTypeWeekendPrice": "2744500",
+  "roomTypeId": 107,
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "674d38c5c0e5dd8c2bc4a0a3"
+    "$oid": "68525425591310ca9712eff1"
   },
-  "hotelId": 20,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "MovenpickPT Bình Thường",
-  "roomTypePrice": "2100000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 29,
+  "hotelId": 30,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Heritage/Residence Grand Deluxe Twin",
+  "roomTypePrice": "3122500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750225954/roomtypes/thumbnails/uiiqj53ntvewksgwq2ny.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750225955/roomtypes/gallery/sneqk9egfnfwrautdwut.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750225957/roomtypes/gallery/d8qld8yughjt48sh691h.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng hồ bơi | thành phố</p><p>40-55 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Vòi hoa sen / Bồn tắm nằm</p><p>2 Giường đơn (1m1x2m)</p>",
+  "roomTypeWeekendPrice": "3322500",
+  "roomTypeId": 108,
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "674d3996c0e5dd8c2bc4a175"
+    "$oid": "685255ab591310ca9712f021"
   },
-  "hotelId": 21,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "VictoryTN Bình Thường",
-  "roomTypePrice": "750000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 30,
+  "hotelId": 30,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Heritage/Residence Grand Deluxe King Sea View",
+  "roomTypePrice": "3652000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226343/roomtypes/thumbnails/dmpchqwalzdr7zlneiop.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226345/roomtypes/gallery/phmgssyelsohtsdlxczz.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226347/roomtypes/gallery/lqiid2dv4tx2emw1rrbu.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226346/roomtypes/gallery/n4aji1si8ajsqkwe7czn.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng biển</p><p> 40-55 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Vòi hoa sen / Bồn tắm nằm</p><p> 1 Giường King (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "3752000",
+  "roomTypeId": 109,
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "674d3a46c0e5dd8c2bc4a1b2"
+    "$oid": "685256bb591310ca9712f040"
   },
-  "hotelId": 22,
-  "roomTypeQuantity": 1,
-  "roomTypeName": "Kaya Bình Thường",
-  "roomTypePrice": "490000",
-  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1734412939/uploads/u2roexe1aamanh1reioe.webp",
-  "maxPeople": 4,
-  "roomTypeDescription": "<p>👨‍👩‍👧‍👦 Tối đa&nbsp;<strong>3</strong>&nbsp;người lớn&nbsp;&amp;&nbsp;<strong>1</strong>&nbsp;trẻ em&nbsp;|&nbsp;<strong>2</strong>&nbsp;người lớn &amp;&nbsp;<strong>2</strong>&nbsp;trẻ em&nbsp;</p><p>🏙️ Hướng thành phố | hồ</p><p>🏠 55m²</p><p>🚭 Phòng không hút thuốc</p><p>🛏️ 1 Giường King (1m8x2m)</p><p>🛁 Bồn tắm &amp; vòi hoa sen</p><p>🪟 Cửa sổ</p><p>❄️ Máy lạnh</p>",
-  "roomTypeId": 31,
+  "hotelId": 30,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Residence Suite Room",
+  "roomTypePrice": "3780000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226615/roomtypes/thumbnails/p8jmjmxopemopqcfbzpm.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226618/roomtypes/gallery/lq0jxjsnrfo9wchdwyij.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226619/roomtypes/gallery/gcfmzbllxppep7t9noqo.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226618/roomtypes/gallery/ydvt7g5vubwomsa9l7pi.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng hồ bơi | thành phố</p><p> 55-60 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Vòi hoa sen / Bồn tắm nằm</p><p> 1 Giường King (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "3880000",
+  "roomTypeId": 110,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685257d2591310ca9712f067"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Heritage/Residence Suite Seaview",
+  "roomTypePrice": "4489000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226895/roomtypes/thumbnails/qxalxwdjywkr7l6rlrpw.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226896/roomtypes/gallery/yjpwr0ujej2kszpofegr.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750226897/roomtypes/gallery/c2ornyhye1o75cvtj3e1.webp"
+  ],
+  "adultQuantity": 4,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p> Phòng tối đa 4 khách</p><p> Hướng biển</p><p> 65-70 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Vòi hoa sen / Bồn tắm nằm</p><p> 1 Giường King (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "4589000",
+  "roomTypeId": 111,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852589a591310ca9712f08e"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 4,
+  "roomTypeName": "Heritage Deluxe Triple",
+  "roomTypePrice": "3257500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227094/roomtypes/thumbnails/yayim8ccaf6jtrkgszop.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227095/roomtypes/gallery/rhy6ecf0qjigd1eqdpiz.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227097/roomtypes/gallery/bralzygnjxaqntamhoqo.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng hồ bơi | thành phố</p><p> 40-47 m²</p><p> Phòng không hút thuốc</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> 1 Giường đôi &amp; 1 giường đơn</p>",
+  "roomTypeWeekendPrice": "3357500",
+  "roomTypeId": 112,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852592a591310ca9712f0a5"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 5,
+  "roomTypeName": "Heritage Deluxe Triple Seaview",
+  "roomTypePrice": "3787500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227239/roomtypes/thumbnails/nrmvw6mhscnuganp9lhy.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227240/roomtypes/gallery/zukmhptft06ofldagcjd.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227242/roomtypes/gallery/wxmm6kxn6ls9vqkg8vy3.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng biển</p><p> 47-50 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> 1 Giường đôi &amp; 1 giường đơn</p>",
+  "roomTypeWeekendPrice": "3887500",
+  "roomTypeId": 113,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685259c7591310ca9712f0c0"
+  },
+  "hotelId": 30,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Two Bedrooms Suite Seaview (Khu căn hộ)",
+  "roomTypePrice": "6546500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227395/roomtypes/thumbnails/p8w9jsspzkutebfujlsi.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227398/roomtypes/gallery/aryfnxijwhizxnmesagx.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227398/roomtypes/gallery/qrqdmsgegoyzkot9ocsf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750227399/roomtypes/gallery/hvxedsceaj7cgtbtljzx.webp"
+  ],
+  "adultQuantity": 8,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa 8 khách</p><p> Hướng biển</p><p> 105 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Vòi hoa sen / Bồn tắm nằm</p><p> 2 Toilet</p><p> x 2 phòng ngủ</p><p>1 Giường King, 2 Giường đơn1 Giường King, 1 Giường đôi</p>",
+  "roomTypeWeekendPrice": "6646500",
+  "roomTypeId": 114,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852639a591310ca9712f1bb"
+  },
+  "hotelId": 41,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Standard 2 Single Bed",
+  "roomTypePrice": "2409500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750229910/roomtypes/thumbnails/dy1tmjjnn0lsbtywr9q4.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750229911/roomtypes/gallery/nauf4sgecyfn0ekh1nph.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750229913/roomtypes/gallery/zkclvcwhad4a7ilejr0s.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750229913/roomtypes/gallery/vgfgctzoug7rvh5a6maj.webp"
+  ],
+  "adultQuantity": 4,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 4 khách</p><p> Hướng vườn</p><p> 39 m²</p><p> Vòi hoa sen</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "2509500",
+  "roomTypeId": 115,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852642c591310ca9712f1f4"
+  },
+  "hotelId": 41,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Standard Cabana 2 Single Bed",
+  "roomTypePrice": "3647000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230056/roomtypes/thumbnails/acorstx0cbqrr2r2wxbo.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230057/roomtypes/gallery/usiflhryyjx2ssilgsjr.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230059/roomtypes/gallery/szbmjqdpke2t7bxenqtl.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230059/roomtypes/gallery/jh298fgigse5au13jbng.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230059/roomtypes/gallery/ceqgr9ocqndg4sln5f0w.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng vườn</p><p> 39 m²</p><p> Ban công</p><p> Vòi hoa sen</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "3847000",
+  "roomTypeId": 116,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685264a4591310ca9712f217"
+  },
+  "hotelId": 41,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Standard Ocean View 2 Single Bed",
+  "roomTypePrice": "3919500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230177/roomtypes/thumbnails/qedxfnonpd9ek60zhpgu.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230178/roomtypes/gallery/pctaxbkrq2177j1hdts6.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750230180/roomtypes/gallery/vwerqklmfjljjpralpzw.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 2,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng biển</p><p> 39 m²</p><p> Vòi hoa sen</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "4195000",
+  "roomTypeId": 117,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68526bf6591310ca9712f33e"
+  },
+  "hotelId": 42,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Classic Twin City View",
+  "roomTypePrice": "1210000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232051/roomtypes/thumbnails/lekg2uywzlphpxyow1em.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232052/roomtypes/gallery/iwoceptumrjngxdk9yqi.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232054/roomtypes/gallery/gupppr0jfvgeejbgrlrb.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng không cảnh quan</p><p> 22 m²</p><p> Phòng không hút thuốc</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 2 Giường đơn (1m2x2m)</p>",
+  "roomTypeWeekendPrice": "1310000",
+  "roomTypeId": 118,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68526c6e591310ca9712f361"
+  },
+  "hotelId": 42,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Classic Double City View",
+  "roomTypePrice": "1528000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232170/roomtypes/thumbnails/e71nzrbssyss8rm6iszx.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232171/roomtypes/gallery/crgjpdgg2t7aiyqazd6p.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232173/roomtypes/gallery/a35hqzqrs3qpbvjwjhjy.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng không cảnh quan</p><p> 22 m²</p><p> Phòng không hút thuốc</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 1 Giường đôi (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "1528000",
+  "roomTypeId": 119,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68526ce0591310ca9712f38c"
+  },
+  "hotelId": 42,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Classic Double Partial View",
+  "roomTypePrice": "1320000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232286/roomtypes/thumbnails/ukwmswbqiibkmdtvw2bm.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232288/roomtypes/gallery/h1r18h9ro0hsxmmhworb.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750232288/roomtypes/gallery/ioiv3cswldytqjkuqenc.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng thành phố | một phần biển</p><p> 22 m²</p><p> Phòng không hút thuốc</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 1 Giường đôi (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "1420000",
+  "roomTypeId": 120,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852888b2be6c5a53fbdc165"
+  },
+  "hotelId": 43,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Premier King",
+  "roomTypePrice": "1754000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239367/roomtypes/thumbnails/orlf7wo7lzknnswsdhdn.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239370/roomtypes/gallery/echxwctz3okpnnx4uj4c.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239369/roomtypes/gallery/h69mtv198nufxq7tu37s.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239370/roomtypes/gallery/eitktspbqvmsoinl9xjv.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239370/roomtypes/gallery/idfec1filmvldwtc1pzg.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố | một phần biển</p><p> 40 m²</p><p> Phòng không hút thuốc</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường King (1m8x2m)</p>",
+  "roomTypeWeekendPrice": "1854000",
+  "roomTypeId": 121,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685288eb2be6c5a53fbdc190"
+  },
+  "hotelId": 43,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Premier Twin",
+  "roomTypePrice": "2246000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239462/roomtypes/thumbnails/oejrnkzap8zrwz1fnin5.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239467/roomtypes/gallery/eimkyjgmfopd1jeau0dq.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239465/roomtypes/gallery/emonsgqmhgqqtjkzvzqr.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố | một phần biển</p><p> 40 m²</p><p> Phòng không hút thuốc</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 2 Giường đơn (1m4x2m)</p>",
+  "roomTypeWeekendPrice": "2346000",
+  "roomTypeId": 122,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685289d22be6c5a53fbdc202"
+  },
+  "hotelId": 43,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Premier Queen",
+  "roomTypePrice": "1897500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239695/roomtypes/thumbnails/nhyy1vrrfzrrhi97vrir.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239697/roomtypes/gallery/p3dai41vshnindkkixmh.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750239697/roomtypes/gallery/jwr3wrwjpjcig6emivue.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | một phần biển</p><p>40 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>2 Giường Queen (1m6x2m)</p>",
+  "roomTypeWeekendPrice": "1997500",
+  "roomTypeId": 124,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685292b82be6c5a53fbdc2e5"
+  },
+  "hotelId": 44,
+  "roomTypeQuantity": 12,
+  "roomTypeName": "Premier Garden Deluxe Double",
+  "roomTypePrice": "1685000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241973/roomtypes/thumbnails/nn7sl2w5aknrx6dyeocs.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241974/roomtypes/gallery/ejlcexzbq6k0kuugn5ae.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241976/roomtypes/gallery/hrunxztl05rozy2q2f3b.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn</p><p>40 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>1 Giường Queen (1m6x2m)</p>",
+  "roomTypeWeekendPrice": "1785000",
+  "roomTypeId": 126,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685293182be6c5a53fbdc31c"
+  },
+  "hotelId": 44,
+  "roomTypeQuantity": 11,
+  "roomTypeName": "Premier Garden Deluxe Twin",
+  "roomTypePrice": "1998000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242069/roomtypes/thumbnails/cmprjmawtd0kbe8hygz4.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242070/roomtypes/gallery/ppxngazqs2lbxt3kllk9.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242072/roomtypes/gallery/g0btocxlmub7u42jojuz.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng vườn</p><p>40 m²</p><p>Phòng không hút thuốc</p><p>Cửa sổ</p><p>Vòi hoa sen</p><p>1 Toilet</p><p>2 Giường đơn (1m2x2m)</p>",
+  "roomTypeWeekendPrice": "2098000",
+  "roomTypeId": 127,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685295fc2be6c5a53fbdc3f2"
+  },
+  "hotelId": 45,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Studio Suite",
+  "roomTypePrice": "1399000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242808/roomtypes/thumbnails/lsocmkncaakyll7oxqfy.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242809/roomtypes/gallery/s2jivpypdz6ibvr2zz4l.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242812/roomtypes/gallery/mgvt1hupiio169tosh8l.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242811/roomtypes/gallery/fc77vowq1kdb7bmuycei.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng biển</p><p> 50 m²</p><p> Phòng cửa sổ mở</p><p> Ban công</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "1499000",
+  "roomTypeId": 128,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685296592be6c5a53fbdc419"
+  },
+  "hotelId": 45,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Studio Suite Deluxe",
+  "roomTypePrice": "1679000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242900/roomtypes/thumbnails/rxbo5venth6f2x4tnar9.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242904/roomtypes/gallery/no9xqjxcjh9cmfqxa7rg.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242905/roomtypes/gallery/y9b2ehngqxvavnjrym3y.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242903/roomtypes/gallery/dqqr6wco0zzzv0fbkzd4.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750242903/roomtypes/gallery/mhfyzqq6hnihlajypyzw.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng biển</p><p> 56 m²</p><p> Phòng cửa sổ mở</p><p> Ban công</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> x 1 phòng ngủ</p><p>1 Giường King2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "1779000",
+  "roomTypeId": 129,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685296bf2be6c5a53fbdc448"
+  },
+  "hotelId": 45,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Family Suite",
+  "roomTypePrice": "2611000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243003/roomtypes/thumbnails/ue2tnascaht0eoido8mr.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243004/roomtypes/gallery/lpdmqpsdctttpsnnthqf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243007/roomtypes/gallery/o3hchdvqlqsck3ynkis8.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243007/roomtypes/gallery/d8rxymefzh75i0qgu3dk.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243007/roomtypes/gallery/q4ur0xm82yird96hvz4i.webp"
+  ],
+  "adultQuantity": 6,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p>Phòng tối đa 6 khách</p><p> Hướng biển</p><p> 67 m²</p><p> Phòng cửa sổ mở</p><p> Ban công</p><p> Vòi hoa sen</p><p> 2 Toilet</p><p> 2 phòng ngủ</p><p>1 Giường King</p><p>2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "2711000",
+  "roomTypeId": 130,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685297f32be6c5a53fbdc489"
+  },
+  "hotelId": 46,
+  "roomTypeQuantity": 12,
+  "roomTypeName": "King Bed Accessible Room",
+  "roomTypePrice": "1799000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243313/roomtypes/thumbnails/avyioamzq4w98hcdnfbt.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243314/roomtypes/gallery/x5iuslf8hihlrm14pcrf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243315/roomtypes/gallery/rph7xwt2pmkacqnxanoi.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243315/roomtypes/gallery/zod0qqnkfcmndhxowcp2.webp"
+  ],
+  "adultQuantity": 2,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 2 khách</p><p> 25 m²</p><p> Ban công</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 1 Giường King</p>",
+  "roomTypeWeekendPrice": "1899000",
+  "roomTypeId": 131,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685298942be6c5a53fbdc4c0"
+  },
+  "hotelId": 46,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Twin Beds Room",
+  "roomTypePrice": "1979000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243474/roomtypes/thumbnails/pftvsmxiw3lhdfij9rq0.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243475/roomtypes/gallery/vxqtucpq9zqiiaztsglg.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243476/roomtypes/gallery/beubnpny9ajkleynkzwb.webp"
+  ],
+  "adultQuantity": 1,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 2 khách</p><p> 25 m²</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "2079000",
+  "roomTypeId": 132,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "685298e62be6c5a53fbdc4ef"
+  },
+  "hotelId": 46,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Suite with Living Room Balcony",
+  "roomTypePrice": "3742500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243554/roomtypes/thumbnails/ti6pdmmmdgjhhlooienm.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243555/roomtypes/gallery/rkmrixfnag2yv9taju6p.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243557/roomtypes/gallery/ertbcmapbm89ybucqj2z.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243557/roomtypes/gallery/hco4xm2p4xb8ksssxl3u.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243557/roomtypes/gallery/ioqreojivh2ub5dzynwu.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750243557/roomtypes/gallery/pd8ygabr9tqq9b4lnzb3.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 3 khách</p><p> 50 m²</p><p> Ban công</p><p> Vòi hoa sen</p><p> 1 Toilet</p><p> 1 Giường King</p>",
+  "roomTypeWeekendPrice": "3842500",
+  "roomTypeId": 133,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529ac32be6c5a53fbdc52f"
+  },
+  "hotelId": 47,
+  "roomTypeQuantity": 15,
+  "roomTypeName": "Premium Without View",
+  "roomTypePrice": "1485000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244034/roomtypes/thumbnails/hm50mdi5yvvpffuhcdri.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244035/roomtypes/gallery/waijxlmcixjtosru50gn.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng không cảnh quan</p><p> 40 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường Queen</p>",
+  "roomTypeWeekendPrice": "1585000",
+  "roomTypeId": 134,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529b1e2be6c5a53fbdc572"
+  },
+  "hotelId": 47,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Premium Senna",
+  "roomTypePrice": "1705000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244123/roomtypes/thumbnails/wp0i8icnjbq0wdt4d0ds.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244124/roomtypes/gallery/hpi6xmn6uq4yzhklpefm.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244126/roomtypes/gallery/pr5mtgd3wkztgt2cn4te.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng vườn | nội khu</p><p> 40 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường Queen</p>",
+  "roomTypeWeekendPrice": "1805000",
+  "roomTypeId": 135,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529b792be6c5a53fbdc59d"
+  },
+  "hotelId": 47,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Premium City/Garden view",
+  "roomTypePrice": "2035000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244213/roomtypes/thumbnails/iegiykecbappseqhb0nd.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244217/roomtypes/gallery/b3puqbgpb0cvcpcdrerp.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244216/roomtypes/gallery/vdhyb2uzrxsre6idcqqu.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244216/roomtypes/gallery/qgfrfioyl5furcvjtenc.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244216/roomtypes/gallery/pdbovbvflf2vnyxtvr7e.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>1</strong> trẻ em</p><p> Hướng vườn | thành phố | nội khu</p><p> 40-45 m²</p><p> Phòng không hút thuốc</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường đôi | 2 giường đơn</p>",
+  "roomTypeWeekendPrice": "2135000",
+  "roomTypeId": 136,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529c9c2be6c5a53fbdc5eb"
+  },
+  "hotelId": 48,
+  "roomTypeQuantity": 6,
+  "roomTypeName": "Premier Sky View",
+  "roomTypePrice": "6067000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244504/roomtypes/thumbnails/dsbamyghirua56uh35h6.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244505/roomtypes/gallery/uzcc9hiddngztgf33rsk.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244507/roomtypes/gallery/a96c8pfmdwc2g9qgxzt8.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244508/roomtypes/gallery/yoi8q4pxzmvfppofeco2.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244508/roomtypes/gallery/bi7tsfw9rbpthhx3qrmv.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244507/roomtypes/gallery/fwmtkytwz98dpn5ubuq2.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244507/roomtypes/gallery/jtwa66mxseryapanigug.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244507/roomtypes/gallery/xyqjvmzkwewldnfcrkev.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 3 khách</p><p> Hướng thành phố</p><p> 36 m²</p><p> Phòng không hút thuốc</p><p> Phòng cửa sổ mở</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> x 1 phòng ngủ</p>",
+  "roomTypeWeekendPrice": "6167000",
+  "roomTypeId": 137,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529cfd2be6c5a53fbdc60a"
+  },
+  "hotelId": 48,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Premier Panoramic View",
+  "roomTypePrice": "7031000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244601/roomtypes/thumbnails/vwwodzukzw8vepylpped.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244604/roomtypes/gallery/gw0gfo5nlyyfqcgftccg.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244604/roomtypes/gallery/vieuaoaeirhxabympdo1.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244604/roomtypes/gallery/emrn7xv3zndojhuupul2.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244604/roomtypes/gallery/g4wt3keg44avld9mklnl.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244605/roomtypes/gallery/ytgbliz9xhoj0jj8cyfc.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244604/roomtypes/gallery/hm3orqjk83ymeo4kit8n.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 3 khách</p><p> Hướng thành phố</p><p> 36 m²</p><p> Phòng không hút thuốc</p><p> Phòng cửa sổ mở</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> x 1 phòng ngủ</p>",
+  "roomTypeWeekendPrice": "7131000",
+  "roomTypeId": 138,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529d4c2be6c5a53fbdc62d"
+  },
+  "hotelId": 48,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Landmark Panoramic Suite",
+  "roomTypePrice": "11000000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244681/roomtypes/thumbnails/oiobkqpv4bqzv3uefm77.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244684/roomtypes/gallery/qho5c20tnwff1pwweibf.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244684/roomtypes/gallery/rpknpjuxokpoehrfrgjl.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244683/roomtypes/gallery/gqzgpefr2lttkucs9v93.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244683/roomtypes/gallery/jj5fmvtca8p5qtentf1j.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa 3 khách</p><p> Hướng thành phố</p><p> 72 m²</p><p> Phòng không hút thuốc</p><p> Phòng cửa sổ mở</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> 1 Giường King</p>",
+  "roomTypeWeekendPrice": "11200000",
+  "roomTypeId": 139,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529e5a2be6c5a53fbdc66b"
+  },
+  "hotelId": 49,
+  "roomTypeQuantity": 10,
+  "roomTypeName": "Superior City View",
+  "roomTypePrice": "1405000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244947/roomtypes/thumbnails/xpdq6bdopninwfosyumr.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244949/roomtypes/gallery/gyyvjfgpk9jqoft6edaw.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244954/roomtypes/gallery/nzm4r1csxkbt7kqbgr0e.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750244950/roomtypes/gallery/bqjwkrej7x2gugl6yeu2.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố</p><p> 32 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "1505000",
+  "roomTypeId": 140,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529eaf2be6c5a53fbdc69c"
+  },
+  "hotelId": 49,
+  "roomTypeQuantity": 9,
+  "roomTypeName": "Deluxe King Ocean View",
+  "roomTypePrice": "1571500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245035/roomtypes/thumbnails/bmvkpqcdetsmu6ihqvc5.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245036/roomtypes/gallery/biddy4ajtmvajbxqrqwd.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245039/roomtypes/gallery/vvp1ernxiyly70pxpj7y.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố | một phần biển</p><p> 32 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường King</p>",
+  "roomTypeWeekendPrice": "1671500",
+  "roomTypeId": 141,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68529ef32be6c5a53fbdc6c7"
+  },
+  "hotelId": 49,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Deluxe Twin Ocean View",
+  "roomTypePrice": "1571000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245104/roomtypes/thumbnails/wnbzmb5eoepyn3vvfn9f.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245106/roomtypes/gallery/k3rwxo9bo9xcwuxgbkmb.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245106/roomtypes/gallery/r0ot8jgcojmkcvrvbarl.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 0,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn &amp; <strong>1</strong> trẻ em | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố | một phần biển</p><p> 32 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 2 Giường đơn</p>",
+  "roomTypeWeekendPrice": "1671000",
+  "roomTypeId": 142,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852a0022be6c5a53fbdc704"
+  },
+  "hotelId": 50,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Deluxe Double Balcony",
+  "roomTypePrice": "1372500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245375/roomtypes/thumbnails/yhnxmageuhsy8qtuiega.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245378/roomtypes/gallery/si65ungpjspyh0hkczmw.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245378/roomtypes/gallery/tu5q8z0iilbcavqsuqac.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p>Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p>Hướng thành phố | không cảnh quan</p><p>35 m²</p><p>Phòng không hút thuốc</p><p>Ban công</p><p>Cửa sổ</p><p>Bồn tắm</p><p>Vòi hoa sen</p><p>Máy lạnh</p><p>1 Toilet</p><p>1 Giường King (2mx2m)</p>",
+  "roomTypeWeekendPrice": "1472500",
+  "roomTypeId": 143,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852a04e2be6c5a53fbdc72b"
+  },
+  "hotelId": 50,
+  "roomTypeQuantity": 7,
+  "roomTypeName": "Deluxe Twin Balcony",
+  "roomTypePrice": "2398000",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245450/roomtypes/thumbnails/pi6eunphxfjve9zrq8wv.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245453/roomtypes/gallery/g35vatoismcssnqruviw.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố | không cảnh quan</p><p> 35 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 2 Giường đơn (1m2x2m)</p>",
+  "roomTypeWeekendPrice": "2498000",
+  "roomTypeId": 144,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6852a09f2be6c5a53fbdc755"
+  },
+  "hotelId": 50,
+  "roomTypeQuantity": 8,
+  "roomTypeName": "Premier Double Balcony",
+  "roomTypePrice": "1592500",
+  "roomTypeImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245531/roomtypes/thumbnails/hrtxnux7k6uezdytyrxa.webp",
+  "roomTypeImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245535/roomtypes/gallery/rlzq8rxc8meggxnkhf7s.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245534/roomtypes/gallery/u1n6lskem8snl37goawb.webp",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1750245535/roomtypes/gallery/epme1snndmvlls6fqisj.webp"
+  ],
+  "adultQuantity": 3,
+  "childQuantity": 1,
+  "roomTypeDescription": "<p> Phòng tối đa <strong>3</strong> người lớn | <strong>2</strong> người lớn &amp; <strong>2</strong> trẻ em</p><p> Hướng thành phố</p><p> 40 m²</p><p> Phòng không hút thuốc</p><p> Ban công</p><p> Cửa sổ</p><p> Bồn tắm</p><p> Vòi hoa sen</p><p> Máy lạnh</p><p> 1 Toilet</p><p> 1 Giường King (2mx2m)</p>",
+  "roomTypeWeekendPrice": "1692500",
+  "roomTypeId": 145,
   "__v": 0
 }]

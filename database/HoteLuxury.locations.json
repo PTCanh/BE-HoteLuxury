@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "672312d2c0da524ab463e838"
   },
-  "locationImage": "1732621855548-DaLat.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743778874/uploads/ij7eosoyiimftsfwvd4m.png",
   "locationName": "Đà Lạt",
   "locationId": 1,
   "__v": 0
@@ -11,7 +11,7 @@
   "_id": {
     "$oid": "672312e5c0da524ab463e841"
   },
-  "locationImage": "1732621865045-VungTau.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743778894/uploads/btp9njhqpqrwy5ahp5m9.jpg",
   "locationName": "Vũng Tàu",
   "locationId": 2,
   "__v": 0
@@ -20,7 +20,7 @@
   "_id": {
     "$oid": "6723145f3d148fe38c691ee4"
   },
-  "locationImage": "1732621874841-NhaTrang.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743778907/uploads/pmqzdo0onqvn7hvpxsza.jpg",
   "locationName": "Nha Trang",
   "locationId": 3,
   "__v": 0
@@ -29,7 +29,7 @@
   "_id": {
     "$oid": "672314e858feafbe5615e30d"
   },
-  "locationImage": "1732621894489-QuyNhon.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743778926/uploads/aebdakzgktzni1qgqly1.png",
   "locationName": "Quy Nhơn",
   "locationId": 4,
   "__v": 0
@@ -38,7 +38,7 @@
   "_id": {
     "$oid": "67231941b88cf356ad96807b"
   },
-  "locationImage": "1732621903208-PhuQuoc.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743778944/uploads/jiye04hpchzxdh7u525p.jpg",
   "locationName": "Phú Quốc",
   "locationId": 12,
   "__v": 0
@@ -47,7 +47,7 @@
   "_id": {
     "$oid": "672cd5009e5f50fffd8e42c5"
   },
-  "locationImage": "1732621922810-DaNang.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779066/uploads/gltaau8jrfgb1sger66s.jpg",
   "locationName": "Đà Nẵng",
   "locationId": 13,
   "__v": 0
@@ -56,7 +56,7 @@
   "_id": {
     "$oid": "672cdf48b0d50e7d8822385b"
   },
-  "locationImage": "1732621936284-HaNoi.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779085/uploads/li7nzfq19jbmwopttmbt.webp",
   "locationName": "Hà Nội",
   "locationId": 14,
   "__v": 0
@@ -65,7 +65,7 @@
   "_id": {
     "$oid": "672cdfc7b0d50e7d88223860"
   },
-  "locationImage": "1732621945409-Hue.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779099/uploads/iz8xhsgpz07mwvcw28xe.jpg",
   "locationName": "Huế",
   "locationId": 15,
   "__v": 0
@@ -74,7 +74,7 @@
   "_id": {
     "$oid": "672ce04acaeed039245d77d3"
   },
-  "locationImage": "1732621962401-TPHoChiMinh.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779114/uploads/wb6lwqyt1knlzu0wc8xa.jpg",
   "locationName": "Thành phố Hồ Chí Minh",
   "locationId": 16,
   "__v": 0
@@ -83,26 +83,26 @@
   "_id": {
     "$oid": "672ce062ede96bf141d9e961"
   },
-  "locationImage": "1732621978906-PhanThiet.png",
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779128/uploads/adivmo80dmqq4smgolub.jpg",
   "locationName": "Phan Thiết",
   "locationId": 17,
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "67468367a357967b67d02012"
+    "$oid": "674683a1a357967b67d0202f"
   },
-  "locationImage": "1732674407207-TayNinh.png",
-  "locationName": "Tây Ninh",
-  "locationId": 18,
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779608/uploads/jepqh3kjlurngywsd1cf.jpg",
+  "locationName": "Phú Yên",
+  "locationId": 19,
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "674683a1a357967b67d0202f"
+    "$oid": "67eff750f8b76392f9a4b7ff"
   },
-  "locationImage": "1732674465484-PhuYen.png",
-  "locationName": "Phú Yên",
-  "locationId": 19,
+  "locationImage": "https://res.cloudinary.com/djtaxcjff/image/upload/v1743779663/uploads/vdbh9ek7yknrkt36h1rh.webp",
+  "locationName": "Hội An",
+  "locationId": 20,
   "__v": 0
 }]

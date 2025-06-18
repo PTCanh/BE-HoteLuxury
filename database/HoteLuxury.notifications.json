@@ -1,0 +1,54 @@
+[{
+  "_id": {
+    "$oid": "683e890024bada21de32927a"
+  },
+  "userId": 83,
+  "type": "booking",
+  "title": "Có đơn đặt phòng mới",
+  "content": "Khách hàng Nhật Duy vừa đặt 1 phòng Heritage/Residence Grand Deluxe King",
+  "isRead": true,
+  "createdAt": {
+    "$date": "2025-06-03T05:32:48.159Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:34:52.900Z"
+  },
+  "notificationId": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec19e24bada21de32937b"
+  },
+  "userId": 83,
+  "type": "booking",
+  "title": "Có đơn đặt phòng mới",
+  "content": "Khách hàng Rách vừa đặt 1 phòng Heritage/Residence Grand Deluxe King",
+  "isRead": true,
+  "createdAt": {
+    "$date": "2025-06-03T09:34:22.274Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:34:52.900Z"
+  },
+  "notificationId": 16,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec24d24bada21de32943f"
+  },
+  "userId": 83,
+  "type": "booking",
+  "title": "Có đơn đặt phòng mới",
+  "content": "Khách hàng Rách vừa đặt 1 phòng Heritage/Deluxe King",
+  "isRead": false,
+  "createdAt": {
+    "$date": "2025-06-03T09:37:17.430Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:37:17.430Z"
+  },
+  "notificationId": 17,
+  "__v": 0
+}]

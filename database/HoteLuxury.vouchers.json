@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "6839f22d67eabce7b402790e"
+  },
+  "code": "ABCXXX",
+  "description": "AAAAA",
+  "userId": 81,
+  "discountType": "fixed",
+  "discountValue": 100000,
+  "minOrderValue": 1,
+  "expiredAt": {
+    "$date": "2026-11-11T00:00:00.000Z"
+  },
+  "quantity": 99,
+  "createdAt": {
+    "$date": "2025-05-30T18:00:13.095Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-03T09:34:22.267Z"
+  },
+  "voucherId": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6839f26ed1cceb40566e6852"
+  },
+  "code": "ABCDXXXX",
+  "description": "AAAAA",
+  "userId": 81,
+  "discountType": "percentage",
+  "discountValue": 5,
+  "minOrderValue": 100,
+  "expiredAt": {
+    "$date": "2026-11-11T00:00:00.000Z"
+  },
+  "quantity": 100,
+  "createdAt": {
+    "$date": "2025-05-30T18:01:18.754Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-31T18:07:45.383Z"
+  },
+  "voucherId": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6841a6ee7205d22e46411840"
+  },
+  "code": "SUPER2",
+  "description": "kkk",
+  "content": "Giảm 5% cho đơn từ 100.000đ (tối đa 200.000đ)",
+  "discountType": "percentage",
+  "discountValue": 5,
+  "minOrderValue": 100000,
+  "maxPercentageDiscount": 200000,
+  "expiredAt": {
+    "$date": "2025-07-31T00:00:00.000Z"
+  },
+  "quantity": 100,
+  "createdAt": {
+    "$date": "2025-06-05T14:17:18.298Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-05T14:17:18.298Z"
+  },
+  "voucherId": 6,
+  "__v": 0,
+  "startedAt": "2025-06-05T14:17:18.298+00:00"
+},
+{
+  "_id": {
+    "$oid": "6841a7807205d22e46411846"
+  },
+  "code": "SUPER1",
+  "description": "HHH",
+  "content": "Giảm 100.000đ cho đơn từ 500.000đ",
+  "discountType": "fixed",
+  "discountValue": 100000,
+  "minOrderValue": 500000,
+  "maxPercentageDiscount": 200000,
+  "expiredAt": {
+    "$date": "2025-07-31T00:00:00.000Z"
+  },
+  "quantity": 100,
+  "createdAt": {
+    "$date": "2025-06-05T14:19:44.924Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-05T15:32:18.163Z"
+  },
+  "voucherId": 7,
+  "__v": 0,
+  "startedAt": "2025-06-05T14:19:44.924+00:00"
+},
+{
+  "_id": {
+    "$oid": "685035a2cd9d77e50b88a96a"
+  },
+  "code": "SUPER3",
+  "description": "heheheh",
+  "content": "Giảm 100.000đ cho đơn từ 500.000đ",
+  "discountType": "fixed",
+  "discountValue": 100000,
+  "minOrderValue": 500000,
+  "maxPercentageDiscount": 200000,
+  "expiredAt": {
+    "$date": "2025-06-30T00:00:00.000Z"
+  },
+  "quantity": 5,
+  "startedAt": {
+    "$date": "2025-06-17T00:00:00.000Z"
+  },
+  "createdAt": {
+    "$date": "2025-06-16T15:17:54.994Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-16T15:17:54.994Z"
+  },
+  "voucherId": 9,
+  "__v": 0
+}]

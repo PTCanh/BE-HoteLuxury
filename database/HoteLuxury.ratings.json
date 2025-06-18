@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "681c7ea29f67ef4cfbb74d61"
+  },
+  "userId": 81,
+  "ratingStar": 9,
+  "ratingDescription": "Dịch vụ ok, chuyến đi tốt, phục vụ tốt",
+  "ratingDate": {
+    "$date": "2025-05-08T09:51:02.561Z"
+  },
+  "hotelId": 30,
+  "ratingImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746697889/uploads/xalrtgasww9uvbfp3de4.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746697891/uploads/l6davzrtrv6tjxxr0xya.jpg"
+  ],
+  "createdAt": {
+    "$date": "2025-05-08T09:51:30.436Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-16T20:04:26.891Z"
+  },
+  "ratingId": 11,
+  "__v": 0,
+  "isHidden": false
+},
+{
+  "_id": {
+    "$oid": "681c9f1c9f67ef4cfbb7543b"
+  },
+  "userId": 64,
+  "ratingStar": 10,
+  "ratingDescription": "Chất lượng tốt, nhân viên hổ trợ nhiệt tình",
+  "ratingDate": {
+    "$date": "2025-05-08T12:09:05.955Z"
+  },
+  "hotelId": 30,
+  "ratingImages": [
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706200/uploads/i3gio1lwdqza1nq5uy49.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706204/uploads/dkonzjcypccfqsledlwh.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706200/uploads/ndw2sxbybjhukkk7eoao.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706201/uploads/y1frkop1bmgxww3wmimj.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706203/uploads/yzh0qimn1f4v9comehir.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706204/uploads/zxgdw7wmipbioxtnmv3n.jpg",
+    "https://res.cloudinary.com/djtaxcjff/image/upload/v1746706200/uploads/u3swkfm7yet0sntc8rpv.jpg"
+  ],
+  "createdAt": {
+    "$date": "2025-05-08T12:10:04.098Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-16T19:29:15.733Z"
+  },
+  "ratingId": 13,
+  "__v": 0,
+  "isHidden": false
+}]

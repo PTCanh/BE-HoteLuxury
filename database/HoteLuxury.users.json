@@ -18,256 +18,780 @@
   "image": "1732678377564-meme-meo-khoc-5-1725388333.jpg",
   "phoneNumber": "0935348140",
   "updatedAt": {
-    "$date": "2024-11-27T03:32:57.570Z"
-  }
+    "$date": "2025-03-20T18:01:01.850Z"
+  },
+  "refreshToken": ""
 },
 {
   "_id": {
-    "$oid": "672323b916b30c3ed81169b2"
+    "$oid": "67dc5bba4182c60981b9f985"
   },
-  "email": "hotelmanager@gmail.com",
-  "password": "$2b$10$G/L1RVxLr7Tzxt.0B6R0w.vDlTCDrgCQvLqWaTddQ9b.7s8n9E..u",
-  "roleId": "R2",
+  "email": "hoteluxurybooking@gmail.com",
+  "password": "$2b$10$.CtJC8i/gLXpzYSZ4TtSce4ETVl3NCrJF9bsSuvEixx1tcZtcbul6",
+  "fullname": "HoteLuxury",
+  "roleId": "R1",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1747840722/uploads/uv8wqgufwzttk5ayybul.jpg",
   "isVerified": true,
   "createdAt": {
-    "$date": "2024-10-31T06:29:13.775Z"
+    "$date": "2025-03-20T18:17:30.092Z"
   },
   "updatedAt": {
-    "$date": "2024-11-27T02:01:01.234Z"
+    "$date": "2025-06-18T11:19:20.577Z"
   },
-  "userId": 3,
+  "userId": 45,
   "__v": 0,
-  "address": "Quảng Ngãi",
-  "birthDate": {
-    "$date": "2024-11-27T00:00:00.000Z"
+  "refreshToken": "",
+  "active": true,
+  "isConfirmed": true
+},
+{
+  "_id": {
+    "$oid": "67dfe87e197cf003c33c2edc"
   },
+  "email": "21110871@student.hcmute.edu.vn",
+  "password": "$2b$10$K08V061faSXVmoYezlkHWO0oRTdAd525OWvEZAWIiAp2eQSFqPyPi",
   "fullname": "Nguyễn Nhật Duy",
+  "address": "28, Đường số 8, Phường Trường Thọ, Thành phố Thủ Đức, Thành phố Hồ Chí Minh",
   "gender": "Nam",
-  "image": "1732672861204-1729759220468-wallpaperflare.com_wallpaper.jpg",
-  "phoneNumber": "0987654321"
+  "birthDate": {
+    "$date": "2003-07-14T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "0348094985",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1749210359/uploads/mngrnw61kp5wmpnh0urn.jpg",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": false,
+  "createdAt": {
+    "$date": "2025-03-23T10:54:54.156Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-12T12:27:46.218Z"
+  },
+  "userId": 64,
+  "__v": 0,
+  "refreshToken": "",
+  "point": 30
 },
 {
   "_id": {
-    "$oid": "672323d116b30c3ed81169b7"
+    "$oid": "67f00741f8b76392f9a4b84d"
   },
-  "email": "abcde@gmail.com",
-  "password": "$2b$10$Bp80baGBoDFjocnOUR62L.J03xQxvWLtIsFqrnyOAZC9eT7XhXLdu",
+  "email": "duynhat1507@gmail.com",
+  "password": "$2b$10$gwqbgJ8GZCrvhoAMemc3YOR.rWWhnOKDbQMhpRt1fHA6TN7UmF7/W",
+  "fullname": "Nguyễn Nhật Duy",
+  "address": "241, QL22B, Phường Hiệp Tân, Thị xã Hòa Thành, Tỉnh Tây Ninh",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "2003-07-15T00:00:00.000Z"
+  },
+  "roleId": "R3",
+  "phoneNumber": "0348094985",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1749215227/uploads/zlgpa5r7jzs2ztkysjhv.jpg",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-04T16:22:25.121Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-15T18:59:25.617Z"
+  },
+  "userId": 81,
+  "__v": 0,
+  "refreshToken": "$2b$10$q1ySL7xJKcG8VnpZBUds1uSMoDhlliCvLPl4QHqSXLnrp4ltTxZja",
+  "point": 62
+},
+{
+  "_id": {
+    "$oid": "67f007c9f8b76392f9a4b85d"
+  },
+  "email": "nguyennhatduyvip89@gmail.com",
+  "password": "$2b$10$Dw35DbSDVz7mgnFT7/LFSe3racGk/.1355IhBtbASOuee2/734PeW",
+  "fullname": "Nhật Duy",
+  "roleId": "R3",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1747650227/uploads/vzqvxuylxkloukm1abir.jpg",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-04T16:24:41.167Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-26T20:47:59.967Z"
+  },
+  "userId": 82,
+  "__v": 0,
+  "gender": "Nam",
+  "phoneNumber": "0123456789",
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f44c1554891cb56f7df2ef"
+  },
+  "email": "imperialvungtautest@gmail.com",
+  "password": "$2b$10$KC5kDqWw44WWcgXTzg1Qt.Gk5LZygideRXPZdewgu/erEqtjaveyC",
+  "fullname": "Imperial",
+  "address": "159 Thùy Vân, Phường Thắng Tam, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1993-02-09T00:00:00.000Z"
+  },
   "roleId": "R2",
-  "isVerified": false,
-  "createdAt": {
-    "$date": "2024-10-31T06:29:37.958Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-27T02:01:37.575Z"
-  },
-  "userId": 5,
-  "__v": 0,
-  "address": "Bình Định",
-  "birthDate": {
-    "$date": "2024-11-27T00:00:00.000Z"
-  },
-  "fullname": "L T H 2",
-  "gender": "Nam",
-  "image": "1732672897568-1731932328071-logo.png",
-  "phoneNumber": "0987654321"
-},
-{
-  "_id": {
-    "$oid": "672323df16b30c3ed81169bc"
-  },
-  "email": "user@gmail.com",
-  "password": "$2b$10$Mv0MblEvehtsMwWDrHBs9./qN49oeae5Ieh7X97/9eguSKg/llyVm",
-  "roleId": "R3",
+  "phoneNumber": "0926846936",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744063580/uploads/zqutmnaanrnlwl8sxgbu.webp",
   "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
   "createdAt": {
-    "$date": "2024-10-31T06:29:51.414Z"
+    "$date": "2025-04-07T22:05:09.722Z"
   },
   "updatedAt": {
-    "$date": "2024-12-01T07:54:23.007Z"
+    "$date": "2025-06-18T06:26:02.748Z"
   },
-  "userId": 8,
+  "userId": 83,
   "__v": 0,
-  "address": "Quảng Ngãi",
-  "birthDate": {
-    "$date": "2024-11-23T00:00:00.000Z"
-  },
-  "fullname": "KiritoPrime",
-  "gender": "Nam",
-  "phoneNumber": "0981154321",
-  "image": "1733039662997-1729572455665-8bb52e37220d8ba4fe00a892defafb76.jpg"
+  "refreshToken": ""
 },
 {
   "_id": {
-    "$oid": "672323f416b30c3ed81169c6"
+    "$oid": "67f45ae254891cb56f7df362"
   },
-  "email": "abc123456@gmail.com",
-  "password": "$2b$10$DVID9y/53AM7VB/uMeSJCuIJ59RcmqcoJsARKwGu8RlAUGEHbIIb6",
-  "roleId": "R3",
-  "isVerified": false,
-  "createdAt": {
-    "$date": "2024-10-31T06:30:12.335Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-27T02:03:08.695Z"
-  },
-  "userId": 9,
-  "__v": 0,
-  "address": "a",
-  "birthDate": {
-    "$date": "2024-11-27T00:00:00.000Z"
-  },
-  "fullname": "N Q T",
-  "gender": "Nam",
-  "phoneNumber": "0987654321"
-},
-{
-  "_id": {
-    "$oid": "67287535612e9f494d688075"
-  },
-  "email": "phantuancanh4@gmail.com",
-  "password": "$2b$10$mJFjIQ2GFrIQyVNS14Q84uCo9MculwghHJVm73Hr.X0gReU1k8aum",
-  "fullname": "Canh",
-  "birthDate": {
-    "$date": "2003-09-26T00:00:00.000Z"
-  },
-  "roleId": "R3",
-  "phoneNumber": "1234567890",
-  "isVerified": false,
-  "createdAt": {
-    "$date": "2024-11-04T07:18:13.405Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-07T04:02:47.867Z"
-  },
-  "userId": 12,
-  "__v": 0,
-  "address": "abcde",
-  "gender": "Nam",
-  "image": null
-},
-{
-  "_id": {
-    "$oid": "6728758f612e9f494d68807a"
-  },
-  "email": "phantuancanh5@gmail.com",
-  "password": "$2b$10$b9O9WQ4SFBPe.LdqNAOuSOWd1j8IKTrhYEdehrRRZCRqcPgu4faRO",
-  "fullname": "Canh",
-  "birthDate": {
-    "$date": "2003-09-26T00:00:00.000Z"
-  },
-  "roleId": "R3",
-  "phoneNumber": "1234567890",
-  "isVerified": false,
-  "createdAt": {
-    "$date": "2024-11-04T07:19:43.998Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-07T04:02:38.266Z"
-  },
-  "userId": 13,
-  "__v": 0,
-  "address": "abc",
-  "gender": "Nam",
-  "image": null
-},
-{
-  "_id": {
-    "$oid": "672877b47c6bec1837b34110"
-  },
-  "email": "phantuancanh6@gmail.com",
-  "password": "$2b$10$DIzLQcmy1yBq1WkcPZ0PI.9JSoO4AMwPOCkV27aVsC7icx.NdTJ3a",
-  "fullname": "Phan Tuấn Cảnh",
-  "birthDate": {
-    "$date": "2003-09-26T00:00:00.000Z"
-  },
-  "roleId": "R3",
-  "phoneNumber": "1234567890",
-  "isVerified": false,
-  "createdAt": {
-    "$date": "2024-11-04T07:28:52.902Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-07T04:02:14.294Z"
-  },
-  "userId": 14,
-  "__v": 0,
-  "address": "abc",
-  "gender": "Nam",
-  "image": null
-},
-{
-  "_id": {
-    "$oid": "6728ca94f3e0c130efe64867"
-  },
-  "email": "phantuancanh7@gmail.com",
-  "password": "$2b$10$RwZHx88v1t/eqYAWNUiOrO3ktrDg0HAcJ7wH6WuC70Vw2J3ceDg46",
-  "fullname": "Phan Tuấn Cảnh",
-  "address": "12 abc Street",
+  "email": "dicstarlandmarkvungtautest@gmail.com",
+  "password": "$2b$10$5LqCpc4scVPmzhMcvR6nteJcJGeonkarbtNlC22cxBaGjWpiA/bMS",
+  "fullname": "DIC Star Landmark",
+  "address": "15 Thi Sách, Phường Thắng Tam, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
   "gender": "Nam",
   "birthDate": {
-    "$date": "2003-09-26T00:00:00.000Z"
+    "$date": "1994-04-08T00:00:00.000Z"
   },
-  "roleId": "R3",
-  "phoneNumber": "1234567890",
-  "image": null,
-  "isVerified": true,
-  "createdAt": {
-    "$date": "2024-11-04T13:22:28.186Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-07T04:01:38.825Z"
-  },
-  "userId": 15,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "6728cad0f3e0c130efe6486d"
-  },
-  "email": "phantuancanh8@gmail.com",
-  "password": "$2b$10$RWiuvf5nCFrQvvG0MLgmL.85Uw.I3ah0SrZRaAHBQw1sgkzQE/UO6",
-  "fullname": "Phan Tuấn Cảnh",
-  "address": "12 abc Street",
-  "gender": "Male",
-  "birthDate": {
-    "$date": "2003-09-26T00:00:00.000Z"
-  },
-  "roleId": "R3",
-  "phoneNumber": "1234567890",
-  "image": null,
-  "isVerified": true,
-  "createdAt": {
-    "$date": "2024-11-04T13:23:28.147Z"
-  },
-  "updatedAt": {
-    "$date": "2024-11-07T04:03:12.205Z"
-  },
-  "userId": 16,
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "673d538ee0c63c3d60d0bd4e"
-  },
-  "email": "21110383@student.hcmute.edu.vn",
-  "password": "$2b$10$fwTI4gzgorCr0reIn8usSuE5E54j.zxYxwIgtUxXaP/4atxxU7G5W",
-  "fullname": "Phan Tuấn Cảnh",
   "roleId": "R2",
+  "phoneNumber": "0837629571",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744067299/uploads/uqpgmfzi32ogeqdqkqhs.webp",
   "isVerified": true,
-  "otpCode": "$2b$10$rq7NNugl7RLZ8dt08EIk2enu5Fd5xKTFA1ArU1xG4UoXk2qV8qZM6",
+  "isConfirmed": true,
+  "active": true,
   "createdAt": {
-    "$date": "2024-11-20T03:12:15.003Z"
+    "$date": "2025-04-07T23:08:18.656Z"
   },
   "updatedAt": {
-    "$date": "2024-11-27T04:11:07.394Z"
+    "$date": "2025-06-12T12:30:41.089Z"
   },
-  "userId": 17,
+  "userId": 84,
   "__v": 0,
-  "address": "Quảng Ngãi",
-  "birthDate": {
-    "$date": "2024-11-27T00:00:00.000Z"
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f4657754891cb56f7df3fc"
   },
+  "email": "meliahotrambeachresorttest@gmail.com",
+  "password": "$2b$10$F6TltCNxujUcocPOrS7y1e3VJjypHo0LZpQjhoPMBSlltr.c3KSTy",
+  "fullname": "Melia",
+  "address": "Đường Bờ biển, Ấp Hồ Tràm, Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa - Vũng Tàu",
   "gender": "Nam",
-  "image": "1732680667378-1731932382031-1731927975972-1729759220468-wallpaperflare.com_wallpaper.jpg",
-  "phoneNumber": "0987654321"
+  "roleId": "R2",
+  "phoneNumber": "0197395613",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744070007/uploads/bhfmz8oobq2rxgqoo6cx.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-07T23:53:27.090Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T07:13:50.367Z"
+  },
+  "userId": 85,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f4720f54891cb56f7df56c"
+  },
+  "email": "greenriverboutiquetest@gmail.com",
+  "password": "$2b$10$yLm2k36Nj9XRhk/dipi5vep7kdrgVp9gMeBLwrCM0DdI.FmzjDwFG",
+  "fullname": "Green River Boutique",
+  "address": "324/4 Bình Giã, Phường Nguyễn An Ninh, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1989-08-05T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0714619782",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744073333/uploads/yo31x4tpzqzyluhrgbz9.jpg",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T00:47:11.693Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T07:14:51.267Z"
+  },
+  "userId": 86,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f479e954891cb56f7df612"
+  },
+  "email": "mercuretest@gmail.com",
+  "password": "$2b$10$tRO7/thRw13RGaxNKnvw5OZoP6FefCHae6TdWMTMBjookOkCcF.dS",
+  "fullname": "Mercure",
+  "address": "03 Hạ Long, Phường 2, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "birthDate": {
+    "$date": "1990-05-12T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0637391749",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744075242/uploads/upzjrclvncjq2kvk1ewg.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T01:20:41.235Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T07:22:25.592Z"
+  },
+  "userId": 87,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f5284afc008ff14e17536a"
+  },
+  "email": "merperletest@gmail.com",
+  "password": "$2b$10$7kaCOgep12OLOuAjR4zGV.9pfkHfPjJFsqD56Rxp7GoOfB8rL82ee",
+  "fullname": "Merperle",
+  "address": "1 Hùng Vương, Phường 10, Thành phố Đà Lạt, Tỉnh Lâm Đồng",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1991-12-27T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0728935149",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744119883/uploads/b9yookr6fpe5osj9rg7n.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T13:44:42.788Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-07T17:50:25.426Z"
+  },
+  "userId": 88,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f548affc008ff14e17548c"
+  },
+  "email": "premierresidencestest@gmail.com",
+  "password": "$2b$10$f.paApMs2wUOg86juqwYJe/bEAIqowwoS44lUnapClF6D9kXqK49q",
+  "fullname": "Premier Residences",
+  "address": "Bãi Khem, Phường An Thới, Thành phố Phú Quốc, Tỉnh Kiên Giang",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1989-09-07T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0872590213",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744128176/uploads/rwdbzxutryymiqevzo0b.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T16:02:55.682Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T07:26:06.548Z"
+  },
+  "userId": 89,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f54f30fc008ff14e17554a"
+  },
+  "email": "marriotttest@gmail.com",
+  "password": "$2b$10$OT4RKoskZXHvcyfT6DPYNuZasvY5CN6BTa7WI2v2JAYaGApbTrrlS",
+  "fullname": "Marriott",
+  "address": "Đảo Hòn Tre, Phường Vĩnh Nguyên, Thành phố Nha Trang, Tỉnh Khánh Hòa",
+  "birthDate": {
+    "$date": "1990-04-03T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0176986532",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744129841/uploads/mkrfxv2cgmjzgtxp9q60.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T16:30:40.076Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-24T14:11:41.888Z"
+  },
+  "userId": 90,
+  "__v": 0,
+  "refreshToken": "$2b$10$JXj5xd9yw135vZnev0MyrO2dYNOrrabli2ZjJ4ZVPqgZ4SG3d7y2."
+},
+{
+  "_id": {
+    "$oid": "67f5515bfc008ff14e175551"
+  },
+  "email": "meliavinpearltest@gmail.com",
+  "password": "$2b$10$hPpbczczqQXjeZlC1qHBje7s9AdWz7wsyN3N6A/c4r8KNzm7HWgk2",
+  "fullname": "Melia Vinpearl",
+  "address": "341 Trần Hưng Đạo, Phường An Hải Bắc, Quận Sơn Trà, Thành phố Đà Nẵng",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": "1990-09-12T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0147325289",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744130396/uploads/pqgnlo1zq0ewavyy2d7j.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T16:39:55.291Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-13T02:24:19.358Z"
+  },
+  "userId": 91,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f551c6fc008ff14e175557"
+  },
+  "email": "vipoltest@gmail.com",
+  "password": "$2b$10$8rvn0FiYqlhSLrx12bOmVOf9ebaI3HoHHZ3UArBVajxfM7QGwaQOW",
+  "fullname": "Vipol",
+  "address": "29A Nguyễn Đình Chiểu, Phường Hàm Tiến, Thành phố Phan Thiết, Tỉnh Bình Thuận",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1987-02-18T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0812689725",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744130503/uploads/bqxnw0muhjcihlm1txky.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T16:41:42.095Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-13T02:33:14.343Z"
+  },
+  "userId": 92,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "67f56251fc008ff14e175775"
+  },
+  "email": "viastest@gmail.com",
+  "password": "$2b$10$dY/mWMyZld9r1.ZJm14Eq.4UDOasgz5fTxyTijX6QNqYSplQXJzHC",
+  "fullname": "Vias",
+  "address": "179 Thùy Vân, Phường 8, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": "1991-11-11T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0934278512",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1744134739/uploads/tkb5bvfncuwldrc1xojk.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-04-08T17:52:17.923Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-10T07:20:50.987Z"
+  },
+  "userId": 93,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "682ce9b3e1ddd50f2aae8a0a"
+  },
+  "email": "duydukhanhhcmute@gmail.com",
+  "password": "$2b$10$f6zw/V6uyxWXk6yHF35xqOZoJl0wuka3vITjKypMLCCMEI.5PU9dW",
+  "fullname": "Khánh",
+  "roleId": "R3",
+  "image": "https://lh3.googleusercontent.com/a/ACg8ocIa5jg9MGvGUwhmb_vRwd2y--ANKnb7RufD1AuXk-eig9pNOg=s96-c",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-05-20T20:44:35.627Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-20T20:47:24.701Z"
+  },
+  "userId": 100,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "682d84e00614ed6b6eb3fa3e"
+  },
+  "email": "vo870301@gmail.com",
+  "password": "$2b$10$.8FB4N00qc4a/cw8O5c.Nu2twIwc7Lhb03mdzi6wJ2onRWgOQbHJa",
+  "fullname": "Trẩu Phong",
+  "roleId": "R3",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "otpCode": "$2b$10$PW2AB/xOawQuBJFAE20ZqOj4sCPRj.9WT8pqiBnmh4IGmdbxoMebS",
+  "createdAt": {
+    "$date": "2025-05-21T07:46:40.618Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-21T07:53:45.004Z"
+  },
+  "userId": 101,
+  "__v": 0,
+  "refreshToken": "",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1747813751/uploads/houyiguaybycvmivyw5q.jpg"
+},
+{
+  "_id": {
+    "$oid": "68443699fec0e1dcb29d5acd"
+  },
+  "email": "vinpearesortnhatrang@gmail.com",
+  "password": "$2b$10$6IInK/soMKpHtr0Gdq6XzO2G2icrfcYC9hTwtx47oWmBPVCGxr44W",
+  "fullname": "Vinpear Resort Nha Trang",
+  "address": "Đảo Hòn Tre, Phường Vĩnh Nguyên, Thành phố Nha Trang, Tỉnh Khánh Hòa",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1995-06-14T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0487324819",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1749300887/uploads/wtcnaniuy6drwlkmx9do.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-07T12:54:49.436Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-07T17:11:26.167Z"
+  },
+  "userId": 102,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68525e23591310ca9712f137"
+  },
+  "email": "holidayinnhotramtest@gmail.com",
+  "password": "$2b$10$l8KkA7VDhqM4c3TF05mRK.5Ct2iaNYumVASU3L1RybmBneG/64ra.",
+  "fullname": "Holiday Inn Hồ Tràm",
+  "address": "Ven biển, Xã Phước Thuận, Huyện Xuyên Mộc, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1992-09-08T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0895229467",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750228514/uploads/dp2f10837nl97rnqzevt.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T06:35:15.244Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T07:21:44.123Z"
+  },
+  "userId": 105,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68526902591310ca9712f30b"
+  },
+  "email": "premierpearlvungtautest@gmail.com",
+  "password": "$2b$10$P4gbe3OKF/Zrpe5jlLL7EObYg8wQyuoUmt2nI5ijLA0bQrPNyLTBi",
+  "fullname": "Premier Pearl Vũng Tàu",
+  "address": " 69-69A Thùy Vân, Phường 2, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1994-05-18T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0742856843",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750231297/uploads/wflhvowc0fixht6e1jcu.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T07:21:38.471Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T07:39:06.818Z"
+  },
+  "userId": 106,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "685285262be6c5a53fbdc148"
+  },
+  "email": "malibuvungtautest@gmail.com",
+  "password": "$2b$10$CtSaiVnNzUrsbEWa/FkywOMVROyOS28p16FzEYamR86kFRvtI.ECi",
+  "fullname": "Malibu Vũng Tàu",
+  "address": " 263 Lê Hồng Phong, Phường Thắng Tam, Thành phố Vũng Tàu, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": {
+      "$numberLong": "-24572419200000"
+    }
+  },
+  "roleId": "R2",
+  "phoneNumber": "0745278615",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750238502/uploads/ujn6snpwuuhd0nh5polj.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T09:21:42.703Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T09:42:12.733Z"
+  },
+  "userId": 107,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68528b2d2be6c5a53fbdc24e"
+  },
+  "email": "seavahotramtest@gmail.com",
+  "password": "$2b$10$amH/UQwBZNUHTKc9/PVMau8O.yMNRZNqlx6mkpI7H1GJMoj8HTTES",
+  "fullname": "Seava Hồ Tràm",
+  "address": " Tỉnh lộ 55, Xã Bưng Riềng, Huyện Xuyên Mộc, Tỉnh Bà Rịa - Vũng Tàu",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": "1990-12-07T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0982417965",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750240045/uploads/nxlrozhtf0l4vak6lsrl.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T09:47:25.983Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T10:27:54.454Z"
+  },
+  "userId": 108,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68528e4f2be6c5a53fbdc26d"
+  },
+  "email": "flcluxuryquynhontest@gmail.com",
+  "password": "$2b$10$aVk3HNrFTskY8qCosIV8DuDZAs.WrUVnuBONQKT9VGVQkd7iyKq22",
+  "fullname": "Khách sạn FLC Luxury Quy Nhơn",
+  "address": " Khu 4, Nhơn Lý - bãi biển Cát Tiến, Xã Nhơn Lý, Thành phố Quy Nhơn, Tỉnh Bình Định",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1989-05-12T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0947304759",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750240846/uploads/gq1q9wlu0ylwald5e3qi.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:00:47.109Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T10:36:56.873Z"
+  },
+  "userId": 109,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68528f2d2be6c5a53fbdc273"
+  },
+  "email": "hiltondengarinndentest@gmail.com",
+  "password": "$2b$10$fhirpcSCzOGmVmx2yjnOSuIOhqFkyMwuDiSxdc7.aEFAkO.IJTzfW",
+  "fullname": "Hilton Garden Inn Hà Nội",
+  "address": "20 Phan Chu Trinh, Quận Hoàn Kiếm, Thành phố Hà Nội",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1990-07-19T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0718246964",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241069/uploads/e6otbnzrkuwuxjklugyj.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:04:29.996Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T10:46:07.095Z"
+  },
+  "userId": 110,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "68528fdb2be6c5a53fbdc27d"
+  },
+  "email": "sennahuetest@gmail.com",
+  "password": "$2b$10$Aa.MJUXzDYoS05JVDUk/4e6f9ebN.ghBH/DTvcv2eWP6uMYc/5G0i",
+  "fullname": "Senna Huế",
+  "address": " 07 Nguyễn Tri Phương, Phường Phú Hội, Thành phố Huế, Tỉnh Thừa Thiên Huế",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": "1992-02-14T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0487124359",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241242/uploads/zcf9opub3ctiuzr6fpe6.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:07:23.210Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T10:57:01.317Z"
+  },
+  "userId": 111,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "685290942be6c5a53fbdc28a"
+  },
+  "email": "landmark81test@gmail.com",
+  "password": "$2b$10$JSSBc6JnNjHEfC25lXobDOXOJnLVmM8.LkBuVoSD.2lPVp9OFPt.q",
+  "fullname": "Vinpearl Landmark 81",
+  "address": " Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Quận Bình Thạnh, Thành phố Hồ Chí Minh",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1993-05-17T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0894235168",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241427/uploads/teegl0obo30gmw2glkxg.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:10:28.336Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T11:04:49.256Z"
+  },
+  "userId": 112,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "685291282be6c5a53fbdc294"
+  },
+  "email": "salagrandtuyhoatest@gmail.com",
+  "password": "$2b$10$WOdL3jT./514eJXZttKiP.X06TNI/ePq7x4B89hAIqCwOooTqCAu6",
+  "fullname": "SALA Grand Tuy Hòa",
+  "address": "09 Độc Lập, Phường 7, Thành phố Tuy Hoà, Tỉnh Phú Yên",
+  "gender": "Nam",
+  "birthDate": {
+    "$date": "1987-03-15T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0659874231",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241576/uploads/dothcgrcharpoxa0opsh.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:12:56.944Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T11:11:51.742Z"
+  },
+  "userId": 113,
+  "__v": 0,
+  "refreshToken": ""
+},
+{
+  "_id": {
+    "$oid": "685291df2be6c5a53fbdc29a"
+  },
+  "email": "grandsunrisepalacehoiantest@gmail.com",
+  "password": "$2b$10$3C5qDnEMFTzAXicTn8A3Nu1bcWmKUqhoLWzufIWPpr5jxldV1Lv/e",
+  "fullname": "Grand Sunrise Palace Hội An",
+  "address": " 320 Cửa Đại, Phường Cẩm Châu, Thành phố Hội An, Tỉnh Quảng Nam",
+  "gender": "Nữ",
+  "birthDate": {
+    "$date": "1990-10-10T00:00:00.000Z"
+  },
+  "roleId": "R2",
+  "phoneNumber": "0493275489",
+  "image": "https://res.cloudinary.com/djtaxcjff/image/upload/v1750241758/uploads/mfx6vxnpjhpsw94qy6ca.webp",
+  "isVerified": true,
+  "isConfirmed": true,
+  "active": true,
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-18T10:15:59.103Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-18T11:18:59.224Z"
+  },
+  "userId": 114,
+  "__v": 0,
+  "refreshToken": ""
 }]

@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "682cb972aeb9cc2d01a7e93a"
+  },
+  "roomId": 67,
+  "bookingId": 54,
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "scheduleId": 37,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682cb978aeb9cc2d01a7e94f"
+  },
+  "roomId": 72,
+  "bookingId": 53,
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "scheduleId": 38,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682cb97faeb9cc2d01a7e964"
+  },
+  "roomId": 76,
+  "bookingId": 52,
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "scheduleId": 39,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d68c4c20368757dd94274"
+  },
+  "roomId": 67,
+  "bookingId": 63,
+  "dayStart": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-07T00:00:00.000Z"
+  },
+  "scheduleId": 44,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d6aacc20368757dd94344"
+  },
+  "roomId": 72,
+  "bookingId": 64,
+  "dayStart": {
+    "$date": "2025-06-08T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-10T00:00:00.000Z"
+  },
+  "scheduleId": 45,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e8b6224bada21de329300"
+  },
+  "roomId": 76,
+  "bookingId": 65,
+  "dayStart": {
+    "$date": "2025-06-19T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-21T00:00:00.000Z"
+  },
+  "scheduleId": 46,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec1c224bada21de3293b6"
+  },
+  "roomId": 76,
+  "bookingId": 66,
+  "dayStart": {
+    "$date": "2025-06-03T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "scheduleId": 47,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec25c24bada21de32947f"
+  },
+  "roomId": 72,
+  "bookingId": 67,
+  "dayStart": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-06T00:00:00.000Z"
+  },
+  "scheduleId": 48,
+  "__v": 0
+}]

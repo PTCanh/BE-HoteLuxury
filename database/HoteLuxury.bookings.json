@@ -1,0 +1,618 @@
+[{
+  "_id": {
+    "$oid": "681467bd5226cef98772a851"
+  },
+  "roomTypeId": 46,
+  "userId": 81,
+  "paymentMethod": "Online",
+  "roomQuantity": 1,
+  "price": "1700000",
+  "isConfirmed": true,
+  "isRating": true,
+  "status": "Đã thanh toán",
+  "customerName": "Trần Văn Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-04-30T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-01T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "createdAt": {
+    "$date": "2025-05-02T06:35:41.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-13T06:54:14.681Z"
+  },
+  "bookingId": 40,
+  "__v": 0,
+  "finalPrice": "1700000"
+},
+{
+  "_id": {
+    "$oid": "681468fd5226cef98772a8c1"
+  },
+  "roomTypeId": 86,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "7069500",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Đã hủy",
+  "customerName": "Nguyễn Nhật Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-09T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-12T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "createdAt": {
+    "$date": "2025-05-02T06:41:01.764Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 41,
+  "__v": 0,
+  "finalPrice": "7069500"
+},
+{
+  "_id": {
+    "$oid": "681498ed5226cef98772b52a"
+  },
+  "roomTypeId": 90,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "3910000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Đã hủy",
+  "customerName": "Nguyễn Nhật Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "không có gì",
+  "dayStart": {
+    "$date": "2025-05-16T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-18T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "createdAt": {
+    "$date": "2025-05-02T10:05:33.075Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 43,
+  "__v": 0,
+  "finalPrice": "3910000"
+},
+{
+  "_id": {
+    "$oid": "6815c76c1fd0d502b3b45cdd"
+  },
+  "roomTypeId": 84,
+  "userId": 81,
+  "paymentMethod": "Online",
+  "roomQuantity": 2,
+  "price": "25532000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Đã thanh toán",
+  "customerName": "Nguyễn Nhật Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "kkk",
+  "dayStart": {
+    "$date": "2025-05-13T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-15T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "createdAt": {
+    "$date": "2025-05-03T07:36:12.143Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 44,
+  "__v": 0,
+  "finalPrice": "25532000"
+},
+{
+  "_id": {
+    "$oid": "681c8e3b9f67ef4cfbb751b3"
+  },
+  "roomTypeId": 47,
+  "userId": 64,
+  "paymentMethod": "Online",
+  "roomQuantity": 0,
+  "price": "1000000",
+  "isConfirmed": true,
+  "isRating": true,
+  "status": "Đã thanh toán",
+  "customerName": "Nguyễn Tấn Phát",
+  "customerPhone": "0348094985",
+  "customerEmail": "21110871@student.hcmute.edu.vn",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-05T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-07T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25050817582079",
+  "createdAt": {
+    "$date": "2025-05-08T10:58:03.672Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 46,
+  "__v": 0,
+  "finalPrice": "1000000"
+},
+{
+  "_id": {
+    "$oid": "681dc7b613069768ad2c876e"
+  },
+  "roomTypeId": 47,
+  "userId": 97,
+  "paymentMethod": "Online",
+  "roomQuantity": 1,
+  "price": "5000000",
+  "isConfirmed": true,
+  "isRating": true,
+  "status": "Chưa thanh toán",
+  "customerName": "Huỳnh Anh Tuấn",
+  "customerPhone": "0987654321",
+  "customerEmail": "nguyennhatnam231020@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-01T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-06T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25050916157376",
+  "createdAt": {
+    "$date": "2025-05-09T09:15:34.667Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 47,
+  "__v": 0,
+  "finalPrice": "5000000"
+},
+{
+  "_id": {
+    "$oid": "682cb88caeb9cc2d01a7e811"
+  },
+  "roomTypeId": 48,
+  "userId": 64,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "1200000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Đã thanh toán",
+  "customerName": "Nguyễn Nhật Nam",
+  "customerPhone": "0348094985",
+  "customerEmail": "21110871@student.hcmute.edu.vn",
+  "note": "kkk",
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052100149578",
+  "createdAt": {
+    "$date": "2025-05-20T17:14:52.892Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 52,
+  "__v": 0,
+  "finalPrice": "1200000"
+},
+{
+  "_id": {
+    "$oid": "682cb8bdaeb9cc2d01a7e874"
+  },
+  "roomTypeId": 47,
+  "userId": 82,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "1000000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Lương Chin Du",
+  "customerPhone": "0123456789",
+  "customerEmail": "nguyennhatduyvip89@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052100151268",
+  "createdAt": {
+    "$date": "2025-05-20T17:15:41.501Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 53,
+  "__v": 0,
+  "finalPrice": "1000000"
+},
+{
+  "_id": {
+    "$oid": "682cb8eeaeb9cc2d01a7e8d8"
+  },
+  "roomTypeId": 46,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "850000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Nguyễn Minh Khánh",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-20T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-21T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052100162565",
+  "createdAt": {
+    "$date": "2025-05-20T17:16:30.798Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 54,
+  "__v": 0,
+  "finalPrice": "850000"
+},
+{
+  "_id": {
+    "$oid": "682ce7ece1ddd50f2aae89a9"
+  },
+  "roomTypeId": 46,
+  "userId": 99,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "2550000",
+  "isConfirmed": false,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Nguyễn Duy Thái",
+  "customerPhone": "0869187852",
+  "customerEmail": "nhatduynguyen157@gmail.com",
+  "note": "kkk",
+  "dayStart": {
+    "$date": "2025-05-26T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-29T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052103379068",
+  "createdAt": {
+    "$date": "2025-05-20T20:37:00.135Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 55,
+  "__v": 0,
+  "finalPrice": "2550000"
+},
+{
+  "_id": {
+    "$oid": "682cea46e1ddd50f2aae8a5a"
+  },
+  "roomTypeId": 46,
+  "userId": 100,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "1700000",
+  "isConfirmed": false,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Phan Tuấn Cảnh",
+  "customerPhone": "0948351784",
+  "customerEmail": "duydukhanhhcmute@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-06-02T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052103478353",
+  "createdAt": {
+    "$date": "2025-05-20T20:47:02.943Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 56,
+  "__v": 0,
+  "finalPrice": "1700000"
+},
+{
+  "_id": {
+    "$oid": "682d86190614ed6b6eb3faa5"
+  },
+  "roomTypeId": 46,
+  "userId": 101,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "1900000",
+  "isConfirmed": false,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Nguyễn Nhựt Phong",
+  "customerPhone": "0372054247",
+  "customerEmail": "vo870301@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-29T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-31T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052114516966",
+  "createdAt": {
+    "$date": "2025-05-21T07:51:53.381Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 57,
+  "__v": 0,
+  "finalPrice": "1900000"
+},
+{
+  "_id": {
+    "$oid": "682f326343deb6d3d8068aac"
+  },
+  "roomTypeId": 46,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "850000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Đã hủy",
+  "customerName": "Nguyễn Nhật Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-05-22T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-05-23T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25052221195179",
+  "createdAt": {
+    "$date": "2025-05-22T14:19:15.977Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 60,
+  "__v": 0,
+  "finalPrice": "850000"
+},
+{
+  "_id": {
+    "$oid": "683d688ec20368757dd94223"
+  },
+  "roomTypeId": 46,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "2750000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "kkk",
+  "dayStart": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-07T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25060216025412",
+  "finalPrice": "2750000",
+  "voucherCode": "",
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-02T09:02:06.546Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 63,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d6aa3c20368757dd94303"
+  },
+  "roomTypeId": 47,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "2000000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-06-08T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-10T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25060216108626",
+  "finalPrice": "2000000",
+  "voucherCode": "",
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-02T09:10:59.003Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 64,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e890024bada21de329271"
+  },
+  "roomTypeId": 48,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "2600000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Nhật Duy",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-06-19T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-21T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25060312325338",
+  "finalPrice": "2480000",
+  "voucherCode": "ABCXXX",
+  "point": 20,
+  "createdAt": {
+    "$date": "2025-06-03T05:32:48.113Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 65,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec19e24bada21de329374"
+  },
+  "roomTypeId": 48,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "1200000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Rách",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "",
+  "dayStart": {
+    "$date": "2025-06-03T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25060316341953",
+  "finalPrice": "1140000",
+  "voucherCode": "ABCDXXXX",
+  "point": 0,
+  "createdAt": {
+    "$date": "2025-06-03T09:34:22.254Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 66,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683ec24d24bada21de329438"
+  },
+  "roomTypeId": 47,
+  "userId": 81,
+  "paymentMethod": "Trực tiếp",
+  "roomQuantity": 1,
+  "price": "2100000",
+  "isConfirmed": true,
+  "isRating": false,
+  "status": "Chưa thanh toán",
+  "customerName": "Rách",
+  "customerPhone": "0348094985",
+  "customerEmail": "duynhat1507@gmail.com",
+  "note": "kkk",
+  "dayStart": {
+    "$date": "2025-06-04T00:00:00.000Z"
+  },
+  "dayEnd": {
+    "$date": "2025-06-06T00:00:00.000Z"
+  },
+  "title": "Anh",
+  "bookingCode": "BK25060316378713",
+  "finalPrice": "2080000",
+  "voucherCode": "",
+  "point": 20,
+  "createdAt": {
+    "$date": "2025-06-03T09:37:17.414Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:14:43.663Z"
+  },
+  "bookingId": 67,
+  "__v": 0
+}]
