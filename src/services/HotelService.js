@@ -10,10 +10,11 @@ import jwt from 'jsonwebtoken'
 const createHotel = (hotel) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await Hotel.create(hotel)
+            const newHotel = await Hotel.create(hotel)
             resolve({
                 status: 'OK',
                 message: 'Tạo khách sạn thành công',
+                data: newHotel
             })
 
         } catch (e) {
