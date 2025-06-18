@@ -177,6 +177,8 @@ const getDetailSchedule = (id) => {
 const getAllSchedule = (headers, filter) => {
     return new Promise(async (resolve, reject) => {
         try {
+            const now = new Date()
+            const today = now.toISOString().split("T")[0]
             const token = headers.authorization.split(' ')[1]
             const decoded = jwt.verify(token, process.env.ACCESS_TOKEN)
             const checkHotel = await Hotel.findOne({ userId: decoded.userId, isDeleted: false })
@@ -185,7 +187,8 @@ const getAllSchedule = (headers, filter) => {
             const checkRoom = await Room.find({ roomTypeId: { $in: roomTypeIds }, isActive: true })
             const roomIds = checkRoom.map(room => room.roomId)
             let checkSchedule = await Schedule.find({
-                roomId: { $in: roomIds }
+                roomId: { $in: roomIds },
+                dayEnd: {$gte: today}
             }).populate({
                 path: 'bookingId',
                 model: 'Booking',
