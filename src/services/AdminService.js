@@ -17,6 +17,7 @@ const adminHomePage = async (query) => {
       }
       const filterStart = new Date(query.filterStart)
       const filterEnd = new Date(query.filterEnd)
+      const filterEndTomorrow = new Date(filterEnd.getTime() + 24 * 60 * 60 * 1000)
       if (isNaN(filterStart) || isNaN(filterEnd)) {
         return resolve({
           status: 'ERR2',
@@ -28,7 +29,7 @@ const adminHomePage = async (query) => {
       const totalHotel = await Hotel.countDocuments({ isDeleted: false })
 
       const totalNewUser = await User.countDocuments({
-        createdAt: { $gte: filterStart, $lte: filterEnd }
+        createdAt: { $gte: filterStart, $lte: filterEndTomorrow }
       })
 
       const totalCommissionResult = await Booking.aggregate([
@@ -279,7 +280,7 @@ const adminHomePage = async (query) => {
           $match: {
             isConfirmed: true,
             status: { $in: ["Chưa thanh toán", "Đã thanh toán"] },
-            createdAt: { $gte: filterStart, $lte: filterEnd }
+            createdAt: { $gte: filterStart, $lte: filterEndTomorrow }
           }
         },
         {
