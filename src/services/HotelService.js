@@ -147,8 +147,8 @@ const getDetailHotel = (id) => {
                 bookingId: { $in: checkBookingIds }
             })
             const checkScheduleIds = checkSchedule.map(schedule => schedule.scheduleId)
-            //const comparedTime = new Date(Date.now() - 90 * 60 * 1000)
-            const comparedTime = new Date(Date.now() - 60 * 1000)
+            const comparedTime = new Date(Date.now() - 90 * 60 * 1000)
+            //const comparedTime = new Date(Date.now() - 60 * 1000)
             const trashSchedule = await Schedule.find({
                 scheduleId: { $in: checkScheduleIds },
                 createdAt: { $lte: comparedTime }
