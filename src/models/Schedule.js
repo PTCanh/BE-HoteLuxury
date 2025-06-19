@@ -29,6 +29,9 @@ const scheduleSchema = new Schema({
         type: Date,
         required: true
     }
+},
+{
+    timestamps:true
 });
 
 scheduleSchema.plugin(AutoIncrement, { inc_field: 'scheduleId', start_seq: 1 });

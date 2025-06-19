@@ -132,6 +132,34 @@ const getDetailHotel = (id) => {
             }
             checkHotel.locationName = checkHotel.locationId?.locationName || ''
             checkHotel.locationId = checkHotel.locationId?.locationId || ''
+            //Xóa lịch hẹn rác
+            const checkRoomType = await RoomType.find({
+                hotelId: checkHotel.hotelId
+            })
+            const checkRoomTypeIds = checkRoomType.map(roomtype => roomtype.roomTypeId)
+            const checkBooking = await Booking.find({
+                roomTypeId: { $in: checkRoomTypeIds },
+                paymentMethod: "Online",
+                status: "Chưa thanh toán"
+            })
+            const checkBookingIds = checkBooking.map(booking => booking.bookingId)
+            const checkSchedule = await Schedule.find({
+                bookingId: { $in: checkBookingIds }
+            })
+            const checkScheduleIds = checkSchedule.map(schedule => schedule.scheduleId)
+            //const comparedTime = new Date(Date.now() - 90 * 60 * 1000)
+            const comparedTime = new Date(Date.now() - 60 * 1000)
+            const trashSchedule = await Schedule.find({
+                scheduleId: { $in: checkScheduleIds },
+                createdAt: { $lte: comparedTime }
+            })
+            if (trashSchedule.length > 0) {
+                const trashScheduleIds = trashSchedule.map(schedule => schedule.scheduleId)
+                await Schedule.deleteMany({
+                    scheduleId: { $in: trashScheduleIds }
+                })
+            }
+
             resolve({
                 status: 'OK',
                 message: 'Xem chi tiết khách sạn thành công',

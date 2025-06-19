@@ -81,6 +81,19 @@ const createBooking = (booking) => {
             // booking.price = (roomTypePrice * roomQuantity).toString();
 
             const newBooking = await Booking.create(booking)
+            if (newBooking.paymentMethod === "Online") {
+                // Tạo mảng newSchedules
+                //const newSchedules = [];
+                for (let i = 0; i < newBooking.roomQuantity; i++) {
+                    const newSchedule = new Schedule({
+                        roomId: availableRooms[i].roomId, // Lấy roomId theo thứ tự
+                        bookingId: newBooking.bookingId,
+                        dayStart: newBooking.dayStart,
+                        dayEnd: newBooking.dayEnd,
+                    });
+                    await newSchedule.save()
+                }
+            }
             if (newBooking.paymentMethod === "Trực tiếp") {
                 if (newBooking.voucherCode) {
                     const checkVoucher = await Voucher.findOne({ code: newBooking.voucherCode })
@@ -134,6 +147,14 @@ const updateBooking = (booking, id, headers) => {
                 })
             }
             const searchedBooking = await Booking.findOne({ bookingId: id })
+            //Không thể hủy đơn online
+            if(booking.status === "Đã hết phòng" && searchedBooking.paymentMethod === "Online"){
+                return resolve({
+                    status: 'ERR',
+                    message: 'Không thể hủy đơn Online đã thanh toán',
+                    statusCode: 403
+                })
+            }
             const updatedBooking = await Booking.findOneAndUpdate({ bookingId: id },
                 booking,
                 { new: true })
@@ -176,8 +197,8 @@ const updateBooking = (booking, id, headers) => {
                     })
                 }
             }
-
-            if ((searchedBooking.isConfirmed === false && searchedBooking.status === "Chưa thanh toán" && updatedBooking.status === "Đã thanh toán") || ((booking.isConfirmed === "true" || booking.isConfirmed === true) && searchedBooking.isConfirmed === false && updatedBooking.status === "Chưa thanh toán")) {
+            //(searchedBooking.isConfirmed === false && searchedBooking.status === "Chưa thanh toán" && updatedBooking.status === "Đã thanh toán") ||
+            if ( ((booking.isConfirmed === "true" || booking.isConfirmed === true) && searchedBooking.isConfirmed === false && updatedBooking.status === "Chưa thanh toán" && updatedBooking.paymentMethod === "Trực tiếp")) {
                 // Find all Rooms associated with the RoomType
                 const rooms = await Room.find({ roomTypeId: updatedBooking.roomTypeId, isActive: true });
 
